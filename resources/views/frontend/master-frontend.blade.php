@@ -109,32 +109,22 @@
             }
         }
     </style>
-    <style>
-    /*Way Two*/
-        .protector___protect {
-            -moz-user-select: none; /* Firefox */
-              -ms-user-select: none; /* Internet Explorer */
-           -khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
-          -webkit-user-select: none; /* Chrome, Safari, and Opera */
-          -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
-        }
-        
-    </style>
+
     {{-- Copy Protector CSS end from here --}}
 </head>
 
 {{-- Copy Protector JS --}}
-<body oncontextmenu="return false"  class="protector___protect">
+<body oncontextmenu="return true"  class="">
 
 
 <!-- Main Wrapper Start -->
 <div class="main-wrapper">
 
-    <header class="header-area">
+    <header class="header-area fixed-top">
         <!-- header-top-area -->
         <div class="header-top-area">
             <div class="container">
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6 col-12">
 
                         <!-- top-contact-info -->
@@ -191,9 +181,9 @@
             </div>
         </div><!--// header-top-area -->
 
-        <div class="header-bottom-area header-sticky header-sticky">
+        <div class="header-bottom-area header-sticky">
             <div class="container">
-                <div class="row">
+                <div class="row align-items-center">
 
                     <div class="col-lg-3 col-md-5 col-6">
 

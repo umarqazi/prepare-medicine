@@ -22,17 +22,16 @@
     /*--
         Menu Sticky
     -----------------------------------*/
-    var windows = $(window);
-    var sticky = $('.header-sticky');
 
-    windows.on('scroll', function() {
-        var scroll = windows.scrollTop();
-        if (scroll < 300) {
-            sticky.removeClass('is-sticky');
-        }else{
-            sticky.addClass('is-sticky');
-        }
-    });
+    $(window).scroll(function () {
+		var scroll = $(window).scrollTop();
+
+		if (scroll > 0) {
+			$("body").addClass("scroll");
+		} else {
+			$("body").removeClass("scroll");
+		}
+	});
 
     /*--
         Header Search 
