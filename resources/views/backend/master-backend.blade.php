@@ -3,11 +3,12 @@
   <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Admin Dashboard - Prepare Medicine</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{ url('backend/css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('backend/css/custom.css') }}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     {{-- Custom Js && Css --}}
@@ -107,9 +108,9 @@
     <script src="{{ url('backend/js/main.js') }}"></script>
     {{-- Custom Js --}}
     @yield('js')
-    
-    
-    
+
+
+
         <script>
             $(document).ready(function(){
                 $(".showModal_changeEmail").on('click', function(e){

@@ -3,14 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\answer;
+use App\Asset;
+use App\Blog;
 use App\categoty;
 use App\Imports\QuestionImport;
 use App\question;
+use App\Services\QuestionService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
 class QuestionController extends Controller
 {
+    private $question_service;
+    public function __construct()
+    {
+        $this->question_service = new QuestionService();
+    }
+
     function SingleIndex(){
 
         $category = categoty::select()->get();
@@ -26,19 +38,31 @@ class QuestionController extends Controller
 
     function Single(Request $request){
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'category' => 'required',
             'question' => 'required',
             'answer' => 'required',
             'ans' => 'required',
+            'asset_files' => 'nullable'
         ]);
-        foreach ($request->ans as $key => $value) {
+
+//|mimetypes:image/jpeg,image/jpg,image/png,application/pdf,video/mp4
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        /*foreach ($request->ans as $key => $value) {
             if ($value == null || empty($value)) {
                 return back()->withErrors('Fillup all answer fields !!');
             }
-        }
-        
+        }*/
+
         if($request->explanation == null || empty($request->explanation) ){
+
+            /* Store Question */
             $que_id = question::insertGetId([
                 'question' => $request->question,
                 'cat_id' => $request->category,
@@ -47,6 +71,8 @@ class QuestionController extends Controller
                 'hint' => $request->hint,
                 'search_id' => substr(categoty::findOrFail($request->category)->name,0,3).time(),
             ]);
+
+            /* Store answers */
             foreach ($request->ans as $key => $value) {
                 answer::insert([
                     'ans' => $value,
@@ -54,7 +80,7 @@ class QuestionController extends Controller
                     'ques_id' => $que_id,
                 ]);
             }
-        }else{
+        } else {
             $que_id = question::insertGetId([
                 'question' => $request->question,
                 'cat_id' => $request->category,
@@ -64,6 +90,7 @@ class QuestionController extends Controller
                 'explanation' => $request->explanation,
                 'search_id' => substr(categoty::findOrFail($request->category)->name,0,3).time(),
             ]);
+
             foreach ($request->ans as $key => $value) {
                 answer::insert([
                     'ans' => $value,
@@ -72,11 +99,67 @@ class QuestionController extends Controller
                 ]);
             }
         }
+
+        /* IF Question Saved Successfully then Add Asset Files */
+        if (!empty($que_id) && $request->hasFile('asset_files')) {
+
+            foreach ($request->file('asset_files') as $file) {
+                if ($file) {
+                    $currentTimeDate = Carbon::now()->toDateString();
+                    $file_extension = $file->getClientOriginalExtension();
+                    $file_original_name = $file->getClientOriginalName();
+                    $file_name = $currentTimeDate . '-' . uniqid() . '.' . $file_extension;
+
+                    //now check directory
+                    if (env('APP_ENV') == 'local') {
+                        $path = storage_path('app/public/questions/' . $que_id);
+                    } else {
+                        $path = '/home/kohin837/public_html/preparemedicine.com/storage/questions/' . $que_id;
+                    }
+
+                    if (!file_exists($path)) {
+                        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                            throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
+                        }
+                    }
+
+                    // Now Move the Files to Desired Path
+                    $moved = $file->move($path, $file_original_name);
+                    if (!$moved) {
+                        return redirect()->back()
+                            ->withInput()
+                            ->with('error', 'Explanation Files Upload Problem');
+                    }
+                }
+
+                $question = $this->question_service->findById($que_id);
+
+                $asset = new Asset();
+                $asset->name = $file_original_name;
+                $asset->path = $path . '/' . $file_original_name;
+                $asset->type = $file_extension;
+
+                $inserted = $question->assets()->save($asset);
+
+                if (!$inserted->id) {
+                    return redirect()->back()
+                        ->with('error', 'SORRY - Something Wrong...');
+                }
+            }
+        }
         return back()->withSuccess('Question successfully added !!');
+    }
+
+    function getEditSingle($id) {
+        $category = categoty::select()->get();
+        $data = question::where('id', $id)->first();
+
+        return view('backend.edit-question',['item'=>$data,'category'=>$category]);
     }
 
     function EditSingle(Request $request){
 
+        /* Validate Values */
         $request->validate([
             'category' => 'required',
             'question' => 'required',
@@ -84,13 +167,17 @@ class QuestionController extends Controller
             'ans' => 'required',
             'id' => 'required',
             'search_id' => 'required',
+            'asset_files' => 'nullable'
         ]);
+
+
         foreach ($request->ans as $key => $value) {
             if ($value == null || empty($value)) {
                 return back()->withErrors('Fillup all answer fields !!');
             }
         }
-        if($request->explanation == null || empty($request->explanation) ){
+
+        if($request->explanation == null || empty($request->explanation) ) {
             question::findOrFail($request->id)->update([
                 'question' => $request->question,
                 'cat_id' => $request->category,
@@ -99,6 +186,7 @@ class QuestionController extends Controller
                 'hint' => $request->hint,
                 'search_id' => $request->search_id,
             ]);
+
             foreach (question::findOrFail($request->id)->question_ans as $keys => $item) {
                 $ans_id = $item->id;
                 foreach ($request->ans as $key => $value) {
@@ -138,6 +226,7 @@ class QuestionController extends Controller
                 'explanation' => $request->explanation,
                 'search_id' => $request->search_id,
             ]);
+
             foreach (question::findOrFail($request->id)->question_ans as $keys => $item) {
                 $ans_id = $item->id;
                 foreach ($request->ans as $key => $value) {
@@ -169,9 +258,67 @@ class QuestionController extends Controller
                 }
             }
         }
+
+        /* IF Question Saved Successfully then Add Asset Files */
+        if ($request->hasFile('asset_files')) {
+
+            $question = $this->question_service->findById($request->id);
+
+            /* Delete files from Directory */
+            $files = $question->assets()->pluck('path')->toArray();
+//            dd($files);
+            foreach ($files as $file) {
+                unlink($file);
+            }
+
+            /* Delete Asset Files */
+            $deleted = $question->assets()->delete();
+
+            foreach ($request->file('asset_files') as $file) {
+                if ($file) {
+                    $currentTimeDate = Carbon::now()->toDateString();
+                    $file_extension = $file->getClientOriginalExtension();
+                    $file_original_name = $file->getClientOriginalName();
+                    $file_name = $currentTimeDate . '-' . uniqid() . '.' . $file_extension;
+
+                    //now check directory
+                    if (env('APP_ENV') == 'local') {
+                        $path = storage_path('app/public/questions/' . $request->id);
+                    } else {
+                        $path = '/home/kohin837/public_html/preparemedicine.com/storage/questions/' . $request->id;
+                    }
+
+                    if (!file_exists($path)) {
+                        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                            throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
+                        }
+                    }
+
+                    // Now Move the Files to Desired Path
+                    $moved = $file->move($path, $file_original_name);
+                    if (!$moved) {
+                        return redirect()->back()
+                            ->withInput()
+                            ->with('error', 'Explanation Files Upload Problem');
+                    }
+                }
+
+                /* Add Asset Files back in */
+                $asset = new Asset();
+                $asset->name = $file_original_name;
+                $asset->path = $path . '/' . $file_original_name;
+                $asset->type = $file_extension;
+
+                $inserted = $question->assets()->save($asset);
+
+                if (!$inserted->id) {
+                    return redirect()->back()
+                        ->with('error', 'SORRY - Something Wrong...');
+                }
+            }
+        }
         return back()->withSuccess('Question successfully updated !!');
     }
-
 
     // Multiple question's function
 
@@ -191,27 +338,26 @@ class QuestionController extends Controller
 
     function Multi(Request $request){
 
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'category' => 'required',
             'question' => 'required',
-            'answer' => 'required',
-            'ans' => 'required',
+            'answer' => 'required|min:1',
+            'ans' => 'required|min:1',
+            'asset_files' => 'nullable'
         ]);
 
-        if(empty($request->answer)){
-            return back()->withErrors('You have to check one or more answer !!');
+//|mimetypes:image/jpeg,image/jpg,image/png,application/pdf,video/mp4
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
         }
         $answer = null;
         foreach ($request->answer as $key => $value) {
             $answer .= $value.'-';
         }
 
-        foreach ($request->ans as $key => $value) {
-            if ($value == null || empty($value)) {
-                return back()->withErrors('Fillup all answer fields !!');
-            }
-        }
-        // $subcat_id = subcategory::findOrFail($request->category)->subcat_cat->id;
         if($request->explanation == null || empty($request->explanation) ){
             $que_id = question::insertGetId([
                 'question' => $request->question,
@@ -247,35 +393,92 @@ class QuestionController extends Controller
                     'answer' => $key,
                     'ques_id' => $que_id,
                 ]);
+            }
+        }
+
+        /* IF Question Saved Successfully then Add Asset Files */
+        if (!empty($que_id) && $request->hasFile('asset_files')) {
+
+            foreach ($request->file('asset_files') as $file) {
+                if ($file) {
+                    $currentTimeDate = Carbon::now()->toDateString();
+                    $file_extension = $file->getClientOriginalExtension();
+                    $file_original_name = $file->getClientOriginalName();
+                    $file_name = $currentTimeDate . '-' . uniqid() . '.' . $file_extension;
+
+                    //now check directory
+                    if (env('APP_ENV') == 'local') {
+                        $path = storage_path('app/public/questions/' . $que_id);
+                    } else {
+                        $path = '/home/kohin837/public_html/preparemedicine.com/storage/questions/' . $que_id;
+                    }
+
+                    if (!file_exists($path)) {
+                        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                            throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
+                        }
+                    }
+
+                    // Now Move the Files to Desired Path
+                    $moved = $file->move($path, $file_original_name);
+                    if (!$moved) {
+                        return redirect()->back()
+                            ->withInput()
+                            ->with('error', 'Explanation Files Upload Problem');
+                    }
+                }
+
+                $question = $this->question_service->findById($que_id);
+
+                /* Add Asset Files */
+                $asset = new Asset();
+                $asset->name = $file_original_name;
+                $asset->path = $path . '/' . $file_original_name;
+                $asset->type = $file_extension;
+
+                $inserted = $question->assets()->save($asset);
+
+                if (!$inserted->id) {
+                    return redirect()->back()
+                        ->with('error', 'SORRY - Something Wrong...');
+                }
             }
         }
         return back()->withSuccess('Question successfully added !!');
     }
 
-    function EditMulti(Request $request){
+    function getEditMulti($id) {
 
-        $request->validate([
+        $category = categoty::select()->get();
+        $item = question::where('id', $id)->first();
+        return view('backend.edit-multi-question',['item'=>$item,'category'=>$category]);
+
+    }
+
+    function EditMulti(Request $request) {
+
+        $validator = Validator::make($request->all(), [
             'category' => 'required',
             'question' => 'required',
-            'answer' => 'required',
-            'ans' => 'required',
+            'answer' => 'required|min:1',
+            'ans' => 'required|min:1',
             'id' => 'required',
             'search_id' => 'required',
+            'asset_files' => 'nullable'
         ]);
 
-        if(empty($request->answer)){
-            return back()->withErrors('You have to check one or more answer !!');
+        //|mimetypes:image/jpeg,image/jpg,image/png,application/pdf,video/mp4
+
+        if($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
         }
         $answer = null;
         foreach ($request->answer as $key => $value) {
             $answer .= $value.'-';
         }
 
-        foreach ($request->ans as $key => $value) {
-            if ($value == null || empty($value)) {
-                return back()->withErrors('Fillup all answer fields !!');
-            }
-        }
         if($request->explanation == null || empty($request->explanation) ){
             question::findOrFail($request->id)->update([
                 'question' => $request->question,
@@ -285,6 +488,7 @@ class QuestionController extends Controller
                 'hint' => $request->hint,
                 'search_id' => $request->search_id,
             ]);
+
             foreach (question::findOrFail($request->id)->question_ans as $keys => $item) {
                 $ans_id = $item->id;
                 foreach ($request->ans as $key => $value) {
@@ -315,7 +519,7 @@ class QuestionController extends Controller
                     }
                 }
             }
-        }else{
+        } else {
             question::findOrFail($request->id)->update([
                 'question' => $request->question,
                 'cat_id' => $request->category,
@@ -324,6 +528,7 @@ class QuestionController extends Controller
                 'explanation' => $request->explanation,
                 'search_id' => $request->search_id,
             ]);
+
             foreach (question::findOrFail($request->id)->question_ans as $keys => $item) {
                 $ans_id = $item->id;
                 foreach ($request->ans as $key => $value) {
@@ -355,6 +560,65 @@ class QuestionController extends Controller
                 }
             }
         }
+
+        /* IF Question Saved Successfully then Add Asset Files */
+        if ($request->hasFile('asset_files')) {
+
+            $question = $this->question_service->findById($request->id);
+
+            /* Delete files from Directory */
+            $files = $question->assets()->pluck('path')->toArray();
+            foreach ($files as $file) {
+                unlink($file);
+            }
+
+            /* Delete Asset Files */
+            $deleted = $question->assets()->delete();
+
+            foreach ($request->file('asset_files') as $file) {
+                if ($file) {
+                    $currentTimeDate = Carbon::now()->toDateString();
+                    $file_extension = $file->getClientOriginalExtension();
+                    $file_original_name = $file->getClientOriginalName();
+                    $file_name = $currentTimeDate . '-' . uniqid() . '.' . $file_extension;
+
+                    //now check directory
+                    if (env('APP_ENV') == 'local') {
+                        $path = storage_path('app/public/questions/' . $request->id);
+                    } else {
+                        $path = '/home/kohin837/public_html/preparemedicine.com/storage/questions/' . $request->id;
+                    }
+
+                    if (!file_exists($path)) {
+                        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                            throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
+                        }
+                    }
+
+                    // Now Move the Files to Desired Path
+                    $moved = $file->move($path, $file_original_name);
+                    if (!$moved) {
+                        return redirect()->back()
+                            ->withInput()
+                            ->with('error', 'Explanation Files Upload Problem');
+                    }
+                }
+
+                /* Add Asset Files back in */
+                $asset = new Asset();
+                $asset->name = $file_original_name;
+                $asset->path = $path . '/' . $file_original_name;
+                $asset->type = $file_extension;
+
+                $inserted = $question->assets()->save($asset);
+
+                if (!$inserted->id) {
+                    return redirect()->back()
+                        ->with('error', 'SORRY - Something Wrong...');
+                }
+            }
+        }
+
         return back()->withSuccess('Question successfully updated !!');
     }
 
@@ -379,7 +643,7 @@ class QuestionController extends Controller
                     continue;
                 }else{
                     if( $value[1] != null){
-                        
+
                         //change 12345 to abcde
                         $main_ans = strtolower($value[2]);
                         $main_ans = str_replace('a','0',strtolower($main_ans));
@@ -436,19 +700,19 @@ class QuestionController extends Controller
     }
     function select(Request $request){
         if(empty($request->select)){
-            return back();    
+            return back();
         }
         question::whereIn('id',$request->select)->delete();
         answer::whereIn('ques_id',$request->select)->delete();
         return back();
     }
-    
+
     function FilterSingle(Request $request){
 
         if(empty($request->sear_key)){
-            return back();    
+            return back();
         }
-        
+
         if ($request->sear_id == 'cat') {
 
             if(empty( categoty::where('name', 'LIKE', "%{$request->sear_key}%")->get()->toArray() )){
@@ -474,9 +738,9 @@ class QuestionController extends Controller
     function FilterMulti(Request $request){
 
         if(empty($request->sear_key)){
-            return back();    
+            return back();
         }
-        
+
         if ($request->sear_id == 'cat') {
 
             if(empty( categoty::where('name', 'LIKE', "%{$request->sear_key}%")->get()->toArray() )){
@@ -499,4 +763,12 @@ class QuestionController extends Controller
         return view('backend.multi-question',['data'=>$data,'category'=>$category]);
     }
 
+    function viewFile($id) {
+
+        $file = Asset::find($id);
+
+        // Store the file name into variable
+        $filename = $file->path;
+        return response()->file($file->path);
+    }
 }

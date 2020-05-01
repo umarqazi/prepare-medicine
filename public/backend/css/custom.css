@@ -1,0 +1,12 @@
+.form-group.has-error {
+    color: red;
+}
+.form-control.has-error {
+    border: 1px solid red;
+}
+.error-block {
+    color: red;
+    font-weight: bold;
+    display: block;
+    margin: 10px 0 10px 0;
+}

@@ -232,25 +232,27 @@ Route::group(['middleware' => ['auth','role','verified'] ], function () {
     // Route::get('admin/feedback/show/{id}',"AdminFeedbackController@Show");
     // category and subcategory path
     Route::get('admin/category',"AdminCategoryController@Index");
-    Route::get('admin/sub-category',"AdminSubctegoryController@Index");
+//    Route::get('admin/sub-category',"AdminSubctegoryController@Index");
     Route::post('admin/category/add',"AdminCategoryController@Add");
-    Route::post('admin/sub-category/add',"AdminSubctegoryController@Add");
+//    Route::post('admin/sub-category/add',"AdminSubctegoryController@Add");
     Route::get('admin/category/drop/{id}',"AdminCategoryController@Drop");
-    Route::get('admin/sub-category/drop/{id}',"AdminSubctegoryController@Drop");
+//    Route::get('admin/sub-category/drop/{id}',"AdminSubctegoryController@Drop");
     Route::post('admin/category/add/update/{id}',"AdminCategoryController@Update");
-    Route::post('admin/sub-category/update/{id}',"AdminSubctegoryController@Update");
+//    Route::post('admin/sub-category/update/{id}',"AdminSubctegoryController@Update");
     // Admin question path
 
     // Single Question path
     Route::get('admin/question/single',"QuestionController@SingleIndex");
     Route::get('admin/question/add/single',"QuestionController@AddSingle");
     Route::post('admin/question/add/single',"QuestionController@Single");
+    Route::get('admin/question/edit/single/{id}',"QuestionController@getEditSingle")->name('edit_question');
     Route::post('admin/question/edit/single',"QuestionController@EditSingle");
 
     // Multiple Question path
     Route::get('admin/question/multi',"QuestionController@MultiIndex");
     Route::get('admin/question/add/multi',"QuestionController@AddMulti");
     Route::post('admin/question/add/multi',"QuestionController@Multi");
+    Route::get('admin/question/edit/multi/{id}',"QuestionController@getEditMulti")->name('edit_multi_question');
     Route::post('admin/question/edit/multi',"QuestionController@EditMulti");
 
     //drop any question
@@ -329,6 +331,8 @@ Route::group(['middleware' => ['auth','role','verified'] ], function () {
     //blog news
     Route::resource('admin/ui/news', 'NewsController');
 });
+
+Route::get('question/view/{id}', "QuestionController@viewFile")->name('view_file');
 
 // end backend or admin pannel path
 

@@ -8,9 +8,9 @@
             <p>Course</p>
         </div>
     </div>
-    
-    
-    
+
+
+
     <!-- Most Popular Courses Area -->
     <div class="most-popular-courses-area section-ptb">
         <div class="container">
@@ -41,6 +41,7 @@
                             </div>
                             <p class='text-justify'><?php echo str_limit($course->description, 80); ?></p>
                             <div class="button-block">
+                                <a href="{{ route('courseDetails.show', $course->id) }}" class="botton-border">READ MORE</a>
                                 <a href="{{ route('subscription_plans', $course->title) }}" class="botton-border">SUBSCRIBE</a>
                             </div>
                         </div>
@@ -53,7 +54,7 @@
 
         </div>
     </div>
-    
+
 </div>
 
 @endsection
