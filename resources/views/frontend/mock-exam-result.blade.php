@@ -43,55 +43,37 @@
         margin-right: 7px;
         outline: none;
     }
-    .a::before{
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-        content: 'A';
-    }
-    .b::before{
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-        content: 'B';
-    }
-    .c::before{
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-        content: 'C';
-    }
-    .d::before{
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-        content: 'D';
-    }
+    .a::before,
+    .b::before,
+    .c::before,
+    .d::before,
     .e::before{
         position: absolute;
         font: 13px/1 'Open Sans', sans-serif;
         left: 11px;
-        top: 7px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .a::before{
+        content: 'A';
+    }
+    .b::before{
+        content: 'B';
+    }
+    .c::before{
+        content: 'C';
+    }
+    .d::before{
+        content: 'D';
+    }
+    .e::before{
         content: 'E';
     }
-    .form-radio:checked::before
-    {
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-    }
-    .form-radio:hover
-    {
-        background-color: #f7f7f7;
-    }
-    .form-radio:checked
-    {
-        background-color: #f1f1f1;
+
+    .form-radio:hover,
+    .form-radio:checked {
+        background-color: #63BA52;
+        color: #fff;
     }
     label
     {
@@ -101,6 +83,12 @@
         -moz-osx-font-smoothing: grayscale;
         cursor: pointer;
     } 
+    .form-radio:hover + label,
+    .form-radio:checked +label{
+        font-weight:bold;
+        color:#2A306C;
+    }
+
 </style>
 <style>
     body{
@@ -112,13 +100,16 @@
     .right{
         float: right;
     }
-    .search-box{
+    .search-box {
         background: #ffffff;
-        width: 25px; 
-        height: 25px; 
-        padding: 0px; 
-        border-radius: 50%; 
-        text-align: center; 
+        width: 35px;
+        height: 35px;
+        padding: 0px;
+        border-radius: 50%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .comment-wrap{
         width: 100%;
@@ -135,10 +126,11 @@
         background: #F9C1C6;
     }
     .active-search-box{
-        background: #fff;
-        -webkit-box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
+        color: #fff;
+        -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+        background-color:#ffc107;
     }
     .center{
         margin:0 auto;
@@ -165,20 +157,20 @@
     .horizontal .progress-track {
     position: relative;
     width: 100%;
-    height: 20px;
+    height: 30px;
     background: #ebebeb;
     }
 
     .horizontal .progress-fill {
         position: relative;
         background: #C73F27;
-        height: 20px;
+        height: 30px;
         width: 50%;
         color: #777;
         text-align: center;
         font-family: "Lato","Verdana",sans-serif;
         font-size: 12px;
-        line-height: 20px;
+        line-height: 30px;
     }
 
     .rounded .progress-track,
@@ -192,7 +184,8 @@
     .top_action{
             border-bottom: 1px solid #ddd;
             padding-bottom: 0px;
-            margin-bottom: 20px
+            margin-bottom: 10px;
+            font-weight:600;
     }
    .btn_info{
             margin: 0px 10px;
@@ -209,12 +202,12 @@
             border-radius: 50%;
     }
     .btn_info:hover{
-        transform: scaleY(1.1);
-        transition: .5s;
+        transition: .3s;
         background: #888;
-        -webkit-box-shadow: 0px 0px 4px 3px #999;
-        -moz-box-shadow: 0px 0px 4px 3px #999;
-        box-shadow: 0px 0px 4px 3px #999;
+        -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,.3);
+        -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,.3);
+        box-shadow: 0px 0px 10px 3px rgba(0,0,0,.3);
+        background:transparent !important;
     }
     .top_action p{
         margin-right: 5px
@@ -354,349 +347,350 @@
 
                 {{-- Left part of the exam --}}
                 <div class="col-lg-3 col-md-4 col-sm-12" id="pc">
-                    <div class='area_first__'>
-                        <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
-                        <div class="col-12 pagination_list">
-                            <div class="row block_">
-                                @for ($i = 1; $i <= $total_question; $i++)
-    
-                                    @if (isset($_GET['page']))
-                                        @if ($i == $_GET['page'])
-                                            @if (!empty($mark[$i-1]->status))
-                                                @if ( $mark[$i-1]->status == "1")
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                    <div class="question-bank sticky-top">
+                        <div class='area_first__'>
+                            <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
+                            <div class="col-12 pagination_list">
+                                <div class="row block_">
+                                    @for ($i = 1; $i <= $total_question; $i++)
+        
+                                        @if (isset($_GET['page']))
+                                            @if ($i == $_GET['page'])
+                                                @if (!empty($mark[$i-1]->status))
+                                                    @if ( $mark[$i-1]->status == "1")
+                                                        <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                    @endif
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                                 @endif
                                             @else
-                                                <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                @if (!empty($mark[$i-1]->status))
+                                                    @if ( $mark[$i-1]->status == "1")
+                                                        <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                    @endif
+                                                @else
+                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                @endif
                                             @endif
                                         @else
+                                            @if ($i == '1')
+                                                @if (!empty($mark[$i-1]->status))
+                                                    @if ( $mark[$i-1]->status == "1")
+                                                        <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                    @endif
+                                                @else
+                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                @endif
+                                            @else
                                             @if (!empty($mark[$i-1]->status))
                                                 @if ( $mark[$i-1]->status == "1")
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                        <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                    @endif
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                                 @endif
-                                            @else
-                                                <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                             @endif
                                         @endif
-                                    @else
-                                        @if ($i == '1')
-                                            @if (!empty($mark[$i-1]->status))
-                                                @if ( $mark[$i-1]->status == "1")
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
-                                                @else
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252"><span>{{ $i }}</span></a>
-                                                @endif
-                                            @else
-                                                <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
-                                            @endif
-                                        @else
-                                        @if (!empty($mark[$i-1]->status))
-                                            @if ( $mark[$i-1]->status == "1")
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
-                                                @else
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252"><span>{{ $i }}</span></a>
-                                                @endif
-                                            @else
-                                                <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
-                                            @endif
-                                        @endif
-                                    @endif
-    
-                                @endfor
+        
+                                    @endfor
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <!-- question chart -->
-                    
-                    <div class="center questions_status_board">
-                        <table width="95%" class="cart-tab">
-                            <p class="text-center heading text-uppercase">Question Status</p>
-                            <div class="container horizontal rounded">
-                                <div class="d-flex justify-content-around box_head_info">
-                                    <h6><span class="correct_"><i class="fas fa-square"></i></span> Correct</h6>
-                                    <h6><span class="wrong_"><i class="fas fa-square"></i></span> Wrong</h6>
-                                </div>
+                        <br>
+                        <!-- question chart -->
+                        
+                        <div class="center questions_status_board">
+                            <table width="95%" class="cart-tab">
+                                <p class="text-center heading text-uppercase">Question Status</p>
+                                <div class="container horizontal rounded">
+                                    <div class="d-flex justify-content-around box_head_info">
+                                        <h6><span class="correct_"><i class="fas fa-square"></i></span> Correct</h6>
+                                        <h6><span class="wrong_"><i class="fas fa-square"></i></span> Wrong</h6>
+                                    </div>
 
-                                @php
-                                //get total answers of the questions
-                                    $totalAns_ = (App\mockquestion::where('ques_id',$item->ques_id)->count());
-                                    
-                                    //get total answers of the multi options question
-                                    if($item->type == 1){
-                                        $totalAns_multi;
-                                        $totalData_ = (App\mockquestion::where('ques_id',$item->ques_id)->get());
+                                    @php
+                                    //get total answers of the questions
+                                        $totalAns_ = (App\mockquestion::where('ques_id',$item->ques_id)->count());
+                                        
+                                        //get total answers of the multi options question
+                                        if($item->type == 1){
+                                            $totalAns_multi;
+                                            $totalData_ = (App\mockquestion::where('ques_id',$item->ques_id)->get());
 
-                                        global $str_make_;
-                                        foreach($totalData_ as $val){
-                                            $str_make_ .= $val->user_ans;
+                                            global $str_make_;
+                                            foreach($totalData_ as $val){
+                                                $str_make_ .= $val->user_ans;
+                                            }
+                                            $arr = explode('-', $str_make_);
+                                            $totalAns_multi = count($arr)-1;
                                         }
-                                        $arr = explode('-', $str_make_);
-                                        $totalAns_multi = count($arr)-1;
-                                    }
 
-                                    //store total answers of each option like A,B,C,D,E
-                                    $totalA = "";  // A point for 0            
-                                    $totalB = "";  // B point for 1            
-                                    $totalC = "";  // C point for 2           
-                                    $totalD = "";  // D point for 3             
-                                    $totalE = "";  // E point for 4
-                                    // ): Commnent Organized by 'Developer Rijan'          
-                                @endphp
-                                
+                                        //store total answers of each option like A,B,C,D,E
+                                        $totalA = "";  // A point for 0            
+                                        $totalB = "";  // B point for 1            
+                                        $totalC = "";  // C point for 2           
+                                        $totalD = "";  // D point for 3             
+                                        $totalE = "";  // E point for 4
+                                        // ): Commnent Organized by 'Developer Rijan'          
+                                    @endphp
+                                    
 
 
-                                <tbody>
-                                    <tr>
-                                        <td width="10%">A</td>
-                                        <td width="70%">
-                                            <div class="horizontal">
-                                                <div class="progress-track">
-                                                    <div class="progress-fill @if($item->ans == 0) yes_ @endif">
-                                                        <span class="d-none">
-                                                            @if ($item->type == '0')
-                                                                @php
-                                                                    //get total answers of each option like A
-                                                                    $totalA = (App\mockquestion::where('ques_id',$item->ques_id)
-                                                                                ->where('user_ans','0')
-                                                                                ->count());
-                                                                    
-                                                                @endphp
-                                                                {{ round(($totalA * 100)/ $totalAns_) }}%
-
-                                                            @else
-                                                                    @php                                                                            
-
-                                                                        //find total ans for each option
-                                                                        $static_data_1 = 0;
-                                                                        $static_1 = 0;
-                                                                        foreach ($totalData_ as $key => $value) {
-                                                                            $exploda_data = explode('-',$value->user_ans);
-                                                                            if(in_array('0',$exploda_data)){
-                                                                                $static_data_1 = $static_data_1+1;
-                                                                                $static_1 = $static_1+1;
-                                                                            }
-                                                                        }
-                                                                        echo (round(($static_data_1*100)/$totalAns_multi))."%";
-                                                                        $totalA = $static_1;
-                                                                    @endphp
-                                                            @endif
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td width="20%" class="d-flex">
-                                            <p class="no_style" style="margin: 0px 2px">
-                                                @if ($item->type == '0')
-                                                    {{ round(($totalA * 100)/ $totalAns_ ) }}%
-                                                @else
-                                                    {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
-                                                @endif
-                                            </p>
-                                            <p class="no_style" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10%">B</td>
-                                        <td width="70%">
-                                            <div class="horizontal">
-                                                <div class="progress-track">
-                                                    <div class="progress-fill @if($item->ans == 1) yes_ @endif">
-                                                        <span class="d-none">
-                                                            @if ($item->type == '0')
-                                                                @php
-                                                                    //get total answers of each option like B
-                                                                    $totalB = (App\mockquestion::where('ques_id',$item->ques_id)
-                                                                                ->where('user_ans','1')
-                                                                                ->count());
-                                                                    
-                                                                @endphp
-                                                                {{ round(($totalB * 100)/ $totalAns_) }}%
-                                                            @else
-                                                                @php
-                                                                    //find total ans for each option
-                                                                    $static_data_2 = 0;
-                                                                    $static_2 = 0;
-                                                                    foreach ($totalData_ as $key => $value) {
-                                                                        $exploda_data = explode('-',$value->user_ans);
-                                                                        if(in_array('1',$exploda_data)){
-                                                                            $static_data_2 = $static_data_2+1;
-                                                                            $static_2 = $static_2+1;
-                                                                        }
-                                                                    }
-                                                                    echo (round(($static_data_2*100)/$totalAns_multi))."%";
-                                                                    $totalB = $static_2;
-                                                                @endphp
-                                                            @endif
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td width="20%" class="d-flex">
-                                            <p class="no_style" style="margin: 0px 2px">
-                                                @if ($item->type == '0')
-                                                    {{ round(($totalB * 100)/ $totalAns_ ) }}%
-                                                @else
-                                                    {{ (round(($static_data_2*100)/$totalAns_multi)) }}%
-                                                @endif
-                                            </p>
-                                            <p class="no_style" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10%">C</td>
-                                        <td width="70%">
-                                            <div class="horizontal">
-                                                <div class="progress-track">
-                                                    <div class="progress-fill @if($item->ans == 2) yes_ @endif">
-                                                        <span class="d-none">
-                                                            @if ($item->type == '0')
-                                                                @php
-                                                                    //get total answers of each option like C
-                                                                    $totalC = (App\mockquestion::where('ques_id',$item->ques_id)
-                                                                                ->where('user_ans','2')
-                                                                                ->count());
-                                                                    
-                                                                @endphp
-                                                                {{ round(($totalC * 100)/ $totalAns_) }}%
-                                                            @else
-                                                                @php
-                                                                    //find total ans for each option C
-                                                                    $static_data_3 = 0;
-                                                                    $static_3 = 0;
-                                                                    foreach ($totalData_ as $key => $value) {
-                                                                        $exploda_data = explode('-',$value->user_ans);
-                                                                        if(in_array('2',$exploda_data)){
-                                                                            $static_data_3 = $static_data_3+1;
-                                                                            $static_3 = $static_3+1;
-                                                                        }
-                                                                    }
-                                                                    echo (round(($static_data_3*100)/$totalAns_multi))."%";
-                                                                    $totalC = $static_3;
-                                                                @endphp
-                                                            @endif
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td width="20%" class="d-flex">
-                                            <p class="no_style" style="margin: 0px 2px">
-                                                @if ($item->type == '0')
-                                                    {{ round(($totalC * 100)/ $totalAns_ ) }}%
-                                                @else
-                                                    {{ (round(($static_data_3*100)/$totalAns_multi)) }}%
-                                                @endif
-                                            </p>
-                                            <p class="no_style" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10%">D</td>
-                                        <td width="70%">
-                                            <div class="horizontal">
-                                                <div class="progress-track">
-                                                    <div class="progress-fill @if($item->ans == 3) yes_ @endif">
-                                                        <span class="d-none">
-                                                            @if ($item->type == '0')
+                                    <tbody>
+                                        <tr>
+                                            <td width="10%">A</td>
+                                            <td width="70%">
+                                                <div class="horizontal">
+                                                    <div class="progress-track">
+                                                        <div class="progress-fill @if($item->ans == 0) yes_ @endif">
+                                                            <span class="d-none">
+                                                                @if ($item->type == '0')
                                                                     @php
-                                                                        //get total answers of each option like D
-                                                                        $totalD = (App\mockquestion::where('ques_id',$item->ques_id)
-                                                                                    ->where('user_ans','3')
+                                                                        //get total answers of each option like A
+                                                                        $totalA = (App\mockquestion::where('ques_id',$item->ques_id)
+                                                                                    ->where('user_ans','0')
                                                                                     ->count());
                                                                         
                                                                     @endphp
-                                                                    {{ round(($totalD * 100)/ $totalAns_) }}%
-                                                            @else
-                                                                @php
-                                                                    //find total ans for each option D
-                                                                    $static_data_4 = 0;
-                                                                    $static_4 = 0;
-                                                                    foreach ($totalData_ as $key => $value) {
-                                                                        $exploda_data = explode('-',$value->user_ans);
-                                                                        if(in_array('3',$exploda_data)){
-                                                                            $static_data_4 = $static_data_4+1;
-                                                                            $static_4 = $static_4+1;
-                                                                        }
-                                                                    }
-                                                                    echo (round(($static_data_4*100)/$totalAns_multi))."%";
-                                                                    $totalD = $static_4;
-                                                                @endphp
-                                                            @endif
-                                                        </span>
+                                                                    {{ round(($totalA * 100)/ $totalAns_) }}%
+
+                                                                @else
+                                                                        @php                                                                            
+
+                                                                            //find total ans for each option
+                                                                            $static_data_1 = 0;
+                                                                            $static_1 = 0;
+                                                                            foreach ($totalData_ as $key => $value) {
+                                                                                $exploda_data = explode('-',$value->user_ans);
+                                                                                if(in_array('0',$exploda_data)){
+                                                                                    $static_data_1 = $static_data_1+1;
+                                                                                    $static_1 = $static_1+1;
+                                                                                }
+                                                                            }
+                                                                            echo (round(($static_data_1*100)/$totalAns_multi))."%";
+                                                                            $totalA = $static_1;
+                                                                        @endphp
+                                                                @endif
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td width="20%" class="d-flex">
-                                            <p class="no_style" style="margin: 0px 2px">
-                                                @if ($item->type == '0')
-                                                    {{ round(($totalD * 100)/ $totalAns_ ) }}%
-                                                @else
-                                                    {{ (round(($static_data_4*100)/$totalAns_multi)) }}%
-                                                @endif
-                                            </p>
-                                            <p class="no_style" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td width="10%">E</td>
-                                        <td width="70%">
-                                            <div class="horizontal">
-                                                <div class="progress-track">
-                                                    <div class="progress-fill @if($item->ans == 4) yes_ @endif">
-                                                        <span class="d-none">
-                                                            @if ($item->type == '0')
-                                                                @php
-                                                                    //get total answers of each option like E
-                                                                    $totalE = (App\mockquestion::where('ques_id',$item->ques_id)
-                                                                                ->where('user_ans','4')
-                                                                                ->count());
-                                                                    
-                                                                @endphp
-                                                                {{ round(($totalE * 100)/ $totalAns_) }}%
-                                                            @else
-                                                                @php
-                                                                    //find total ans for each option E
-                                                                    $static_data_5 = 0;
-                                                                    $static_5 = 0;
-                                                                    foreach ($totalData_ as $key => $value) {
-                                                                        $exploda_data = explode('-',$value->user_ans);
-                                                                        if(in_array('4',$exploda_data)){
-                                                                            $static_data_5 = $static_data_5+1;
-                                                                            $static_5 = $static_5+1;
+                                            </td>
+                                            <td width="20%" class="d-flex">
+                                                <p class="no_style" style="margin: 0px 2px">
+                                                    @if ($item->type == '0')
+                                                        {{ round(($totalA * 100)/ $totalAns_ ) }}%
+                                                    @else
+                                                        {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
+                                                    @endif
+                                                </p>
+                                                <p class="no_style" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%">B</td>
+                                            <td width="70%">
+                                                <div class="horizontal">
+                                                    <div class="progress-track">
+                                                        <div class="progress-fill @if($item->ans == 1) yes_ @endif">
+                                                            <span class="d-none">
+                                                                @if ($item->type == '0')
+                                                                    @php
+                                                                        //get total answers of each option like B
+                                                                        $totalB = (App\mockquestion::where('ques_id',$item->ques_id)
+                                                                                    ->where('user_ans','1')
+                                                                                    ->count());
+                                                                        
+                                                                    @endphp
+                                                                    {{ round(($totalB * 100)/ $totalAns_) }}%
+                                                                @else
+                                                                    @php
+                                                                        //find total ans for each option
+                                                                        $static_data_2 = 0;
+                                                                        $static_2 = 0;
+                                                                        foreach ($totalData_ as $key => $value) {
+                                                                            $exploda_data = explode('-',$value->user_ans);
+                                                                            if(in_array('1',$exploda_data)){
+                                                                                $static_data_2 = $static_data_2+1;
+                                                                                $static_2 = $static_2+1;
+                                                                            }
                                                                         }
-                                                                    }
-                                                                    echo (round(($static_data_5*100)/$totalAns_multi))."%";
-                                                                    $totalE = $static_5;
-                                                                @endphp
-                                                            @endif
-                                                        </span>
+                                                                        echo (round(($static_data_2*100)/$totalAns_multi))."%";
+                                                                        $totalB = $static_2;
+                                                                    @endphp
+                                                                @endif
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td width="20%" class="d-flex">
-                                            <p class="no_style" style="margin: 0px 2px">
-                                                @if ($item->type == '0')
-                                                    {{ round(($totalE * 100)/ $totalAns_ ) }}%
-                                                @else
-                                                    {{ (round(($static_data_5*100)/$totalAns_multi)) }}%
-                                                @endif
-                                            </p>
-                                            <p class="no_style" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </div>
-                        </table>
-                    </div>
+                                            </td>
+                                            <td width="20%" class="d-flex">
+                                                <p class="no_style" style="margin: 0px 2px">
+                                                    @if ($item->type == '0')
+                                                        {{ round(($totalB * 100)/ $totalAns_ ) }}%
+                                                    @else
+                                                        {{ (round(($static_data_2*100)/$totalAns_multi)) }}%
+                                                    @endif
+                                                </p>
+                                                <p class="no_style" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%">C</td>
+                                            <td width="70%">
+                                                <div class="horizontal">
+                                                    <div class="progress-track">
+                                                        <div class="progress-fill @if($item->ans == 2) yes_ @endif">
+                                                            <span class="d-none">
+                                                                @if ($item->type == '0')
+                                                                    @php
+                                                                        //get total answers of each option like C
+                                                                        $totalC = (App\mockquestion::where('ques_id',$item->ques_id)
+                                                                                    ->where('user_ans','2')
+                                                                                    ->count());
+                                                                        
+                                                                    @endphp
+                                                                    {{ round(($totalC * 100)/ $totalAns_) }}%
+                                                                @else
+                                                                    @php
+                                                                        //find total ans for each option C
+                                                                        $static_data_3 = 0;
+                                                                        $static_3 = 0;
+                                                                        foreach ($totalData_ as $key => $value) {
+                                                                            $exploda_data = explode('-',$value->user_ans);
+                                                                            if(in_array('2',$exploda_data)){
+                                                                                $static_data_3 = $static_data_3+1;
+                                                                                $static_3 = $static_3+1;
+                                                                            }
+                                                                        }
+                                                                        echo (round(($static_data_3*100)/$totalAns_multi))."%";
+                                                                        $totalC = $static_3;
+                                                                    @endphp
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td width="20%" class="d-flex">
+                                                <p class="no_style" style="margin: 0px 2px">
+                                                    @if ($item->type == '0')
+                                                        {{ round(($totalC * 100)/ $totalAns_ ) }}%
+                                                    @else
+                                                        {{ (round(($static_data_3*100)/$totalAns_multi)) }}%
+                                                    @endif
+                                                </p>
+                                                <p class="no_style" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%">D</td>
+                                            <td width="70%">
+                                                <div class="horizontal">
+                                                    <div class="progress-track">
+                                                        <div class="progress-fill @if($item->ans == 3) yes_ @endif">
+                                                            <span class="d-none">
+                                                                @if ($item->type == '0')
+                                                                        @php
+                                                                            //get total answers of each option like D
+                                                                            $totalD = (App\mockquestion::where('ques_id',$item->ques_id)
+                                                                                        ->where('user_ans','3')
+                                                                                        ->count());
+                                                                            
+                                                                        @endphp
+                                                                        {{ round(($totalD * 100)/ $totalAns_) }}%
+                                                                @else
+                                                                    @php
+                                                                        //find total ans for each option D
+                                                                        $static_data_4 = 0;
+                                                                        $static_4 = 0;
+                                                                        foreach ($totalData_ as $key => $value) {
+                                                                            $exploda_data = explode('-',$value->user_ans);
+                                                                            if(in_array('3',$exploda_data)){
+                                                                                $static_data_4 = $static_data_4+1;
+                                                                                $static_4 = $static_4+1;
+                                                                            }
+                                                                        }
+                                                                        echo (round(($static_data_4*100)/$totalAns_multi))."%";
+                                                                        $totalD = $static_4;
+                                                                    @endphp
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td width="20%" class="d-flex">
+                                                <p class="no_style" style="margin: 0px 2px">
+                                                    @if ($item->type == '0')
+                                                        {{ round(($totalD * 100)/ $totalAns_ ) }}%
+                                                    @else
+                                                        {{ (round(($static_data_4*100)/$totalAns_multi)) }}%
+                                                    @endif
+                                                </p>
+                                                <p class="no_style" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="10%">E</td>
+                                            <td width="70%">
+                                                <div class="horizontal">
+                                                    <div class="progress-track">
+                                                        <div class="progress-fill @if($item->ans == 4) yes_ @endif">
+                                                            <span class="d-none">
+                                                                @if ($item->type == '0')
+                                                                    @php
+                                                                        //get total answers of each option like E
+                                                                        $totalE = (App\mockquestion::where('ques_id',$item->ques_id)
+                                                                                    ->where('user_ans','4')
+                                                                                    ->count());
+                                                                        
+                                                                    @endphp
+                                                                    {{ round(($totalE * 100)/ $totalAns_) }}%
+                                                                @else
+                                                                    @php
+                                                                        //find total ans for each option E
+                                                                        $static_data_5 = 0;
+                                                                        $static_5 = 0;
+                                                                        foreach ($totalData_ as $key => $value) {
+                                                                            $exploda_data = explode('-',$value->user_ans);
+                                                                            if(in_array('4',$exploda_data)){
+                                                                                $static_data_5 = $static_data_5+1;
+                                                                                $static_5 = $static_5+1;
+                                                                            }
+                                                                        }
+                                                                        echo (round(($static_data_5*100)/$totalAns_multi))."%";
+                                                                        $totalE = $static_5;
+                                                                    @endphp
+                                                                @endif
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td width="20%" class="d-flex">
+                                                <p class="no_style" style="margin: 0px 2px">
+                                                    @if ($item->type == '0')
+                                                        {{ round(($totalE * 100)/ $totalAns_ ) }}%
+                                                    @else
+                                                        {{ (round(($static_data_5*100)/$totalAns_multi)) }}%
+                                                    @endif
+                                                </p>
+                                                <p class="no_style" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </div>
+                            </table>
+                        </div>
                         
                         
                         <!--developed by 'Developer Rijan'-->
@@ -735,6 +729,7 @@
                                 </tbody>
                             </table>
                         </div>
+                    </div>
                 </div>
 
                 {{-- Right part of the exam start from here --}}
@@ -746,7 +741,7 @@
                                 <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }}</p>
                             @endisset
                             @if (!empty($item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]) )
-                                <a class='dropFlag' href="{{ url('q-bank/drop/flag/'.$item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]->id) }}" title="Remove from Flag" style="color:green;font-size: 18px;"><i class="fas fa-star"></i></a>
+                                <a class='dropFlag' href="{{ url('q-bank/drop/flag/'.$item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]->id) }}" title="Remove from Flag" style="color:#63BA52;font-size: 18px;"><i class="fas fa-star"></i></a>
                             @else
                                 <a class="addFlag" href="{{ url('q-bank/add/flag/'.$item->mocques_ques->id) }}" style="font-size: 18px;" title="Flag Now"><i class="fas fa-star"></i></a>
                             @endif
@@ -754,7 +749,7 @@
                         </div>
 
                         <div>
-                            {!! $item->question !!}
+                        <p class="asked-question"> {!! $item->question !!}</p>
 
                             
                             <br>
@@ -887,7 +882,7 @@
                                         @if ($key == $item->ans)
                                             <div class="success mb-2 answerColor1 pb-2 radius">
                                                 <input type="radio" name="answer" value="{{ $key }}" class="form-radio a">
-                                                <p class="inline">{{ $value->ans }}</p>
+                                                <p class="inline">{{ $value->ans }}awer</p>
                                             </div>
                                         @elseif ($key == $item->user_ans)
                                             @if ('0' ==  $item->user_ans)
@@ -1046,13 +1041,13 @@
                                     @if ($data->onFirstPage())
                                         <td>
                                             <button class='btn' style='background:none;border:none'>
-                                                <i class="fa fa-arrow-circle-left disabled" style="font-size:38px; color:#63BA52"></i>
+                                                <i class="fa fa-chevron-left disabled" style="font-size:38px; color:#63BA52"></i>
                                             </button>
                                         </td>
                                     @else
                                         <td>
                                             <button class='btn' style='background:none;border:none'>
-                                                <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:38px;color:#63BA52"></i></a>
+                                                <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:38px;color:#63BA52"></i></a>
                                             </button>
                                         </td>
                                     @endif
@@ -1060,14 +1055,14 @@
                                     @if ($data->hasMorePages())
                                         <td>
                                             <button class='btn' style='background:none;border:none'>
-                                                <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right ml-5" style="font-size:38px;color:#63BA52"></i></a>
+                                                <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:38px;color:#63BA52"></i></a>
                                             </button>
                                         </td>
                                         
                                     @else
                                         <td>
                                             <button class='btn' style='background:none;border:none'>
-                                                <i class="fa fa-arrow-circle-right disabled ml-5" style="font-size:38px;color:#63BA52"></i>
+                                                <i class="fa fa-chevron-left disabled ml-5" style="font-size:38px;color:#63BA52"></i>
                                             </button>
                                         </td>
                                     @endif
@@ -1164,7 +1159,7 @@
                             @csrf
                             <input type="hidden" name="question_id" value="{{ $item->ques_id }}">
                             <textarea name="comment" class="form-control" placeholder="Write Your Feedback !!"></textarea>
-                            <input type="submit" value="SUBMIT" class="btn btn-success mt-3 mb-3 right col-md-3" style="background: green;">
+                            <input type="submit" value="SUBMIT" class="btn btn-success mt-3 mb-3 right col-md-3" style="background: #63BA52;">
                         </form>
                     @endif
                 </div>
@@ -1191,7 +1186,7 @@
                                                 @if ( $mark[$i-1]->status == "1")
                                                     <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
@@ -1201,7 +1196,7 @@
                                                 @if ( $mark[$i-1]->status == "1")
                                                     <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
@@ -1213,7 +1208,7 @@
                                                 @if ( $mark[$i-1]->status == "1")
                                                     <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
@@ -1223,7 +1218,7 @@
                                             @if ( $mark[$i-1]->status == "1")
                                                     <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 <a href="{{ url('q-bank/random/exam/result/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>

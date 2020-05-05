@@ -181,9 +181,9 @@
             </div>
         </div><!--// header-top-area -->
 
-        <div class="header-bottom-area header-sticky">
+        <div class="header-bottom-area header-sticky ">
             <div class="container">
-                <div class="row align-items-center">
+                <div class="row align-items-center" style="position:relative">
 
                     <div class="col-lg-3 col-md-5 col-6">
 
@@ -293,11 +293,7 @@
                             </div><!--// main-menu -->
                         </div>
                     </div>
-                     <div class="col">
-                        <!-- mobile-menu start -->
-                        <div class="mobile-menu d-block d-lg-none"></div>
-                        <!-- mobile-menu end -->
-                    </div>
+                    <div class="mobile-menu d-block d-lg-none"></div>
 
                 </div>
             </div>
@@ -311,125 +307,128 @@
 
 
 
-        <!-- Footer Area -->
-        <footer class="footer-area">
-
-            <!-- Footer Top Area -->
-            <div class="footer-top">
-                <div class="container-fluid">
-                    <div class="row">
-
-                        <div class="col-lg-4 col-md-6 mt--35">
-                            <div class="footer-single-block text-center">
-                                <div class="footer-logo">
-                                    <a href="index.html"><img src="{{ url('frontend/images/logo/Asset 5@4x.png') }}" alt=""></a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-4 col-md-6 mt--35">
-                            <div class="footer-single-block text-center">
-                                <p class="footer-dec">An online learning community for medical professionals who are preparing to sit the PLAB-1 exam towards GMC registration</p>
-                            </div>
-                        </div>
-                        
-                        {{-- OLD
-                        <div class="col-lg-2 col-md-6  mt--35">
-                            <div class="footer-block">
-                                <h5>Quick Links</h5>
-                                <ul class="footer-list">
-                                    <li><a href="{{ route('disclaimer.page') }}">Disclaimer</a></li>
-                                    <li><a href="{{ route('termsConditions.page') }}">Terms and Conditions</a></li>
-                                    <li><a href="{{ route('webinars.page') }}">Webinars</a></li>
-                                    <li><a href="#">Tutorials</a></li>
-                                    <li><a href="#">GMC</a></li>
-                                    <li><a href="#">Discount Program</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6 mt--35">
-                            <div class="footer-block">
-                                <h5>Popular Courses</h5>
-                                <ul class="footer-courses">
-                                    <li>
-                                        <div class="courses-image">
-                                            <a href="#"><img src="{{ url('frontend/images/blog/small-tham/blog-01.jpg') }}" alt=""></a>
-                                        </div>
-                                        <div class="courses-nifo">
-                                            <h5><a href="{{ route('courses.plab1') }}">Plab One </a></h5>
-                                            <p>Duration : 4 Yr</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="courses-image">
-                                            <a href="{{ route('courses.plab1') }}"><img src="{{ url('frontend/images/blog/small-tham/blog-03.jpg') }}" alt=""></a>
-                                        </div>
-                                        <div class="courses-nifo">
-                                            <h5><a href="#">MRCP ONE</a></h5>
-                                            <p>Duration : 2 Yr</p>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="courses-image">
-                                            <a href="#"><img src="{{ url('frontend/images/blog/small-tham/blog-04.jpg') }}" alt=""></a>
-                                        </div>
-                                        <div class="courses-nifo">
-                                            <h5><a href="#">FRCEM Primary</a></h5>
-                                            <p>Duration : 2 Yr</p>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="courses-image">
-                                            <a href="#"><img src="{{ url('frontend/images/blog/small-tham/blog-0.jpg') }}" alt=""></a>
-                                        </div>
-                                        <div class="courses-nifo">
-                                            <h5><a href="#">CPD Workshops</a></h5>
-                                            <p>Duration : 2 Yr</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        --}}
-
-                        <div class="col-lg-4 col-md-6 mt--35">
-                            <div class="footer-block text-center">
-                                <h5>Follow Us</h5>
-                                 <ul class="footer-social-link">
-                                    <li><a href="https://www.facebook.com/PrepareMedicine"><i class="zmdi zmdi-facebook"></i></a></li>
-                                    <li><a href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
-                                    <li><a href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
-                                    <li><a href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
-                                    <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div><!--// Footer Top Area -->
-
-            <!-- Footer-bottom Area -->
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="copy-right pt--10 pb--10 text-center text-white">
-                                <p style='font-weight:normal'>Copyright &copy; <?php echo date('Y');?> <a href="#">PrepareMedicine</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!--// Footer-botton Area -->
-
-        </footer>
-        <!--// Footer Area -->
+       
 
     </div>
     <!-- Main Wrapper End -->
+
+     <!-- Footer Area -->
+     <footer class="footer-area">
+
+    <!-- Footer Top Area -->
+    <div class="footer-top py-md-5 py-4">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+
+                <div class="col-md-4 col-12 mb-md-0 mb-4">
+                    <div class="footer-single-block text-center">
+                        <div class="footer-logo">
+                            <a href="index.html"><img src="{{ url('frontend/images/logo/Asset 5@4x.png') }}" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-sm-6 col-12 mb-sm-0 mb-4">
+                    <div class="footer-single-block text-center">
+                        <p class="footer-dec">An online learning community for medical professionals who are preparing to sit the PLAB-1 exam towards GMC registration</p>
+                    </div>
+                </div>
+                
+                {{-- OLD
+                <div class="col-lg-2 col-md-6 col-12">
+                    <div class="footer-block">
+                        <h5>Quick Links</h5>
+                        <ul class="footer-list">
+                            <li><a href="{{ route('disclaimer.page') }}">Disclaimer</a></li>
+                            <li><a href="{{ route('termsConditions.page') }}">Terms and Conditions</a></li>
+                            <li><a href="{{ route('webinars.page') }}">Webinars</a></li>
+                            <li><a href="#">Tutorials</a></li>
+                            <li><a href="#">GMC</a></li>
+                            <li><a href="#">Discount Program</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mt--35">
+                    <div class="footer-block">
+                        <h5>Popular Courses</h5>
+                        <ul class="footer-courses">
+                            <li>
+                                <div class="courses-image">
+                                    <a href="#"><img src="{{ url('frontend/images/blog/small-tham/blog-01.jpg') }}" alt=""></a>
+                                </div>
+                                <div class="courses-nifo">
+                                    <h5><a href="{{ route('courses.plab1') }}">Plab One </a></h5>
+                                    <p>Duration : 4 Yr</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="courses-image">
+                                    <a href="{{ route('courses.plab1') }}"><img src="{{ url('frontend/images/blog/small-tham/blog-03.jpg') }}" alt=""></a>
+                                </div>
+                                <div class="courses-nifo">
+                                    <h5><a href="#">MRCP ONE</a></h5>
+                                    <p>Duration : 2 Yr</p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="courses-image">
+                                    <a href="#"><img src="{{ url('frontend/images/blog/small-tham/blog-04.jpg') }}" alt=""></a>
+                                </div>
+                                <div class="courses-nifo">
+                                    <h5><a href="#">FRCEM Primary</a></h5>
+                                    <p>Duration : 2 Yr</p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="courses-image">
+                                    <a href="#"><img src="{{ url('frontend/images/blog/small-tham/blog-0.jpg') }}" alt=""></a>
+                                </div>
+                                <div class="courses-nifo">
+                                    <h5><a href="#">CPD Workshops</a></h5>
+                                    <p>Duration : 2 Yr</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                --}}
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="footer-block text-center">
+                        <h5>Follow Us</h5>
+                        <ul class="footer-social-link">
+                            <li><a href="https://www.facebook.com/PrepareMedicine"><i class="zmdi zmdi-facebook"></i></a></li>
+                            <li><a href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
+                            <li><a href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
+                            <li><a href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
+                            <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--// Footer Top Area -->
+
+<!-- Footer-bottom Area -->
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="copy-right pt--10 pb--10 text-center text-white">
+                    <p style='font-weight:normal'>Copyright &copy; <?php echo date('Y');?> <a href="#">PrepareMedicine</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--// Footer-botton Area -->
+
+</footer>
+<!--// Footer Area -->
     
     
     <!-- only for showing alerts -->

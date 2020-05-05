@@ -12,6 +12,7 @@
 @endsection
 
 @section('content')
+<br>
 
     <div class="alert alert-info" role="alert">Create Course</div>
     @include('msg.msg')

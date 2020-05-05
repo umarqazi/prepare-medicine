@@ -16,6 +16,7 @@
 
 @endsection
 @section('content')
+<br>
 
     {{--  data fetch from Database !!  --}}
     <br>
@@ -29,7 +30,7 @@
         
         <div class="row">
             <div class="well">
-                <h2 class="text-center">Feedback</h2>
+                <h2 class="text-center mb-5">Feedback</h2>
                 <br>
                 @foreach ($data as $item)
                     <div class="list-group">

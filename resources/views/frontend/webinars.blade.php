@@ -15,6 +15,7 @@
 @endsection
 
 @section('content')
+<br>
 
 
 @if(Auth::user()->role == 2 || 

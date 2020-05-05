@@ -1,5 +1,6 @@
 @extends('frontend.master-frontend')
 @section('content')
+<br>
 
     <div class="container-fluid" style="padding-left: 30px; padding-right: 30px">
         <div class='page_banner_img_common'>

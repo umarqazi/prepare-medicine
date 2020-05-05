@@ -28,6 +28,7 @@
     </style>
 @endsection
 @section('content')
+<br>
 
 <br>
 <div class="container">

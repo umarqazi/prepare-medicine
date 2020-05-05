@@ -38,6 +38,7 @@
     <script src="{{ url('backend/js/examples.js') }}"></script>
 @endsection
 @section('content')
+<br>
 
 <div class="panel panel-white">
     <div class="panel-heading clearfix">

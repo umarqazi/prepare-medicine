@@ -12,6 +12,7 @@
 @endsection
 
 @section('content')
+<br>
 
 
     <div class="container">
@@ -23,7 +24,7 @@
         </div>
         
         <div class="col-sm-12 text-center text-left">
-            <h2 class="text-center" style="font-size: 25px">
+            <h2 class="text-center mb-5" style="font-size: 25px">
                 Reset My Account
             </h2>
             

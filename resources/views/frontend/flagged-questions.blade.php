@@ -1,9 +1,12 @@
 @extends('frontend.master-frontend')
 @section('js-css')
     <style>
+    body{
+        background-color:#F4F1EC;
+    }
         .panel-white{
             background: white;
-            padding: 10px;
+            padding: 30px;
         }
         .btn-left{
             float: right;
@@ -23,7 +26,8 @@
     </style>
 @endsection
 @section('content')
-    <div class="container">
+<br>
+    <div class="container-fluid" style="padding-left: 30px; padding-right: 30px">
         <div class='page_banner_img_common'>
             <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
@@ -31,9 +35,12 @@
             </div>
         </div>
         
-        <div class="panel panel-white">
+    </div>
+
+    <div class="container">
+       <div class="panel panel-white">
             <div class="panel-heading clearfix">
-                <h4 class="panel-title text-center">Flagged Questions</h4>
+            <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 35px;">Flagged Questions</h2>
             <p class="text-justify">
         You can flag questions and return to them later
     </p>
@@ -53,7 +60,7 @@
                             @foreach ($data as $key=>$item)
                                 <tr>
                                     <th scope="row">{{ $data->firstItem()+$key }}</th>
-                                    <td>{!! $item->flag_question->question !!}</td>
+                                    <td><strong>{!! $item->flag_question->question !!}</strong?</td>
                                     <td>
                                         <a title="View" class="btn" href="{{ url('q-bank/flag/question/'.$item->ques_id) }}" ><i class="fas fa-eye"></i></a>
                                         <a title="Remove" class="btn delete" href="{{ url('q-bank/drop/flag/'.$item->id) }}"><i class="fas fa-times"></i></a>

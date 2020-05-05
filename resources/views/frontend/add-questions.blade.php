@@ -1,5 +1,6 @@
 @extends('frontend.master-frontend')
 @section('content')
+<br>
 
 
 {{--  data fetch from Database !!  --}}
@@ -12,7 +13,7 @@
             </div>
         </div>
         
-        <h2 class="text-center" style="font-size: 25px;text-align: center;">
+        <h2 class="text-center mb-5" style="font-size: 25px;text-align: center;">
             Add Questions to Plab Community
         </h2>
         
@@ -43,7 +44,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <a href="{{ url('user/question/add/single') }}" class="btn btn-spinner col-12" style="
-                        background: green;
+                        background: #63BA52;
                         text-transform: uppercase;
                         border-radius: 5px;
                         box-sizing: border-box;

@@ -142,6 +142,7 @@
 
 
 @section('content')
+<br>
     <br>
     <div class="container">
         <div class='page_banner_img_common'>

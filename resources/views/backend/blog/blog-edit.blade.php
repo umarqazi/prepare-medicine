@@ -15,6 +15,7 @@
 @endsection
 
 @section('content')
+<br>
 
     <div class="alert alert-info" role="alert">Edit Blog Post</div>
     @include('msg.msg')

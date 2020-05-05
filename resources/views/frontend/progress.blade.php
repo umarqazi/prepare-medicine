@@ -52,6 +52,7 @@ if($over__all[0] <= 13){
         .panel-white{
             background: white;
             padding: 10px;
+            margin: 30px 0;
         }
         .btn-left{
             float: right;
@@ -83,7 +84,7 @@ if($over__all[0] <= 13){
         .horizontal .progress-track {
         position: relative;
         width: 100%;
-        height: 15px;
+        height: 30px;
         background: #fff;
         border:1px solid #555;
         }
@@ -91,13 +92,13 @@ if($over__all[0] <= 13){
         .horizontal .progress-fill {
             position: relative;
             background: #438B28;
-            height: 15px;
+            height: 30px;
             width: 50%;
             color: #fff;
             text-align: center;
             font-family: "Lato","Verdana",sans-serif;
             font-size: 12px;
-            line-height: 15px;
+            line-height: 30px;
         }
 
         .rounded .progress-track,
@@ -106,14 +107,14 @@ if($over__all[0] <= 13){
             /*box-shadow: inset 0 0 5px rgba(0,0,0,.2);*/
         }
 
-        .panel .heading_{
+        .panel .heading_ {
             text-align: center;
             text-transform: uppercase;
             border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
             font-weight: bold;
+            margin-bottom: 30px;
         }
-        
         
         /*CSS by Developer Rijan*/
         .progress_bar_{
@@ -170,7 +171,7 @@ if($over__all[0] <= 13){
         .box_design__{
             border: 1px solid #ddd;
             border-radius: .25rem!important;
-            margin-top: 10px;
+            margin: 30px 0;
             padding: 15px;
             background:#F1F4F9;
         }
@@ -187,11 +188,6 @@ if($over__all[0] <= 13){
             color:#000;
         }
         
-        @media only screen and (max-width: 767px) {
-          .block__box {
-            margin-bottom:10px;
-          }
-        }
         
     </style>
     {{-- Circle Chart for verces --}}
@@ -432,7 +428,8 @@ if($over__all[0] <= 13){
 
 @endsection
 @section('content')
-    <div class="container">
+<br>
+<div class="container-fluid" style="padding-left: 30px; padding-right: 30px">
         <div class='page_banner_img_common'>
             <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
@@ -440,12 +437,18 @@ if($over__all[0] <= 13){
             </div>
         </div>
         
+    </div>
+
+
+    <div class="container">
+        
+        
         <div class="panel panel-white">
             <div class="panel-heading clearfix">
                 <h4 class="panel-title heading_">Random Progress</h4>
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4 mb-md-0">
                     <div class="block__box">
                         <h6 class='progress_heading__'>My Perfomance</h6>
                         <div id="Random" style="height: 300px; width: 100%;"></div>
@@ -475,8 +478,6 @@ if($over__all[0] <= 13){
                     @endforeach
                 </div>
             </div>
-
-            <br><br>
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -516,7 +517,7 @@ if($over__all[0] <= 13){
                 <h4 class="panel-title heading_">Manual Progress</h4>
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4 mb-md-0">
                     <div class="block__box">
                         <h6 class='progress_heading__'>My Perfomance</h6>
                         <div id="Manual" style="height: 300px; width: 100%;"></div>
@@ -546,7 +547,6 @@ if($over__all[0] <= 13){
                     @endforeach
                 </div>
             </div>
-            <br><br>
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -586,7 +586,7 @@ if($over__all[0] <= 13){
                 <h4 class="panel-title heading_">Recall Progress</h4>
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12"> 
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4 mb-md-0"> 
                     <div class="block__box">
                         <h6 class='progress_heading__'>My Performance</h6>
                         <div id="Recall" style="height: 300px; width: 100%;"></div>
@@ -610,7 +610,7 @@ if($over__all[0] <= 13){
                 <h4 class="panel-title heading_">Speciality Progress</h4>
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12"> 
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-4 mb-md-0"> 
                     <div class="block__box">
                         <h6 class='progress_heading__'>My Performance</h6>
                         <div id="Category" style="height: 300px; width: 100%;"></div>
@@ -634,15 +634,14 @@ if($over__all[0] <= 13){
             <div class="panel-heading clearfix">
                 <h4 class="panel-title heading_">Perfomance Analysis by Specialities</h4>
             </div>
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="table-responsive mb-4 mb-md-0">
                     <table class="table table-striped">
                       <thead>
                         <tr>
                           <th scope="col" width="20%">Speciality</th>
                           <th scope="col" width="40%">Perfomance</th>
                           <th scope="col" width="13.33%" style='color:red'><i class="far fa-times-circle"></i></th>
-                          <th scope="col" width="13.33%" style='color:green'><i class="far fa-check-circle"></i></th>
+                          <th scope="col" width="13.33%" style='color:#63BA52'><i class="far fa-check-circle"></i></th>
                           <th scope="col" width="13.33%"><i class="far fa-dot-circle"></i></th>
                         </tr>
                       </thead>
@@ -675,13 +674,12 @@ if($over__all[0] <= 13){
                         <tr>
                             <td><p><span style="color:#4D8B12"><i class="fas fa-square-full"></i></span> Me</p></td>
                             <td><p><span style="color:#05569B"><i class="fas fa-square-full"></i></span> Everyone Else</p></td>
-                            <td><p><span style="color:green"><i class="far fa-check-circle"></i></span> Correct</p></td>
+                            <td><p><span style="color:#63BA52"><i class="far fa-check-circle"></i></span> Correct</p></td>
                             <td><p><span style="color:red"><i class="far fa-times-circle"></i></span> Incorrect</p></td>
                             <td><p><span class='info__total'><i class="far fa-dot-circle"></i></span> Total</p></td>
                         </tr>
                     </table>
                     
-                </div>
             </div>
         </div>
     </div>

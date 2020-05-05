@@ -7,7 +7,7 @@
             display: ruby;
         }
         .user-name-show{
-            color:green;
+            color:#63BA52;
             display: ruby;
         }
         .user-feedback{
@@ -47,6 +47,7 @@
 
 @endsection
 @section('content')
+<br>
 <br>
 
 
