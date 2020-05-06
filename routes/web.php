@@ -183,7 +183,7 @@ Route::group(['middleware' => ['auth','verified'] ], function () {
     Route::post('change-password',"ChangePasswordController@Change");
 
 });
-Route::get('action-x-csa/action-x-e/{accessToken}', function($token){
+/*Route::get('action-x-csa/action-x-e/{accessToken}', function($token){
     if($token === "xx-df12312378978900xcda_dr_csa"){
         $root_path =  base_path();
         $public_path = "/home/kohin837/public_html/preparemedicine.com";
@@ -202,7 +202,7 @@ Route::get('action-x-csa/action-x-e/{accessToken}', function($token){
     }else{
         return "Access Denied !! You should back now....";
     }
-});
+});*/
 
 // end FrondEnd path
 
@@ -330,6 +330,7 @@ Route::group(['middleware' => ['auth','role','verified'] ], function () {
 
     //blog news
     Route::resource('admin/ui/news', 'NewsController');
+    Route::post('admin/ui/news-images-upload', 'NewsController@imageUpload')->name('image_upload');
 });
 
 Route::get('question/view/{id}', "QuestionController@viewFile")->name('view_file');

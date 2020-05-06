@@ -62,14 +62,17 @@
     <script>
         var editor_config = {
             path_absolute : "/",
+            theme: "modern",
             selector: "textarea.my-editor",
+            images_upload_url: 'http://preparemedicine.test/admin/ui/news-images-upload',
+            images_upload_base_path: '/',
             plugins: [
-            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "advlist autolink lists link image imagetools charmap print preview hr anchor pagebreak",
             "searchreplace wordcount visualblocks visualchars code fullscreen",
             "insertdatetime media nonbreaking save table contextmenu directionality",
-            "emoticons template paste textcolor colorpicker textpattern"
+            "emoticons template paste textcolor colorpicker textpattern code"
             ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+            toolbar: "insertfile undo redo | styleselect | bold italic | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code",
             relative_urls: false,
             file_browser_callback : function(field_name, url, type, win) {
             var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
