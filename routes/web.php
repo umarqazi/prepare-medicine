@@ -324,6 +324,9 @@ Route::group(['middleware' => ['auth','role','verified'] ], function () {
 
     //blog posts
     Route::resource('admin/ui/blog', 'BlogController');
+    Route::resource('admin/ui/role', 'RoleController');
+    Route::resource('admin/ui/permission', 'PermissionController');
+    Route::resource('admin/ui/user', 'UserController');
     Route::resource('admin/ui/course-list', 'CourseController');
 
     //blog news

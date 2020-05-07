@@ -3,7 +3,7 @@
   <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Admin Dashboard - Prepare Medicine</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
@@ -83,7 +83,8 @@
         </li>
         <li><a class="app-menu__item " href="{{ url('admin/recall-exam') }}"><i class="app-menu__icon fa fa-pencil"></i><span class="app-menu__label">Recall Exam</span></a></li>
         <li><a class="app-menu__item " href="{{ url('admin/notification') }}"><i class="app-menu__icon fa fa-bell"></i><span class="app-menu__label">Notification</span></a></li>
-        <li><a class="app-menu__item " href="{{ route('get_users_list') }}"><i class="app-menu__icon fa fa-user-plus"></i><span class="app-menu__label">Users</span></a></li>
+        <li><a class="app-menu__item " href="{{ route('role.index')}}"><i class="app-menu__icon fa fa-bell"></i><span class="app-menu__label">Roles</span></a></li>
+        <li><a class="app-menu__item " href="{{ route('user.index') }}"><i class="app-menu__icon fa fa-user-plus"></i><span class="app-menu__label">Users</span></a></li>
         <li><a class="app-menu__item " href="{{ route('subscriber_list') }}"><i class="app-menu__icon fa fa-user-plus"></i><span class="app-menu__label">Subscribers</span></a></li>
         <li><a class="app-menu__item " href="{{ route('subscribers_requests') }}"><i class="app-menu__icon fa fa-user-plus"></i><span class="app-menu__label">Requests</span></a></li>
         <li><a class="app-menu__item " href="{{ route('course-list.index') }}"><i class="app-menu__icon fa fa-pencil"></i><span class="app-menu__label">Courses</span></a></li>
@@ -107,9 +108,9 @@
     <script src="{{ url('backend/js/main.js') }}"></script>
     {{-- Custom Js --}}
     @yield('js')
-    
-    
-    
+
+
+
         <script>
             $(document).ready(function(){
                 $(".showModal_changeEmail").on('click', function(e){
