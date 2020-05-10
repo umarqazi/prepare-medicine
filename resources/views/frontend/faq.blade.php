@@ -56,7 +56,7 @@
 @section('content')
 <br>
     
-    {{-- <div class="container"> --}}
+    {{-- <div class="container-fluid"> --}}
         {{--  data fetch from Database !!  --}}
         {{-- {!! $data !!} --}}
     {{-- </div> --}}
@@ -68,10 +68,9 @@
                 </div>
             </div>
         
-            <section>
                 <div class="row">
                     <div class="col-10 mx-auto">
-                        <h3 class="text-green mb-4" style='font-size:25px'>Frequently Asked Questions</h3>
+                    <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 36px">Frequently Asked Questions</h2>
                     </div>
                     <div class="col-10 mx-auto">
                         <div class="accordion" id="accordionExample">
@@ -321,7 +320,6 @@
                     </div>	
                 </div>
 
-            </section>
         </div>
     
 @endsection

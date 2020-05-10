@@ -27,9 +27,8 @@
 @endsection
 @section('content')
 <br>
-    <div class="container-fluid" style="padding-left: 30px; padding-right: 30px">
+    <div class="container-fluid">
         <div class='page_banner_img_common'>
-            <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
                 <p>Flagged Questions</p>
             </div>
@@ -40,8 +39,8 @@
     <div class="container">
        <div class="panel panel-white">
             <div class="panel-heading clearfix">
-            <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 35px;">Flagged Questions</h2>
-            <p class="text-justify">
+            <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 36px;">Flagged Questions</h2>
+            <p class="text-center">
         You can flag questions and return to them later
     </p>
             </div>

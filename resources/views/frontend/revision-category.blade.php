@@ -5,15 +5,14 @@
 
 {{--  data fetch from Database !!  --}}
 
-    <div class="container-fluid" style="padding-left: 30px; padding-right: 30px">
+    <div class="container-fluid">
         <div class='page_banner_img_common'>
-            <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
                 <p>Specialities</p>
             </div>
         </div>
         
-            <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 35px;">
+            <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 36px;">
                 Specialities
             </h2>
             <div class="container">

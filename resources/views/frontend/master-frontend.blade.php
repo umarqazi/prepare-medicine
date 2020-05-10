@@ -398,6 +398,16 @@
 
                 <div class="col-md-4 col-sm-6">
                     <div class="footer-block text-center">
+                        <div class="subscribe-form mb-4">
+                            <form action="">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Subscribe</button>
+                                </div>
+                            </form>
+                        </div>
                         <h5>Follow Us</h5>
                         <ul class="footer-social-link">
                             <li><a href="https://www.facebook.com/PrepareMedicine"><i class="zmdi zmdi-facebook"></i></a></li>
@@ -433,13 +443,12 @@
     
     <!-- only for showing alerts -->
     @if(session()->has('no_access_permission__'))
-        <div class="modal fade show" id="notice_modal__" tabindex="-1" role="dialog" aria-labelledby="noticeModalTitle" aria-hidden="true"
-            style="padding-right: 17px; display: block;">
+        <div class="modal fade" id="notice_modal__" tabindex="-1" role="dialog" aria-labelledby="noticeModalTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header" style='background:red'>
+              <div class="modal-header bg-danger">
                 <h5 class="col-12 modal-title text-center" id="noticeModalTitle" style="color:#fff">WARNING</h5>
-                <button type="button" class="close" id="closeTheModal___now">
+                <button type="button" class="close" id="closeTheModal___now" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>

@@ -336,7 +336,6 @@
 
     <div class="container-fluid">
         <div class='page_banner_img_common'>
-            <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
                 <p>Mock Exam</p>
             </div>
@@ -419,8 +418,9 @@
                                 <p class="action_1" style="margin-left: 5px">QID: {{ $item->search_id }}</p>
                             </div>
                             <p class="asked-question"> {!! $item->question !!}</p>
+                            <br>
 
-                            <div class="col-12">
+                            <div>
                                
                                     @if ( empty($item->status) )
                                     {{-- Single Choice question --}}
@@ -736,7 +736,7 @@
                     </div>
 
                     {{-- Hints & Lab Value --}}
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse col-12" id="collapseExample">
                         @if (!empty($item->hint) && $item->hint != null)
                             {!! $item->hint !!}
                         @else
@@ -755,11 +755,13 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group col-12">
+                                    <div class="form-group">
                                         <input type="text" class="form-control" id="findInput" placeholder="find your information...">
                                     </div>
-                                    <button type="submit" class="btn btn-info col-12" onclick="FindNext ();">find</button>
-                                    
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info col-12" onclick="FindNext ();">Search</button>
+                                    </div>
+                                                                     
                                     <div id="hint">
                                         {!! $lab !!}
                                     </div>

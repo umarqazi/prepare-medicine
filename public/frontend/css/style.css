@@ -271,6 +271,20 @@ ul {
     width: 100%;
 }
 
+#hint ul{
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+#hint #ValuesWrapper{
+    margin:20px 0;
+}
+#hint #ValuesWrapper h3,
+.card h3{
+    font-size: 24px;
+    font-weight: bold;
+}
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .boxed-layout {
         max-width: 1280px;
@@ -2165,6 +2179,12 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 
 /*-- header-bottom-are Css --*/
+header + br{
+    display: none;
+}
+.header-area{
+    transition: all .3s ease-in;
+}
 .scroll .header-area{
     box-shadow: 0 0px 10px 2px rgba(0,0,0,.5);
 }
@@ -3225,9 +3245,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .our-blog-contnet {
     padding: 30px;
-    border-bottom: 1px solid #ececec;
-    border-right: 1px solid #ececec;
-    border-left: 1px solid #ececec;
+    border: 1px solid #ececec;
 }
 
 .our-blog-contnet h5 {
@@ -3301,7 +3319,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 .single-our-blog:hover .our-blog-image .in-our-blog-icon {
     opacity: 1;
     visibility: visible;
-    margin-top: 0px;
+    margin-top: 12px;
 }
 
 .our-blog-image {
@@ -4250,6 +4268,15 @@ only screen and (max-width: 767px) {
     position: absolute;
 }
 
+.subscribe-form {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.subscribe-form button{
+    display: block;
+    width: 100%;
+}
 @media only screen and (max-width: 767px) {
     .footer-top .col-md-6::after {
         display: none;
@@ -5966,12 +5993,13 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 
 .page_banner_img_common{
+    background: url(../images/pages-banner.png) no-repeat center center/cover;
     width:100%;
     height: 200px;
     overflow: hidden;
     position: relative;
     text-align: center;
-    margin-bottom:25px;
+    margin:25px 0;
 }
 .page_banner_img_common img{
     width:100%;

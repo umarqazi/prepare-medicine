@@ -328,7 +328,6 @@
 
     <div class="container-fluid">
         <div class='page_banner_img_common'>
-            <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
                 <p>Revision</p>
             </div>
@@ -736,6 +735,7 @@
                                 </div>
                                 
                                <p class="asked-question"> {!! $item->question !!}</p>
+                               
 
                                 @if (!empty($item->question_revision))
                                     @if ( $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->count() == "1" )
@@ -1390,7 +1390,7 @@
                         </div>
 
                         {{-- show Hitns --}}
-                        <div class="collapse" id="collapseExample">
+                        <div class="collapse col-12" id="collapseExample">
                             @if (!empty($item->hint) && $item->hint != null)
                                 {!! $item->hint !!}
                             @else
@@ -1409,13 +1409,13 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <div class="form-group col-12">
+                                        <div class="form-group">
                                             <input type="text" class="form-control" id="findInput" placeholder="Find your information...">
                                         </div>
-                                        <div class="form-group col-12">
-                                            <button type="submit" class="btn btn-info col-12" onclick="FindNext ();" style="border:none;">FIND</button>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-info col-12" onclick="FindNext ();" style="border:none;">Search</button>
                                         </div>
-                                        <br>
+
                                         <div id="hint">
                                             {!! $lab !!}
                                         </div>
@@ -1429,13 +1429,13 @@
                         
                         
                         {{-- EXPLANATION AND FEEDBACK SECTION START--}}
-                        <div class='col-12'>
+                        <div class='col-12 mb-4'>
                             @if (!empty($item->question_revision))
                                 @if ( $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->count() == "1" )
-                                    <div class="card" style="background-color: #F4F1EC !important; border:none">
+                                    <div class="card">
                                         <div class="card-body">
-                                            <p class="text-uppercase" style="margin-left: -15px;font-weight:bold;font-size:16px">EXPLANATION</p>
-                                            {{-- <h3 style="font-size: 25px; margin-left: -15px;">EXPLANATION</h3> --}}
+                                            <h3 class="text-uppercase">EXPLANATION</h3>
+                                            {{-- <h3>EXPLANATION</h3> --}}
                                              {!! $item->explanation !!}
                                         </div>
                                     </div>
@@ -1447,11 +1447,13 @@
                            {{-- @if ($value->comment) --}}
                             @if (!empty($item->question_revision))
                                 @if ( $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->count() == "1" )
-                                    <p class="text-uppercase" style="margin-left: 5px;font-weight:bold;font-size:16px">FEEDBACK</p>
-                                    {{-- <h3 style="font-size: 25px">FEEDBACK</h3> --}}
+                                <div class="card">
+                                        <div class="card-body">
+                                    <h3 class="text-uppercase">FEEDBACK</h3>
+                                    {{-- <h3>FEEDBACK</h3> --}}
                                     @isset($item->question_comment[0])
                                         <div class="card">
-                                            <div class="card-body" style="background: #E1E0DD;">
+                                            <div class="card-body">
                                                 <div class="comment-wrap">
                                                     @foreach ($item->question_comment as $value)
                                                         <div class="col-12 bg mb-2 p-4" style="width: 98%;margin-right: 2%;:">
@@ -1479,6 +1481,8 @@
                                             <input type="submit" value="SUBMIT" class="btn btn-success mt-3 mb-3 right col-md-3" style="background: #63BA52;">
                                         </form>
                                     @endif
+                                                    </div>
+                                                    </div>
                                 @endif
                             @endif
                        </div>  {{-- EXPLANATION AND FEEDBACK SECTION END--}}

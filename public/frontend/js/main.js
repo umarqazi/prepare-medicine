@@ -6,7 +6,9 @@
     
 	$(window).on('load', function () {
 		dataBackgroundImage();
-	});
+    });
+    
+    $("#notice_modal__").modal();
 
 	/*--
         Data Background Image 

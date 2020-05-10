@@ -3,14 +3,13 @@
 <br>
     {{--  data fetch from Database !!  --}}
 
-    <div class="container-fluid" style="padding-left: 30px; padding-right: 30px"> 
+    <div class="container-fluid"> 
         <div class='page_banner_img_common'>
-            <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
                 <p>Random Mock </p>
             </div>
         </div>
-        <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 35px;">RANDOM MOCKS</h2>
+        <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 36px;">RANDOM MOCKS</h2>
         <div class="container">
             <p style="text-center">
                 Your opportunity to test yourself on randomly generated full simulation of the GMC PlAB-1 Exam, which timed 3:00 hours for 180 MCQs.

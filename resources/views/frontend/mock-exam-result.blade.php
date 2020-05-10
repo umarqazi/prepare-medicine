@@ -336,7 +336,6 @@
 
     <div class="container-fluid">
         <div class='page_banner_img_common'>
-            <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
                 <p>Mock Exam Result</p>
             </div>
@@ -1078,7 +1077,7 @@
 
 
                     {{-- Hints & Lab value --}}
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse col-12" id="collapseExample">
                         @if (!empty($item->hint) && $item->hint != null)
                             {!! $item->hint !!}
                         @else
@@ -1096,14 +1095,13 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group col-12">
+                                    <div class="form-group">
                                         <input type="text" class="form-control" id="findInput" placeholder="find your information...">
                                     </div>
-                                    <div class="form-group col-12">
-                                        <button type="submit" class="btn btn-info col-12" onclick="FindNext ();" style="border:none;">FIND</button>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info col-12" onclick="FindNext ();" style="border:none;">Search</button>
                                     </div>
                                     
-                                    <br>
                                     <div id="hint">
                                         {!! $lab !!}
                                     </div>
@@ -1118,53 +1116,55 @@
                     
                     
                  {{-- EXPLANATION AND FEEDBACK SECTION START--}}
-                <div class='col-12'>
-                    <div class="card" style="background-color: #F4F1EC !important; border:none">
+                 <div class="col-12">
+                    <div class="card mb-4">
                         <div class="card-body">
-                            {{-- <h3 style="font-size: 25px; margin-left: -15px;">EXPLANATION</h3> --}}
-                            <p class="text-uppercase" style="margin-left: -15px;font-weight:bold;font-size:16px">EXPLANATION</p>
+                            {{-- <h3>EXPLANATION</h3> --}}
+                            <h3 class="text-uppercase">EXPLANATION</h3>
                              {!! $item->explanation !!}
                         </div>
                     </div>
-                </div>
 
-                <div class='col-12'>
-                    <p class="text-uppercase" style="margin-left: 5px;font-weight:bold;font-size:16px">FEEDBACK</p>
-                     {{-- <h3 style="font-size: 25px;margin-left: 5px;">FEEDBACK</h3> --}}
-                    @isset($item->mocques_ques->question_comment[0])
+                <div class='card'>
+                    <div class="card-body">
+                        <h3 class="text-uppercase">FEEDBACK</h3>
+                        {{-- <h3>FEEDBACK</h3> --}}
+                        @isset($item->mocques_ques->question_comment[0])
 
-                        <div class="card">
-                            <div class="card-body" style="background: #E1E0DD;">
-                                <div class="comment-wrap">
-                                    @foreach ($item->mocques_ques->question_comment as $value)
-                                        <div class="col-12 bg mb-2 p-4" style="width: 98%;margin-right: 2%;:">
-                                            <h5 style="color: #2F4D36;">
-                                                {{ $value->name }}
-                                                @if ($value->user_id == Auth::user()->id)
-                                                    <a href="{{ url('comment/'.$value->id) }}"><i class="fa fa-times text-danger" aria-hidden="true"></i></a>
-                                                @endif
-                                            </h5>
-                                            <p>{{ $value->comment }}</p>
-                                            <p style="text-align:end;">{{ $value->created_at }}</p>
-                                        </div>
-                                    @endforeach
+                            <div class="card">
+                                <div class="card-body" style="background: #E1E0DD;">
+                                    <div class="comment-wrap">
+                                        @foreach ($item->mocques_ques->question_comment as $value)
+                                            <div class="col-12 bg mb-2 p-4" style="width: 98%;margin-right: 2%;:">
+                                                <h5 style="color: #2F4D36;">
+                                                    {{ $value->name }}
+                                                    @if ($value->user_id == Auth::user()->id)
+                                                        <a href="{{ url('comment/'.$value->id) }}"><i class="fa fa-times text-danger" aria-hidden="true"></i></a>
+                                                    @endif
+                                                </h5>
+                                                <p>{{ $value->comment }}</p>
+                                                <p style="text-align:end;">{{ $value->created_at }}</p>
+                                            </div>
+                                        @endforeach
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endisset
-                    {{-- @endif --}}
-                    @if (Auth::user()->f_name)
-                        <form action="{{ url('comment/store') }}" method="post" class="mt-3">
-                            @csrf
-                            <input type="hidden" name="question_id" value="{{ $item->ques_id }}">
-                            <textarea name="comment" class="form-control" placeholder="Write Your Feedback !!"></textarea>
-                            <input type="submit" value="SUBMIT" class="btn btn-success mt-3 mb-3 right col-md-3" style="background: #63BA52;">
-                        </form>
-                    @endif
+                        @endisset
+                        {{-- @endif --}}
+                        @if (Auth::user()->f_name)
+                            <form action="{{ url('comment/store') }}" method="post" class="mt-3">
+                                @csrf
+                                <input type="hidden" name="question_id" value="{{ $item->ques_id }}">
+                                <textarea name="comment" class="form-control" placeholder="Write Your Feedback !!"></textarea>
+                                <input type="submit" value="SUBMIT" class="btn btn-success mt-3 mb-3 right col-md-3" style="background: #63BA52;">
+                            </form>
+                        @endif
+                    </div>
                 </div>
+
                  {{-- EXPLANATION AND FEEDBACK SECTION END--}}
-                    
+                </div>    
             </div> {{-- RIGHT PART END HERE--}}
             
 
