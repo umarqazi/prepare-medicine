@@ -37,6 +37,17 @@
                     @endif
                 </div>
 
+                <div class="form-group{{ $errors->has('question_id') ? ' has-error' : '' }}">
+                    <label>Question Id</label>
+                    <input type="text" class="form-control{{ $errors->has('question_id') ? ' has-error' : '' }}" name="question_id" value="{{old('question_id') ? old('question_id') : ''}}">
+
+                    @if ($errors->has('question_id'))
+                        <span class="error-block">
+                             <strong>{{ $errors->first('question_id') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
                 <div class="form-group{{ $errors->has('question') ? ' has-error' : '' }}">
                     <label>Enter Question</label>
                     <textarea class="form-control my-editor" name="question">{!! old('question') !!}</textarea>

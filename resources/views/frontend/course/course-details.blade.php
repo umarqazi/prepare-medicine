@@ -44,11 +44,6 @@
                     @if(in_array($file->type, array('pdf', 'jpeg', 'jpg', 'png')))
                         <div><a href="{{route('view_file', $file->id)}}" target="_blank">{{$file->name}}</a></div>
                     @elseif($file->type === 'mp4')
-                        {{--<video width="320" height="240" controls>
-                            <source src="{{public_path("storage/app/public/questions/".$file->assetable_id.'/'.$file->name)}}" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>--}}
-
                         <video width='320' height= '240' controls>
                             <source src='google.guru' type='video/mp4'>
                             Your browser does not support the video tag.

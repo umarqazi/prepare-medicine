@@ -116,6 +116,7 @@ class RevisionController extends Controller
             }
 
         }else{
+
             //advanced and professional unlimited
             $data = question::select()->where('cat_id',$id)
                         ->where('status','0')

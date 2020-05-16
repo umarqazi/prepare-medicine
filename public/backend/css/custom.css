@@ -10,3 +10,7 @@
     display: block;
     margin: 10px 0 10px 0;
 }
+.delete-form{
+    display: inline-block;
+    margin-left: 5px;
+}

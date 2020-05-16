@@ -189,7 +189,6 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request->all());
        $data = Blog::where('id', $id)->first();
 
         if ($data) {

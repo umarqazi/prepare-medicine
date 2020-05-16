@@ -1,15 +1,15 @@
 (function ($) {
     "use strict";
-   
-    
-    new WOW().init();  
-    
+
+
+    new WOW().init();
+
 	$(window).on('load', function () {
 		dataBackgroundImage();
 	});
 
 	/*--
-        Data Background Image 
+        Data Background Image
     -----------------------------------*/
 	function dataBackgroundImage() {
 		$('[data-bgimage]').each(function () {
@@ -35,7 +35,7 @@
     });
 
     /*--
-        Header Search 
+        Header Search
     -----------------------------------*/
     var $headerSearchToggle = $('.header-search-toggle');
     var $headerSearchForm = $('.header-search-form');
@@ -78,7 +78,7 @@
         animateIn: 'fadeIn',
         navText: ['','']
     });
-    
+
     // slider Image SRC
     var itemBg = $('.itemBg');
     $('.hero-slider-active .singleSlide').each(function(){
@@ -87,21 +87,21 @@
             background: 'url(' + itmeImg + ')'
         });
     });
-    
+
     // Next Prev Image Active Botton
     function mySlideFunc(){
         $('.hero-slider-active .owl-item').removeClass('next prev');
         var activeSlide = $('.hero-slider-active .owl-item.active');
         activeSlide.next('.owl-item').addClass('next');
         activeSlide.prev('.owl-item').addClass('prev');
-            
+
         var nextSlideImg = $('.owl-item.next').find('.itemBg img').attr('src');
         var prevSlideImg = $('.owl-item.prev').find('.itemBg img').attr('src');
-            
+
         $('.hero-slider-active .owl-nav .owl-prev').css({
             background: 'url(' + prevSlideImg + ')'
         })
-            
+
         $('.hero-slider-active .owl-nav .owl-next').css({
             background: 'url(' + nextSlideImg + ')'
         })
@@ -122,7 +122,7 @@
         dots:true,
         navText: ['','']
     });
-    
+
     /*--
         Testimonial Active
     ---------------------------*/
@@ -142,9 +142,9 @@
         1600:{items:4}
     }
     });
-    
-    /*------- 
-        Testimonial Slider Active 
+
+    /*-------
+        Testimonial Slider Active
     ----------------------------------*/
      $('.testimonial-slider-2').owlCarousel({
         smartSpeed: 1000,
@@ -169,7 +169,7 @@
             }
         }
     })
-    
+
     /* Product Detals Color */
 	$('.product-color ul li').on('click', function () {
 		$(this).addClass('checked').siblings().removeClass('checked');
@@ -179,7 +179,7 @@
     --------------------------*/
     $( '#showlogin' ).on('click', function() {
         $('#checkout-login' ).slideToggle(500);
-    }); 
+    });
 
     /*--
         showcoupon toggle function
@@ -189,18 +189,18 @@
     });
 
     /*--
-        Checkout 
+        Checkout
     --------------------------*/
     $("#chekout-box").on("change",function(){
         $(".account-create").slideToggle("100");
     });
 
-    /*-- 
-        Checkout 
+    /*--
+        Checkout
     ---------------------------*/
     $("#chekout-box-2").on("change",function(){
         $(".ship-box-info").slideToggle("100");
-    });   
+    });
     /*--
     Magnific Popup
     ------------------------*/
@@ -219,7 +219,7 @@
 
     /* ---
        payment-accordion
-    * --------------------------------*/ 
+    * --------------------------------*/
         $(".payment-accordion").collapse({
             accordion:true,
           open: function() {
@@ -227,27 +227,27 @@
           },
           close: function() {
             this.slideUp(550);
-          }		
+          }
         });
-    
+
     /*--------------------------
         Counter Up
-    ---------------------------- */	
+    ---------------------------- */
         $('.counter-active').counterUp({
             delay: 70,
             time: 5000
-        }); 
-    
-    
+        });
+
+
     /*---------------------------
         Fancybox Active
-    ------------------------------- */	   
+    ------------------------------- */
     $('[data-fancybox="images"]').fancybox({
         hash: false,
     });
-    
- 
-    
+
+
+
     /*=============  Gallery Mesonry Activation  ==============*/
     $('.masonry__wrap').imagesLoaded(function () {
 
@@ -283,9 +283,9 @@
         });
     });
 
-    
-    
-    
+
+
+
     /*--
         ScrollUp Active
     ------------------------*/
@@ -294,6 +294,30 @@
         easingType: 'linear',
         scrollSpeed: 900,
         animation: 'fade'
-    });   
-    
-})(jQuery);	
+    });
+
+})(jQuery);
+
+
+/*=========================================================================================*/
+/* Custom JS */
+$(document).ready(function(){
+    /* Script for Delete Prompt */
+    $(".delete-btn, .finish-exam, .save-and-exit-exam, .reset-account").bind("click", function(e){
+        e.preventDefault();
+        var href = $(this).attr('href');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to Do this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Do it!'
+        }).then((result) => {
+            if (result.value) {
+                window.location.replace(href);
+            }
+        })
+    });
+});

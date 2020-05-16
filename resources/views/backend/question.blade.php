@@ -74,39 +74,56 @@
         <h4 class="panel-title">Question</h4>
     </div>
     <div class="panel-heading action_bar">
-        <a class="btn" href="{{ url('admin/question/single') }}">show singlechoice Question</a>
-        <a class="btn" href="{{ url('admin/question/multi') }}">Show multichoice question</a>
+        @if(auth()->user()->can('View Question'))
+            <a class="btn" href="{{ url('admin/question/single') }}">show singlechoice Question</a>
+            <a class="btn" href="{{ url('admin/question/multi') }}">Show multichoice question</a>
+        @endif
 
-        <a class="btn_r btn" href="{{ url('admin/question/add/single') }}">Add Question(Single Answer )</a>
-        <a class="btn_r btn" href="{{ url('admin/question/add/multi') }}">Add Question(Multi Answer )</a>
+        @if(auth()->user()->can('Create Question'))
+            <a class="btn_r btn" href="{{ url('admin/question/add/single') }}">Add Question(Single Answer )</a>
+            <a class="btn_r btn" href="{{ url('admin/question/add/multi') }}">Add Question(Multi Answer )</a>
+        @endif
     </div>
     <br><br><br>
-    <div style="clear:both">
-        <div class="col-12">
-            <p><b>Mock Upload Single type Question</b></p>
-            <form class="form-inline" method="post" action="{{ url('admin/question/import') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group" style="margin-right: 5px">
-                    <label for="pwd" style="margin-right: 5px">Excel File</label>
-                    <input type="file" class="form-control" id="pwd" name="excel">
+        @if(auth()->user()->can('Create Question'))
+            <div style="clear:both">
+                <div class="col-12">
+                    <p><b>Mock Upload Single type Question</b></p>
+                    <form class="form-inline" method="post" action="{{ url('admin/question/import') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group" style="margin-right: 5px">
+                            <label for="pwd" style="margin-right: 5px">Excel File</label>
+                            <input type="file" class="form-control" id="pwd" name="excel">
+                        </div>
+                        <button type="submit" class="btn btn-default" style="padding: 10px 15px">Upload</button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-default" style="padding: 10px 15px">Upload</button>
-            </form>
-        </div>
-    </div>
+            </div>
+        @endif
 
     <br><br>
     <div class="panel-body">
-        <div class="table-responsive">
+        <div class="table-responsive table-container">
 
             <form class="form-inline" action="{{ url('admin/question/filter/single') }}" method="GET" style="float:right">
-                <div class="form-group mb-2">
+                <div class="form-group mx-sm-2 mb-2">
                     <select class="form-control" name="sear_id">
                         <option value="cat">Category</option>
                         <option value="sear">Search Id</option>
                         <option value="key">Keyword(from question)</option>
                     </select>
                 </div>
+
+                <div class="form-group mx-sm-2 mb-2">
+                    <select class="form-control" name="category">
+                        <option value="">Select A Category</option>
+                        @foreach($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+
                 <div class="form-group mx-sm-3 mb-2">
                     <label for="inputPassword2" class="sr-only">Search</label>
                     <input type="text" class="form-control" id="inputPassword2" name="sear_key" placeholder="category/search id/question">
@@ -115,6 +132,14 @@
             </form>
 
             <form action="{{ url('admin/question/select') }}" method="post">
+
+                @if(auth()->user()->can('Delete Question'))
+                    <div>
+                    <input type="checkbox" class="select-all"> Select All
+                    <input type="submit" value="Delete" class="btn btn-danger select-all-delete ml-2">
+                    </div>
+                @endif
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -141,16 +166,19 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a style="background-color: #0A68D4; color: #fff; border: none; margin-bottom:3px" href="{{route('edit_question', $item->id)}}" class="btn btn-sm" ><i class="fa fa-edit edit"></i></a>
-                                    <a style="background-color: red; border: none;" class="btn btn-sm" href="{{ url('admin/question/drop/'.$item->id) }}"><i class="fa fa-remove delete"></i></a>
+                                    @if(auth()->user()->can('Edit Question'))
+                                        <a style="background-color: #0A68D4; color: #fff; border: none; margin-bottom:3px" href="{{route('edit_question', $item->id)}}" class="btn btn-sm" ><i class="fa fa-edit edit"></i></a>
+                                    @endif
+
+                                    @if(auth()->user()->can('Delete Question'))
+                                        <a style="background-color: red; border: none;" class="btn btn-sm delete-btn" href="{{ url('admin/question/drop/'.$item->id) }}"><i class="fa fa-remove delete"></i></a>
+                                    @endif
                                 </td>
                             </tr>
-
                         @endforeach
                     </tbody>
                 </table>
                 @csrf
-                <input type="submit" value="Delete" class="btn btn-danger">
             </form>
             <span style="float:right"> {{ $data->links() }}</span>
         </div>

@@ -7,7 +7,7 @@
             alert ("Please enter some text to search!");
             return;
         }
-        
+
         if (window.find) {        // Firefox, Google Chrome, Safari
             var found = window.find (str);
             if (!found) {
@@ -39,7 +39,7 @@
         width: 30px;
         border: 0;
         border-radius: 0;
-        cursor: pointer;     
+        cursor: pointer;
         margin-right: 7px;
         outline: none;
     }
@@ -100,7 +100,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         cursor: pointer;
-    } 
+    }
 </style>
 <style>
     body{
@@ -114,11 +114,11 @@
     }
     .search-box{
         background: #ffffff;
-        width: 25px; 
-        height: 25px; 
-        padding: 0px; 
-        border-radius: 50%; 
-        text-align: center; 
+        width: 25px;
+        height: 25px;
+        padding: 0px;
+        border-radius: 50%;
+        text-align: center;
     }
     .comment-wrap{
         width: 100%;
@@ -187,7 +187,7 @@
     }
 
     @media screen and (max-width: 483px){
-       
+
         .top_action .action_1{
             display: inline-block !important;
         }
@@ -195,9 +195,9 @@
             width: 100% !important
         }
     }
-    
+
     @media screen and (max-width: 425px){
-            
+
         .btn_info{
             width:40px !important;
             height:40px !important;
@@ -325,8 +325,20 @@
             font-size: 16px;
             font-weight: bold;
         }
+        .time2_for_destop,
+        .time2_for_mobile{
+            background: green;
+            border: 1px solid #fff;
+            padding: 10px;
+            margin-bottom: 5px;
+            font-size: 16px;
+            font-weight: bold;
+        }
         .time_for_destop #time,
-        .time_for_mobile #time_m{
+        .time_for_mobile #time_m,
+        .time_for_destop #time2,
+        .time_for_mobile #time2
+        {
             color: #fff
         }
         .submited{
@@ -346,7 +358,7 @@
                 <p>Mock Exam</p>
             </div>
         </div>
-        
+
         <div class="row">
 
             @foreach ($data as $item)
@@ -358,7 +370,7 @@
                                 <div class="text-center" id="time"></div>
                             </div>
                         </div>
-                        
+
                         <div class='row'>
                             <div class="area_first__">
                             <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
@@ -399,15 +411,15 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         {{--
                          <div>
                             <!--total questions & left questions-->
                             <p>Total Questions: {{ $total_question }}</p>
                             <p>You have attend: {{ $total_question }}</p>
-                            
+
                         </div>
-                            --}}    
+                            --}}
                     </div>
                     <br>
                 </div>
@@ -415,7 +427,7 @@
                 {{-- Right part of the exam --}}
                 <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="col-12">
-                        
+
                             <div class="top_action d-flex justify-content-start">
                                 @isset($_GET['page'])
                                     <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }}</p>
@@ -430,7 +442,7 @@
                             {!! $item->question !!}
 
                             <div class="col-12">
-                               
+
                                     @if ( empty($item->status) )
                                     {{-- Single Choice question --}}
                                         @if ($item->type == '0')
@@ -438,7 +450,7 @@
                                                 @if ( $data->hasMorePages() )
                                                     <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
                                                 @else
-                                                    <input type="hidden" name="page" value="0">    
+                                                    <input type="hidden" name="page" value="0">
                                                 @endif
                                                 @csrf
                                                 <input type="hidden" name="exam_id" value="{{ $item->exam_id }}">
@@ -481,7 +493,7 @@
                                                             </button>
                                                         </td>
                                                 @if ($data->hasPages())
-                                                    
+
                                                             {{-- Previous Page Link --}}
                                                             @if ($data->onFirstPage())
                                                                 <td> <i class="fa fa-arrow-circle-left disabled" style="font-size:40px"></i> </td>
@@ -496,7 +508,7 @@
                                                             @else
                                                                     <td> <i class="fa fa-arrow-circle-right disabled" style="font-size:40px"></i> </td>
                                                             @endif
-                                                        
+
                                                 @endif
                                                     <td>
                                                         <button title="Get Lab Value" type="button" class="btn btn_info" data-toggle="modal" data-target="#exampleModal">
@@ -514,7 +526,7 @@
                                                 @if ( $data->hasMorePages() )
                                                     <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
                                                 @else
-                                                    <input type="hidden" name="page" value="0">    
+                                                    <input type="hidden" name="page" value="0">
                                                 @endif
                                                 @csrf
                                                 <input type="hidden" name="exam_id" value="{{ $item->exam_id }}">
@@ -572,7 +584,7 @@
                                                             @else
                                                                     <td> <i class="fa fa-arrow-circle-right disabled" style="font-size:36px"></i> </td>
                                                             @endif
-                                                    
+
                                                 @endif
                                                 <td>
                                                         <button title="Get Lab Value" type="button" class="btn btn_info" data-toggle="modal" data-target="#exampleModal">
@@ -730,16 +742,16 @@
                                         @endif
                                         {{-- end --}}
                                     @endif
-                        
+
                             </div>
                             <br>
                             <table class='d-flex justify-content-around'>
                                 <tr>
                                     <td>
-                                        <a class="btn btn-info mr-5 bg-danger" href="{{ url('q-bank/mock/time/finish/'.Auth::user()->id.'/'.$id) }}" style="border-radius: 3px;border: none;padding: 10px 25px">FINISH</a>
+                                        <a class="btn btn-info mr-5 bg-danger finish-exam" href="{{ url('q-bank/mock/time/finish/'.Auth::user()->id.'/'.$id) }}" style="border-radius: 3px;border: none;padding: 10px 25px">FINISH</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-success bg-success" href="{{ url('/') }}" style="border-radius: 3px;border: none;padding: 10px 25px">SAVE & EXIT</a>
+                                        <a class="btn btn-success bg-success save-and-exit-exam" href="{{ url('/') }}" style="border-radius: 3px;border: none;padding: 10px 25px">SAVE & EXIT</a>
                                     </td>
                                 </tr>
                             </table>
@@ -780,10 +792,10 @@
                             </div>
                         </div>
                     </div> {{-- Hints & Lab Value end here --}}
-                    
+
                 </div> {{-- Right part end here --}}
-                
-                
+
+
 
                 {{-- Left part of the exam for mobile--}}
                 <div class="col-md-3" id="mobile">
@@ -793,7 +805,7 @@
                                 <div class="text-center" id="time_m"></div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="area_first__">
                                 <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
@@ -818,7 +830,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                     <br>
                 </div>
@@ -912,7 +924,7 @@
                 document.getElementById("mobile").style.display = "block";
             }
         }
-        
+
         if(screen.width > 767){
             document.getElementById("mobile").style.display = "none";
             document.getElementById("pc").style.display = "block";

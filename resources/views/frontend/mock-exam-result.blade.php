@@ -7,7 +7,7 @@
             alert ("Please enter some text to search!");
             return;
         }
-        
+
         if (window.find) {        // Firefox, Google Chrome, Safari
             var found = window.find (str);
             if (!found) {
@@ -39,7 +39,7 @@
         width: 30px;
         border: 0;
         border-radius: 0;
-        cursor: pointer;     
+        cursor: pointer;
         margin-right: 7px;
         outline: none;
     }
@@ -100,7 +100,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         cursor: pointer;
-    } 
+    }
 </style>
 <style>
     body{
@@ -114,11 +114,11 @@
     }
     .search-box{
         background: #ffffff;
-        width: 25px; 
-        height: 25px; 
-        padding: 0px; 
-        border-radius: 50%; 
-        text-align: center; 
+        width: 25px;
+        height: 25px;
+        padding: 0px;
+        border-radius: 50%;
+        text-align: center;
     }
     .comment-wrap{
         width: 100%;
@@ -221,7 +221,7 @@
     }
 
     @media screen and (max-width: 483px){
-        
+
         .top_action{
             display: block !important;
         }
@@ -233,7 +233,7 @@
         }
     }
     @media screen and (max-width: 425px){
-            
+
         .btn_info{
             width:40px !important;
             height:40px !important;
@@ -243,27 +243,27 @@
 
     /*Customize by 'Developer Rijan'*/
     .answerColor1{
-        background: #dddfdf;
+        /*background: #dddfdf;*/
         padding: 2px 15px 10px 15px !important;
         border-radius: 5px;
     }
     .answerColor2{
-        background: #dddccc;
+        /*background: #dddccc;*/
         padding: 2px 15px 10px 15px !important;
         border-radius: 5px;
     }
     .answerColor3{
-        background: #dddddd;
+        /*background: #dddddd;*/
         padding: 2px 15px 10px 15px !important;
         border-radius: 5px;
     }
     .answerColor4{
-        background: #dddaaa;
+        /*background: #dddaaa;*/
         padding: 2px 15px 10px 15px !important;
         border-radius: 5px;
     }
     .answerColor5{
-        background: #ddd999 !important;
+        /*background: #ddd999 !important;*/
         border-radius: 5px !important;
         padding: 2px 15px 10px 15px !important;
     }
@@ -317,8 +317,8 @@
         font-size: 11px;
         font-weight: bold;
     }
-    
-    
+
+
     .exam_summary{
         background: #ddd;
         padding: 4px 10px;
@@ -348,7 +348,7 @@
                 <p>Mock Exam Result</p>
             </div>
         </div>
-        
+
         <div class="row">
             @foreach ($data as $item)
 
@@ -359,7 +359,7 @@
                         <div class="col-12 pagination_list">
                             <div class="row block_">
                                 @for ($i = 1; $i <= $total_question; $i++)
-    
+
                                     @if (isset($_GET['page']))
                                         @if ($i == $_GET['page'])
                                             @if (!empty($mark[$i-1]->status))
@@ -405,14 +405,14 @@
                                             @endif
                                         @endif
                                     @endif
-    
+
                                 @endfor
                             </div>
                         </div>
                     </div>
                     <br>
                     <!-- question chart -->
-                    
+
                     <div class="center questions_status_board">
                         <table width="95%" class="cart-tab">
                             <p class="text-center heading text-uppercase">Question Status</p>
@@ -425,7 +425,7 @@
                                 @php
                                 //get total answers of the questions
                                     $totalAns_ = (App\mockquestion::where('ques_id',$item->ques_id)->count());
-                                    
+
                                     //get total answers of the multi options question
                                     if($item->type == 1){
                                         $totalAns_multi;
@@ -440,14 +440,14 @@
                                     }
 
                                     //store total answers of each option like A,B,C,D,E
-                                    $totalA = "";  // A point for 0            
-                                    $totalB = "";  // B point for 1            
-                                    $totalC = "";  // C point for 2           
-                                    $totalD = "";  // D point for 3             
+                                    $totalA = "";  // A point for 0
+                                    $totalB = "";  // B point for 1
+                                    $totalC = "";  // C point for 2
+                                    $totalD = "";  // D point for 3
                                     $totalE = "";  // E point for 4
-                                    // ): Commnent Organized by 'Developer Rijan'          
+                                    // ): Commnent Organized by 'Developer Rijan'
                                 @endphp
-                                
+
 
 
                                 <tbody>
@@ -464,12 +464,12 @@
                                                                     $totalA = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                 ->where('user_ans','0')
                                                                                 ->count());
-                                                                    
+
                                                                 @endphp
                                                                 {{ round(($totalA * 100)/ $totalAns_) }}%
 
                                                             @else
-                                                                    @php                                                                            
+                                                                    @php
 
                                                                         //find total ans for each option
                                                                         $static_data_1 = 0;
@@ -514,7 +514,7 @@
                                                                     $totalB = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                 ->where('user_ans','1')
                                                                                 ->count());
-                                                                    
+
                                                                 @endphp
                                                                 {{ round(($totalB * 100)/ $totalAns_) }}%
                                                             @else
@@ -562,7 +562,7 @@
                                                                     $totalC = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                 ->where('user_ans','2')
                                                                                 ->count());
-                                                                    
+
                                                                 @endphp
                                                                 {{ round(($totalC * 100)/ $totalAns_) }}%
                                                             @else
@@ -610,7 +610,7 @@
                                                                         $totalD = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                     ->where('user_ans','3')
                                                                                     ->count());
-                                                                        
+
                                                                     @endphp
                                                                     {{ round(($totalD * 100)/ $totalAns_) }}%
                                                             @else
@@ -658,7 +658,7 @@
                                                                     $totalE = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                 ->where('user_ans','4')
                                                                                 ->count());
-                                                                    
+
                                                                 @endphp
                                                                 {{ round(($totalE * 100)/ $totalAns_) }}%
                                                             @else
@@ -697,8 +697,8 @@
                             </div>
                         </table>
                     </div>
-                        
-                        
+
+
                         <!--developed by 'Developer Rijan'-->
                         <div class='exam_summary'>
                             <p class='text-uppercase'>Exam Summary</p>
@@ -740,7 +740,7 @@
                 {{-- Right part of the exam start from here --}}
                 <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="col-12">
-                    
+
                         <div class="top_action d-flex justify-content-start">
                             @isset($_GET['page'])
                                 <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }}</p>
@@ -756,18 +756,18 @@
                         <div>
                             {!! $item->question !!}
 
-                            
+
                             <br>
                             @if ($item->status == '1')
                                 <div class="alert alert-success mt-1" role="alert">
                                         Your Answer Was Correct
                                         <br/>
                                         {{-- Correct Ans of the question start from here // Developed by 'Developer Rijan' --}}
-                                        Correct Ans. 
+                                        Correct Ans.
                                         @php
                                             $correct_ans = $item->ans; //correct ans of the question
                                             $ex = explode('-', $item->ans); //explode if have multiple ans
-                                            
+
                                             foreach ($ex as $key => $value) {
                                                 if($value === '0'){ echo '<b>A </b>'; }
                                                 if($value === '1'){ echo '<b>B </b>'; }
@@ -777,14 +777,14 @@
                                             }
                                         @endphp
                                         {{-- Correct Ans of the question end here--}}
-                                        
-                                        || Your Ans. 
+
+                                        || Your Ans.
                                         {{-- User submitted ans start from here--}}
                                         @php
-                                                                    
+
                                             $userSubmited = $item->user_ans;
                                             $exp = explode('-', $userSubmited); //explode if have multiple ans
-                                            
+
                                             foreach ($exp as $key => $value) {
                                                 if($value === '0'){ echo '<b>A </b>'; }
                                                 if($value === '1'){ echo '<b>B </b>'; }
@@ -800,11 +800,11 @@
                                             Your Answer Was Wrong
                                              <br/>
                                             {{-- Correct Ans of the question start from here // Developed by 'Developer Rijan' --}}
-                                            Correct Ans. 
+                                            Correct Ans.
                                             @php
                                                 $correct_ans = $item->ans; //correct ans of the question
                                                 $ex = explode('-', $item->ans); //explode if have multiple ans
-                                                
+
                                                 foreach ($ex as $key => $value) {
                                                     if($value === '0'){ echo '<b>A </b>'; }
                                                     if($value === '1'){ echo '<b>B </b>'; }
@@ -814,13 +814,13 @@
                                                 }
                                             @endphp
                                             {{-- Correct Ans of the question end here--}}
-                                        
-                                            
-                                            
-                                        || Your Ans. 
+
+
+
+                                        || Your Ans.
                                         {{-- User submitted ans start from here--}}
                                         @php
-                                                                    
+
                                             $userSubmited_wrong = $item->user_ans;
                                             $exp = explode('-', $userSubmited_wrong); //explode if have multiple ans
 
@@ -839,11 +839,11 @@
                                         Your Answer Was Wrong
                                              <br/>
                                             {{-- Correct Ans of the question start from here // Developed by 'Developer Rijan' --}}
-                                            Correct Ans. 
+                                            Correct Ans.
                                             @php
                                                 $correct_ans = $item->ans; //correct ans of the question
                                                 $ex = explode('-', $item->ans); //explode if have multiple ans
-                                                
+
                                                 foreach ($ex as $key => $value) {
                                                     if($value === '0'){ echo '<b>A </b>'; }
                                                     if($value === '1'){ echo '<b>B </b>'; }
@@ -853,13 +853,13 @@
                                                 }
                                             @endphp
                                             {{-- Correct Ans of the question end here--}}
-                                        
-                                            
-                                            
-                                        || Your Ans. 
+
+
+
+                                        || Your Ans.
                                         {{-- User submitted ans start from here--}}
                                         @php
-                                                                    
+
                                             $userSubmited_wrong = $item->user_ans;
                                             $exp = explode('-', $userSubmited_wrong); //explode if have multiple ans
 
@@ -874,11 +874,11 @@
                                         {{-- User submitted ans end from here--}}
                                 </div>
                             @endif
-                            
-                            
+
+
                         </div>
 
-                        
+
                         <div>
                             {{-- Single Choice question --}}
                             @if ($item->type == '0')
@@ -1063,7 +1063,7 @@
                                                 <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right ml-5" style="font-size:38px;color:#63BA52"></i></a>
                                             </button>
                                         </td>
-                                        
+
                                     @else
                                         <td>
                                             <button class='btn' style='background:none;border:none'>
@@ -1107,7 +1107,7 @@
                                     <div class="form-group col-12">
                                         <button type="submit" class="btn btn-info col-12" onclick="FindNext ();" style="border:none;">FIND</button>
                                     </div>
-                                    
+
                                     <br>
                                     <div id="hint">
                                         {!! $lab !!}
@@ -1120,8 +1120,8 @@
                         </div>
                     </div>
                     {{-- Hints & Lab value end here --}}
-                    
-                    
+
+
                  {{-- EXPLANATION AND FEEDBACK SECTION START--}}
                 <div class='col-12'>
                     <div class="card" style="background-color: #F4F1EC !important; border:none">
@@ -1169,22 +1169,22 @@
                     @endif
                 </div>
                  {{-- EXPLANATION AND FEEDBACK SECTION END--}}
-                    
-            </div> {{-- RIGHT PART END HERE--}}
-            
 
-            
+            </div> {{-- RIGHT PART END HERE--}}
+
+
+
             {{-- Left part of the exam for mobile view --}}
             <div class="col-md-3" id="mobile">
                     <br>
-                    
+
                     <div class='area_first__'>
                         <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
                         <div class="center row pagination_list">
                             <div class="col-md-12 block_">
-                                
+
                                 @for ($i = 1; $i <= $total_question; $i++)
-    
+
                                     @if (isset($_GET['page']))
                                         @if ($i == $_GET['page'])
                                             @if (!empty($mark[$i-1]->status))
@@ -1230,14 +1230,14 @@
                                             @endif
                                         @endif
                                     @endif
-    
+
                                 @endfor
                             </div>
                         </div>
                     </div>
                     <br>
                     <!-- question chart -->
-                    
+
                     <div class="center questions_status_board">
                         <table width="95%" class="cart-tab">
                             <p class="text-center heading text-uppercase">Question Status</p>
@@ -1261,12 +1261,12 @@
                                                                     $totalA = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                 ->where('user_ans','0')
                                                                                 ->count());
-                                                                    
+
                                                                 @endphp
                                                                 {{ round(($totalA * 100)/ $totalAns_) }}%
 
                                                             @else
-                                                                    @php                                                                            
+                                                                    @php
 
                                                                         //find total ans for each option
                                                                         $static_data_1 = 0;
@@ -1311,7 +1311,7 @@
                                                                     $totalB = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                 ->where('user_ans','1')
                                                                                 ->count());
-                                                                    
+
                                                                 @endphp
                                                                 {{ round(($totalB * 100)/ $totalAns_) }}%
                                                             @else
@@ -1359,7 +1359,7 @@
                                                                     $totalC = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                 ->where('user_ans','2')
                                                                                 ->count());
-                                                                    
+
                                                                 @endphp
                                                                 {{ round(($totalC * 100)/ $totalAns_) }}%
                                                             @else
@@ -1407,7 +1407,7 @@
                                                                         $totalD = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                     ->where('user_ans','3')
                                                                                     ->count());
-                                                                        
+
                                                                     @endphp
                                                                     {{ round(($totalD * 100)/ $totalAns_) }}%
                                                             @else
@@ -1455,7 +1455,7 @@
                                                                     $totalE = (App\mockquestion::where('ques_id',$item->ques_id)
                                                                                 ->where('user_ans','4')
                                                                                 ->count());
-                                                                    
+
                                                                 @endphp
                                                                 {{ round(($totalE * 100)/ $totalAns_) }}%
                                                             @else
@@ -1494,7 +1494,7 @@
                             </div>
                         </table>
                     </div>
-                    
+
                     <!--developed by 'Developer Rijan'-->
                         <div class='exam_summary' style='padding-left:15px;margin-top:25px'>
                             <p class='text-uppercase'>Exam Summary</p>
@@ -1531,12 +1531,12 @@
                                 </tbody>
                             </table>
                         </div>
-                        
+
                 </div>
-                
-                
+
+
         </div><!-- .row end here -->
-        
+
         @endforeach
     </div>
 
@@ -1577,7 +1577,7 @@
                 document.getElementById("mobile").style.display = "block";
             }
         }
-        
+
         if(screen.width > 767){
             document.getElementById("mobile").style.display = "none";
             document.getElementById("pc").style.display = "block";

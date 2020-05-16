@@ -25,9 +25,9 @@ class QuestionController extends Controller
 
     function SingleIndex(){
 
-        $category = categoty::select()->get();
+        $category = categoty::select('id', 'cat_id', 'name')->where('status', true)->get();
         $data = question::select()->where('type','0')->where('status','0')->paginate(30);
-        return view('backend.question',['data'=>$data,'category'=>$category]);
+        return view('backend.question',['data'=>$data,'categories'=>$category]);
     }
 
     function AddSingle(){
@@ -38,9 +38,11 @@ class QuestionController extends Controller
 
     function Single(Request $request){
 
+//        dd($request->all());
         $validator = Validator::make($request->all(), [
             'category' => 'required',
             'question' => 'required',
+            'question_id' => 'required',
             'answer' => 'required',
             'ans' => 'required',
             'asset_files' => 'nullable'
@@ -69,7 +71,7 @@ class QuestionController extends Controller
                 'ans' => $request->answer,
                 'explanation' => $request->explanation,
                 'hint' => $request->hint,
-                'search_id' => substr(categoty::findOrFail($request->category)->name,0,3).time(),
+                'search_id' => $request->question_id ? $request->question_id : substr(categoty::findOrFail($request->category)->name,0,3).time(),
             ]);
 
             /* Store answers */
@@ -88,7 +90,7 @@ class QuestionController extends Controller
                 'ans' => $request->answer,
                 'hint' => $request->hint,
                 'explanation' => $request->explanation,
-                'search_id' => substr(categoty::findOrFail($request->category)->name,0,3).time(),
+                'search_id' => $request->question_id ? $request->question_id : substr(categoty::findOrFail($request->category)->name,0,3).time(),
             ]);
 
             foreach ($request->ans as $key => $value) {
@@ -327,7 +329,7 @@ class QuestionController extends Controller
 
         $category = categoty::select()->get();
         $data = question::select()->where('type','1')->where('status','0')->paginate(30);
-        return view('backend.multi-question',['data'=>$data,'category'=>$category]);
+        return view('backend.multi-question',['data'=>$data,'categories'=>$category]);
     }
 
     function AddMulti(){
@@ -341,6 +343,7 @@ class QuestionController extends Controller
         $validator = Validator::make($request->all(), [
             'category' => 'required',
             'question' => 'required',
+            'question_id' => 'required',
             'answer' => 'required|min:1',
             'ans' => 'required|min:1',
             'asset_files' => 'nullable'
@@ -366,7 +369,7 @@ class QuestionController extends Controller
                 'ans' => $answer,
                 'explanation' => $request->explanation,
                 'hint' => $request->hint,
-                'search_id' => substr(categoty::findOrFail($request->category)->name,0,3).time(),
+                'search_id' => $request->question_id ? $request->question_id : substr(categoty::findOrFail($request->category)->name,0,3).time(),
                 'type' => '1',
             ]);
             foreach ($request->ans as $key => $value) {
@@ -384,7 +387,7 @@ class QuestionController extends Controller
                 'ans' => $answer,
                 'hint' => $request->hint,
                 'explanation' => $request->explanation,
-                'search_id' => substr(categoty::findOrFail($request->category)->name,0,3).time(),
+                'search_id' => $request->question_id ? $request->question_id : substr(categoty::findOrFail($request->category)->name,0,3).time(),
                 'type' => '1',
             ]);
             foreach ($request->ans as $key => $value) {
@@ -626,7 +629,7 @@ class QuestionController extends Controller
 
         question::where('id',$id)->delete();
         answer::where('ques_id',$id)->delete();
-        return back();
+        return redirect()->back()->with('success', 'Question has been deleted Successfully!');
     }
 
     function ImportQuestion(Request $request){
@@ -660,7 +663,7 @@ class QuestionController extends Controller
                                 'ans' => $main_ans,
                                 'explanation' => $value[3],
                                 'hint' => $value[4],
-                                'search_id' => substr(categoty::findOrFail($value[1])->name,0,3).(time()*rand(1,999)),
+                                'search_id' => $value[5] ? $value[5] : substr(categoty::findOrFail($value[1])->name,0,3).(time()*rand(1,999)),
                             ]);
                             for($i=5,$y=0;$i<=9;$i++,$y++){
                                 answer::insert([
@@ -677,7 +680,7 @@ class QuestionController extends Controller
                                 'ans' => $main_ans,
                                 'explanation' => $value[3],
                                 'hint' => $value[4],
-                                'search_id' => substr(categoty::findOrFail($value[1])->name,0,3).(time()*rand(1,999)),
+                                'search_id' => $value[5] ? $value[5] : substr(categoty::findOrFail($value[1])->name,0,3).(time()*rand(1,999)),
                                 'type' => "1",
                             ]);
                             for($i=5,$y=0;$i<=9;$i++,$y++){
@@ -698,18 +701,17 @@ class QuestionController extends Controller
         }
 
     }
-    function select(Request $request){
+    function select(Request $request) {
         if(empty($request->select)){
             return back();
         }
         question::whereIn('id',$request->select)->delete();
         answer::whereIn('ques_id',$request->select)->delete();
-        return back();
+        return redirect()->back()->with('success','Questions have been Deleted Successfully!');
     }
 
-    function FilterSingle(Request $request){
-
-        if(empty($request->sear_key)){
+    function FilterSingle(Request $request) {
+        if(empty($request->sear_key) && empty($request->category)){
             return back();
         }
 
@@ -718,12 +720,16 @@ class QuestionController extends Controller
             if(empty( categoty::where('name', 'LIKE', "%{$request->sear_key}%")->get()->toArray() )){
                 return back()->with('error',"No result Found");
             }
-            $cat_id[] = null;
-            foreach (categoty::select()->where('name', 'LIKE', "%{$request->sear_key}%")->get() as $key => $value) {
-                $cat_id[$key] = $value->id;
-            }
-            $data = question::select()->whereIn('cat_id',$cat_id)->where('type','0')->where('status','0')->paginate(30);
 
+            if (empty($request->category)) {
+                $cat_id[] = null;
+                foreach (categoty::select()->where('name', 'LIKE', "%{$request->sear_key}%")->get() as $key => $value) {
+                    $cat_id[$key] = $value->id;
+                }
+                $data = question::select()->whereIn('cat_id', $cat_id)->where('type', '0')->where('status', '0')->paginate(30);
+            } else {
+                $data = question::select()->where('cat_id', $request->category)->where('type', '0')->where('status', '0')->paginate(30);
+            }
         } elseif($request->sear_id == 'sear') {
             $data = question::select()->where('search_id', 'LIKE',"%{$request->sear_key}%")->where('type','0')->where('status','0')->paginate(30);
         } elseif($request->sear_id == 'key') {
@@ -731,13 +737,13 @@ class QuestionController extends Controller
         }
 
         $data->appends(request()->query());
-        $category = categoty::select()->get();
-        return view('backend.question',['data'=>$data,'category'=>$category]);
+        $category = categoty::select()->where('status', true)->get();
+        return view('backend.question',['data'=>$data,'categories'=>$category]);
     }
 
     function FilterMulti(Request $request){
 
-        if(empty($request->sear_key)){
+        if(empty($request->sear_key) && empty($request->category)){
             return back();
         }
 
@@ -746,12 +752,16 @@ class QuestionController extends Controller
             if(empty( categoty::where('name', 'LIKE', "%{$request->sear_key}%")->get()->toArray() )){
                 return back()->with('error',"No result Found");
             }
+
+            if (empty($request->category)) {
             $cat_id[] = null;
             foreach (categoty::select()->where('name', 'LIKE', "%{$request->sear_key}%")->get() as $key => $value) {
                 $cat_id[$key] = $value->id;
             }
             $data = question::select()->whereIn('cat_id',$cat_id)->where('type','1')->where('status','0')->paginate(30);
-
+            } else {
+                $data = question::select()->where('cat_id', $request->category)->where('type', '1')->where('status', '0')->paginate(30);
+            }
         } elseif($request->sear_id == 'sear') {
             $data = question::select()->where('search_id', 'LIKE',"%{$request->sear_key}%")->where('type','1')->where('status','0')->paginate(30);
         } elseif($request->sear_id == 'key') {
@@ -760,7 +770,7 @@ class QuestionController extends Controller
 
         $data->appends(request()->query());
         $category = categoty::select()->get();
-        return view('backend.multi-question',['data'=>$data,'category'=>$category]);
+        return view('backend.multi-question',['data'=>$data,'categories'=>$category]);
     }
 
     function viewFile($id) {

@@ -40,7 +40,7 @@
     <br><br>
     <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered data_table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -58,8 +58,13 @@
                             <td>{!! $item->description !!}</td>
                             <td>{{ $item->expired }}</td>
                             <td>
-                                <a data-toggle="modal" data-target="#EditCat{{ $item->id }}"><i class="fa fa-edit edit"></i></a>
-                                <a href="{{ url('admin/notification/drop/'.$item->id) }}"><i class="fa fa-remove delete"></i></a>
+                                @if(auth()->user()->can('Edit Notification'))
+                                    <a data-toggle="modal" data-target="#EditCat{{ $item->id }}"><i class="fa fa-edit edit"></i></a>
+                                @endif
+
+                                @if(auth()->user()->can('Delete Notification'))
+                                    <a href="{{ url('admin/notification/drop/'.$item->id) }}" class="delete-btn"><i class="fa fa-remove delete"></i></a>
+                                @endif
                             </td>
                         </tr>
 

@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Asset;
 use App\Services\NewsService;
+use Gufy\PdfToHtml\Config;
+use Gufy\PdfToHtml\Pdf;
 use Illuminate\Http\Request;
 use App\News;
-use PhpOffice\PhpSpreadsheet\Writer\Pdf;
+//use Spatie\PdfToText\Pdf;
+use Illuminate\Support\Facades\Log;
 use Validator;
 use Carbon\Carbon;
 use Auth;
@@ -50,8 +53,6 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
-
         $validate = Validator::make($request->all(),[
             'title'=>'required',
             'description'=>'required',
@@ -151,13 +152,8 @@ class NewsController extends Controller
             }
         }
 
-        if ($inserted == true) {
-            return redirect()->back()
+        return redirect()->back()
                     ->with('success', 'SUCCESS - Post Saved');
-        }else{
-            return redirect()->back()
-                    ->with('error', 'SORRY - Something Wrong...');
-        }
     }
 
     /**
@@ -179,7 +175,6 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
         $data = News::where('id', $id)->first();
         if ($data) {
             return view('backend.blog.news-edit', compact('data'));
@@ -198,7 +193,6 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request->all());
        $data = News::where('id', $id)->first();
 
         if ($data) {
@@ -282,6 +276,7 @@ class NewsController extends Controller
                         $file_original_name = $file->getClientOriginalName();
                         $file_name = $currentTimeDate . '-' . uniqid() . '.' . $file_extension;
 
+                        Log::alert(env('APP_ENV'));
                         //now check directory
                         if (env('APP_ENV') == 'local') {
                             $path = storage_path('app/public/news/' . $id);
@@ -318,10 +313,8 @@ class NewsController extends Controller
                 }
             }
 
-            if ($inserted == true) {
-                return redirect()->back()
-                    ->with('success', 'SUCCESS - News Updated');
-            }
+            return redirect()->back()
+                ->with('success', 'SUCCESS - News Updated');
         }
     }
 
@@ -337,7 +330,7 @@ class NewsController extends Controller
 
        if ($data) {
            $img = url('storage/blog/').$data->featured_img;
-           if ($img) {
+           if (file_exists($img)) {
                unlink('storage/blog/'.$data->featured_img);
            }
            $deleted = $data->delete();
@@ -354,19 +347,74 @@ class NewsController extends Controller
 
     }
 
-
-
-
     //for frontned
     public function details($id){
-
         $data = News::where('id', $id)->first();
-        $files = $data->assets()->get();
-
         if ($data) {
-            return view('frontend.blog.news-details', compact('data', 'files'));
+            return view('frontend.blog.news-details', compact('data'));
         }else{
             return abort(404);
+        }
+    }
+
+    public function imageUpload() {
+
+        /*******************************************************
+         * Only these origins will be allowed to upload images *
+         ******************************************************/
+        $accepted_origins = array("http://localhost", "http://preparemedicine.test", "https://preparemedicine.com", "https://plabone.preparemedicine.com");
+
+        /*********************************************
+         * Change this line to set the upload folder *
+         *********************************************/
+        $imageFolder = storage_path('app/public/news/');
+        Log::alert($imageFolder);
+
+        reset($_FILES);
+        $temp = current($_FILES);
+        if (is_uploaded_file($temp['tmp_name'])) {
+            if (isset($_SERVER['HTTP_ORIGIN'])) {
+                // same-origin requests won't set an origin. If the origin is set, it must be valid.
+                if (in_array($_SERVER['HTTP_ORIGIN'], $accepted_origins)) {
+                    header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+                } else {
+                    header("HTTP/1.1 403 Origin Denied");
+                    return;
+                }
+            }
+
+            /*
+              If your script needs to receive cookies, set images_upload_credentials : true in
+              the configuration and enable the following two headers.
+            */
+            // header('Access-Control-Allow-Credentials: true');
+            // header('P3P: CP="There is no P3P policy."');
+
+            // Sanitize input
+            if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
+                header("HTTP/1.1 400 Invalid file name.");
+                return;
+            }
+
+            // Verify extension
+            if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))) {
+                header("HTTP/1.1 400 Invalid extension.");
+                return;
+            }
+
+            // Accept upload if there was no origin, or if it is an accepted origin
+            $filetowrite = $imageFolder . $temp['name'];
+            move_uploaded_file($temp['tmp_name'], $filetowrite);
+
+            Log::alert('complete path: '.$filetowrite);
+
+            // Respond to the successful upload with JSON.
+            // Use a location key to specify the path to the saved image resource.
+            // { location : '/your/uploaded/image/file'}
+            echo json_encode(array('location' => $filetowrite));
+        } else {
+            // Notify editor that the upload failed
+            header("HTTP/1.1 500 Server Error");
         }
     }
 

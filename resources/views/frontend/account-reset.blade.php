@@ -21,12 +21,12 @@
                 <p>Account Reset</p>
             </div>
         </div>
-        
+
         <div class="col-sm-12 text-center text-left">
             <h2 class="text-center" style="font-size: 25px">
                 Reset My Account
             </h2>
-            
+
             <p class="text-justify">
                 When you have completed a section you may reset it at any time. This means ‘clearing the decks’ and you can then retry the courses. With PrepareMedicine you can reset any number of times during your subscription period’
             </p>
@@ -35,7 +35,7 @@
         <div class="row text-center" style="padding-left: 30px; padding-right: 30px">
             <div class="col-md-3"></div>
             <div class="col-md-6 mb-2">
-                <a onclick="return confirm('Are you sure?\nIt will clear your all activity record & progress!')" href="{{ url('account/account-reset/all') }}" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden;background-color: #2C3069">
+                <a href="{{ url('account/account-reset/all') }}" class="btn btn-spinner reset-account col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden;background-color: #2C3069">
                     <img src="{{ url('storage/account/reset-gear.png') }}" alt="" style="width:35%;float:left;height:55px;">
                     <span style="margin-top:17px">RESET MY ACCOUNT</span>
                 </a>
@@ -67,13 +67,13 @@
           </div>
         </div>
 
-        <script> 
-            document.getElementById("closeModal").addEventListener("click", function(){ 
+        <script>
+            document.getElementById("closeModal").addEventListener("click", function(){
                 let modalX = document.getElementById("exampleModalCenter");
-                
+
                 modalX.classList.remove("show");
                 modalX.style.display = 'none';
-            }); 
+            });
         </script>
     @endif
 
