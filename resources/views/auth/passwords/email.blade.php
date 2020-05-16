@@ -1,6 +1,55 @@
+{{--@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Reset Password') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('password.email') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Send Password Reset Link') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection--}}
+
 <!Doctype html>
 <html class="no-js" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Home || Prepare Medicine</title>
     <meta name="description" content="">
@@ -126,13 +175,13 @@
 </head>
 
 {{-- Copy Protector JS --}}
-<body oncontextmenu="return false"  class="protector___protect">
+<body oncontextmenu="return false"  class="protector___protect scroll">
 
 
 <!-- Main Wrapper Start -->
 <div class="main-wrapper">
 
-    <header class="header-area">
+<header class="header-area fixed-top">
         <!-- header-top-area -->
         <div class="header-top-area">
             <div class="container">
@@ -143,13 +192,14 @@
                         <div class="top-contact-info">
                             <ul>
                                 <!-- <li><a href="#"><i class="zmdi zmdi-phone"></i> +98 558 547 589</a></li> -->
-                                <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
                             </ul>
                         </div><!--// top-contact-info -->
 
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="top-info-right">
+
                             <!-- top-social -->
                             <div class="top-social">
                                 <ul>
@@ -157,7 +207,7 @@
                                     <li><a href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
                                     <li><a href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
                                     <li><a href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
-                                    <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-email"></i></a></li>
                                     <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
                                 </ul>
                             </div><!--// top-social -->
@@ -166,7 +216,7 @@
                             <div class="login-and-register">
                                 @guest
                                     <ul>
-                                    {{--                                        <li><a href="{{ url('login') }}">Login</a></li>--}}
+{{--                                        <li><a href="{{ url('login') }}">Login</a></li>--}}
                                     <!--<li><a href="{{ url('register') }}">Register</a></li>-->
                                     </ul>
                                 @endguest
@@ -193,9 +243,9 @@
             </div>
         </div><!--// header-top-area -->
 
-        <div class="header-bottom-area header-sticky header-sticky">
+        <div class="header-bottom-area header-sticky">
             <div class="container">
-                <div class="row">
+                <div class="row align-items-center">
 
                     <div class="col-lg-3 col-md-5 col-6">
 
@@ -220,52 +270,50 @@
                             </div><!--// main-menu -->
                         </div>
                     </div>
-                    <div class="col">
-                        <!-- mobile-menu start -->
-                        <div class="mobile-menu d-block d-lg-none"></div>
-                        <!-- mobile-menu end -->
-                    </div>
+                    <div class="mobile-menu d-block d-lg-none"></div>
 
                 </div>
             </div>
         </div>
     </header>
 
-    {{--@yield('content')--}}
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <div class="text-center">
-                <h3>Reset Password</h3>
-            </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card form-wrapper">
 
-            <div class="card-body">
-                <form method="POST" action="{{ route('password.email') }}">
-                    @csrf
+                <div class="card-header text-center">
+                    <h3>Reset Password</h3>
+                </div>
 
-                    <div class="form-group">
-                        <label for="email" class="text-md-right">{{ __('E-Mail Address') }}</label>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('password.email') }}">
+                        @csrf
 
-                        <div>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <div class="form-group">
+                            <label for="email" class="text-md-right">{{ __('E-Mail Address') }}</label>
 
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+
                         </div>
-                    </div>
 
-                    <div class="form-group mb-0">
-                        <div>
-                            <button type="submit" class="btn btn-primary col-12">
-                                {{ __('Send Password Reset Link') }}
-                            </button>
+                        <div class="form-group mb-0">
+
+                                <button type="submit" class="btn btn-success">
+                                    {{ __('Send Password Reset Link') }}
+                                </button>
+
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+
             </div>
-            {{--            </div>--}}
         </div>
     </div>
 </div>

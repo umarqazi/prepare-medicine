@@ -127,13 +127,13 @@
 </head>
 
 {{-- Copy Protector JS --}}
-<body oncontextmenu="return false"  class="protector___protect">
+<body oncontextmenu="return false"  class="protector___protect scroll">
 
 
 <!-- Main Wrapper Start -->
 <div class="main-wrapper">
 
-    <header class="header-area">
+<header class="header-area fixed-top">
         <!-- header-top-area -->
         <div class="header-top-area">
             <div class="container">
@@ -144,7 +144,7 @@
                         <div class="top-contact-info">
                             <ul>
                                 <!-- <li><a href="#"><i class="zmdi zmdi-phone"></i> +98 558 547 589</a></li> -->
-                                <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
                             </ul>
                         </div><!--// top-contact-info -->
 
@@ -159,7 +159,7 @@
                                     <li><a href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
                                     <li><a href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
                                     <li><a href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
-                                    <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-email"></i></a></li>
                                     <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
                                 </ul>
                             </div><!--// top-social -->
@@ -168,7 +168,7 @@
                             <div class="login-and-register">
                                 @guest
                                     <ul>
-                                    {{--                                        <li><a href="{{ url('login') }}">Login</a></li>--}}
+{{--                                        <li><a href="{{ url('login') }}">Login</a></li>--}}
                                     <!--<li><a href="{{ url('register') }}">Register</a></li>-->
                                     </ul>
                                 @endguest
@@ -195,9 +195,9 @@
             </div>
         </div><!--// header-top-area -->
 
-        <div class="header-bottom-area header-sticky header-sticky">
+        <div class="header-bottom-area header-sticky">
             <div class="container">
-                <div class="row">
+                <div class="row align-items-center">
 
                     <div class="col-lg-3 col-md-5 col-6">
 
@@ -222,187 +222,177 @@
                             </div><!--// main-menu -->
                         </div>
                     </div>
-                    <div class="col">
-                        <!-- mobile-menu start -->
-                        <div class="mobile-menu d-block d-lg-none"></div>
-                        <!-- mobile-menu end -->
-                    </div>
+                    <div class="mobile-menu d-block d-lg-none"></div>
 
                 </div>
             </div>
         </div>
     </header>
 
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            {{--<div class="text-left logo_in_pages" style="margin-bottom: 15px">
-                <img src="{{ asset('frontend/images/logo/logo-3.png') }}" style="width: 200px">
-            </div>--}}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card form-wrapper">
 
-            {{--<div class="card">
-                <div class="card-header">{{ __('Login') }}</div>--}}
-            <div class="text-center">
-                <h3>Register</h3>
-            </div>
+                <div class="card-header text-center">
+                    <h3>Register</h3>
+                </div>
 
-            <div class="card-body">
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-                    <input name="date" type="hidden" value="{{ date('Y-m-d') }}">
-                    <div class="form-group">
-                        <label for="f_name" class="text-md-right">{{ __('First Name') }}</label>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <input name="date" type="hidden" value="{{ date('Y-m-d') }}">
+                        <div class="form-group">
+                            <label for="f_name" class="text-md-right">{{ __('First Name') }}</label>
 
-                        <div class="">
-                            <input id="f_name" type="text" class="form-control @error('f_name') is-invalid @enderror" name="f_name" value="{{ old('f_name') }}" required autocomplete="name" autofocus>
 
-                            @error('f_name')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
+                                <input id="f_name" type="text" class="form-control @error('f_name') is-invalid @enderror" name="f_name" value="{{ old('f_name') }}" required autocomplete="name" autofocus>
+
+                                @error('f_name')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="s_name" class="text-md-right">{{ __('Surname') }}</label>
+                        <div class="form-group">
+                            <label for="s_name" class="text-md-right">{{ __('Surname') }}</label>
 
-                        <div class="">
-                            <input id="s_name" type="text" class="form-control @error('s_name') is-invalid @enderror" name="s_name" value="{{ old('s_name') }}" required autocomplete="name" autofocus>
 
-                            @error('s_name')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
+                                <input id="s_name" type="text" class="form-control @error('s_name') is-invalid @enderror" name="s_name" value="{{ old('s_name') }}" required autocomplete="name" autofocus>
+
+                                @error('s_name')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="gender" class="text-md-right">{{ __('Gender') }}</label>
+                        <div class="form-group">
+                            <label for="gender" class="text-md-right">{{ __('Gender') }}</label>
 
-                        <div class="">
-                            <select id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender">
-                                <option value="male" selected>Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                            @error('gender')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
+
+                                <select id="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender">
+                                    <option value="male" selected>Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                                @error('gender')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="country" class="text-md-right">{{ __('Country') }}</label>
+                        <div class="form-group">
+                            <label for="country" class="text-md-right">{{ __('Country') }}</label>
 
-                        <div class="">
-                            <select id="country" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country">
-                                @foreach (App\country::all() as $item)
-                                    <option value="{{ $item->id }}">{{ $item->country_name }}</option>
-                                @endforeach
 
-                            </select>
-                            @error('country')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
+                                <select id="country" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country">
+                                    @foreach (App\country::all() as $item)
+                                        <option value="{{ $item->id }}">{{ $item->country_name }}</option>
+                                    @endforeach
+
+                                </select>
+                                @error('country')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="school" class="text-md-right">{{ __('Medical School') }}</label>
+                        <div class="form-group">
+                            <label for="school" class="text-md-right">{{ __('Medical School') }}</label>
 
-                        <div class="">
-                            <input id="school" type="text" name="school" class="form-control @error('school') is-invalid @enderror" required="1" value="{{ old('school') }}">
-                            @error('school')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
+
+                                <input id="school" type="text" name="school" class="form-control @error('school') is-invalid @enderror" required="1" value="{{ old('school') }}">
+                                @error('school')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="email" class="text-md-right">{{ __('E-Mail Address') }}</label>
+                        <div class="form-group">
+                            <label for="email" class="text-md-right">{{ __('E-Mail Address') }}</label>
 
-                        <div class="">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="email" class="text-md-right">User Type</label>
+                        <div class="form-group">
+                            <label for="email" class="text-md-right">User Type</label>
 
-                        <div class="">
 
-                            <select id="country" class="form-control @error('user_type') is-invalid @enderror" name="user_type" value="{{ old('user_type') }}" required autocomplete="country">
-                                <option value="">Select A User Type</option>
-                                <option value="Reach Members">Reach Members</option>
-                                <option value="BMA Members">BMA Members</option>
-                                <option value="GMC referrals">GMC referrals</option>
-                                <option value="Disabled Doctors">Disabled Doctors</option>
-                            </select>
+                                <select id="country" class="form-control @error('user_type') is-invalid @enderror" name="user_type" value="{{ old('user_type') }}" required autocomplete="country">
+                                    <option value="">Select A User Type</option>
+                                    <option value="Reach Members">Reach Members</option>
+                                    <option value="BMA Members">BMA Members</option>
+                                    <option value="GMC referrals">GMC referrals</option>
+                                    <option value="Disabled Doctors">Disabled Doctors</option>
+                                </select>
 
-                            @error('user_type')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
+                                @error('user_type')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="password" class="text-md-right">{{ __('Password') }}</label>
+                        <div class="form-group">
+                            <label for="password" class="text-md-right">{{ __('Password') }}</label>
 
-                        <div class="">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
-                            @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                            @enderror
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                @enderror
+
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="password-confirm" class="text-md-right">{{ __('Confirm Password') }}</label>
+                        <div class="form-group">
+                            <label for="password-confirm" class="text-md-right">{{ __('Confirm Password') }}</label>
 
-                        <div class="">
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="password-confirm" class="text-md-right"></label>
+                        <div class="form-group">
 
-                        <div class="">
-                            <input type="checkbox" name="i_agree" required="1"> <span>I agree to the <a href="{{ route('termsConditions.page') }}">Privacy Statement and Terms & Condition</a></span>
+                                <input type="checkbox" name="i_agree" required="1"> <span>I agree to the <a href="{{ route('termsConditions.page') }}">Privacy Statement and Terms & Condition</a></span>
+
                         </div>
-                    </div>
 
-                    <div class="form-group mb-0">
-                        <div class="">
-                            <button type="submit" class="btn btn-primary col-md-12">
-                                {{ __('Register') }}
-                            </button>
+                        <div class="form-group mb-0">
+                            <div class="">
+                                <button type="submit" class="btn btn-success">
+                                    {{ __('Register') }}
+                                </button>
 
-                            <div class="mt-2">
-                                <span>Alreay have an account? <a href="{{ route('login') }}"><b>LOGIN</b></a></span>
+                                <div class="mt-4 text-center">
+                                    <span>Alreay have an account? <a href="{{ route('login') }}"><b>LOGIN</b></a></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
+                {{--            </div>--}}
             </div>
-            {{--            </div>--}}
         </div>
     </div>
 </div>

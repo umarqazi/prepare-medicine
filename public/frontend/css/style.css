@@ -436,6 +436,7 @@ textarea:-ms-input-placeholder {
 -----------------------------------------*/
 .main-wrapper{
     min-height: 100%;
+    position: relative;
 }
 .main-wrapper.header-transparent {
     padding: 0 !important;
@@ -446,7 +447,42 @@ textarea:-ms-input-placeholder {
 /*--
     - Section Padding
 -------------------------------------*/
-
+label{
+    color: #2A306C;
+    font-weight: bold;
+}
+.form-control{
+    border-radius: 20px;
+}
+.form-control:focus{
+    box-shadow: none;
+    border-color: #2A306C;
+}
+.form-wrapper {
+    width: calc(100% - 30px);
+    max-width: 500px;
+    margin: 10vh auto;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+    box-shadow: 0 20px 25px -15px rgba(0,0,0,.6);
+    overflow: hidden;
+}
+.form-wrapper .card-body{
+    padding: 30px;
+}
+ .form-wrapper .card-header{
+    background-color: #2A306C;
+}
+.form-wrapper .card-header h3{
+    color: #fff;
+}
+.form-wrapper button[type="submit"],
+.subscribe-form button[type="submit"]{
+    display: block;
+    width: 100%;
+    border-radius: 20px;
+}
 .section-ptb {
     padding: 40px 0;
 }
@@ -2242,9 +2278,15 @@ header + br{
 
 .main-menu ul>li>a {
     border-bottom: 2px solid transparent;
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     font-family: "Montserrat", sans-serif;
+}
+.main-menu ul>li>a i{
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+    font-size: 16px;
 }
 .main-menu ul>li>a:hover,
 .main-menu ul>li>a:focus,
@@ -3084,7 +3126,8 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     margin-top: 20px;
 }
 
-.popular-courses-contnet .button-block .botton-border {
+.popular-courses-contnet .button-block .botton-border,
+.single_plan .card a {
     padding: 3px 25px;
     border: 2px solid #63BA52;
     color: #63BA52;
@@ -3093,7 +3136,8 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     text-transform: uppercase;
 }
 
-.popular-courses-contnet .button-block .botton-border:hover {
+.popular-courses-contnet .button-block .botton-border:hover,
+.single_plan .card a:hover {
     background: #63BA52;
     color: #ffffff;
 }

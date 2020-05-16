@@ -447,13 +447,13 @@ if($over__all[0] <= 13){
                 <h4 class="panel-title heading_">Random Progress</h4>
             </div>
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-12 mb-4 mb-md-0">
+                <div class="col-6">
                     <div class="block__box">
                         <h6 class='progress_heading__'>My Perfomance</h6>
                         <div id="Random" style="height: 300px; width: 100%;"></div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-6">
                     <div class="block__box">
                         <h6 class='progress_heading__'>All Users Performance</h6>
                         <div id="RandomS" style="height: 300px; width: 100%;"></div>

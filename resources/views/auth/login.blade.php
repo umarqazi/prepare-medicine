@@ -1,3 +1,83 @@
+{{--
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="text-left logo_in_pages" style="margin-bottom: 15px">
+                <img src="{{ asset('frontend/images/logo/logo-3.png') }}" style="width: 200px">
+            </div>
+
+            <div class="card">
+                <div class="card-header">{{ __('Login') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('Remember Me') }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+
+                                @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+--}}
+
 <!Doctype html>
 <html class="no-js" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -127,13 +207,13 @@
 </head>
 
 {{-- Copy Protector JS --}}
-<body oncontextmenu="return false"  class="protector___protect">
+<body oncontextmenu="return false"  class="protector___protect scroll">
 
 
 <!-- Main Wrapper Start -->
 <div class="main-wrapper">
 
-    <header class="header-area">
+    <header class="header-area fixed-top">
         <!-- header-top-area -->
         <div class="header-top-area">
             <div class="container">
@@ -144,7 +224,7 @@
                         <div class="top-contact-info">
                             <ul>
                                 <!-- <li><a href="#"><i class="zmdi zmdi-phone"></i> +98 558 547 589</a></li> -->
-                                <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
+                                <li><a href="#"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
                             </ul>
                         </div><!--// top-contact-info -->
 
@@ -159,7 +239,7 @@
                                     <li><a href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
                                     <li><a href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
                                     <li><a href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
-                                    <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
+                                    <li><a href="#"><i class="zmdi zmdi-email"></i></a></li>
                                     <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
                                 </ul>
                             </div><!--// top-social -->
@@ -195,9 +275,9 @@
             </div>
         </div><!--// header-top-area -->
 
-        <div class="header-bottom-area header-sticky header-sticky">
+        <div class="header-bottom-area header-sticky">
             <div class="container">
-                <div class="row">
+                <div class="row align-items-center">
 
                     <div class="col-lg-3 col-md-5 col-6">
 
@@ -222,25 +302,19 @@
                             </div><!--// main-menu -->
                         </div>
                     </div>
-                    <div class="col">
-                        <!-- mobile-menu start -->
-                        <div class="mobile-menu d-block d-lg-none"></div>
-                        <!-- mobile-menu end -->
-                    </div>
+                    <div class="mobile-menu d-block d-lg-none"></div>
 
                 </div>
             </div>
         </div>
     </header>
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            {{--<div class="text-left logo_in_pages" style="margin-bottom: 15px">
-                <img src="{{ asset('frontend/images/logo/logo-3.png') }}" style="width: 200px">
-            </div>--}}
 
-            {{--<div class="card">
-                <div class="card-header">{{ __('Login') }}</div>--}}
-                <div class="text-center">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="card form-wrapper">
+
+                <div class="card-header text-center">
                     <h3>Login</h3>
                 </div>
 
@@ -251,7 +325,7 @@
                         <div class="form-group">
                             <label for="email" class="text-md-right">{{ __('E-Mail Address') }}</label>
 
-                            <div class="">
+
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
@@ -259,13 +333,13 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+
                         </div>
 
                         <div class="form-group">
                             <label for="password" class="text-md-right">{{ __('Password') }}</label>
 
-                            <div class="">
+
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
@@ -273,39 +347,41 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                            </div>
+
                         </div>
 
                         <div class="form-group row">
                             <div class="col-md-6">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <div class="form-check d-flex align-items-center">
+                                    <input class="mt-0 form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
+                            <div class="col-md-6 text-right">
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="text-success" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group mt-4 mb-0">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success">
+                                    {{ __('Login') }}
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
-{{--            </div>--}}
+            </div>
         </div>
     </div>
+
 </div>
 <!-- Main Wrapper End -->
 

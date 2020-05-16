@@ -52,12 +52,12 @@
             border-radius: 5px;
             height:520px;
     	}
-    	.single_plan .card .icon form{
+    	.single_plan .card form{
 		    position: absolute;
 		    right: 17%;
 		    bottom: 19%;
     	}
-    	.single_plan .card .icon p{
+    	.single_plan .card p{
     		position: absolute;
 		    right: 16%;
 		    bottom: 19%;
@@ -107,12 +107,12 @@
        	
        	
        	@media only screen and (max-width: 767px) {
-          .single_plan .card .icon form{
+          .single_plan .card form{
     		    position: absolute;
     		    right: 24%;
     		    bottom: 19%;
         	}
-        	.single_plan .card .icon p{
+        	.single_plan .card p{
         		position: absolute;
     		    right: 24%;
     		    bottom: 19%;
@@ -122,12 +122,12 @@
             }
         }
         @media only screen and (max-width: 400px) {
-          .single_plan .card .icon form{
+          .single_plan .card form{
     		    position: absolute;
     		    right: 18%;
     		    bottom: 19%;
         	}
-        	.single_plan .card .icon p{
+        	.single_plan .card p{
         		position: absolute;
     		    right: 18%;
     		    bottom: 19%;

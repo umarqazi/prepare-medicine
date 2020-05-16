@@ -28,7 +28,7 @@
                     <p><a href="#" class="btn slider-btn uppercase"><span>PLAB ONE</span></a></p>
                 </div>
             </div>
-
+            
           </div>
           <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -39,15 +39,13 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
+        
     </div>
     <!-- Hero Slider end -->
 
     <!-- Our Course Categories Area -->
-    @if(!Auth::id())
     <div class="our-course-categories-area section-ptb" id="our-subscription--plan">
         <div class="container">
-            @if(!Auth::id())
             <div class="row">
                 <div class="col-lg-8 ml-auto mr-auto">
                     <!-- section-title -->
@@ -63,9 +61,9 @@
                     </div><!--// section-title -->
                 </div>
             </div>
-            @endif
 
-
+            
+            
             {{-- SUCCESS MSG FOR plans--}}
             @if(session()->has('success_response'))
             <!-- Modal -->
@@ -88,91 +86,94 @@
               </div>
             </div>
 
-            <script>
-                document.getElementById("closeModal").addEventListener("click", function(){
+            <script> 
+                document.getElementById("closeModal").addEventListener("click", function(){ 
                     let modalX = document.getElementById("exampleModalCenter");
-
+                    
                     modalX.classList.remove("show");
                     modalX.style.display = 'none';
-                });
-            </script>
+                }); 
+            </script> 
         @endif
         {{-- SUCCESS MSG FOR plans--}}
 
             <br>
-            @if(!Auth::id())
             <div class="container plans_area">
                 @if(Auth::check() && Auth::user()->role == 4)
                 <h4 class='text-center'>You Are Admin</h4>
                 @else
                     <div class="row" >
+
                         <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
                             <div class="card">
-                                  <div class="icon">
-                                    <img src="{{ asset('frontend/images/plans/1.png') }}" alt="">
-                                    <form action="{{ route('subscription_non_payalble') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="plan" value="trail">
-                                        <button onclick="return confirm('Are you sure?')" type="submit" class="subscribe_button_one btn btn-success btn-sm subscribe_button">BUY NOW</button>
-                                    </form>
-                                  </div>
+                                <div class="price-header">
+                                    <h3>Standard </h3>
+                                </div>
+                                <div class="price-content">
+                                    <ul>
+                                        <li>3 Months Access</li>
+                                        <li>2000 Q-Bank</li>
+                                        <li>30 Different Specialties</li>
+                                        <li>Unlimited Random Mocks</li>
+                                        <li>Unlimited Manual Mocks</li>
+                                        <li>Recall Exams 2020-2017</li>
+                                    </ul>
+                                    <div class="price-value">
+                                        <strong><sup>£</sup>14.99</strong>
+                                    </div>
+                                    <a href="{{ route('checkOutForm.stripe', ['Plab One', '6']) }}" class="botton-border">BUY NOW</a>
+                                </div>
                             </div>
                         </div> <!-- .single_plan end here -->
 
                         <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
                             <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/2.png') }}" alt="">
-                                <form action="{{ route('subscription_non_payalble') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="plan" value="refugees_doctors">
-                                    <button onclick="return confirm('Are you sure?')" type="submit" class="subscribe_button_two btn btn-success btn-sm subscribe_button">BUY NOW</button>
-                                </form>
-                              </div>
+                                <div class="price-header">
+                                    <h3>Advance</h3>
+                                </div>
+                                <div class="price-content">
+                                    <ul>
+                                        <li>6 Months Access</li>
+                                        <li>4000 Q-Bank</li>
+                                        <li>30 Different Specialties</li>
+                                        <li>Unlimited Mocks</li>
+                                        <li>Recall Exam 2020-2018</li>
+                                        <li>Access to Notes Bank</li>
+                                    </ul>
+                                    <div class="price-value">
+                                        <strong><sup>£</sup>24.99</strong>
+                                    </div>
+                                    <a href="{{ route('checkOutForm.stripe', ['Plab One', '7']) }}" class="botton-border">BUY NOW</a>
+                                </div>
                             </div>
                         </div> <!-- .single_plan end here -->
 
                         <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
                             <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/3.png') }}" alt="">
-                                <p><a href="{{ route('checkOutForm.stripe', ['Plab One', '5']) }}" class="subscribe_button_three btn btn-success btn-sm subscribe_button extra_btn">BUY NOW</a></p>
-                              </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-                            <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/4.png') }}" alt="">
-                                <p><a href="{{ route('checkOutForm.stripe', ['Plab One', '6']) }}" class="subscribe_button_one btn btn-success btn-sm subscribe_button">BUY NOW</a></p>
-                              </div>
-                            </div>
-                        </div> <!-- .single_plan end here -->
-
-                        <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-                            <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/5.png') }}" alt="">
-                                <p><a href="{{ route('checkOutForm.stripe', ['Plab One', '7']) }}" class="subscribe_button_two btn btn-success btn-sm subscribe_button">BUY NOW</a></p>
-                              </div>
-                            </div>
-                        </div> <!-- .single_plan end here -->
-
-                        <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-                            <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/6.png') }}" alt="">
-                                <p><a href="{{ route('checkOutForm.stripe', ['Plab One', '8']) }}" class="subscribe_button_three btn btn-success btn-sm subscribe_button">BUY NOW</a></p>
-                              </div>
+                                <div class="price-header">
+                                    <h3>Professional</h3>        
+                                </div>
+                                <div class="price-content">
+                                    <ul>
+                                        <li>Advance Plus</li>
+                                        <li>Access to Image Bank</li>
+                                        <li>Access to Video Bank</li>
+                                        <li>Access to Webinar</li>
+                                        <li>Access to Smart Mock</li>
+                                        <li>One to One Session</li>
+                                    </ul>
+                                    <div class="price-value">
+                                        <strong><sup>£</sup>49.99</strong>
+                                    </div>
+                                    <a href="{{ route('checkOutForm.stripe', ['Plab One', '8']) }}" class="botton-border">BUY NOW</a>
+                                </div>
                             </div>
                         </div> <!-- .single_plan end here -->
                     </div>
                 @endif
             </div>
-            @endif
-
-
+            
+            
             {{-- OLD Icon Styles
             <div class="row">
                 <div class="col">
@@ -272,10 +273,9 @@
 
         </div>
     </div>
-    @endif
     <!--// Our Course Categories Area -->
-
-
+    
+    
     {{-- temporary off
     <!-- Why should Education Area -->
     <div class="should-education-area section-ptb-160 should-bg" data-black-overlay="6">
@@ -378,11 +378,11 @@
                 @endif
                 @endforeach
             @endif
-
-
+            
+            
             @if(count($course_list) > 6)
                  <div class='col-12 text-center'>
-                     <a href='{{ route('allCourses') }}' class='btn btn-success btn-sm' style="text-transform: uppercase; border: none; margin-top: 10px; padding: 10px 20px;">All COURSES</a>
+                     <a href='{{ route('allCourses') }}' class='btn btn-success btn-sm' style="text-transform: uppercase; border: none; margin-top: 50px; padding: 10px 20px;">All COURSES</a>
                   </div>
             @endif
             </div>
@@ -392,8 +392,6 @@
     <!--// Most Popular Courses Area -->
 
     <!-- Free Introductory Seminar -->
-
-    @if(!Auth::id())
     <div class="free-introductory-area section-ptb-160 free-introductory-bg" data-black-overlay="6">
         <div class="container">
             <div class="row">
@@ -401,7 +399,7 @@
                     <div class="section-title-three mt--30 mb--30">
                         <h4>How to Get Your Dream Work?</h4>
                         <h3 class="text-white">FREE TRIAL</h3>
-                        <p class="text-white">You've now seen the outline of what we have to offer, so why not have a go at answering
+                        <p class="text-white">You've now seen the outline of what we have to offer, so why not have a go at answering 
                         some questions on free trial? This will allow you to get a feel how the website operates and the quality of our materials.We hope this encourages to subscribe
                         to one of our longer-term programmes</p>
                         <div class="free-introductory-btn">
@@ -413,7 +411,6 @@
         </div>
     </div>
     <!--// Free Introductory Seminar -->
-    @endif
 
     <!-- Our Blog Area -->
     <div class="our-blog-area section-ptb">
@@ -449,8 +446,8 @@
                             <div class="text-justify">
                                 <?php echo str_limit($blog->description, 110); ?>
                             </div>
-
-
+                            
+                            
                             <div class="button-block">
                                 <a href="{{ route('blogDetails', $blog->id) }}" class="botton-border">Read more</a>
                             </div>
@@ -460,7 +457,7 @@
                 @endif
             @endforeach
             @endif
-
+            
             @if(count($blogs) > 6)
                  <div class='col-12 text-center'>
                      <a href='{{ route('allBlogPosts') }}' class='btn btn-success btn-sm' style="text-transform: uppercase; border: none; margin-top: 10px; padding: 10px 20px;">All Notes</a>
