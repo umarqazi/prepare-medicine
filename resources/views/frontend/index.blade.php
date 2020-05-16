@@ -1,5 +1,6 @@
 @extends('frontend.master-frontend')
 @section('content')
+<br>
     <!-- Hero Slider start -->
     <div class="hero-slider">
         {{--  Carousel Recommended Image size: 1450px width and 600px height --}}

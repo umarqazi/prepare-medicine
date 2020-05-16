@@ -233,7 +233,6 @@
         </div>
     </header>
 
-    {{--@yield('content')--}}
     <div class="row justify-content-center">
         <div class="col-md-4">
             {{--<div class="text-left logo_in_pages" style="margin-bottom: 15px">

@@ -20,7 +20,7 @@
     	.bg_color{
     		background: rgb(119,119,119);
 			background: radial-gradient(circle, rgba(119,119,119,1) 8%, rgba(153,153,153,1) 27%, rgba(221,221,221,1) 60%, rgba(153,153,153,1) 94%);
-			padding-top: 35px
+			padding: 35px 0;
     	}
     	.bg_color .single_plan .card{
     		background: transparent !important;
@@ -93,17 +93,17 @@
 
 
 @section('content')
+<br>
     
-    <div class="container">
+    <div class="container-fluid">
         <div class='page_banner_img_common'>
-            <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
                 <p>My Subscription</p>
             </div>
         </div>
-        
+        <div class="container">
         <h5 class="page-sub-heading">Your Current Plan</h5>
-        <div class="row">
+        <div class="row my-4 my-md-5 justify-content-center">
         	<div class="col-md-2"></div>
         	<div class="col-md-8">
         		@include('msg.msg')
@@ -112,7 +112,7 @@
         </div>
 
         @if(Auth::user()->role == 1)
-        <div class="row">
+        <div class="row my-4 my-md-5 justify-content-center">
             <div class='col-md-4'></div>
         	<div class="col-md-4">
     			<h6 style="text-align: center; display: block;">{{ 'You have no Subscription Plan' }}</h6>
@@ -124,11 +124,11 @@
 
         
         @if(Auth::user()->role >= 2)
-        <div class="row bg_color">
+        <div class="row my-4 my-md-5 justify-content-center">
             
-        	<div class="col-lg-6 col-md-6 col-sm-12">
+        	<div class="col-lg-8 col-md-6 col-sm-12">
         		<div class="plna_status">
-                	<h6 class="text-center" style="margin-bottom: 10px"><b>PLAN STATUS</b></h6>
+                	<h6 class="text-center mb-4"><b>PLAN STATUS</b></h6>
                     <table class="table">
                         <tbody>
                             <tr>
@@ -181,7 +181,7 @@
         	</div>
         	@if(Auth::user()->role == 2)
         	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-        		<div class="card">
+        		<div class="card bg_color">
 					  <div class="icon">
 					  	<img src="{{ asset('frontend/images/plans/1.png') }}" alt="">
 					  	<p><a href="{{ route('root_page') }}#most_popular_courses" class="subscribe_button_one btn btn-success btn-sm subscribe_button">UPGRADE</a></p>
@@ -191,7 +191,7 @@
 
         	@elseif(Auth::user()->role == 3)
         	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-        		<div class="card">
+			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/2.png') }}" alt="">
 				  	<p><a href="{{ route('root_page') }}#most_popular_courses" class="subscribe_button_two btn btn-success btn-sm subscribe_button ">UPGRADE</a></p>
@@ -202,7 +202,7 @@
         	@elseif(Auth::user()->role == 5)
         	
         	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-        		<div class="card">
+			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/3.png') }}" alt="">
 				  	<p><a href="{{ route('root_page') }}#most_popular_courses" class="subscribe_button_three btn btn-success btn-sm subscribe_button extra_btn">UPGRADE</a></p>
@@ -212,7 +212,7 @@
 
         	@elseif(Auth::user()->role == 6)
         	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-    			<div class="card">
+			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/4.png') }}" alt="">
 				  	<p><a href="{{ route('root_page') }}#most_popular_courses" class="subscribe_button_one btn btn-success btn-sm subscribe_button">UPGRADE</a></p>
@@ -222,7 +222,7 @@
 
         	@elseif(Auth::user()->role == 7)
         	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-    			<div class="card">
+			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/5.png') }}" alt="">
 				  	<p><a href="{{ route('root_page') }}#most_popular_courses" class="subscribe_button_two btn btn-success btn-sm subscribe_button">UPGRADE</a></p>
@@ -231,7 +231,7 @@
     		</div> <!-- .single_plan end here -->
         	@elseif(Auth::user()->role == 8)
         	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-    			<div class="card">
+			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/6.png') }}" alt="">
 				  	<p><a href="{{ route('root_page') }}#most_popular_courses" class="subscribe_button_three btn btn-success btn-sm subscribe_button">UPGRADE</a></p>

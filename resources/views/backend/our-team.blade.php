@@ -12,6 +12,7 @@
 @endsection
 
 @section('content')
+<br>
 
     <div class="alert alert-info" role="alert">Write Your Ui Content For About FAQ</div>
     @error('content')

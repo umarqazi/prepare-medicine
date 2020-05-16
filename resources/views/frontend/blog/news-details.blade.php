@@ -26,6 +26,7 @@
 @endsection
 
 @section('content')
+<br>
     <br>
         <div class="container">
             <h3 class="heading_">{{ $data->title }}</h3>

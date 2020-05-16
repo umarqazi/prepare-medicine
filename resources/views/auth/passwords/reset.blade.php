@@ -233,7 +233,6 @@
         </div>
     </header>
 
-    {{--@yield('content')--}}
     <div class="row justify-content-center">
         <div class="col-md-4">
             {{--<div class="text-left logo_in_pages" style="margin-bottom: 15px">
@@ -250,7 +249,7 @@
                 <form method="POST" action="{{ route('password.update') }}">
                     @csrf
 
-                    <input type="hidden" name="token" value="{{ $token }}">
+                    <input type="hidden" name="token">
 
                     <div class="form-group">
                         <label for="email" class="text-md-right">{{ __('E-Mail Address') }}</label>

@@ -14,8 +14,9 @@
 
 
 @section('content')
+<br>
 {{--  data fetch from Database !!  --}}
-<div class="container-fluid" style="padding-left: 30px; padding-right: 30px">
+<div class="container-fluid">
     <div class='page_banner_img_common'>
         <img src='/frontend/images/pages-banner.png' class='img-fluid'>
         <div class='overlay__'>
@@ -23,19 +24,21 @@
         </div>
     </div>
     
-    <h2 style="font-size: 30px;text-align: center;">MANUAL MOCK</h2>
-    <p class="text-justify">
-        Choose questions to be included by specialities for your own unique 180-MCQ exam 
-    <br>
-        These questions are timed as well but are random in the sense that they have been selected from across the specialities just like in the real PLAB 1’
-    </p>
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+    <div class="container">
+            
+    <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 36px;">MANUAL MOCK</h2>
+    
+        <p class="text-center">Choose questions to be included by specialities for your own unique 180-MCQ exam .These questions are timed as well but are random in the sense that they have been selected from across the specialities just like in the real PLAB 1’
+        </p>
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
+ 
 
-    <div class="row" style="padding-left: 30px; padding-right: 30px">
+    <div class="row my-4 my-md-5" style="padding-left: 30px; padding-right: 30px">
         @foreach ($expired_data as $key => $item)
             @if ($key%4 == '0')
                     <div class="col-lg-3 col-md-4 col-sm-6 mb-2">

@@ -27,6 +27,7 @@
     </style>
 @endsection
 @section('content')
+<br>
 
 <div class="panel panel-white">
     <div class="panel-heading clearfix">

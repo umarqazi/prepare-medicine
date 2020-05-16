@@ -43,55 +43,37 @@
         margin-right: 7px;
         outline: none;
     }
-    .a::before{
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-        content: 'A';
-    }
-    .b::before{
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-        content: 'B';
-    }
-    .c::before{
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-        content: 'C';
-    }
-    .d::before{
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-        content: 'D';
-    }
+    .a::before,
+    .b::before,
+    .c::before,
+    .d::before,
     .e::before{
         position: absolute;
         font: 13px/1 'Open Sans', sans-serif;
         left: 11px;
-        top: 7px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .a::before{
+        content: 'A';
+    }
+    .b::before{
+        content: 'B';
+    }
+    .c::before{
+        content: 'C';
+    }
+    .d::before{
+        content: 'D';
+    }
+    .e::before{
         content: 'E';
     }
-    .form-radio:checked::before
-    {
-        position: absolute;
-        font: 13px/1 'Open Sans', sans-serif;
-        left: 11px;
-        top: 7px;
-    }
-    .form-radio:hover
-    {
-        background-color: #f7f7f7;
-    }
-    .form-radio:checked
-    {
-        background-color: #f1f1f1;
+
+    .form-radio:hover,
+    .form-radio:checked {
+        background-color: #63BA52;
+        color: #fff;
     }
     label
     {
@@ -100,6 +82,11 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         cursor: pointer;
+    }
+    .form-radio:hover + label,
+    .form-radio:checked +label{
+        font-weight:bold;
+        color:#2A306C;
     }
 </style>
 <style>
@@ -112,13 +99,16 @@
     .right{
         float: right;
     }
-    .search-box{
+    .search-box {
         background: #ffffff;
-        width: 25px;
-        height: 25px;
+        width: 35px;
+        height: 35px;
         padding: 0px;
         border-radius: 50%;
         text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .comment-wrap{
         width: 100%;
@@ -135,10 +125,11 @@
         background: #F9C1C6;
     }
     .active-search-box{
-        background: #fff;
-        -webkit-box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
-        -moz-box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
-        box-shadow: 0px 0px 15px 3px rgba(0,0,0,0.75);
+        color: #fff;
+        -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.5);
+        background-color:#ffc107;
     }
     .center{
         margin:0 auto;
@@ -158,7 +149,8 @@
     .top_action{
             border-bottom: 1px solid #ddd;
             padding-bottom: 0px;
-            margin-bottom: 20px
+            margin-bottom: 10px;
+            font-weight:600;
     }
    .btn_info{
             margin: 0px 10px;
@@ -175,13 +167,14 @@
             border-radius: 50%;
     }
     .btn_info:hover{
-        transform: scaleY(1.1);
-        transition: .5s;
+        transition: .3s;
         background: #888;
-        -webkit-box-shadow: 0px 0px 4px 3px #999;
-        -moz-box-shadow: 0px 0px 4px 3px #999;
-        box-shadow: 0px 0px 4px 3px #999;
+        -webkit-box-shadow: 0px 0px 10px 3px rgba(0,0,0,.3);
+        -moz-box-shadow: 0px 0px 10px 3px rgba(0,0,0,.3);
+        box-shadow: 0px 0px 10px 3px rgba(0,0,0,.3);
+        background:transparent !important;
     }
+
     .top_action p{
         margin-right: 5px
     }
@@ -218,20 +211,20 @@
     .horizontal .progress-track {
     position: relative;
     width: 100%;
-    height: 20px;
+    height: 30px;
     background: #ebebeb;
     }
 
     .horizontal .progress-fill {
     position: relative;
     background: #C73F27;
-    height: 20px;
+    height: 30px;
     width: 50%;
     color: #777;
     text-align: center;
     font-family: "Lato","Verdana",sans-serif;
     font-size: 12px;
-    line-height: 20px;
+    line-height: 30px;
     }
 
     .rounded .progress-track,
@@ -324,6 +317,7 @@
             margin-bottom: 5px;
             font-size: 16px;
             font-weight: bold;
+            min-height:50px;
         }
         .time2_for_destop,
         .time2_for_mobile{
@@ -353,7 +347,6 @@
 
     <div class="container-fluid">
         <div class='page_banner_img_common'>
-            <img src='/frontend/images/pages-banner.png' class='img-fluid'>
             <div class='overlay__'>
                 <p>Mock Exam</p>
             </div>
@@ -364,64 +357,59 @@
             @foreach ($data as $item)
                 {{-- Left part of the exam --}}
                 <div class="col-lg-3 col-md-4 col-sm-12" id="pc">
-                    <div class="center col-md-12">
-                        <div class="row">
-                            <div class="col-md-12 time_for_destop">
-                                <div class="text-center" id="time"></div>
-                            </div>
-                        </div>
+                    <div class="question-bank sticky-top">
+                                <div class="col-md-12 time_for_destop">
+                                    <div class="text-center" id="time"></div>
+                                </div>
 
-                        <div class='row'>
-                            <div class="area_first__">
+                                {{--
+                                <div>
+                                    <!--total questions & left questions-->
+                                    <p>Total Questions: {{ $total_question }}</p>
+                                    <p>You have attend: {{ $total_question }}</p>
+
+                                </div>
+                                --}}
+
+                        <div class="area_first__">
                             <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
-                                <div class="pagination_list">
-                                    <div class="col-md-12 block_">
-                                        @for ($i = 1; $i <= $total_question; $i++)
-                                            @if (isset($_GET['page']))
-                                                @if ($i == $_GET['page'])
-                                                    @if (!empty($mark[$i-1]->status))
-                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
-                                                    @else
-                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
-                                                    @endif
+                            <div class="center col-12 pagination_list">
+                                <div class="row block_ justify-content-between">
+                                    @for ($i = 1; $i <= $total_question; $i++)
+                                        @if (isset($_GET['page']))
+                                            @if ($i == $_GET['page'])
+                                                @if (!empty($mark[$i-1]->status))
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                                 @else
-                                                    @if (!empty($mark[$i-1]->status))
-                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box m-1 col-x-1"><span>{{ $i }}</span></a>
-                                                    @else
-                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
-                                                    @endif
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                                 @endif
                                             @else
-                                                @if ($i == '1')
-                                                    @if (!empty($mark[$i-1]->status))
-                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
-                                                    @else
-                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
-                                                    @endif
+                                                @if (!empty($mark[$i-1]->status))
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                                 @else
-                                                    @if (!empty($mark[$i-1]->status))
-                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box ml-1 mb-1 col-x-1"><span>{{ $i }}</span></a>
-                                                    @else
-                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1"><span>{{ $i }}</span></a>
-                                                    @endif
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                                 @endif
                                             @endif
-                                        @endfor
-                                    </div>
+                                        @else
+                                            @if ($i == '1')
+                                                @if (!empty($mark[$i-1]->status))
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                @else
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                @endif
+                                            @else
+                                                @if (!empty($mark[$i-1]->status))
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box ml-1 mb-1 col-x-1"><span>{{ $i }}</span></a>
+                                                @else
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1"><span>{{ $i }}</span></a>
+                                                @endif
+                                            @endif
+                                        @endif
+                                    @endfor
                                 </div>
                             </div>
                         </div>
-
-                        {{--
-                         <div>
-                            <!--total questions & left questions-->
-                            <p>Total Questions: {{ $total_question }}</p>
-                            <p>You have attend: {{ $total_question }}</p>
-
-                        </div>
-                            --}}
                     </div>
-                    <br>
                 </div>
 
                 {{-- Right part of the exam --}}
@@ -433,17 +421,16 @@
                                     <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }}</p>
                                 @endisset
                                 @if (!empty($item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]) )
-                                    <a title="Remove from Flag" class="dropFlag" href="{{ url('q-bank/drop/flag/'.$item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]->id) }}" style="color:green;font-size: 18px;"><i class="fas fa-star"></i></a>
+                                    <a title="Remove from Flag" class="dropFlag" href="{{ url('q-bank/drop/flag/'.$item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]->id) }}" style="color:#63BA52;font-size: 18px;"><i class="fas fa-star"></i></a>
                                 @else
                                     <a title="Flag Now" class="addFlag" href="{{ url('q-bank/add/flag/'.$item->mocques_ques->id) }}" style="font-size: 18px;"><i class="fas fa-star"></i></a>
                                 @endif
                                 <p class="action_1" style="margin-left: 5px">QID: {{ $item->search_id }}</p>
                             </div>
-                            {!! $item->question !!}
-
-                            <div class="col-12">
-
-                                    @if ( empty($item->status) )
+                            <p class="asked-question"> {!! $item->question !!}</p>
+                            <br>
+                            <div>
+                                @if ( empty($item->status) )
                                     {{-- Single Choice question --}}
                                         @if ($item->type == '0')
                                             <form action="{{ url('mock/compare/single') }}" method="post">
@@ -485,7 +472,7 @@
                                                     @endif
                                                 @endforeach
 
-                                                <table class='d-flex justify-content-around'>
+                                                <table class='d-flex justify-content-around my-4'>
                                                     <tr>
                                                         <td>
                                                             <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -496,17 +483,17 @@
 
                                                             {{-- Previous Page Link --}}
                                                             @if ($data->onFirstPage())
-                                                                <td> <i class="fa fa-arrow-circle-left disabled" style="font-size:40px"></i> </td>
+                                                                <td> <i class="fa fa-chevron-left disabled" style="font-size:40px"></i> </td>
                                                             @else
-                                                                    <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:40px;color:#63BA52"></i></a> </td>
+                                                                    <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:40px;color:#63BA52"></i></a> </td>
                                                             @endif
                                                             {{-- Submit button --}}
                                                             <td> <input type="submit" value="SUBMIT" class="btn btn-primary ml-4 mr-4" style="background: #0161C3;border-radius:3px"> </td>
                                                             {{-- Next Page Link --}}
                                                             @if ($data->hasMorePages())
-                                                                    <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right" style="font-size:40px;color:#63BA52"></i></a> </td>
+                                                                    <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:40px;color:#63BA52"></i></a> </td>
                                                             @else
-                                                                    <td> <i class="fa fa-arrow-circle-right disabled" style="font-size:40px"></i> </td>
+                                                                    <td> <i class="fa fa-chevron-left disabled" style="font-size:40px"></i> </td>
                                                             @endif
 
                                                 @endif
@@ -561,7 +548,7 @@
                                                     @endif
                                                 @endforeach
 
-                                                <table class='d-flex justify-content-around'>
+                                                <table class='d-flex justify-content-around my-4'>
                                                     <tr>
                                                         <td>
                                                             <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -572,17 +559,17 @@
 
                                                             {{-- Previous Page Link --}}
                                                             @if ($data->onFirstPage())
-                                                                <td> <i class="fa fa-arrow-circle-left disabled" style="font-size:36px"></i> </td>
+                                                                <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
                                                             @else
-                                                                    <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                                    <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:36px;color:#63BA52"></i></a> </td>
                                                             @endif
                                                             {{-- Submit button --}}
                                                             <td> <input type="submit" value="SUBMIT" class="btn btn-primary ml-4 mr-4" style="background: #0161C3;border-radius:3px"> </td>
                                                             {{-- Next Page Link --}}
                                                             @if ($data->hasMorePages())
-                                                                    <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                                    <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:36px;color:#63BA52"></i></a> </td>
                                                             @else
-                                                                    <td> <i class="fa fa-arrow-circle-right disabled" style="font-size:36px"></i> </td>
+                                                                    <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
                                                             @endif
 
                                                 @endif
@@ -664,19 +651,19 @@
                                                 @endif
                                             @endforeach
                                             @if ($data->hasPages())
-                                                <table class='d-flex justify-content-around'>
+                                                <table class='d-flex justify-content-around my-4'>
                                                     <tr>
                                                         {{-- Previous Page Link --}}
                                                         @if ($data->onFirstPage())
-                                                            <td> <i class="fa fa-arrow-circle-left disabled" style="font-size:36px"></i> </td>
+                                                            <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
                                                         @else
-                                                                <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                                <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:36px;color:#63BA52"></i></a> </td>
                                                         @endif
                                                         {{-- Next Page Link --}}
                                                         @if ($data->hasMorePages())
-                                                                <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right ml-5" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                                <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:36px;color:#63BA52"></i></a> </td>
                                                         @else
-                                                                <td> <i class="fa fa-arrow-circle-right disabled ml-5" style="font-size:36px"></i> </td>
+                                                                <td> <i class="fa fa-chevron-left disabled ml-5" style="font-size:36px"></i> </td>
                                                         @endif
                                                     </tr>
                                                 </table>
@@ -722,19 +709,19 @@
                                                 </script>
                                             @endforeach
                                             @if ($data->hasPages())
-                                                <table class='d-flex justify-content-around'>
+                                                <table class='d-flex justify-content-around my-4'>
                                                     <tr>
                                                         {{-- Previous Page Link --}}
                                                         @if ($data->onFirstPage())
-                                                            <td> <i class="fa fa-arrow-circle-left disabled" style="font-size:36px"></i> </td>
+                                                            <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
                                                         @else
-                                                                <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                                <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:36px;color:#63BA52"></i></a> </td>
                                                         @endif
                                                         {{-- Next Page Link --}}
                                                         @if ($data->hasMorePages())
-                                                                <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right ml-5" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                                <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:36px;color:#63BA52"></i></a> </td>
                                                         @else
-                                                                <td> <i class="fa fa-arrow-circle-right disabled ml-5" style="font-size:36px"></i> </td>
+                                                                <td> <i class="fa fa-chevron-left disabled ml-5" style="font-size:36px"></i> </td>
                                                         @endif
                                                     </tr>
                                                 </table>
@@ -744,8 +731,7 @@
                                     @endif
 
                             </div>
-                            <br>
-                            <table class='d-flex justify-content-around'>
+                            <table class='d-flex justify-content-around my-4'>
                                 <tr>
                                     <td>
                                         <a class="btn btn-info mr-5 bg-danger finish-exam" href="{{ url('q-bank/mock/time/finish/'.Auth::user()->id.'/'.$id) }}" style="border-radius: 3px;border: none;padding: 10px 25px">FINISH</a>
@@ -758,7 +744,7 @@
                     </div>
 
                     {{-- Hints & Lab Value --}}
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse col-12" id="collapseExample">
                         @if (!empty($item->hint) && $item->hint != null)
                             {!! $item->hint !!}
                         @else
@@ -777,11 +763,13 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group col-12">
+                                    <div class="form-group">
                                         <input type="text" class="form-control" id="findInput" placeholder="find your information...">
                                     </div>
-                                    <button type="submit" class="btn btn-info col-12" onclick="FindNext ();">find</button>
-                                    <br>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-info col-12" onclick="FindNext ();">Search</button>
+                                    </div>
+
                                     <div id="hint">
                                         {!! $lab !!}
                                     </div>
@@ -832,7 +820,7 @@
                         </div>
 
                     </div>
-                    <br>
+
                 </div>
             @endforeach
         </div>
@@ -840,7 +828,7 @@
 
 
 
-<br>
+
 @endsection
 @section('js')
     <script>

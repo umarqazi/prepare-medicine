@@ -1,7 +1,6 @@
 <!Doctype html>
 <html class="no-js" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Home || Prepare Medicine</title>
     <meta name="description" content="">
@@ -151,7 +150,6 @@
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <div class="top-info-right">
-
                             <!-- top-social -->
                             <div class="top-social">
                                 <ul>

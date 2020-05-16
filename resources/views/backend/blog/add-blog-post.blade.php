@@ -12,6 +12,7 @@
 @endsection
 
 @section('content')
+<br>
 
     @include('msg.msg')
 

@@ -87,6 +87,7 @@ body {
     font-weight: normal;
     visibility: visible;
     color: #2A306C;
+    padding-top: 140px;
 }
 
 h1,
@@ -207,7 +208,9 @@ button,
 input[type="submit"] {
     cursor: pointer;
 }
-
+input[type="submit"]{
+    max-width: 200px;
+}
 img {
     max-width: 100%;
     height: auto;
@@ -238,15 +241,11 @@ ul {
 
 @media only screen and (max-width: 767px) {
     .container {
-        width: 450px;
+        width: 100%;
+        max-width: 100%;
     }
 }
 
-@media only screen and (max-width: 479px) {
-    .container {
-        width: 320px;
-    }
-}
 
 .capitalize {
     text-transform: capitalize;
@@ -272,6 +271,20 @@ ul {
     width: 100%;
 }
 
+#hint ul{
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+#hint #ValuesWrapper{
+    margin:20px 0;
+}
+#hint #ValuesWrapper h3,
+.card h3{
+    font-size: 24px;
+    font-weight: bold;
+}
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
     .boxed-layout {
         max-width: 1280px;
@@ -413,10 +426,17 @@ textarea:-ms-input-placeholder {
 }
 
 
+.sticky-top {
+    top: 150px;
+}
+
+
 /*--
     - Main Wrapper
 -----------------------------------------*/
-
+.main-wrapper{
+    min-height: 100%;
+}
 .main-wrapper.header-transparent {
     padding: 0 !important;
     margin: 0 !important;
@@ -1245,6 +1265,8 @@ textarea:-ms-input-placeholder {
     -webkit-transition: 0.3s;
     transition: 0.3s;
     position: relative;
+    display: inline-block;
+    padding:10px;
 }
 
 .btn:focus {
@@ -1351,14 +1373,12 @@ textarea:-ms-input-placeholder {
     color: #63BA52;
     text-transform: uppercase;
     font-weight: 600;
-    margin-top: -5px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .section-title-three h3 {
     text-transform: uppercase;
     font-weight: 800;
-    margin-top: -5px;
     margin-bottom: 15px;
 }
 
@@ -1807,22 +1827,14 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 -------------------------*/
 
 .mobile-menu {
-    float: left;
-    width: 100% !important;
-    position: relative !important;
+    position: absolute;
+    right: 35px;
+    top: 8px;
 }
-
 .mobile-menu .mean-bar {
     position: relative;
-    /*---- Mean Nav ----*/
 }
 
-.mobile-menu .mean-bar .meanmenu-reveal {
-    position: absolute;
-    top: -54px;
-    color: #000;
-    left: 0;
-}
 
 @media only screen and (max-width: 767px) {
     .mobile-menu .mean-bar .meanmenu-reveal {
@@ -2082,25 +2094,6 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     border: 1px solid #eeeeee;
 }
 
-@media only screen and (max-width: 479px) {
-    .is-sticky .mean-bar .meanmenu-reveal {
-        top: -40px;
-    }
-}
-
-@media only screen and (max-width: 767px) {
-    .is-sticky .mean-bar .meanmenu-reveal {
-        top: -42px;
-    }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .is-sticky .mean-bar .meanmenu-reveal {
-        top: -48px;
-    }
-}
-
-
 /*--
     04. Header Css
 --------------------------*/
@@ -2186,42 +2179,40 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 
 /*-- header-bottom-are Css --*/
-
-.header-sticky.is-sticky {
-    -webkit-animation: 600ms ease-in-out 0s normal none 1 running fadeInDown;
-    animation: 600ms ease-in-out 0s normal none 1 running fadeInDown;
-    background: rgba(250, 250, 250, 0.9) none repeat scroll 0 0;
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.4);
-    left: 0;
-    margin: auto;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
-    padding: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 999;
+header + br{
+    display: none;
 }
-
-.header-sticky.is-sticky .logo-area {
-    margin: 10px 0;
+.header-area{
+    transition: all .3s ease-in;
 }
-
-.header-sticky.is-sticky .main-menu nav>ul>li {
+.scroll .header-area{
+    box-shadow: 0 0px 10px 2px rgba(0,0,0,.5);
+}
+.header-sticky {
+    background-color: #fff;
+    transition: all .3s ease-in;
+}
+.scroll .header-sticky .main-menu nav>ul>li {
     padding: 20px 0;
 }
 
-.header-sticky.is-sticky .mini-wrap-sidebar {
+.scroll .header-sticky .mini-wrap-sidebar {
     padding: 20px 0;
 }
 
 @media only screen and (max-width: 479px) {
-    .header-sticky.is-sticky .mini-wrap-sidebar {
+    .scroll .header-sticky .mini-wrap-sidebar {
         padding: 15px 0;
     }
 }
 
-.logo-area {
-    margin: 10px 0;
+.logo-area a,
+.logo-area a img{
+    display: block;
+    transition: all .3s ease-in;
+}
+.scroll .logo-area a img{
+    max-width: 70%;
 }
 
 .header-bottom-right {
@@ -2243,17 +2234,24 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .main-menu ul>li {
     display: inline-block;
-    margin-right: 30px;
-    padding: 29px 0;
+    margin: 0 15px;
+    padding: 30px 0;
+    transition: all .3s ease-in;
     position: relative;
 }
 
 .main-menu ul>li>a {
+    border-bottom: 2px solid transparent;
     font-size: 13px;
     font-weight: 500;
     font-family: "Montserrat", sans-serif;
 }
-
+.main-menu ul>li>a:hover,
+.main-menu ul>li>a:focus,
+.main-menu ul>li>a:active,
+.main-menu ul>li.active>a{
+    border-color:#63BA52;
+}
 .main-menu ul>li .sub-menu {
     width: 220px;
     border: 2px solid #f1f1f1;
@@ -2271,8 +2269,8 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .main-menu ul>li .sub-menu li {
     display: block;
-    margin-right: 0;
-    padding: 0px 0;
+    margin: 0;
+    padding: 0;
 }
 
 .main-menu ul>li .sub-menu li>a {
@@ -3247,9 +3245,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .our-blog-contnet {
     padding: 30px;
-    border-bottom: 1px solid #ececec;
-    border-right: 1px solid #ececec;
-    border-left: 1px solid #ececec;
+    border: 1px solid #ececec;
 }
 
 .our-blog-contnet h5 {
@@ -3323,7 +3319,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 .single-our-blog:hover .our-blog-image .in-our-blog-icon {
     opacity: 1;
     visibility: visible;
-    margin-top: 0px;
+    margin-top: 12px;
 }
 
 .our-blog-image {
@@ -4256,7 +4252,6 @@ only screen and (max-width: 767px) {
 
 .footer-top {
     background: #2A306C;
-    padding-bottom: 10px
 }
 
 .footer-top .col-md-6 {
@@ -4273,6 +4268,15 @@ only screen and (max-width: 767px) {
     position: absolute;
 }
 
+.subscribe-form {
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.subscribe-form button{
+    display: block;
+    width: 100%;
+}
 @media only screen and (max-width: 767px) {
     .footer-top .col-md-6::after {
         display: none;
@@ -4296,13 +4300,12 @@ only screen and (max-width: 767px) {
 }
 
 .footer-logo {
-    margin-bottom: 28px;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
 .footer-dec {
     color: #ffffff;
-    font-size: 16px;
-    padding-right: 10px;
 }
 
 .footer-block {
@@ -5990,12 +5993,13 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 
 .page_banner_img_common{
+    background: url(../images/pages-banner.png) no-repeat center center/cover;
     width:100%;
     height: 200px;
     overflow: hidden;
     position: relative;
     text-align: center;
-    margin-bottom:25px;
+    margin:25px 0;
 }
 .page_banner_img_common img{
     width:100%;
@@ -6011,13 +6015,13 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     overflow: hidden;
     top: 20%;
     left: 0;
-    padding: 50px 20px;
+    padding: 50px 30px;
 
 }
 .page_banner_img_common .overlay__ p{
     text-align: right;
     position: relative;
-    font-size: 20px;
+    font-size: 24px;
     overflow: hidden;
     text-transform: uppercase;
     font-weight: bold;
@@ -6092,9 +6096,26 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     .hero-slider #carouselExampleFade .carousel-caption h1 span{
         font-size: 30px;
     }
+    .header-bottom-area {
+        padding: 15px 0;
+    }
+    .logo-area{
+        max-width: 200px;
+    }
 }
 @media only screen and (max-width: 767px) {
-  .hero-slider #carouselExampleFade .carousel-caption{
+    .footer-logo {
+        max-width: 200px;
+    }
+    .scroll .logo-area a img,
+    .logo-area a img {
+        max-width: 70%;
+        min-width: 140px;
+    }
+    .mobile-menu {
+        right: 15px;
+    }
+    .hero-slider #carouselExampleFade .carousel-caption{
         display: block !important;
         bottom: 30px;
     }
@@ -6139,3 +6160,10 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+
+/* modified CSS */
+
+.asked-question{
+    font-weight: 600;
+}
