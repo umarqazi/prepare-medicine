@@ -123,7 +123,7 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a data-toggle="modal" data-target="#EditCat{{ $item->id }}"><i class="fa fa-edit edit"></i></a>
+                                    <a href="{{route('edit_multi_question', $item->id)}}"><i class="fa fa-edit edit"></i></a>
                                     <a href="{{ url('admin/question/drop/'.$item->id) }}"><i class="fa fa-remove delete"></i></a>
                                 </td>
                             </tr>
@@ -137,92 +137,6 @@
         </div>
     </div>
 </div>
-@foreach ($data as $key=>$item)
-    <!-- Modal -->
-    <div class="modal fade" id="EditCat{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-
-
-                    <form action="{{ url('admin/question/edit/multi') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="id" value="{{ $item->id }}">
-                        <div class="form-group">
-                            <label>Category</label>
-                            <select class="select-2 form-control" name="category">
-                                @foreach ($category as $value)
-                                    @if ($item->subcat_id == $value->id)
-                                        <option selected value="{{ $value->id }}" >{{ $value->name }}</option>
-                                    @else
-                                        <option value="{{ $value->id }}" >{{ $value->name }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Question Id</label>
-                            <input class="form-control" name="search_id" value="{!! $item->search_id !!}">
-                        </div>
-                        <div class="form-group">
-                            <label>Enter Question</label>
-                            <textarea class="form-control my-editor" name="question">{!! $item->question !!}</textarea>
-                        </div>
-                            @foreach($item->question_ans as $keys=>$value)
-                                @if($keys == '0')
-                                    <div class="form-group">
-                                        <input type="checkbox" name="answer[]" id="answer0{{ $key }}" value="0">
-                                        <label>OPtion A</label>
-                                        <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
-                                    </div>
-                                @elseif($keys == '1')
-                                    <div class="form-group">
-                                        <input type="checkbox" name="answer[]" id="answer1{{ $key }}" value="1">
-                                        <label>OPtion B</label>
-                                        <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
-                                    </div>
-                                @elseif($keys == '2')
-                                    <div class="form-group">
-                                        <input type="checkbox" name="answer[]" id="answer2{{ $key }}" value="2">
-                                        <label>OPtion C</label>
-                                        <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
-                                    </div>
-                                @elseif($keys == '3')
-                                    <div class="form-group">
-                                        <input type="checkbox" name="answer[]" id="answer3{{ $key }}" value="3">
-                                        <label>OPtion D</label>
-                                        <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
-                                    </div>
-                                @elseif($keys == '4')
-                                    <div class="form-group">
-                                        <input type="checkbox" name="answer[]" id="answer4{{ $key }}" value="4">
-                                        <label>OPtion E</label>
-                                        <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
-                                    </div>
-                                @endif
-                            @endforeach
-                        <div class="form-group">
-                            <label>Explanation (Optional)</label>
-                            <textarea class="form-control my-editor" name="explanation">{!! $item->explanation !!}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Hint (Optional)</label>
-                            <textarea class="form-control my-editor" name="hint">{!! $item->hint !!}</textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-@endforeach
 
 @endsection
 
@@ -278,6 +192,6 @@
 
         tinymce.init(editor_config);
     </script>
-    
+
 @endsection
 

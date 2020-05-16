@@ -20,26 +20,36 @@
             </div>
         @endif
         <div class="panel-heading clearfix">
-            <form action="{{ url('admin/question/add/single') }}" enctype="multipart/form-data" method="POST">
+            <form action="{{ url('admin/question/edit/single') }}" enctype="multipart/form-data" method="POST">
                 @csrf
-                <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                <input type="hidden" name="id" value="{{ $item->id }}">
+                <div class="form-group">
                     <label>Category</label>
-                    <select class="select-2 form-control" name="category">
-                        @foreach ($category as $item)
-                            <Option value="{{ $item->id }}" {{$item->id == old('category') ? 'selected' : ''}}>{{ $item->name }}</Option>
+                    <select class="form-control" name="category">
+                        @foreach ($category as $value)
+                            @if ($item->cat_id == $value->id)
+                                <option selected value="{{ $value->id }}" >{{ $value->name }}</option>
+                            @else
+                                <option value="{{ $value->id }}" >{{ $value->name }}</option>
+                            @endif
                         @endforeach
                     </select>
+                </div>
 
-                    @if ($errors->has('category'))
+                <div class="form-group {{ $errors->has('search_id') ? ' has-error' : '' }}">
+                    <label>Question Id</label>
+                    <input class="form-control{{ $errors->has('search_id') ? ' has-error' : '' }}" name="search_id" value="{!! $item->search_id !!}">
+
+                    @if ($errors->has('search_id'))
                         <span class="error-block">
-                             <strong>{{ $errors->first('category') }}</strong>
+                             <strong>{{ $errors->first('search_id') }}</strong>
                         </span>
                     @endif
                 </div>
 
                 <div class="form-group{{ $errors->has('question') ? ' has-error' : '' }}">
                     <label>Enter Question</label>
-                    <textarea class="form-control my-editor" name="question">{!! old('question') !!}</textarea>
+                    <textarea class="form-control my-editor" name="question">{!! $item->question !!}</textarea>
 
                     @if ($errors->has('question'))
                         <span class="error-block">
@@ -48,36 +58,39 @@
                     @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('answer') ? ' has-error' : '' }}">
-                    <div>
-                        <label>Enter Answer</label>
-                    </div>
-
-                    <input type="radio" name="answer" value="0">
-                    <label>Option A</label>
-                    <input type="text" class="form-control{{ $errors->has('answer') ? ' has-error' : '' }}" name="ans[]" value="{{old('ans') ? old('ans')[0] : ''}}">
-
-                </div>
-                <div class="form-group{{ $errors->has('answer') ? ' has-error' : '' }}">
-                    <input type="radio" name="answer" value="1">
-                    <label>Option B</label>
-                    <input type="text" class="form-control{{ $errors->has('answer') ? ' has-error' : '' }}" name="ans[]" value="{{old('ans') ? old('ans')[1] : ''}}">
-                </div>
-                <div class="form-group{{ $errors->has('answer') ? ' has-error' : '' }}">
-                    <input type="radio" name="answer" value="2">
-                    <label>Option C</label>
-                    <input type="text" class="form-control{{ $errors->has('answer') ? ' has-error' : '' }}" name="ans[]" value="{{old('ans') ? old('ans')[2] : ''}}">
-                </div>
-                <div class="form-group{{ $errors->has('answer') ? ' has-error' : '' }}">
-                    <input type="radio" name="answer" value="3">
-                    <label>Option D</label>
-                    <input type="text" class="form-control{{ $errors->has('answer') ? ' has-error' : '' }}" name="ans[]" value="{{old('ans') ? old('ans')[3] : ''}}">
-                </div>
-                <div class="form-group{{ $errors->has('answer') ? ' has-error' : '' }}">
-                    <input type="radio" name="answer" value="4">
-                    <label>Option E</label>
-                    <input type="text" class="form-control{{ $errors->has('answer') ? ' has-error' : '' }}" name="ans[]" value="{{old('ans') ? old('ans')[4] : ''}}">
-                </div>
+                @foreach($item->question_ans as $keys=>$value)
+                    @if($keys == '0')
+                        <div class="form-group">
+                            <input type="radio" name="answer" id="answer0" value="0" {{ $item->ans == '0' ? 'checked' : '' }}>
+                            <label>Option A</label>
+                            <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
+                        </div>
+                    @elseif($keys == '1')
+                        <div class="form-group">
+                            <input type="radio" name="answer" id="answer1" value="1"  {{ $item->ans == '1' ? 'checked' : '' }}>
+                            <label>Option B</label>
+                            <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
+                        </div>
+                    @elseif($keys == '2')
+                        <div class="form-group">
+                            <input type="radio" name="answer" id="answer2" value="2"  {{ $item->ans == '2' ? 'checked' : ''}}>
+                            <label>Option C</label>
+                            <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
+                        </div>
+                    @elseif($keys == '3')
+                        <div class="form-group">
+                            <input type="radio" name="answer" id="answer3" value="3"  {{ $item->ans == '3' ? 'checked' : '' }}>
+                                <label>Option D</label>
+                            <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
+                        </div>
+                    @elseif($keys == '4')
+                        <div class="form-group">
+                            <input type="radio" name="answer" id="answer4" value="4"  {{ $item->ans == '4' ? 'checked' : '' }}>
+                            <label>Option E</label>
+                            <input type="text" class="form-control" name="ans[]" value="{{ $value->ans ?? ''}}">
+                        </div>
+                    @endif
+                @endforeach
 
                 @if ($errors->has('answer'))
                     <span class="error-block">
@@ -85,9 +98,9 @@
                     </span>
                 @endif
 
-                <div class="form-group{{ $errors->has('explanation') ? ' has-error' : '' }} ">
-                    <label>Explanation (Optional)</label>
-                    <textarea class="form-control my-editor" name="explanation">{!! old('explanation') !!}</textarea>
+                <div class="form-group">
+                    <label>Explanation (optional)</label>
+                    <textarea class="form-control my-editor" name="explanation">{!! $item->explanation !!}</textarea>
 
                     @if ($errors->has('explanation'))
                         <span class="error-block">
@@ -95,9 +108,9 @@
                         </span>
                     @endif
                 </div>
-                <div class="form-group{{ $errors->has('hint') ? ' has-error' : '' }}">
-                    <label>Hint (Optional)</label>
-                    <textarea class="form-control my-editor" name="hint">{!! old('hint') !!}</textarea>
+                <div class="form-group">
+                    <label>Hint (optional)</label>
+                    <textarea class="form-control my-editor" name="hint">{!! $item->hint !!}</textarea>
 
                     @if ($errors->has('hint'))
                         <span class="error-block">
@@ -106,18 +119,12 @@
                     @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('asset_files') ? ' has-error' : '' }}">
+                <div class="form-group">
                     <label>Select Asset Files</label>
                     <input type="file" class="form-control" name="asset_files[]" multiple>
-
-                    @if ($errors->has('asset_files'))
-                        <span class="error-block">
-                             <strong>{{ $errors->first('asset_files') }}</strong>
-                        </span>
-                    @endif
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>
     </div>

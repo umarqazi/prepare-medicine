@@ -31,6 +31,11 @@
         <label><b>Featured Image</b></label>
         <input id="featured_img" type="file" name="featured_img" accept="image/*">
         <br>
+
+        <div class="form-group">
+            <label><b>Add Files</b></label>
+            <input type="file" name="reference_files[]" multiple>
+        </div>
         <input type="submit" class="btn btn_custom_style" value="UPDATE" style="float:right">
     </form>
 
@@ -38,7 +43,7 @@
         <div class="col-md-12 current">
         <label><b>Current Featured Image</b></label>
             <div>
-                <img src="{{ url('storage/blog/'.$data->featured_img) }}">
+                <img src="{{ url('storage/news/'.$data->featured_img) }}">
             </div>
         </div>
     </div>
