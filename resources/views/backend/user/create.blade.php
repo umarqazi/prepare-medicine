@@ -40,7 +40,10 @@
 
         <div class="form-group">
             <label><b>Gender</b></label>
-            <input id="title" type="text" name="gender" placeholder="Enter Gender..." class="form-control">
+            <select class="form-control" name="gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
         </div>
 
         <div class="form-group">
@@ -49,7 +52,7 @@
                 <select class="form-control" name="country">
                     <option>Select A Country</option>
                     @foreach($countries as $country)
-                    <option value="{{$country->id}}">{{$country->country_name}}</option>
+                        <option value="{{$country->id}}">{{$country->country_name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -58,13 +61,23 @@
         <div class="form-group">
             <label><b>Role</b></label>
             <div>
-                <select class="form-control" name="country">
+                <select class="form-control" name="role">
                     <option>Select A Role</option>
                     @foreach($roles as $role)
                         <option value="{{$role->id}}">{{$role->name}}</option>
                     @endforeach
                 </select>
             </div>
+        </div>
+
+        <div class="form-group">
+            <label><b>User Password</b></label>
+            <input id="title" type="password" name="password" placeholder="Enter Password..." class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label><b>Confirm Password</b></label>
+            <input id="title" type="password" name="password_confirmation" placeholder="Password Confirmation..." class="form-control">
         </div>
 
         <br>

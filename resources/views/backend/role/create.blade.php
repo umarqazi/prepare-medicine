@@ -24,15 +24,14 @@
 
         <div class="form-group">
             <div>
-                <label><b>Permissions</b></label>
+                <h4>Permissions</h4>
             </div>
-            <div>
-                <span><input class="form-control" type="checkbox"></span>
-                <span><input class="form-control" type="checkbox"></span>
-                <span><input class="form-control" type="checkbox"></span>
-                <span><input class="form-control" type="checkbox"></span>
-                <span><input class="form-control" type="checkbox"></span>
-                <span><input class="form-control" type="checkbox"></span>
+            <div class="row">
+                @foreach($permissions as $permission)
+                    <div class="col-md-3">
+                        <input type="checkbox" name="permissions[]" value="{{$permission->name}}"> {{$permission->name}}
+                    </div>
+                @endforeach
             </div>
         </div>
         <input type="submit" class="btn btn_custom_style" value="POST" style="float:right">

@@ -32,13 +32,17 @@
     <div class="panel-heading clearfix">
         <h4 class="panel-title">Categories</h4>
     </div>
-    <div class="panel-heading clearfix btn-left">
-        <button class="btn btn-sencodary" data-toggle="modal" data-target="#AddCat">Add Category</button>
-    </div>
+
+    @if(auth()->user()->can('Create Category'))
+        <div class="panel-heading clearfix btn-left">
+            <button class="btn btn-sencodary" data-toggle="modal" data-target="#AddCat">Add Category</button>
+        </div>
+    @endif
+
     <br><br>
     <div class="panel-body">
         <div class="table-responsive">
-            <table class="table table-bordered">
+            <table class="table table-bordered data_table">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -60,8 +64,13 @@
                             <td><img src="{{ url('storage/photos/'.$item->cat_img) }}" alt="" style="width:100px"></td>
                             <td><div style="background:{{ $item->cat_color }};width:100px;height:50px"></div></td>
                             <td>
-                                <a style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm" data-toggle="modal" data-target="#EditCat{{ $item->id }}"><i class="fa fa-edit edit"></i></a>
-                                <a style="background-color: red; color: #fff; border: none;" class="btn btn-sm" href="{{ url('admin/category/drop/'.$item->id) }}"><i class="fa fa-remove delete"></i></a>
+                                @if(auth()->user()->can('Edit Category'))
+                                    <a style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm" data-toggle="modal" data-target="#EditCat{{ $item->id }}"><i class="fa fa-edit edit"></i></a>
+                                @endif
+
+                                @if(auth()->user()->can('Delete Category'))
+                                    <a style="background-color: red; color: #fff; border: none;" class="btn btn-sm delete-btn" href="{{ url('admin/category/drop/'.$item->id) }}"><i class="fa fa-remove delete"></i></a>
+                                @endif
                             </td>
                         </tr>
 

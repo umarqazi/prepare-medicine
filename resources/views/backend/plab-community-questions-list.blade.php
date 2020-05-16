@@ -25,7 +25,7 @@
             cursor: pointer;
         }
 
-        
+
 
         .action_bar .btn{
             margin-bottom: 5px;
@@ -48,7 +48,7 @@
             display: block !important;
           }
         }
-        
+
 
 
     </style>
@@ -76,7 +76,7 @@
     <br>
     <div style="clear:both">
         <div class="col-12">
-            
+
         </div>
     </div>
 
@@ -85,7 +85,7 @@
         <div class="table-responsive">
 
             <form action="{{ url('admin/question/select') }}" method="post">
-                <table class="table table-bordered">
+                <table class="table table-bordered data_table">
                     <thead>
                         <tr>
                             {{-- <th>Select</th> --}}
@@ -129,8 +129,13 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm" data-toggle="modal" data-target="#viewDetails{{ $item->id }}"><i class="fa fa-eye"></i></a>
-                                    <a onclick="return confirm('Are you sure?')" style="background-color: red; border: none;" class="btn btn-sm" href="{{ route('admin.getCommunityQuestionsList.reject', $item->id) }}"><i class="fa fa-remove delete"></i></a>
+                                    @if(auth()->user()->can('View Community Question'))
+                                        <a style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm" data-toggle="modal" data-target="#viewDetails{{ $item->id }}"><i class="fa fa-eye"></i></a>
+                                    @endif
+
+                                    @if(auth()->user()->can('Delete Community Question'))
+                                        <a style="background-color: red; border: none;" class="btn btn-sm delete-btn" href="{{ route('admin.getCommunityQuestionsList.reject', $item->id) }}"><i class="fa fa-remove delete"></i></a>
+                                    @endif
                                 </td>
                             </tr>
 
@@ -171,14 +176,14 @@
                                 @endforeach
                             </select>
                         </div>
-                        
+
                         {{--
                         <div class="form-group">
                             <label>Question Id</label>
                             <input class="form-control" name="search_id" value="{!! $item->search_id !!}" readonly='1'>
                         </div>
                         --}}
-                        
+
                         <div class="form-group">
                             <label>Question</label>
                             <textarea class="form-control my-editor" name="question" readonly='1'>{!! $item->question !!}</textarea>

@@ -1,13 +1,16 @@
 <!Doctype html>
 <html class="no-js" lang="en">
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    
+
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Home || Prepare Medicine</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ url('frontend/images/favicon.ico') }}">
+
+    {{--CDN LINKS--}}
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@9">
 
     <!-- CSS
     ========================= -->
@@ -76,17 +79,17 @@
         -moz-border-radius: 6px 0 6px 6px;
         border-radius: 6px 0 6px 6px;
         }
-        
-        
+
+
         .modal-header .close{
             margin:-1rem -1rem -1rem -2rem;
         }
     </style>
-    
+
     @if(Request::is('/'))
     <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/subscription-design.css') }}">
     @endif
-    
+
     {{-- Custom Js && Css --}}
     @yield('js-css')
 
@@ -98,8 +101,8 @@
            }
         }
     </style>
-    
-    
+
+
     {{-- Copy Protector CSS start from here --}}
     <style type="text/css">
         /*Way One*/
@@ -118,7 +121,7 @@
           -webkit-user-select: none; /* Chrome, Safari, and Opera */
           -webkit-touch-callout: none; /* Disable Android and iOS callouts*/
         }
-        
+
     </style>
     {{-- Copy Protector CSS end from here --}}
 </head>
@@ -141,7 +144,7 @@
                         <div class="top-contact-info">
                             <ul>
                                 <!-- <li><a href="#"><i class="zmdi zmdi-phone"></i> +98 558 547 589</a></li> -->
-                                <li><a href="#"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
+                                <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
                             </ul>
                         </div><!--// top-contact-info -->
 
@@ -156,6 +159,7 @@
                                     <li><a href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
                                     <li><a href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
                                     <li><a href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
+                                    <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
                                     <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
                                 </ul>
                             </div><!--// top-social -->
@@ -230,7 +234,7 @@
                                             <ul class="sub-menu">
                                                 @guest
                                                     <li><a href="/login">Login to Access</a></li>
-                                                    
+
                                                {{-- <li><a href="{{ url('course/plab-1') }}">PLAB 1</a></li>
                                                     <li class="dropdown-submenu"><a >MRCP</a>
                                                         <ul class="dropdown-menu">
@@ -275,8 +279,8 @@
                                                 @if (Auth::check())
                                                     @if (Auth::user()->role >= '2' && Auth::user()->expeir_date >= date('Y-m-d'))
                                                     <li><a href="{{ url('community/whatsApp-groups') }}">WhatsApp Groups</a></li>
-                                                    <li><a href="{{ url('community/facebook-groups') }}">Facebook Groups</a></li> 
-                                                        
+                                                    <li><a href="{{ url('community/facebook-groups') }}">Facebook Groups</a></li>
+
                                                     <li><a href="{{ url('community/add-questions') }}">Add Questions</a></li>
                                                     <li><a href="{{ url('community/community-question') }}">Plab Community Questions</a></li>
                                                     @endif
@@ -285,11 +289,13 @@
                                                 @endif
                                             </ul>
                                         </li>
+                                        <li><a href="{{route('team-members')}}">Our Team</a></li>
                                         @if (Auth::check())
                                             <li><a href="{{ url('account') }}">Account</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="{{ url('account/subscription') }}">Subscription</a></li>
                                                     @if (Auth::check())
+                                                        <li><a href="{{route('ticket.index')}}">Tickets</a></li>
                                                         <li><a href="{{ url('account/progress') }}">Progress</a></li>
                                                         <li><a href="{{ url('account/account-reset') }}">Reset Account</a></li>
                                                         <li><a href="{{ url('account/change-password') }}">Reset Password</a></li>
@@ -336,13 +342,13 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-lg-4 col-md-6 mt--35">
                             <div class="footer-single-block text-center">
                                 <p class="footer-dec">An online learning community for medical professionals who are preparing to sit the PLAB-1 exam towards GMC registration</p>
                             </div>
                         </div>
-                        
+
                         {{-- OLD
                         <div class="col-lg-2 col-md-6  mt--35">
                             <div class="footer-block">
@@ -413,6 +419,7 @@
                                     <li><a href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
                                     <li><a href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
                                     <li><a href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
+                                    <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
                                     <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
                                 </ul>
                             </div>
@@ -440,8 +447,8 @@
 
     </div>
     <!-- Main Wrapper End -->
-    
-    
+
+
     <!-- only for showing alerts -->
     @if(session()->has('no_access_permission__'))
         <div class="modal fade show" id="notice_modal__" tabindex="-1" role="dialog" aria-labelledby="noticeModalTitle" aria-hidden="true"
@@ -462,11 +469,11 @@
             </div>
           </div>
         </div>
-        
+
         <script>
             let getButton_ = document.getElementById('closeTheModal___now');
             let getModal = document.getElementById('notice_modal__');
-            
+
             getButton_.addEventListener('click', function(){
                 getModal.classList.remove("show")
                 getModal.style.display='none'
@@ -474,11 +481,11 @@
         </script>
         @endif
     <!-- only for showing alerts  end here-->
-    
-    
-    
-    
-    
+
+
+
+
+
 
     <!-- JS
     ============================================ -->
@@ -495,33 +502,37 @@
     <script src="{{ url('frontend/js/ajax-mail.js') }}"></script>
     <!-- Main JS -->
     <script src="{{ url('frontend/js/main.js') }}"></script>
+
+    {{--CDN LINKS--}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
     {{-- Custom Js --}}
     @yield('js')
 
     @stack('scripts')
-    
-        
+
+
         {{-- Copy Protector --}}
         <script tyle='text/javascript'>
             $(document).ready(function(){
                 function disableselect(e) {
                     return false;
                 }
-                
+
                 function reEnable() {
                     return true;
                 }
-                
+
                 document.onselectstart = new Function("return false");
-                
+
                 if (window.sidebar) {
                     document.onmousedown = disableselect;
                     document.onclick = reEnable;
                 }
             })
         </script>
-         
-        
+
+
     </body>
 
 </html>

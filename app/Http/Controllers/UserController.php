@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\country;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
@@ -41,20 +44,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-
-        $validate = Validator::make($request->all(),[
+        $validate = Validator::make($request->all(), [
             'first_name'=>'required',
             'second_name'=>'required',
-            'email'=>'required|email',
-            'school' => 'required',
-            'gender' => 'required'
+            'email'=>'required|email|unique:users,email',
+            'password' => 'nullable|min:8|confirmed',
+            'school_name' => 'required',
+            'gender' => 'required',
+            'country' => 'required',
+            'role' => 'required'
         ]);
 
         if ($validate->fails()) {
             return redirect()->back()
                 ->withInput()
-                ->withErrors();
+                ->withErrors($validate);
         }
 
         /* First Create User */
@@ -62,13 +66,18 @@ class UserController extends Controller
         $user->f_name = $request->first_name;
         $user->s_name = $request->second_name;
         $user->email = $request->email;
-        $user->school = $request->school;
+        $user->school = $request->school_name;
         $user->gender = $request->gender;
+        $user->country = $request->country;
+        $user->password = $request->password ? Hash::make($request->password) : Hash::make('12345678');
+        $user->expeir_date = date('Y-m-d');
         $user->save();
 
         /* Now Assign Role */
+        $role = Role::findById($request->role);
+        $user->assignRole($role);
 
-
+        return redirect()->route('user.index')->withSuccess('User has been Added Successfully!!');
     }
 
     /**
@@ -90,7 +99,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $countries = country::all();
+        $roles = Role::all();
+
+        return view('backend.user.edit', compact('user', 'countries', 'roles'));
     }
 
     /**
@@ -102,7 +115,42 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'first_name'=>'required',
+            'second_name'=>'required',
+            'email'=>'required|email',
+            'password' => 'nullable|min:8|confirmed',
+            'school_name' => 'required',
+            'gender' => 'required',
+            'country' => 'required',
+            'role' => 'required'
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors($validate);
+        }
+
+        /* First Create User */
+        $user = User::find($id);
+        $user->f_name = $request->first_name;
+        $user->s_name = $request->second_name;
+        $user->email = $request->email;
+        $user->school = $request->school_name;
+        $user->gender = $request->gender;
+        $user->country = $request->country;
+        if (!empty($request->password)) {
+            $user->password = $request->password ? Hash::make($request->password) : Hash::make('12345678');
+        }
+        $user->expeir_date = date('Y-m-d');
+        $user->save();
+
+        /* Now Assign Role */
+        $role = Role::findById($request->role);
+        $user->syncRoles($role);
+
+        return redirect()->route('user.index')->withSuccess('User has been Updated Successfully!!');
     }
 
     /**
@@ -113,6 +161,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        dd($user);
+        $user->delete();
+
+        return redirect()->route('user.index')->withSuccess('User has been Deleted Successfully!!');
     }
 }

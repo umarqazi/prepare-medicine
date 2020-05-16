@@ -32,14 +32,18 @@
         <div class="panel-heading clearfix">
             <h4 class="panel-title">Permissions</h4>
         </div>
-        <div class="panel-heading clearfix btn-left">
-            <a href="{{ route('permission.create') }}" class="btn btn-sencodary">Add Permission</a>
-        </div>
+
+        @if(auth()->user()->can('Create Permission'))
+            <div class="panel-heading clearfix btn-left">
+                <a href="{{ route('permission.create') }}" class="btn btn-sencodary">Add Permission</a>
+            </div>
+        @endif
+
         <br><br>
         <div class="panel-body">
             @include('msg.msg')
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered data_table">
                     <thead>
                     <tr>
                         <th>Permission Name</th>
@@ -51,33 +55,28 @@
                         <tr>
                             <td >{{ $permission->name }}</td>
                             <td>
-                                <a href="{{ route('blog.edit', $permission->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-edit edit"></i></a>
+                                @if(auth()->user()->can('Edit Permission'))
+                                    <a href="{{ route('permission.edit', $permission->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-edit edit"></i></a>
+                                @endif
 
-                                <!-- delete code start from here -->
-                                <form style="display:none;" id="delete-form-{{ $permission->id }}" action="{{ route('role.destroy', $permission->id) }}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                </form>
+                                @if(auth()->user()->can('Delete Permission'))
+                                    <form method="post" class="delete-form" action="{{ route('permission.destroy', $permission->id) }}">
+                                        @csrf
+                                        @method('DELETE')
 
-                                <button type="button" style="background-color: red; color: #fff; border: none;" class="btn btn-sm"
-                                        onclick="if(confirm('Are you sure to Delete?')){
-                                            event.preventDefault();
-                                            document.getElementById('delete-form-{{ $permission->id }}').submit();
-                                            }else{
-                                            event.preventDefault();
-                                            }"
-                                >
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                                <!-- delete code end from here -->
-
+                                        <button type="button" style="background-color: red; color: #fff; border: none;" class="btn btn-sm delete-submit-btn"><i class="fa fa-remove"></i></button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
+
+                <span style="float:right"> {{ $permissions->links() }}</span>
             </div>
-{{--            <span>{{ $permissions->render() }}</span>--}}
+            {{--            <span>{{ $permissions->render() }}</span>--}}
+
         </div>
     </div>
 

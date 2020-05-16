@@ -26,6 +26,10 @@ Auth::routes(['verify' => true]);
     // About us path
     Route::get('about-us',"FrontendAboutUsController@Index");
 
+    /* Our Team Members Page */
+    Route::get('team-members',"TeamController@ourTeam")->name('team-members');
+    Route::get('team-details/{id}',"TeamController@teamMemberDetails")->name('team-details');
+
     // Our team path
     Route::get('our-team/volunteer',"FrontendOurTeamController@Volunteer");
     Route::get('our-team/our-team',"FrontendOurTeamController@Index");
@@ -182,8 +186,15 @@ Route::group(['middleware' => ['auth','verified'] ], function () {
     Route::get('account/change-password',"ChangePasswordController@Index");
     Route::post('change-password',"ChangePasswordController@Change");
 
+    Route::get('contact-us', 'ContactController@contactus')->name('contact-us');
+    Route::post('contact', 'ContactController@store')->name('contact');
+
+    Route::resource('ticket', 'TicketController');
+    Route::get('tickets', 'TicketController@backendIndex')->name('admin-tickets');
+    Route::get('ticket-status/{id}', 'TicketController@updateStatus')->name('ticket-status');
+    Route::get('view-ticket/{id}', 'TicketController@showTicket')->name('view-ticket');
 });
-Route::get('action-x-csa/action-x-e/{accessToken}', function($token){
+/*Route::get('action-x-csa/action-x-e/{accessToken}', function($token){
     if($token === "xx-df12312378978900xcda_dr_csa"){
         $root_path =  base_path();
         $public_path = "/home/kohin837/public_html/preparemedicine.com";
@@ -202,7 +213,7 @@ Route::get('action-x-csa/action-x-e/{accessToken}', function($token){
     }else{
         return "Access Denied !! You should back now....";
     }
-});
+});*/
 
 // end FrondEnd path
 
@@ -232,25 +243,27 @@ Route::group(['middleware' => ['auth','role','verified'] ], function () {
     // Route::get('admin/feedback/show/{id}',"AdminFeedbackController@Show");
     // category and subcategory path
     Route::get('admin/category',"AdminCategoryController@Index");
-    Route::get('admin/sub-category',"AdminSubctegoryController@Index");
+//    Route::get('admin/sub-category',"AdminSubctegoryController@Index");
     Route::post('admin/category/add',"AdminCategoryController@Add");
-    Route::post('admin/sub-category/add',"AdminSubctegoryController@Add");
+//    Route::post('admin/sub-category/add',"AdminSubctegoryController@Add");
     Route::get('admin/category/drop/{id}',"AdminCategoryController@Drop");
-    Route::get('admin/sub-category/drop/{id}',"AdminSubctegoryController@Drop");
+//    Route::get('admin/sub-category/drop/{id}',"AdminSubctegoryController@Drop");
     Route::post('admin/category/add/update/{id}',"AdminCategoryController@Update");
-    Route::post('admin/sub-category/update/{id}',"AdminSubctegoryController@Update");
+//    Route::post('admin/sub-category/update/{id}',"AdminSubctegoryController@Update");
     // Admin question path
 
     // Single Question path
     Route::get('admin/question/single',"QuestionController@SingleIndex");
     Route::get('admin/question/add/single',"QuestionController@AddSingle");
     Route::post('admin/question/add/single',"QuestionController@Single");
+    Route::get('admin/question/edit/single/{id}',"QuestionController@getEditSingle")->name('edit_question');
     Route::post('admin/question/edit/single',"QuestionController@EditSingle");
 
     // Multiple Question path
     Route::get('admin/question/multi',"QuestionController@MultiIndex");
     Route::get('admin/question/add/multi',"QuestionController@AddMulti");
     Route::post('admin/question/add/multi',"QuestionController@Multi");
+    Route::get('admin/question/edit/multi/{id}',"QuestionController@getEditMulti")->name('edit_multi_question');
     Route::post('admin/question/edit/multi',"QuestionController@EditMulti");
 
     //drop any question
@@ -321,17 +334,27 @@ Route::group(['middleware' => ['auth','role','verified'] ], function () {
     Route::get('admin/subscription/requests',"SubscriptionController@subscribers_requests")->name('subscribers_requests');
     Route::post('admin/subscription/requests-approve',"SubscriptionController@subscribers_requests_approve")->name('subscribers_requests_approve');
     Route::get('admin/subscription/requests-reject/{id}',"SubscriptionController@subscribers_requests_reject")->name('subscribers_requests_reject');
+    Route::get('admin/subscription/edit-subscriber/{id}',"SubscriptionController@editSubscriber")->name('edit_subscriber');
+    Route::post('admin/subscription/update-subscriber',"SubscriptionController@updateSubscriber")->name('update_subscriber');
+    Route::get('admin/subscription/subscriber-status/{id}',"SubscriptionController@subscriberStatus")->name('subscriber_status');
 
     //blog posts
     Route::resource('admin/ui/blog', 'BlogController');
     Route::resource('admin/ui/role', 'RoleController');
     Route::resource('admin/ui/permission', 'PermissionController');
     Route::resource('admin/ui/user', 'UserController');
+    Route::resource('admin/ui/team-members', 'TeamController');
+    Route::resource('admin/ui/subscriptions', 'SubscriptionPlanController');
+    Route::resource('admin/ui/contact', 'ContactController');
+    Route::get('admin/ui/contact-status/{id}', 'ContactController@updateStatus')->name('contact-status');
     Route::resource('admin/ui/course-list', 'CourseController');
 
     //blog news
     Route::resource('admin/ui/news', 'NewsController');
+    Route::post('admin/ui/news-images-upload', 'NewsController@imageUpload')->name('image_upload');
 });
+
+Route::get('question/view/{id}', "QuestionController@viewFile")->name('view_file');
 
 // end backend or admin pannel path
 

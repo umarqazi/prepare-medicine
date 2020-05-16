@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'f_name', 's_name','school','country', 'email', 'password','gender','expeir_date'
+        'f_name', 's_name','school','country', 'email', 'password','gender','expeir_date', 'free_user_type'
     ];
 
     /**
@@ -44,6 +44,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function get_country(){
         return $this->belongsTo('\App\country', 'country', 'id');
+    }
+
+    public function contact() {
+        return $this->hasMany('App\Contact');
+    }
+
+    public function ticket() {
+        return $this->hasMany('App\Ticket');
     }
 
 }

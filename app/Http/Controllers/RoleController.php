@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
@@ -15,7 +17,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = Role::paginate(20);
         return view('backend.role.index', compact('roles'));
     }
 
@@ -26,7 +28,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('backend.role.create');
+        $permissions = Permission::all();
+        return view('backend.role.create', compact('permissions'));
     }
 
     /**
@@ -38,34 +41,23 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $validate = Validator::make($request->all(),[
-            'first_name'=>'required',
-            'second_name'=>'required',
-            'email'=>'required|email',
-            'school' => 'required',
-            'gender' => 'required'
+            'name'=>'required|unique:roles,name',
+            'permissions'=>'nullable',
         ]);
 
         if ($validate->fails()) {
             return redirect()->back()
                 ->withInput()
-                ->withErrors();
+                ->withErrors($validate);
         }
 
         $role = Role::create(['name' => $request->name]);
 
+        if (!empty($request->permissions)) {
+            $role->syncPermissions($request->permissions);
+        }
 
-        /* First Create User */
-        $user = new User();
-        $user->f_name = $request->first_name;
-        $user->s_name = $request->second_name;
-        $user->email = $request->email;
-        $user->school = $request->school;
-        $user->gender = $request->gender;
-        $user->save();
-
-        /* Now Assign Role */
-
-
+        return redirect()->route('role.index')->withSuccess('Role has been Added Successfully!!');
     }
 
     /**
@@ -87,7 +79,10 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::findById($id);
+        $permissions = Permission::all();
+
+        return view('backend.role.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -99,7 +94,29 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = Validator::make($request->all(),[
+            'name'=>'required',
+            'permissions'=>'nullable',
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors($validate);
+        }
+
+        $role = Role::findById($id);
+        $role->name = $request->name;
+        $role->save();
+
+        if (!empty($request->permissions)) {
+
+            /* Revoke Previous Permissions */
+            /* Add New Permissions */
+            $role->syncPermissions($request->permissions);
+        }
+
+        return redirect()->route('role.index')->withSuccess('Role has been Updated Successfully!!');
     }
 
     /**
@@ -110,6 +127,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+        $role->delete();
+
+        return redirect()->route('role.index')->withSuccess('Role has been Deleted Successfully!!');
     }
 }

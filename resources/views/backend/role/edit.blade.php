@@ -16,80 +16,35 @@
 
 @section('content')
 
-    <div class="alert alert-info" role="alert">Edit Blog Post</div>
+    <div class="alert alert-info" role="alert">Edit Role</div>
     @include('msg.msg')
 
-    <form action="{{ route('blog.update', $data->id) }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('role.update', $role->id) }}" method="post">
         @method('PUT')
         @csrf
-        <label><b>Post Title</b></label>
-        <input id="title" type="text" name="title" value="{{ $data->title }}" class="form-control">
+        <label><b>Role Name</b></label>
+        <input id="title" type="text" name="name" placeholder="Enter Role..." class="form-control" value="{{$role->name}}">
         <br>
-        <label><b>Post Body</b></label>
-        <textarea id="description" name="description" class="form-control my-editor">{!! $data->description !!}</textarea>
-        <br>
-        <label><b>Featured Image</b></label>
-        <input id="featured_img" type="file" name="featured_img" accept="image/*">
+
+        <div class="form-group">
+            <div>
+                <h4>Permissions</h4>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <input type="checkbox" name="select-all" class="select-all"> Select All Permissions
+                </div>
+            </div>
+            <div class="row">
+                @foreach($permissions as $permission)
+                    <div class="col-md-3">
+                        <input type="checkbox" name="permissions[]" value="{{$permission->name}}" {{in_array( $permission->name, $role->permissions->pluck('name')->toArray()) ? 'checked' : ''}}> {{$permission->name}}
+                    </div>
+                @endforeach
+            </div>
+        </div>
         <br>
         <input type="submit" class="btn btn_custom_style" value="UPDATE" style="float:right">
     </form>
-
-    <div class="row">
-        <div class="col-md-12 current">
-            <label><b>Current Featured Image</b></label>
-            <div>
-                <img src="{{ url('storage/blog/'.$data->featured_img) }}">
-            </div>
-        </div>
-    </div>
-
-@endsection
-
-@section('js')
-
-    <script>
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
-    <script>
-        var editor_config = {
-            path_absolute : "/",
-            selector: "textarea.my-editor",
-            plugins: [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern"
-            ],
-            toolbar: "insertfile undo redo | styleselect | bold italic | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-            relative_urls: false,
-            file_browser_callback : function(field_name, url, type, win) {
-                var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-                var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
-
-                var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
-                if (type == 'image') {
-                    cmsURL = cmsURL + "&type=Images";
-                } else {
-                    cmsURL = cmsURL + "&type=Files";
-                }
-
-                tinyMCE.activeEditor.windowManager.open({
-                    file : cmsURL,
-                    title : 'Filemanager',
-                    width : x * 0.8,
-                    height : y * 0.8,
-                    resizable : "yes",
-                    close_previous : "no"
-                });
-            }
-        };
-
-        tinymce.init(editor_config);
-    </script>
-
-
 @endsection

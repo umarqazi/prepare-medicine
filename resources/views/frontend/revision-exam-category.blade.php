@@ -7,7 +7,7 @@
                 alert ("Please enter some text to search!");
                 return;
             }
-            
+
             if (window.find) {        // Firefox, Google Chrome, Safari
                 var found = window.find (str);
                 if (!found) {
@@ -39,7 +39,7 @@
             width: 30px;
             border: 0;
             border-radius: 0;
-            cursor: pointer;     
+            cursor: pointer;
             margin-right: 7px;
             outline: none;
         }
@@ -100,7 +100,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             cursor: pointer;
-        } 
+        }
     </style>
     <style>
         body{
@@ -115,11 +115,11 @@
         /* change */
         .search-box{
             background: #ffffff;
-            width: 25px; 
-            height: 25px; 
-            padding: 0px; 
-            border-radius: 50%; 
-            text-align: center; 
+            width: 25px;
+            height: 25px;
+            padding: 0px;
+            border-radius: 50%;
+            text-align: center;
         }
         .comment-wrap{
             width: 100%;
@@ -187,7 +187,7 @@
         }
 
         @media screen and (max-width: 483px){
-            
+
             .top_action{
                 display: block !important;
             }
@@ -199,7 +199,7 @@
             }
         }
         @media screen and (max-width: 425px){
-            
+
             .btn_info{
                 width:40px !important;
                 height:40px !important;
@@ -248,29 +248,34 @@
         }
 
         .answerColor1{
-            background: #dddfdf;
+            /*background: #dddfdf;*/
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor2{
-            background: #dddccc;
+            /*background: #dddccc;*/
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor3{
-            background: #dddddd;
+            /*background: #dddddd;*/
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor4{
-            background: #dddaaa;
+            /*background: #dddaaa;*/
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor5{
-            background: #ddd999 !important;
+            /*background: #ddd999 !important;*/
             border-radius: 5px !important;
             padding: 2px 15px 10px 15px !important;
+        }
+        .status_wrapper {
+            display: inline-block;
+            float: right;
+            line-height: 50px;
         }
 
         /*Customize by 'Developer Rijan'*/
@@ -289,7 +294,7 @@
             background: #ddd;
             padding: 10px 3px;
         }
-        
+
         .questions_status_board .heading,
         .heading__n{
             border-bottom: 1px solid #fff;
@@ -339,12 +344,12 @@
                 <p>Revision</p>
             </div>
         </div>
-        
+
     @include('msg.msg')
 
     @foreach ($data as $item)
         <div class="row">
-            
+
                 {{-- Left part of the exam --}}
                 <div class="col-lg-3 col-md-4 col-sm-12" id="pc">
                     <div class='area_first__'>
@@ -352,11 +357,11 @@
                         <div class="center col-12 pagination_list">
                             <div class="row block_">
                                 @for ($i = 1; $i <= $total_question; $i++)
-                                    
+
                                     @if (isset($_GET['page']))
                                         @if ($i == $_GET['page'])
                                             @if (!empty($mark[$i-1]->question_revision))
-    
+
                                                 @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                     @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
                                                         <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
@@ -366,8 +371,8 @@
                                                 @else
                                                     <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                                 @endif
-    
-    
+
+
                                             @else
                                                 <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                             @endif
@@ -417,7 +422,7 @@
                                             @endif
                                         @endif
                                     @endif
-    
+
                                 @endfor
                             </div>
                         </div>
@@ -431,7 +436,7 @@
                                 $totalAns_ = $item->question_revision
                                                   ->where('ques_id',$item->id)
                                                   ->count();
-                                
+
                                 //get total answers of the multi options question
                                 if($item->type == 1){
                                     $totalAns_multi;
@@ -447,12 +452,12 @@
                                 }
 
                                 //store total answers of each option like A,B,C,D,E
-                                $totalA = "";  // A point for 0            
-                                $totalB = "";  // B point for 1            
-                                $totalC = "";  // C point for 2           
-                                $totalD = "";  // D point for 3             
+                                $totalA = "";  // A point for 0
+                                $totalB = "";  // B point for 1
+                                $totalC = "";  // C point for 2
+                                $totalD = "";  // D point for 3
                                 $totalE = "";  // E point for 4
-                                // ): Commnent Organized by 'Developer Rijan'          
+                                // ): Commnent Organized by 'Developer Rijan'
                             @endphp
                             <div class="center questions_status_board">
                                 <table width="95%" class="cart-tab">
@@ -480,11 +485,8 @@
                                                                                         ->count();
                                                                         @endphp
                                                                         {{ round(($totalA * 100)/ $totalAns_ ) }}%
-                                                                        
-
-                                                                        
                                                                     @else
-                                                                        @php                                                                            
+                                                                        @php
 
                                                                             //find total ans for each option
                                                                             $static_data_1 = 0;
@@ -583,7 +585,7 @@
                                                                         {{ round(($totalC * 100)/ $totalAns_ ) }}%
                                                                     @else
                                                                         @php
-                                                                            
+
                                                                             $static_data_3 = 0;
                                                                             $static_3 = 0;
                                                                             foreach ($totalData_ as $key => $value) {
@@ -631,7 +633,7 @@
                                                                         {{ round(($totalD * 100)/ $totalAns_ ) }}%
                                                                     @else
                                                                         @php
-                                                                            
+
                                                                             $static_data_4 = 0;
                                                                             $static_4 = 0;
                                                                             foreach ($totalData_ as $key => $value) {
@@ -679,7 +681,7 @@
                                                                         {{ round(($totalE * 100)/ $totalAns_ ) }}%
                                                                     @else
                                                                         @php
-                                                                            
+
                                                                             $static_data_5 = 0;
                                                                             $static_5 = 0;
                                                                             foreach ($totalData_ as $key => $value) {
@@ -712,33 +714,33 @@
                                         </tbody>
                                     </div>
                                 </table>
-                                
+
                             </div>
                         @endif
                     @endif
-                </div>    
-            
+                </div>
+
                 {{-- Right part of the exam --}}
                 <div class="col-lg-9 col-md-8 col-sm-12">
                     <div class="col-12">
-           
+
                             <div>
-                                
+
                                 <div class="top_action d-flex justify-content-start">
                                     @isset($_GET['page'])
                                         <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }} </p>
                                     @endisset
 
                                     @if (!empty($item->question_flag->where('user_id',Auth::user()->id)[0]) )
-                                        <a class='dropFlag' href="{{ url('q-bank/drop/flag/'.$item->question_flag->where('user_id',Auth::user()->id)[0]->id) }}" style="color:green;font-size: 18px;" title="Remove from Flag"><i class="fas fa-star"></i></a> 
+                                        <a class='dropFlag' href="{{ url('q-bank/drop/flag/'.$item->question_flag->where('user_id',Auth::user()->id)[0]->id) }}" style="color:green;font-size: 18px;" title="Remove from Flag"><i class="fas fa-star"></i></a>
                                     @else
-                                        <a class="='addFlag" href="{{ url('q-bank/add/flag/'.$item->id) }}" style="color:#2C3069 !important;font-size: 18px;" title="Flag Now"><i class="fas fa-star"></i></a> 
+                                        <a class="='addFlag" href="{{ url('q-bank/add/flag/'.$item->id) }}" style="color:#2C3069 !important;font-size: 18px;" title="Flag Now"><i class="fas fa-star"></i></a>
                                     @endif
 
                                     <p class="action_1" style="margin-left: 5px">QID: {{ $item->search_id }} </p>
-                                    
+
                                 </div>
-                                
+
                                 {!! $item->question !!}
 
                                 @if (!empty($item->question_revision))
@@ -748,11 +750,11 @@
                                                     Your Answer Was Correct
                                                     <br/>
                                                     {{-- Correct Ans of the question start from here // Developed by 'Developer Rijan' --}}
-                                                    Correct Ans. 
+                                                    Correct Ans.
                                                     @php
                                                         $correct_ans = $item->ans; //correct ans of the question
                                                         $ex = explode('-', $item->ans); //explode if have multiple ans
-                                                        
+
                                                         foreach ($ex as $key => $value) {
                                                             if($value === '0'){ echo '<b>A </b>'; }
                                                             if($value === '1'){ echo '<b>B </b>'; }
@@ -762,14 +764,14 @@
                                                         }
                                                     @endphp
                                                     {{-- Correct Ans of the question end here--}}
-                                                    
-                                                    || Your Ans. 
+
+                                                    || Your Ans.
                                                     {{-- User submitted ans start from here--}}
                                                     @php
-                                                                                
+
                                                         $userSubmited = $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'];
                                                         $exp = explode('-', $userSubmited); //explode if have multiple ans
-                                                        
+
                                                         foreach ($exp as $key => $value) {
                                                             if($value === '0'){ echo '<b>A </b>'; }
                                                             if($value === '1'){ echo '<b>B </b>'; }
@@ -779,18 +781,18 @@
                                                         }
                                                     @endphp
                                                     {{-- User submitted ans end from here--}}
-                                                    
+
                                                 </div>
                                         @else
                                                 <div class="alert alert-danger mt-1" role="alert">
                                                         Your Answer Was Wrong
                                                          <br/>
                                                         {{-- Correct Ans of the question start from here // Developed by 'Developer Rijan' --}}
-                                                        Correct Ans. 
+                                                        Correct Ans.
                                                         @php
                                                             $correct_ans = $item->ans; //correct ans of the question
                                                             $ex = explode('-', $item->ans); //explode if have multiple ans
-                                                            
+
                                                             foreach ($ex as $key => $value) {
                                                                 if($value === '0'){ echo '<b>A </b>'; }
                                                                 if($value === '1'){ echo '<b>B </b>'; }
@@ -800,13 +802,13 @@
                                                             }
                                                         @endphp
                                                         {{-- Correct Ans of the question end here--}}
-                                                    
-                                                        
-                                                        
-                                                    || Your Ans. 
+
+
+
+                                                    || Your Ans.
                                                     {{-- User submitted ans start from here--}}
                                                     @php
-                                                                                
+
                                                         $userSubmited_wrong = $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'];
                                                         $exp = explode('-', $userSubmited_wrong); //explode if have multiple ans
 
@@ -819,7 +821,7 @@
                                                         }
                                                     @endphp
                                                     {{-- User submitted ans end from here--}}
-                                                      
+
                                                 </div>
                                         @endif
                                     @endif
@@ -836,86 +838,286 @@
                                                     @if ($key == '0')
                                                         @if ($key == $item->ans)
                                                             <div class="success answerColor1 pl-2 mb-2 pb-2 radius">
-                                                                <input type="radio" name="answer" id="radio-2021" class="form-radio a"><label for="radio-2021" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-2021" class="form-radio a">
+                                                                <label for="radio-2021" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    {{--Answer Status Update--}}
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                            {{ round(($totalA * 100)/ $totalAns_ ) }}%
+                                                                        @else
+                                                                            {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
+                                                                        @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
                                                             <div class="wrong mb-2 answerColor2 pl-2 pb-2 radius">
-                                                                <input type="radio" name="answer" id="radio-19" class="form-radio a"><label for="radio-19" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-19" class="form-radio a">
+                                                                <label for="radio-19" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    {{--Answer Status Update--}}
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                                {{ round(($totalA * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @else
                                                             <div class="mb-2 pb-2 answerColor3 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-18" class="form-radio a"><label for="radio-18" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-18" class="form-radio a">
+                                                                <label for="radio-18" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    {{--Answer Status Update--}}
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                            @if ($item->type == '0')
+                                                                                {{ round(($totalA * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @endif
                                                     @elseif($key == '1')
                                                         @if ($key == $item->ans)
                                                             <div class="success mb-2 answerColor1 pb-2 pl-2 radius">
-                                                                <input type="radio" name="answer" id="radio-17" class="form-radio b"><label for="radio-17" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-17" class="form-radio b">
+                                                                <label for="radio-17" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    {{--Answer Status Update--}}
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                            {{ round(($totalB * 100)/ $totalAns_ ) }}%
+                                                                        @else
+                                                                            {{ (round(($static_data_2*100)/$totalAns_multi)) }}%
+                                                                        @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
                                                             <div class="wrong mb-2 answerColor2 pb-2 pl-2 radius">
-                                                                <input type="radio" name="answer" id="radio-16" class="form-radio b"><label for="radio-16" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-16" class="form-radio b">
+                                                                <label for="radio-16" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    {{--Answer Status Update--}}
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                                {{ round(($totalB * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_2*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @else
                                                             <div class="mb-2 pb-2 answerColor3 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-15" class="form-radio b"><label for="radio-15" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-15" class="form-radio b">
+                                                                <label for="radio-15" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    {{--Answer Status Update--}}
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                                {{ round(($totalB * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_2*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @endif
                                                     @elseif($key == '2')
                                                         @if ($key == $item->ans)
                                                             <div class="success answerColor1 mb-2 pb-2 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-14" class="form-radio c"><label for="radio-14" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-14" class="form-radio c">
+                                                                <label for="radio-14" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    <span class="status_wrapper">
+                                                                    <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                            {{ round(($totalC * 100)/ $totalAns_ ) }}%
+                                                                        @else
+                                                                            {{ (round(($static_data_3*100)/$totalAns_multi)) }}%
+                                                                        @endif
+                                                                    </p>
+                                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
                                                             <div class="wrong answerColor2 mb-2 pb-2 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-13" class="form-radio c"><label for="radio-13" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-13" class="form-radio c">
+                                                                <label for="radio-13" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                            @if ($item->type == '0')
+                                                                                {{ round(($totalC * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_3*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @else
                                                             <div class="mb-2 answerColor3 pb-2 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-12" class="form-radio c"><label for="radio-12" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-12" class="form-radio c">
+                                                                <label for="radio-12" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                            @if ($item->type == '0')
+                                                                                {{ round(($totalC * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_3*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @endif
                                                     @elseif($key == '3')
                                                         @if ($key == $item->ans)
                                                             <div class="success answerColor1 mb-2 pb-2 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-11" class="form-radio d"><label for="radio-11" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-11" class="form-radio d">
+                                                                <label for="radio-11" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                            @if ($item->type == '0')
+                                                                                {{ round(($totalD * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_4*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
                                                             <div class="wrong answerColor2 mb-2 pb-2 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-10" class="form-radio d"><label for="radio-10" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-10" class="form-radio d">
+                                                                <label for="radio-10" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                            @if ($item->type == '0')
+                                                                                {{ round(($totalD * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_4*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @else
                                                             <div class="mb-2 answerColor3 pb-2 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-9" class="form-radio d"><label for="radio-9" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-9" class="form-radio d">
+                                                                <label for="radio-9" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                            @if ($item->type == '0')
+                                                                                {{ round(($totalD * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_4*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @endif
                                                     @elseif($key == '4')
                                                         @if ($key == $item->ans)
                                                             <div class="success answerColor1 mb-2 pb-2 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-8" class="form-radio e"><label for="radio-8" value="{{ $key }}" class="inline">
+                                                                <input type="radio" name="answer" id="radio-8" class="form-radio e">
+                                                                <label for="radio-8" value="{{ $key }}" class="inline">
                                                                 <p class="inline">{{ $value->ans }}</p>
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                            @if ($item->type == '0')
+                                                                                {{ round(($totalE * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_5*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
                                                             <div class="wrong mb-2 answerColor2 pb-2 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-7" class="form-radio e"><label for="radio-7" value="{{ $key }}" class="inline">
+                                                                <input type="radio" name="answer" id="radio-7" class="form-radio e">
+                                                                <label for="radio-7" value="{{ $key }}" class="inline">
                                                                 <p class="inline">{{ $value->ans }}</p>
+
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                            @if ($item->type == '0')
+                                                                                {{ round(($totalE * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_5*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @else
                                                             <div class="mb-2 pb-2 answerColor3 radius pl-2">
-                                                                <input type="radio" name="answer" id="radio-6" class="form-radio e"><label for="radio-6" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <input type="radio" name="answer" id="radio-6" class="form-radio e">
+                                                                <label for="radio-6" value="{{ $key }}" class="inline">
+                                                                    <p class="inline">{{ $value->ans }}</p>
+
+                                                                    <span class="status_wrapper">
+                                                                        <p class="inline" style="margin: 0px 2px">
+                                                                            @if ($item->type == '0')
+                                                                                {{ round(($totalE * 100)/ $totalAns_ ) }}%
+                                                                            @else
+                                                                                {{ (round(($static_data_5*100)/$totalAns_multi)) }}%
+                                                                            @endif
+                                                                        </p>
+                                                                        <p class="inline" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
+                                                                    </span>
+                                                                </label>
                                                             </div>
                                                         @endif
                                                     @endif
@@ -928,27 +1130,87 @@
                                                     @if ($key == '0')
                                                         <div class="mb-2 pb-2 answerColor1 radius pl-2"  id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-5" class="form-radio a"><label for="radio-5" value="{{ $key }}" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline">{{ $value->ans }}</p>
+
+                                                                <span class="status_wrapper">
+                                                                    <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                            {{ round(($totalA * 100)/ $totalAns_ ) }}%
+                                                                        @else
+                                                                            {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
+                                                                        @endif
+                                                                    </p>
+                                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
+                                                                </span>
+                                                            </label>
                                                         </div>
                                                     @elseif($key == '1')
                                                         <div class="mb-2 pb-2 answerColor2 radius pl-2" id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-4" class="form-radio b"><label for="radio-4" value="{{ $key }}" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline">{{ $value->ans }}</p>
+
+                                                                <span class="status_wrapper">
+                                                                    <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                            {{ round(($totalB * 100)/ $totalAns_ ) }}%
+                                                                        @else
+                                                                            {{ (round(($static_data_2*100)/$totalAns_multi)) }}%
+                                                                        @endif
+                                                                    </p>
+                                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
+                                                                </span>
+                                                            </label>
                                                         </div>
                                                     @elseif($key == '2')
                                                         <div class="mb-2 pb-2 answerColor3 radius pl-2" id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-3" class="form-radio c"><label for="radio-3" value="{{ $key }}" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline">{{ $value->ans }}</p>
+
+                                                                <span class="status_wrapper">
+                                                                    <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                            {{ round(($totalC * 100)/ $totalAns_ ) }}%
+                                                                        @else
+                                                                            {{ (round(($static_data_3*100)/$totalAns_multi)) }}%
+                                                                        @endif
+                                                                    </p>
+                                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
+                                                                </span>
+                                                            </label>
                                                         </div>
                                                     @elseif($key == '3')
                                                         <div class="mb-2 pb-2 answerColor4 radius pl-2" id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-2" class="form-radio d"><label for="radio-2" value="{{ $key }}" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline">{{ $value->ans }}</p>
+
+                                                                <span class="status_wrapper">
+                                                                    <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                            {{ round(($totalD * 100)/ $totalAns_ ) }}%
+                                                                        @else
+                                                                            {{ (round(($static_data_4*100)/$totalAns_multi)) }}%
+                                                                        @endif
+                                                                    </p>
+                                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
+                                                                </span>
+                                                            </label>
                                                         </div>
                                                     @elseif($key == '4')
                                                         <div class="mb-2 pb-2 answerColor5 radius pl-2" id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-1" class="form-radio e"><label for="radio-1" value="{{ $key }}" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline">{{ $value->ans }}</p>
+
+                                                                <span class="status_wrapper">
+                                                                    <p class="inline" style="margin: 0px 2px">
+                                                                        @if ($item->type == '0')
+                                                                            {{ round(($totalE * 100)/ $totalAns_ ) }}%
+                                                                        @else
+                                                                            {{ (round(($static_data_5*100)/$totalAns_multi)) }}%
+                                                                        @endif
+                                                                    </p>
+                                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalE   .")" }}</p>
+                                                                </span>
+                                                            </label>
                                                         </div>
                                                     @endif
                                                 @endforeach
@@ -967,13 +1229,13 @@
                                                     <tr>
                                                         {{-- Previous Page Link --}}
                                                         @if ($data->onFirstPage())
-                                                            <td> 
+                                                            <td>
                                                                 <button class='btn' style='background:none;border:none'>
                                                                     <i class="fa fa-arrow-circle-left disabled" style="font-size:38px; color:#63BA52"></i>
                                                                 </button>
                                                             </td>
                                                         @else
-                                                                <td> 
+                                                                <td>
                                                                     <button class="btn" style="background: none;border: none;">
                                                                         <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:38px;color:#63BA52"></i></a>
                                                                     </button>
@@ -981,14 +1243,14 @@
                                                         @endif
                                                         {{-- Next Page Link --}}
                                                         @if ($data->hasMorePages())
-                                                                <td> 
+                                                                <td>
                                                                     <button class="btn" style="background: none;border: none;">
                                                                         <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right ml-5" style="font-size:38px;color:#63BA52"></i></a>
                                                                     </button>
-                                                                    
+
                                                                 </td>
                                                         @else
-                                                                <td> 
+                                                                <td>
                                                                     <button class="btn" style="background: none;border: none;">
                                                                         <i class="fa fa-arrow-circle-right disabled ml-5" style="font-size:38px;color:#63BA52"></i>
                                                                     </button>
@@ -1008,7 +1270,7 @@
                                                     @if ( $data->hasMorePages() )
                                                         <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
                                                     @else
-                                                        <input type="hidden" name="page" value="0">    
+                                                        <input type="hidden" name="page" value="0">
                                                     @endif
                                                     @csrf
                                                     <input type="hidden" name="question_id" value="{{ $item->id }}">
@@ -1050,17 +1312,17 @@
                                                             </td>
                                                     <!-- previous page/previous question -->
                                                          @if ($data->hasPages())
-                                                        
-                                                            
+
+
                                                                 {{-- Previous Page Link --}}
                                                                 @if ($data->onFirstPage())
-                                                                    <td> 
+                                                                    <td>
                                                                         <button class="btn" style="background: none;border: none;">
                                                                             <i class="fa fa-arrow-circle-left disabled" style="font-size:38px;color:#63BA52"></i>
                                                                         </button>
                                                                     </td>
                                                                 @else
-                                                                        <td> 
+                                                                        <td>
                                                                             <button class="btn" style="background: none;border: none;">
                                                                                 <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:38px;color:#63BA52"></i></a>
                                                                             </button>
@@ -1069,7 +1331,7 @@
                                                          @endif
                                                                 {{-- Submit button --}}
                                                                 <td> <input type="submit" value="SUBMIT" class="btn btn-primary ml-4 mr-4" style="background: #0161C3;border-radius:3px"> </td>
-                                                    
+
                                                     <!-- next page/next question -->
                                                         @if ($data->hasPages())
                                                                 {{-- Next Page Link --}}
@@ -1077,23 +1339,23 @@
                                                                     @if(Auth::user()->role == 2 && $data->currentPage() == 30)
                                                                         <td>{{ 'LIMITED' }}</td>
                                                                     @else
-                                                                        <td> 
+                                                                        <td>
                                                                             <button class="btn" style="background: none;border: none;">
                                                                                 <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right" style="font-size:38px;color:#63BA52"></i></a>
                                                                             </button>
                                                                         </td>
                                                                     @endif
-                                                                        
+
                                                                 @else
-                                                                        <td> 
+                                                                        <td>
                                                                             <button class="btn" style="background: none;border: none;">
                                                                                 <i class="fa fa-arrow-circle-right disabled" style="font-size:38px;color:#63BA52"></i>
                                                                             </button>
                                                                         </td>
-                                                                        
+
                                                                 @endif
-                                                            
-                                                        
+
+
                                                         @endif
                                                         <td>
                                                             <button title="Get Lab Value" type="button" class="btn btn_info" data-toggle="modal" data-target="#exampleModal">
@@ -1104,7 +1366,7 @@
                                                     </table>
                                                 </form>
 
-                                                
+
                                             @endif
 
                                             {{-- Multiple choice question - Prepare by Specialist --}}
@@ -1113,7 +1375,7 @@
                                                     @if ( $data->hasMorePages() )
                                                         <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
                                                     @else
-                                                        <input type="hidden" name="page" value="0">    
+                                                        <input type="hidden" name="page" value="0">
                                                     @endif
                                                     @csrf
                                                     <input type="hidden" name="question_id" value="{{ $item->id }}">
@@ -1154,17 +1416,17 @@
                                                                 </button>
                                                             </td>
                                                     @if ($data->hasPages())
-                                                        
+
                                                                 {{-- Previous Page Link --}}
                                                                 @if ($data->onFirstPage())
-                                                                        <td> 
+                                                                        <td>
                                                                             <button class="btn" style="background: none;border: none;">
                                                                                 <i class="fa fa-arrow-circle-left disabled" style="font-size:38px;color:#63BA52"></i>
                                                                             </button>
                                                                         </td>
                                                                 @else
-                                                                        
-                                                                        <td> 
+
+                                                                        <td>
                                                                             <button class="btn" style="background: none;border: none;">
                                                                                 <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:38px;color:#63BA52"></i></a>
                                                                             </button>
@@ -1179,21 +1441,21 @@
                                                                     @if(Auth::user()->role == 2 && $data->currentPage() == 30)
                                                                         <td>{{ 'LIMITED' }}</td>
                                                                     @else
-                                                                        <td> 
+                                                                        <td>
                                                                             <button class="btn" style="background: none;border: none;">
                                                                                 <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right" style="font-size:38px;color:#63BA52"></i></a>
                                                                             </button>
                                                                         </td>
                                                                     @endif
-                                                                        
+
                                                                 @else
-                                                                        <td> 
+                                                                        <td>
                                                                             <button class="btn" style="background: none;border: none;">
                                                                                 <i class="fa fa-arrow-circle-right disabled" style="font-size:38px;font-color:#63BA52"></i>
                                                                             </button>
                                                                         </td>
                                                                 @endif
-                                                        
+
                                                     @endif
                                                         <td>
                                                             <button title="Get Lab Value" type="button" class="btn btn_info" data-toggle="modal" data-target="#exampleModal">
@@ -1202,12 +1464,12 @@
                                                         </td>
                                                       </tr>
                                                     </table>
-                                                    
+
                                                 </form>
                                             @endif
                                             {{-- end --}}
                                         @endif
-                                        
+
                                     @else
                                         {{-- Single Choice question - Recall Exam--}}
                                         @if ($item->type == '0')
@@ -1215,7 +1477,7 @@
                                                 @if ( $data->hasMorePages() )
                                                     <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
                                                 @else
-                                                    <input type="hidden" name="page" value="0">    
+                                                    <input type="hidden" name="page" value="0">
                                                 @endif
                                                 @csrf
                                                 <input type="hidden" name="question_id" value="{{ $item->id }}">
@@ -1256,16 +1518,16 @@
                                                             </button>
                                                         </td>
                                                 @if ($data->hasPages())
-                                                    
+
                                                             {{-- Previous Page Link --}}
                                                             @if ($data->onFirstPage())
-                                                                <td> 
+                                                                <td>
                                                                     <button class="btn" style="background: none;border: none;">
                                                                         <i class="fa fa-arrow-circle-left disabled" style="font-size:38px;color:#63BA52"></i>
                                                                     </button>
                                                                 </td>
                                                             @else
-                                                                <td> 
+                                                                <td>
                                                                     <button class="btn" style="background: none;border: none;">
                                                                         <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:38px;color:#63BA52"></i></a>
                                                                     </button>
@@ -1280,20 +1542,20 @@
                                                                 @if(Auth::user()->role == 2 && $data->currentPage() == 30)
                                                                     <td>{{ 'LIMITED' }}</td>
                                                                     @else
-                                                                    <td> 
+                                                                    <td>
                                                                         <button class="btn" style="background: none;border: none;">
                                                                             <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right" style="font-size:38px;color:#63BA52"></i></a>
                                                                         </button>
                                                                     </td>
                                                                 @endif
                                                             @else
-                                                                <td> 
+                                                                <td>
                                                                     <button class="btn" style="background: none;border: none;">
                                                                         <i class="fa fa-arrow-circle-right disabled" style="font-size:38px;color:#63BA52"></i>
                                                                     </button>
                                                                 </td>
                                                             @endif
-                                                        
+
                                                 @endif
                                                         <td>
                                                             <button title="Get Lab Value" type="button" class="btn btn_info" data-toggle="modal" data-target="#exampleModal">
@@ -1302,7 +1564,7 @@
                                                         </td>
                                                       </tr>
                                                     </table>
-                                                
+
                                             </form>
                                         @endif
                                         {{-- Multiple choice question - recall exam--}}
@@ -1311,7 +1573,7 @@
                                                 @if ( $data->hasMorePages() )
                                                     <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
                                                 @else
-                                                    <input type="hidden" name="page" value="0">    
+                                                    <input type="hidden" name="page" value="0">
                                                 @endif
                                                 @csrf
                                                 <input type="hidden" name="question_id" value="{{ $item->id }}">
@@ -1348,13 +1610,13 @@
                                                         <tr>
                                                             {{-- Previous Page Link --}}
                                                             @if ($data->onFirstPage())
-                                                                <td> 
+                                                                <td>
                                                                     <button class="btn" style="background: none;border: none;">
                                                                         <i class="fa fa-arrow-circle-left disabled" style="font-size:38px;color:#63BA52"></i>
                                                                     </button>
                                                                 </td>
                                                             @else
-                                                                <td> 
+                                                                <td>
                                                                     <button class="btn" style="background: none;border: none;">
                                                                         <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-arrow-circle-left" style="font-size:38px;color:#63BA52"></i></a>
                                                                     </button>
@@ -1369,15 +1631,15 @@
                                                                 @if(Auth::user()->role == 2 && $data->currentPage() == 30)
                                                                     <td>{{ 'LIMITED' }}</td>
                                                                     @else
-                                                                    <td> 
+                                                                    <td>
                                                                         <button class="btn" style="background: none;border: none;">
                                                                             <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-arrow-circle-right" style="font-size:38px;color:#63BA52"></i></a>
                                                                         </button>
                                                                     </td>
                                                                 @endif
-                                                                    
+
                                                             @else
-                                                                <td> 
+                                                                <td>
                                                                     <button class="btn" style="background: none;border: none;">
                                                                         <i class="fa fa-arrow-circle-right disabled" style="font-size:38px;color:#63BA52"></i>
                                                                     </button>
@@ -1401,7 +1663,7 @@
                                 No hints defined !!
                             @endif
                         </div>
-                        
+
                         {{-- Lab Value Modal --}}
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg" role="document">
@@ -1430,8 +1692,8 @@
                                 </div>
                             </div>
                         </div> {{-- Lab Value Modal end here--}}
-                        
-                        
+
+
                         {{-- EXPLANATION AND FEEDBACK SECTION START--}}
                         <div class='col-12'>
                             @if (!empty($item->question_revision))
@@ -1446,7 +1708,31 @@
                                 @endif
                             @endif
                        </div>
-                       
+
+                        <div class='col-12'>
+                            @if (!empty($item->question_revision) && !empty($files))
+                                @if ( $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->count() == "1" )
+                                    <div class="card" style="background-color: #F4F1EC !important; border:none">
+                                        <div class="card-body">
+                                            <p class="text-uppercase" style="margin-left: -15px;font-weight:bold;font-size:16px">EXPLANATION FILES</p>
+                                            @foreach($files as $file)
+                                                @if(in_array($file->type, array('pdf', 'jpeg', 'jpg', 'png')))
+                                                    <div><a href="{{route('view_file', $file->id)}}" target="_blank">{{$file->name}}</a></div>
+                                                @elseif($file->type === 'mp4')
+                                                    {{--<video width="320" height="240" controls>
+                                                        <source src="{{URL::asset("/storage/app/public/questions/".$item->id.'/'.$file->name)}}" type="video/mp4">
+                                                        Your browser does not support the video tag.
+                                                    </video>--}}
+
+                                                    {!! $file->path !!}
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+                            @endif
+                        </div>
+
                        <div class='col-12'>
                            {{-- @if ($value->comment) --}}
                             @if (!empty($item->question_revision))
@@ -1469,7 +1755,7 @@
                                                             <p style="text-align:end;">{{ $value->created_at }}</p>
                                                         </div>
                                                     @endforeach
-            
+
                                                 </div>
                                             </div>
                                         </div>
@@ -1486,9 +1772,9 @@
                                 @endif
                             @endif
                        </div>  {{-- EXPLANATION AND FEEDBACK SECTION END--}}
-                    
+
                 </div>{{-- Right part end here --}}
-                
+
 
                 {{-- Left part of the exam --}}
                 <div class="col-md-3" id="mobile">
@@ -1497,11 +1783,11 @@
                         <div class="center row pagination_list">
                             <div class="col-md-12 block_">
                                     @for ($i = 1; $i <= $total_question; $i++)
-                                    
+
                                         @if (isset($_GET['page']))
                                             @if ($i == $_GET['page'])
                                                 @if (!empty($mark[$i-1]->question_revision))
-    
+
                                                     @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                         @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
                                                             <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
@@ -1511,8 +1797,8 @@
                                                     @else
                                                         <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                                     @endif
-    
-    
+
+
                                                 @else
                                                     <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
                                                 @endif
@@ -1562,7 +1848,7 @@
                                                 @endif
                                             @endif
                                         @endif
-    
+
                                     @endfor
                             </div>
                         </div>
@@ -1598,11 +1884,11 @@
                                                                         @endphp
 
                                                                         {{ round(($totalA * 100)/ $totalAns_ ) }}%
-                                                                        
 
-                                                                        
+
+
                                                                     @else
-                                                                        @php                                                                            
+                                                                        @php
 
                                                                             //find total ans for each option
                                                                             $static_data_1 = 0;
@@ -1700,7 +1986,7 @@
                                                                         {{ round(($totalC * 100)/ $totalAns_ ) }}%
                                                                     @else
                                                                         @php
-                                                                            
+
                                                                             $static_data_3 = 0;
                                                                             $static_3 = 0;
                                                                             foreach ($totalData_ as $key => $value) {
@@ -1748,7 +2034,7 @@
                                                                         {{ round(($totalD * 100)/ $totalAns_ ) }}%
                                                                     @else
                                                                         @php
-                                                                            
+
                                                                             $static_data_4 = 0;
                                                                             $static_4 = 0;
                                                                             foreach ($totalData_ as $key => $value) {
@@ -1796,7 +2082,7 @@
                                                                         {{ round(($totalE * 100)/ $totalAns_ ) }}%
                                                                     @else
                                                                         @php
-                                                                            
+
                                                                             $static_data_5 = 0;
                                                                             $static_5 = 0;
                                                                             foreach ($totalData_ as $key => $value) {
@@ -1829,18 +2115,18 @@
                                         </tbody>
                                     </div>
                                 </table>
-                                
+
                             </div>
                         @endif
                     @endif
-                </div> 
-            
+                </div>
+
         </div> <!-- .row end here -->
 
 
     @endforeach
     </div>
-    
+
 <br>
 @endsection
 
@@ -1878,7 +2164,7 @@
                 document.getElementById("mobile").style.display = "block";
             }
         }
-        
+
         if(screen.width > 767){
             document.getElementById("mobile").style.display = "none";
             document.getElementById("pc").style.display = "block";
