@@ -333,3 +333,6 @@ Route::group(['middleware' => ['auth','role','verified'] ], function () {
 // end backend or admin pannel path
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/reset-password', function (){
+    return view('auth.passwords.reset');
+ });

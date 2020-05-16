@@ -103,65 +103,70 @@
                 <h4 class='text-center'>You Are Admin</h4>
                 @else
                     <div class="row" >
+
                         <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
                             <div class="card">
-                                  <div class="icon">
-                                    <img src="{{ asset('frontend/images/plans/1.png') }}" alt="">
-                                    <form action="{{ route('subscription_non_payalble') }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="plan" value="trail">
-                                        <button onclick="return confirm('Are you sure?')" type="submit" class="subscribe_button_one btn btn-success btn-sm subscribe_button">BUY NOW</button>
-                                    </form>
-                                  </div>
+                                <div class="price-header">
+                                    <h3>Standard </h3>
+                                </div>
+                                <div class="price-content">
+                                    <ul>
+                                        <li>3 Months Access</li>
+                                        <li>2000 Q-Bank</li>
+                                        <li>30 Different Specialties</li>
+                                        <li>Unlimited Random Mocks</li>
+                                        <li>Unlimited Manual Mocks</li>
+                                        <li>Recall Exams 2020-2017</li>
+                                    </ul>
+                                    <div class="price-value">
+                                        <strong><sup>£</sup>14.99</strong>
+                                    </div>
+                                    <a href="{{ route('checkOutForm.stripe', ['Plab One', '6']) }}" class="botton-border">BUY NOW</a>
+                                </div>
                             </div>
                         </div> <!-- .single_plan end here -->
 
                         <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
                             <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/2.png') }}" alt="">
-                                <form action="{{ route('subscription_non_payalble') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="plan" value="refugees_doctors">
-                                    <button onclick="return confirm('Are you sure?')" type="submit" class="subscribe_button_two btn btn-success btn-sm subscribe_button">BUY NOW</button>
-                                </form>
-                              </div>
+                                <div class="price-header">
+                                    <h3>Advance</h3>
+                                </div>
+                                <div class="price-content">
+                                    <ul>
+                                        <li>6 Months Access</li>
+                                        <li>4000 Q-Bank</li>
+                                        <li>30 Different Specialties</li>
+                                        <li>Unlimited Mocks</li>
+                                        <li>Recall Exam 2020-2018</li>
+                                        <li>Access to Notes Bank</li>
+                                    </ul>
+                                    <div class="price-value">
+                                        <strong><sup>£</sup>24.99</strong>
+                                    </div>
+                                    <a href="{{ route('checkOutForm.stripe', ['Plab One', '7']) }}" class="botton-border">BUY NOW</a>
+                                </div>
                             </div>
                         </div> <!-- .single_plan end here -->
 
                         <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
                             <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/3.png') }}" alt="">
-                                <p><a href="{{ route('checkOutForm.stripe', ['Plab One', '5']) }}" class="subscribe_button_three btn btn-success btn-sm subscribe_button extra_btn">BUY NOW</a></p>
-                              </div>
-                            </div>
-                        </div> 
-
-                        <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-                            <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/4.png') }}" alt="">
-                                <p><a href="{{ route('checkOutForm.stripe', ['Plab One', '6']) }}" class="subscribe_button_one btn btn-success btn-sm subscribe_button">BUY NOW</a></p>
-                              </div>
-                            </div>
-                        </div> <!-- .single_plan end here -->
-
-                        <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-                            <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/5.png') }}" alt="">
-                                <p><a href="{{ route('checkOutForm.stripe', ['Plab One', '7']) }}" class="subscribe_button_two btn btn-success btn-sm subscribe_button">BUY NOW</a></p>
-                              </div>
-                            </div>
-                        </div> <!-- .single_plan end here -->
-
-                        <div class="col-lg-4 col-md-6 col-sm-12 single_plan">
-                            <div class="card">
-                              <div class="icon">
-                                <img src="{{ url('frontend/images/plans/6.png') }}" alt="">
-                                <p><a href="{{ route('checkOutForm.stripe', ['Plab One', '8']) }}" class="subscribe_button_three btn btn-success btn-sm subscribe_button">BUY NOW</a></p>
-                              </div>
+                                <div class="price-header">
+                                    <h3>Professional</h3>        
+                                </div>
+                                <div class="price-content">
+                                    <ul>
+                                        <li>Advance Plus</li>
+                                        <li>Access to Image Bank</li>
+                                        <li>Access to Video Bank</li>
+                                        <li>Access to Webinar</li>
+                                        <li>Access to Smart Mock</li>
+                                        <li>One to One Session</li>
+                                    </ul>
+                                    <div class="price-value">
+                                        <strong><sup>£</sup>49.99</strong>
+                                    </div>
+                                    <a href="{{ route('checkOutForm.stripe', ['Plab One', '8']) }}" class="botton-border">BUY NOW</a>
+                                </div>
                             </div>
                         </div> <!-- .single_plan end here -->
                     </div>
@@ -377,7 +382,7 @@
             
             @if(count($course_list) > 6)
                  <div class='col-12 text-center'>
-                     <a href='{{ route('allCourses') }}' class='btn btn-success btn-sm' style="text-transform: uppercase; border: none; margin-top: 10px; padding: 10px 20px;">All COURSES</a>
+                     <a href='{{ route('allCourses') }}' class='btn btn-success btn-sm' style="text-transform: uppercase; border: none; margin-top: 50px; padding: 10px 20px;">All COURSES</a>
                   </div>
             @endif
             </div>

@@ -201,7 +201,7 @@
                             <div class="main-menu">
                                 <nav class="main-navigation">
                                     <ul>
-                                        <li class="active"><a href="{{ url('/') }}">Home</a>
+                                        <li class="active"><a href="{{ url('/') }}"><i class="zmdi zmdi-home"></i> Home</a>
                                             <ul class="sub-menu">
                                                 <li><a href="{{ url('about-us') }}">About Us</a></li>
                                                 <li><a href="{{ url('our-team/our-team') }}">Meet the Team</a></li>
@@ -216,7 +216,7 @@
                                                 {{-- <li><a href="{{ url('our-team/feedback') }}">Feedback</a></li> --}}
                                             </ul>
                                         </li>
-                                        <li><a>Q-Bank</a>
+                                        <li><a><i class="zmdi zmdi-collection-item"></i> Q-Bank</a>
                                             <ul class="sub-menu">
                                                 @guest
                                                     <li><a href="/login">Login to Access</a></li>
@@ -247,7 +247,7 @@
                                             </ul>
                                         </li>
 
-                                        <li><a href="{{ url('course') }}">Course</a>
+                                        <li><a href="{{ url('course') }}"><i class="zmdi zmdi-graduation-cap"></i> Course</a>
                                             <ul class="sub-menu">
                                                 <li><a href="{{ url('course/plab-1') }}">PLAB 1</a></li>
                                                 <li><a href="{{ url('course/plab-2') }}">PLAB 2</a></li>
@@ -260,7 +260,7 @@
                                                 @endif
                                             </ul>
                                         </li>
-                                        <li><a href="{{ url('community') }}">Plab Community</a>
+                                        <li><a href="{{ url('community') }}"><i class="zmdi zmdi-male-female"></i> Plab Community</a>
                                             <ul class="sub-menu">
                                                 @if (Auth::check())
                                                     @if (Auth::user()->role >= '2' && Auth::user()->expeir_date >= date('Y-m-d'))
@@ -276,7 +276,7 @@
                                             </ul>
                                         </li>
                                         @if (Auth::check())
-                                            <li><a href="{{ url('account') }}">Account</a>
+                                            <li><a href="{{ url('account') }}"><i class="zmdi zmdi-accounts"></i> Account</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="{{ url('account/subscription') }}">Subscription</a></li>
                                                     @if (Auth::check())
@@ -312,8 +312,8 @@
     </div>
     <!-- Main Wrapper End -->
 
-     <!-- Footer Area -->
-     <footer class="footer-area">
+<!-- Footer Area -->
+<footer class="footer-area">
 
     <!-- Footer Top Area -->
     <div class="footer-top py-md-5 py-4">
@@ -424,18 +424,18 @@
     </div>
     <!--// Footer Top Area -->
 
-<!-- Footer-bottom Area -->
-<div class="footer-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="copy-right pt--10 pb--10 text-center text-white">
-                    <p style='font-weight:normal'>Copyright &copy; <?php echo date('Y');?> <a href="#">PrepareMedicine</a></p>
+    <!-- Footer-bottom Area -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copy-right pt--10 pb--10 text-center text-white">
+                        <p style='font-weight:normal'>Copyright &copy; <?php echo date('Y');?> <a href="#">PrepareMedicine</a></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div><!--// Footer-botton Area -->
+    </div><!--// Footer-botton Area -->
 
 </footer>
 <!--// Footer Area -->
