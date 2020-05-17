@@ -335,8 +335,9 @@ Route::group(['middleware' => ['auth','role','verified'] ], function () {
     Route::post('admin/subscription/requests-approve',"SubscriptionController@subscribers_requests_approve")->name('subscribers_requests_approve');
     Route::get('admin/subscription/requests-reject/{id}',"SubscriptionController@subscribers_requests_reject")->name('subscribers_requests_reject');
     Route::get('admin/subscription/edit-subscriber/{id}',"SubscriptionController@editSubscriber")->name('edit_subscriber');
-    Route::post('admin/subscription/update-subscriber',"SubscriptionController@updateSubscriber")->name('update_subscriber');
+    Route::post('admin/subscription/update-subscriber/{id}',"SubscriptionController@updateSubscriber")->name('update_subscriber');
     Route::get('admin/subscription/subscriber-status/{id}',"SubscriptionController@subscriberStatus")->name('subscriber_status');
+    Route::get('admin/subscription/delete-subscriber/{id}',"SubscriptionController@deleteSubscriber")->name('subscriber_delete');
 
     //blog posts
     Route::resource('admin/ui/blog', 'BlogController');

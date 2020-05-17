@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Session;
 use Stripe;
 use Auth;
@@ -287,10 +288,30 @@ class SubscriptionController extends Controller
     }
 
     public function updateSubscriber(Request $request, $id) {
-        $subscriber = User::find($id);
-        dd($subscriber);
 
-        return view('', compact('subscriber'));
+        $validate = Validator::make($request->all(),[
+            'f_name'=>'required',
+            's_name'=>'required',
+            'email'=>'required|email',
+            'status'=>'required|in:0,1',
+            'extension'=>'required|date',
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'SORRY - Please fill out all fields');
+        }
+
+        $subscriber = User::find($id);
+        $subscriber->f_name = $request->f_name;
+        $subscriber->s_name = $request->s_name;
+        $subscriber->email = $request->email;
+        $subscriber->status = $request->status;
+        $subscriber->expeir_date = date('Y-m-d', strtotime($request->extension));
+        $subscriber->save();
+
+        return redirect()->route('subscriber_list')->with('success','Subscriber Details Updated Successfully!');
     }
 
     public function subscriberStatus($id) {
@@ -306,5 +327,12 @@ class SubscriptionController extends Controller
         }
 
         return redirect()->route('subscriber_list')->with('success', $msg);
+    }
+
+    public function deleteSubscriber($id) {
+        $subscriber = User::find($id);
+        $subscriber->delete();
+
+        return redirect()->route('subscriber_list')->with('success', 'Subscriber has been deleted Successfully!');
     }
 }

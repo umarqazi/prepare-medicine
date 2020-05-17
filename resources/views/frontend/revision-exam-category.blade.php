@@ -282,6 +282,10 @@
             background: #ddd;
         }
 
+        .hide_question_status_board{
+            display: none;
+        }
+
         .questions_status_board,
         .area_first__{
             background: #ddd;
@@ -333,7 +337,7 @@
     <div class="container-fluid">
         <div class='page_banner_img_common'>
             <div class='overlay__'>
-                <p>Revision</p>
+                <p>{{\App\categoty::find($data[0]->cat_id) ? \App\categoty::find($data[0]->cat_id)->name : ''}} Revision</p>
             </div>
         </div>
 
@@ -448,7 +452,7 @@
                                     $totalE = "";  // E point for 4
                                     // ): Commnent Organized by 'Developer Rijan'
                                 @endphp
-                                <div class="center questions_status_board">
+                                <div class="center questions_status_board hide_question_status_board">
                                     <table width="95%" class="cart-tab">
                                         <p class="text-center text-uppercase heading">Question Status</p>
                                         <div class="container horizontal rounded">

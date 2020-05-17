@@ -20,7 +20,6 @@
     @include('msg.msg')
 
     <form action="{{ route('update_subscriber', $subscriber->id) }}" method="post">
-        @method('PUT')
         @csrf
 
         <div class="form-group">
@@ -42,14 +41,14 @@
             <label><b>Status</b></label>
             <select name="status" class="form-control">
                 <option value="">Select Status</option>
-                <option value="1">Enable</option>
-                <option value="0">Disable</option>
+                <option value="1" {{$subscriber->status==1 ? 'selected' : ''}}>Enable</option>
+                <option value="0" {{$subscriber->status==0 ? 'selected' : ''}}>Disable</option>
             </select>
         </div>
 
         <div class="form-group">
             <label><b>License Extension</b></label>
-            <input type="text" name="extension" placeholder="" class="form-control"  value="{{$subscriber->expeir_date}}">
+            <input type="text" name="extension" placeholder="" class="form-control datepicker-here" data-language="en" data-position="top left" value="{{date('m/d/Y', strtotime($subscriber->expeir_date))}}">
         </div>
 
         <br>

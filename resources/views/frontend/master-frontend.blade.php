@@ -495,6 +495,10 @@
     <script src="{{ url('frontend/js/ajax-mail.js') }}"></script>
     <!-- Main JS -->
     <script src="{{ url('frontend/js/main.js') }}"></script>
+
+    {{--CDN LINKS--}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
     {{-- Custom Js --}}
     @yield('js')
 
@@ -520,8 +524,5 @@
                 }
             })
         </script>
-
-
     </body>
-
 </html>

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{ url('backend/css/datatables.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('backend/css/datepicker.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('backend/css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('backend/css/custom.css') }}">
     <!-- Font-icon css-->
@@ -173,6 +174,10 @@
     <script src="{{ url('backend/js/popper.min.js') }}"></script>
     <script src="{{ url('backend/js/bootstrap.min.js') }}"></script>
     <script src="{{ url('backend/js/datatables.min.js') }}"></script>
+    <script src="{{ url('backend/js/datepicker.min.js') }}"></script>
+
+    <!-- Include English language -->
+    <script src="{{ url('backend/js/datepicker.en.js') }}"></script>
     <script src="{{ url('backend/js/main.js') }}"></script>
 
     {{--CDN LINKS--}}

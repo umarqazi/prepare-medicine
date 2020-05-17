@@ -45,7 +45,7 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Description</th>
+{{--                        <th>Description</th>--}}
                         <th>Price</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -55,7 +55,7 @@
                     @foreach ($plans as $plan)
                         <tr>
                             <td >{{ $plan->name }}</td>
-                            <td ><?php echo str_limit($plan->description, 50); ?></td>
+{{--                            <td ><?php echo str_limit($plan->description, 50); ?></td>--}}
                             <td >{{ $plan->price }}</td>
                             <td >{{ $plan->status ? 'Active' : 'Disabled' }}</td>
                             <td>

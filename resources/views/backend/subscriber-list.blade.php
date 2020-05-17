@@ -71,11 +71,12 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>ID</th>
+{{--                        <th>ID</th>--}}
                         <th>Name</th>
                         <th>Email</th>
                         <th>Country</th>
                         <th>Plan</th>
+{{--                        <th>Transaction ID</th>--}}
                         <th>Expire Date</th>
                         <th>Action</th>
                     </tr>
@@ -84,7 +85,7 @@
                     @foreach ($data as $key=>$item)
                         <tr>
                             <th scope="row">{{ ++$key }}</th>
-                            <td>{{ $item->customer_id }}</td>
+{{--                            <td>{{ $item->customer_id }}</td>--}}
                             <td>{{ $item->f_name }} {{ $item->s_name }}</td>
                             <td>{{ $item->email }}</td>
                             <td>{{ \App\country::where('id', $item->country)->pluck('country_name')[0] }}</td>
@@ -105,6 +106,7 @@
                                     {{ 'Wrong' }}
                                 @endif
                             </td>
+{{--                            <td>{{$item->trxID ? $item->trxID : ''}}</td>--}}
                             <td>
                                 {{  date('d F Y', strtotime($item->expeir_date)) }}
                             </td>
@@ -115,6 +117,7 @@
                                 @else
                                     <a href="{{ route('subscriber_status', $item->id) }}" style="background-color: #1c7430; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-check edit"></i></a>
                                 @endif
+                                <a href="{{ route('subscriber_delete', $item->id) }}" style="background-color: red; color: #fff; border: none;" class="btn btn-sm delete-btn"><i class="fa fa-trash edit"></i></a>
                             </td>
                         </tr>
 

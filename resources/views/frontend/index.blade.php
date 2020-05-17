@@ -407,6 +407,8 @@
                         to one of our longer-term programmes</p>
                         <div class="free-introductory-btn">
                             <a href="{{ route('subscription_plans', 'PLAB ONE') }}" class="introductory-btn">FREE TRIAL</a>
+                            <a href="{{ route('subscription_plans', 'PLAB ONE') }}" class="introductory-btn">REFUGEE DOCTORS</a>
+
                         </div>
                     </div>
                 </div>
