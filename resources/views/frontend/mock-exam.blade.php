@@ -35,8 +35,8 @@
         background-color: #fff;
         color: #666;
         top: 10px;
-        height: 30px;
-        width: 30px;
+        height: 32px;
+        width: 32px;
         border: 0;
         border-radius: 0;
         cursor: pointer;
@@ -70,24 +70,33 @@
         content: 'E';
     }
 
-    .form-radio:hover,
-    .form-radio:checked {
-        background-color: #63BA52;
+    .success .form-radio:checked,
+    .success .form-radio{
+        background-color:#63BA52;
+        color:#fff;
+        border-color:transparent;
+    }
+    .form-radio{
+        border:1px solid #2A306C;
+    }
+    .form-radio:hover, .form-radio:checked {
+        background-color: #2A306C;
         color: #fff;
+        border-color: #2A306C;
     }
-    label
-    {
-        font: 15px/1.7 'Open Sans', sans-serif;
-        color: #333;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        cursor: pointer;
-    }
-    .form-radio:hover + label,
-    .form-radio:checked +label{
-        font-weight:bold;
-        color:#2A306C;
-    }
+        label{
+            font: 15px/1.7 'Open Sans', sans-serif;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            cursor: pointer;
+        }
+        .form-radio:hover + label,
+        .form-radio:checked +label,
+        .success .form-radio + label{
+            font-weight:bold;
+            color:#2A306C;
+        }
 </style>
 <style>
     body{
@@ -101,15 +110,17 @@
     }
     .search-box {
         background: #ffffff;
-        width: 35px;
-        height: 35px;
+        width: 25px;
+        height: 25px;
         padding: 0px;
-        border-radius: 50%;
+        border-radius: 100%;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 5px 2px !important;
     }
+
     .comment-wrap{
         width: 100%;
         height: 220px;
@@ -119,7 +130,7 @@
         background: #F4F1EC;
     }
     .success{
-        background: #C2F7CF;
+        background: #d4edda;
     }
     .wrong{
         background: #F9C1C6;
@@ -151,6 +162,7 @@
             padding-bottom: 0px;
             margin-bottom: 10px;
             font-weight:600;
+            font-size:16px;
     }
    .btn_info{
             margin: 0px 10px;
@@ -311,7 +323,7 @@
         /*elasped time*/
         .time_for_destop,
         .time_for_mobile{
-            background: darkblue;
+            background: #2A306C;
             border: 1px solid #fff;
             padding: 10px;
             margin-bottom: 5px;
@@ -351,7 +363,7 @@
                 <p>Mock Exam</p>
             </div>
         </div>
-
+        <div class="questions-wrapper">
         <div class="row">
 
             @foreach ($data as $item)
@@ -374,7 +386,7 @@
                         <div class="area_first__">
                             <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
                             <div class="center col-12 pagination_list">
-                                <div class="row block_ justify-content-between">
+                                <div class="row block_ justify-content-center">
                                     @for ($i = 1; $i <= $total_question; $i++)
                                         @if (isset($_GET['page']))
                                             @if ($i == $_GET['page'])
@@ -414,8 +426,8 @@
 
                 {{-- Right part of the exam --}}
                 <div class="col-lg-9 col-md-8 col-sm-12">
-                    <div class="col-12">
-
+                    
+<div class="card">
                             <div class="top_action d-flex justify-content-start">
                                 @isset($_GET['page'])
                                     <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }}</p>
@@ -731,17 +743,19 @@
                                     @endif
 
                             </div>
+</div>
+
                             <table class='d-flex justify-content-around my-4'>
                                 <tr>
                                     <td>
                                         <a class="btn btn-info mr-5 bg-danger finish-exam" href="{{ url('q-bank/mock/time/finish/'.Auth::user()->id.'/'.$id) }}" style="border-radius: 3px;border: none;padding: 10px 25px">FINISH</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-success bg-success save-and-exit-exam" href="{{ url('/') }}" style="border-radius: 3px;border: none;padding: 10px 25px">SAVE & EXIT</a>
+                                        <a class="btn btn-success" href="{{ url('/') }}" style="border-radius: 3px;border: none;padding: 10px 25px">SAVE & EXIT</a>
                                     </td>
                                 </tr>
                             </table>
-                    </div>
+                    
 
                     {{-- Hints & Lab Value --}}
                     <div class="collapse col-12" id="collapseExample">
@@ -824,6 +838,7 @@
                 </div>
             @endforeach
         </div>
+                                </div>
     </div>
 
 

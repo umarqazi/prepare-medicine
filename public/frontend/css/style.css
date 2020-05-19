@@ -478,7 +478,7 @@ label{
     color: #fff;
 }
 .form-wrapper button[type="submit"],
-.subscribe-form button[type="submit"]{
+.subscribe_form button[type="submit"]{
     display: block;
     width: 100%;
     border-radius: 20px;
@@ -1296,6 +1296,7 @@ label{
     background: #63BA52;
     color: #ffffff;
     border-radius: 0;
+    border-color: transparent;
     font-weight: 600;
     font-size: 14px;
     -webkit-transition: 0.3s;
@@ -1340,6 +1341,7 @@ label{
 .btn:active {
     background: #000000;
     color: #ffffff;
+    border-color: transparent;
 }
 
 
@@ -4312,12 +4314,12 @@ only screen and (max-width: 767px) {
     position: absolute;
 }
 
-.subscribe-form {
+.subscribe_form {
     max-width: 350px;
     margin: 0 auto;
 }
 
-.subscribe-form button{
+.subscribe_form button{
     display: block;
     width: 100%;
 }
@@ -6077,7 +6079,17 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     font-weight: bold;
 }
 
-
+.questions-wrapper {
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.questions-wrapper .card{
+    padding: 20px;
+}
+.questions-wrapper .card .success{
+    pointer-events: none;
+}
 
 /*Custom Slider CSS*/
 
@@ -6215,4 +6227,5 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .asked-question{
     font-weight: 600;
+    font-size: 16px;
 }

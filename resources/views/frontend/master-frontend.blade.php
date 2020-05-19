@@ -17,8 +17,16 @@
 
     <!-- Fonts CSS -->
     <link rel="stylesheet" href="{{ url('frontend/css/material-design-iconic-font.min.css') }}">
+    
+    <!-- Fontawsome CSS -->
+    <link rel="stylesheet" href="{{ url('frontend/css/font-awesome.min.css') }}">
+
+    <!-- New pages Style CSS -->
+    <link rel="stylesheet" href="{{ url('frontend/css/style-new.css') }}">
+    
     <!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/all.min.css') }}">
+    
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{ url('frontend/css/plugins.css') }}">
 
@@ -241,9 +249,25 @@
                                                     <li><a href="{{ url('q-bank/revision-category') }}">Prepare By Speciality</a></li>
                                                     <li><a href="{{ url('q-bank/recall-exam') }}">Recall Exam</a></li>
                                                     <li><a href="{{ url('q-bank/mock-exam/random-mock') }}">Random Mock</a></li>
-                                                    <li><a  href="{{ url('q-bank/mock-exam/manual-mock') }}">Manual Mock</a></li>
+                                                    <li><a href="{{ url('q-bank/mock-exam/manual-mock') }}">Manual Mock</a></li>
                                                     <li><a href="{{ url('q-bank/flagged-questions') }}">Flagged Questions</a></li>
                                                 @endif
+                                                @endif
+                                            </ul>
+                                        </li>
+
+                                        <li><a><i class="zmdi zmdi-collection-item"></i> I-Bank</a>
+                                            <ul class="sub-menu">
+                                                @guest
+                                                    <li><a href="/login">Login to Access</a></li>
+                                                @endguest
+                                                @if (Auth::check())
+                                                    @if (Auth::user()->role >= '2' && Auth::user()->expeir_date >= date('Y-m-d'))
+                                                        <li><a href="{{ url('i-bank/notes-bank') }}">Notes Bank</a></li>
+                                                        <li><a href="{{ url('i-bank/image-bank') }}">Image Bank</a></li>
+                                                        <li><a href="{{ url('i-bank/video-bank') }}">Video Bank</a></li>
+                                                        <li><a href="{{ url('i-bank/smart-mock') }}">Smart Mock</a></li>                                                
+                                                    @endif
                                                 @endif
                                             </ul>
                                         </li>
@@ -253,6 +277,7 @@
                                                 <li><a href="{{ url('course/plab-1') }}">PLAB 1</a></li>
                                                 <li><a href="{{ url('course/plab-2') }}">PLAB 2</a></li>
                                                 <li><a href="{{ url('course-material/webinars') }}">Webinars</a></li>
+                                                
                                                 @if (Auth::check())
                                                     @if (Auth::user()->role >= '2' && Auth::user()->expeir_date >= date('Y-m-d'))
                                                         <li><a href="{{ url('course-material/videos-lectures') }}">Videos Lectures</a></li>
@@ -314,7 +339,7 @@
     <!-- Main Wrapper End -->
 
 <!-- Footer Area -->
-<footer class="footer-area">
+<footer>
 
     <!-- Footer Top Area -->
     <div class="footer-top py-md-5 py-4">
@@ -399,7 +424,7 @@
 
                 <div class="col-md-4 col-sm-6">
                     <div class="footer-block text-center">
-                        <div class="subscribe-form mb-4">
+                        <div class="subscribe_form mb-4">
                             <form action="">
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Email">

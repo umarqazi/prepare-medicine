@@ -151,7 +151,7 @@
         </div>
         
         <h4 class="page-heading"><b>Course: </b>{{  $pageTitle }}</h4>
-        <h5 class="page-sub-heading">OUR PLANS</h5>
+        
         <div class="row">
         	<div class="col-md-3"></div>
         	<div class="col-md-6">
