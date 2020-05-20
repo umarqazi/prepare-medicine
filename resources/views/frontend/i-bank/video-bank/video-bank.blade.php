@@ -26,49 +26,49 @@
          <div class="row my-4 my-md-5" style="padding-left: 45px; padding-right: 45px">
             
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                    <a href="#" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
+                    <a href="{{ url('i-bank/video-bank-gallery') }}" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
                         <img src="" alt="" style="width:35%;float:left;height:55px;">
                         <span style="margin-top:17px">Image Category 1</span>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                    <a href="#" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
+                    <a href="{{ url('i-bank/video-bank-gallery') }}#" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
                         <img src="" alt="" style="width:35%;float:left;height:55px;">
                         <span style="margin-top:17px">Image Category 2</span>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                    <a href="#" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
+                    <a href="{{ url('i-bank/video-bank-gallery') }}" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
                         <img src="" alt="" style="width:35%;float:left;height:55px;">
                         <span style="margin-top:17px">Image Category 1</span>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                    <a href="#" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
+                    <a href="{{ url('i-bank/video-bank-gallery') }}" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
                         <img src="" alt="" style="width:35%;float:left;height:55px;">
                         <span style="margin-top:17px">Image Category 2</span>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                    <a href="#" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
+                    <a href="{{ url('i-bank/video-bank-gallery') }}" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
                         <img src="" alt="" style="width:35%;float:left;height:55px;">
                         <span style="margin-top:17px">Image Category 1</span>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                    <a href="#" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
+                    <a href="{{ url('i-bank/video-bank-gallery') }}" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
                         <img src="" alt="" style="width:35%;float:left;height:55px;">
                         <span style="margin-top:17px">Image Category 2</span>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                    <a href="#" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
+                    <a href="{{ url('i-bank/video-bank-gallery') }}" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
                         <img src="" alt="" style="width:35%;float:left;height:55px;">
                         <span style="margin-top:17px">Image Category 1</span>
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
-                    <a href="#" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
+                    <a href="{{ url('i-bank/video-bank-gallery') }}" class="btn btn-spinner col-12 p-0" style="padding:0;border-radius:10px;overflow:hidden">
                         <img src="" alt="" style="width:35%;float:left;height:55px;">
                         <span style="margin-top:17px">Image Category 2</span>
                     </a>

@@ -15,63 +15,100 @@
                             <!--Single Gallery Image Start-->
                             <div class="col-md-4 col-sm-6">
                                 <div class="single-gallery-img mb-30">
-                                    <a href="{{asset('frontend/images/gallery/gallery1.jpg')}}" data-fancybox="images"><img src="{{asset('frontend/images/gallery/gallery1.jpg')}}" alt=""></a>
+                                <img src="{{asset('frontend/images/gallery/gallery1.jpg')}}" alt="">
+                                    <div class="gallery-overlay">
+                                        <a class="view-only" href="{{asset('frontend/images/gallery/gallery1.jpg')}}" data-fancybox="images"><i class="zmdi zmdi-eye"></i></a>
+                                        <a href="{{ url('i-bank/image-bank-gallery-detail') }}" >View Details</a>
+                                    </div>
+                                
                                 </div>
                             </div>
                             <!--Single Gallery Image End-->
                             <!--Single Gallery Image Start-->
                             <div class="col-md-4 col-sm-6">
                                 <div class="single-gallery-img mb-30">
-                                    <a href="{{asset('frontend/images/gallery/gallery2.jpg')}}" data-fancybox="images"><img src="{{asset('frontend/images/gallery/gallery2.jpg')}}" alt=""></a>
+                                    <img src="{{asset('frontend/images/gallery/gallery2.jpg')}}" alt="">
+                                    <div class="gallery-overlay">
+                                        <a class="view-only" href="{{asset('frontend/images/gallery/gallery2.jpg')}}" data-fancybox="images"><i class="zmdi zmdi-eye"></i></a>
+                                        <a href="{{ url('i-bank/image-bank-gallery-detail') }}" >View Details</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--Single Gallery Image End-->
                             <!--Single Gallery Image Start-->
                             <div class="col-md-4 col-sm-6">
                                 <div class="single-gallery-img mb-30">
-                                    <a href="{{asset('frontend/images/gallery/gallery3.jpg')}}" data-fancybox="images"><img src="{{asset('frontend/images/gallery/gallery3.jpg')}}" alt=""></a>
+                                    <img src="{{asset('frontend/images/gallery/gallery3.jpg')}}" alt="">
+                                    <div class="gallery-overlay">
+                                        <a class="view-only" href="{{asset('frontend/images/gallery/gallery3.jpg')}}" data-fancybox="images"><i class="zmdi zmdi-eye"></i></a>
+                                        <a href="{{ url('i-bank/image-bank-gallery-detail') }}" >View Details</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--Single Gallery Image End-->
                             <!--Single Gallery Image Start-->
                             <div class="col-md-4 col-sm-6">
                                 <div class="single-gallery-img mb-30">
-                                    <a href="{{asset('frontend/images/gallery/gallery4.jpg')}}" data-fancybox="images"><img src="{{asset('frontend/images/gallery/gallery4.jpg')}}" alt=""></a>
+                                    <img src="{{asset('frontend/images/gallery/gallery4.jpg')}}" alt="">
+                                    <div class="gallery-overlay">
+                                        <a class="view-only" href="{{asset('frontend/images/gallery/gallery4.jpg')}}" data-fancybox="images"><i class="zmdi zmdi-eye"></i></a>
+                                        <a href="{{ url('i-bank/image-bank-gallery-detail') }}" >View Details</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--Single Gallery Image End-->
                             <!--Single Gallery Image Start-->
                             <div class="col-md-4 col-sm-6">
                                 <div class="single-gallery-img mb-30">
-                                    <a href="{{asset('frontend/images/gallery/gallery5.jpg')}}" data-fancybox="images"><img src="{{asset('frontend/images/gallery/gallery5.jpg')}}" alt=""></a>
+                                    <img src="{{asset('frontend/images/gallery/gallery5.jpg')}}" alt="">
+                                    <div class="gallery-overlay">
+                                        <a class="view-only" href="{{asset('frontend/images/gallery/gallery5.jpg')}}" data-fancybox="images"><i class="zmdi zmdi-eye"></i></a>
+                                        <a href="{{ url('i-bank/image-bank-gallery-detail') }}" >View Details</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--Single Gallery Image End-->
                             <!--Single Gallery Image Start-->
                             <div class="col-md-4 col-sm-6">
                                 <div class="single-gallery-img mb-30">
-                                    <a href="{{asset('frontend/images/gallery/gallery6.jpg')}}" data-fancybox="images"><img src="{{asset('frontend/images/gallery/gallery6.jpg')}}" alt=""></a>
+                                   <img src="{{asset('frontend/images/gallery/gallery6.jpg')}}" alt="">
+                                   <div class="gallery-overlay">
+                                        <a class="view-only" href="{{asset('frontend/images/gallery/gallery6.jpg')}}" data-fancybox="images"><i class="zmdi zmdi-eye"></i></a>
+                                        <a href="{{ url('i-bank/image-bank-gallery-detail') }}" >View Details</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--Single Gallery Image End-->
                             <!--Single Gallery Image Start-->
                             <div class="col-md-4 col-sm-6">
                                 <div class="single-gallery-img mb-30">
-                                    <a href="{{asset('frontend/images/gallery/gallery7.jpg')}}" data-fancybox="images"><img src="{{asset('frontend/images/gallery/gallery7.jpg')}}" alt=""></a>
+                                    <img src="{{asset('frontend/images/gallery/gallery7.jpg')}}" alt="">
+                                    <div class="gallery-overlay">
+                                        <a class="view-only" href="{{asset('frontend/images/gallery/gallery7.jpg')}}" data-fancybox="images"><i class="zmdi zmdi-eye"></i></a>
+                                        <a href="{{ url('i-bank/image-bank-gallery-detail') }}" >View Details</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--Single Gallery Image End-->
                             <!--Single Gallery Image Start-->
                             <div class="col-md-4 col-sm-6">
                                 <div class="single-gallery-img mb-30">
-                                    <a href="{{asset('frontend/images/gallery/gallery8.jpg')}}" data-fancybox="images"><img src="{{asset('frontend/images/gallery/gallery8.jpg')}}" alt=""></a>
+                                    <img src="{{asset('frontend/images/gallery/gallery8.jpg')}}" alt="">
+                                    <div class="gallery-overlay">
+                                        <a class="view-only" href="{{asset('frontend/images/gallery/gallery8.jpg')}}" data-fancybox="images"><i class="zmdi zmdi-eye"></i></a>
+                                        <a href="{{ url('i-bank/image-bank-gallery-detail') }}" >View Details</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--Single Gallery Image End-->
                             <!--Single Gallery Image Start-->
                             <div class="col-md-4 col-sm-6">
                                 <div class="single-gallery-img mb-30">
-                                    <a href="{{asset('frontend/images/gallery/gallery9.jpg')}}" data-fancybox="images"><img src="{{asset('frontend/images/gallery/gallery9.jpg')}}" alt=""></a>
+                                    <img src="{{asset('frontend/images/gallery/gallery9.jpg')}}" alt="">
+                                    <div class="gallery-overlay">
+                                        <a class="view-only" href="{{asset('frontend/images/gallery/gallery9.jpg')}}" data-fancybox="images"><i class="zmdi zmdi-eye"></i></a>
+                                        <a href="{{ url('i-bank/image-bank-gallery-detail') }}" >View Details</a>
+                                    </div>
                                 </div>
                             </div>
                             <!--Single Gallery Image End-->

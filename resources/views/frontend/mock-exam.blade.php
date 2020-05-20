@@ -110,8 +110,8 @@
     }
     .search-box {
         background: #ffffff;
-        width: 25px;
-        height: 25px;
+        width: 28px;
+        height: 28px;
         padding: 0px;
         border-radius: 100%;
         text-align: center;
@@ -249,33 +249,33 @@
 
 
     /*Customize by 'Developer Rijan'*/
-    .answerColor1{
-            background: #dddfdf;
+        .answerColor1{
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor2{
-            background: #dddccc;
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor3{
-            background: #dddddd;
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor4{
-            background: #dddaaa;
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor5{
-            background: #ddd999 !important;
+            background: #f5f4f4 !important;
             border-radius: 5px !important;
             padding: 2px 15px 10px 15px !important;
         }
         .pagination_list{
-            height: 200px;
+            height: auto;
             overflow-y: auto;
         }
         .pagination_list .block_{
@@ -457,7 +457,7 @@
                                                 <input type="hidden" name="input_time" id="input_time" >
                                                 @foreach ($item->mocques_ans as $key=>$value)
                                                     @if ($key == '0')
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
+                                                        <div class="mb-2 pb-2 radius answerColor1">
                                                             <input type="radio" name="answer" value="{{ $key }}" class="form-radio a" id="radio-10"><label for="radio-10" class="inline">
                                                             <p class="inline">{{ $value->ans }}</p>
                                                         </div>
@@ -533,7 +533,7 @@
                                                 <input type="hidden" name="input_time" id="input_time">
                                                 @foreach ($item->mocques_ans as $key=>$value)
                                                     @if ($key == '0')
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
+                                                        <div class="mb-2 pb-2 radius answerColor1">
                                                             <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio a" id="radio-15"><label for="radio-15" class="inline">
                                                             <p class="inline">{{ $value->ans }}</p>
                                                         </div>
@@ -602,7 +602,7 @@
                                             @foreach ($item->mocques_ans as $key=>$value)
                                                 @if ($key == '0')
                                                     @if ($key == $item->user_ans)
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
+                                                        <div class="mb-2 pb-2 radius answerColor1">
                                                             <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio a" id="radio-1"><label for="radio-1" class="inline">
                                                             <p class="inline">{{ $value->ans }}</p>
                                                         </div>
@@ -626,7 +626,7 @@
                                                     @endif
                                                 @elseif($key == '2')
                                                     @if ($key == $item->user_ans)
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
+                                                        <div class="mb-2 pb-2 radius answerColor1">
                                                             <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio c" id="radio-14"><label for="radio-14" class="inline">
                                                             <p class="inline">{{ $value->ans }}</p>
                                                         </div>
@@ -655,7 +655,7 @@
                                                             <p class="inline">{{ $value->ans }}</p>
                                                         </div>
                                                     @else
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
+                                                        <div class="mb-2 pb-2 radius answerColor1">
                                                             <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio e" id="radio-19"><label for="radio-19" class="inline">
                                                             <p class="inline">{{ $value->ans }}</p>
                                                         </div>
@@ -686,7 +686,7 @@
                                         @if ($item->type == '1')
                                             @foreach ($item->mocques_ans as $key=>$value)
                                                 @if ($key == '0')
-                                                    <div class="mb-2 answerColor1 pb-2 radius">
+                                                    <div class="mb-2 pb-2 radius answerColor1">
                                                         <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio a"><label for="muli-ans{{ $key }}" class="inline">
                                                         <p class="inline">{{ $value->ans }}</p>
                                                     </div>

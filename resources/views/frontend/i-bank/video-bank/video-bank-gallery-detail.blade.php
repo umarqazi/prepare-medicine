@@ -18,45 +18,13 @@
                         <h3>Photoshop CC 2017</h3>
                         <img alt="" src="img/details/1.jpg">
                     </div>
-                    <div class="single-item-content">
-                        <div class="single-item-comment-view">
-                            <span><i class="zmdi zmdi-accounts"></i>59</span>
-                            <span><i class="zmdi zmdi-favorite"></i>19</span>
-                        </div>
-                        <div class="single-item-rating">
-                            <i class="zmdi zmdi-star"></i>
-                            <i class="zmdi zmdi-star"></i>
-                            <i class="zmdi zmdi-star"></i>
-                            <i class="zmdi zmdi-star"></i>
-                            <i class="zmdi zmdi-star-half"></i>
-                        </div>
-                    </div>
+                    
                     <div class="course-duration mb-30">
-                        <div class="duration-title">
-                            <div class="text"><span>Lessons</span> <span class="text-right">Estimated Time</span></div>
-                        </div>
-                        <div class="duration-text">
-                            <div class="text"><span>Print design</span> <span class="text-right">15 days</span></div>
-                            <div class="text"><span>web design</span> <span class="text-right">10 days</span></div>
-                            <div class="text"><span>apps design</span> <span class="text-right">16 days</span></div>
-                            <div class="text"><span>web design</span> <span class="text-right">20 days</span></div>
-                            <div class="text"><span>web design</span> <span class="text-right">22 days</span></div>
-                        </div>
+                        <iframe src="https://www.youtube.com/embed/WHSUHyn1fR4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="about-lectures">
                         <h3>Course Description</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  t ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                    </div>
-                    <div class="event-content">
-                        <h3 class="content2">Course Content</h3>
-                        <ul>
-                            <li>Over 40 lectures and 60 hours of content</li>
-                            <li>Live Project End to End Software Testing Training Included</li>
-                            <li>Information packed practical training starting from basics to advanced testing techniques.</li>
-                            <li>Course content designed by considering current software testing technology and the job market.</li>
-                            <li>Best suitable for beginners to advanced level users and who learn faster when demonstrated.</li>
-                            <li>Practical assignments at the end of every session.</li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -75,21 +43,9 @@
                             <li>Price :<span>$150.00</span></li>
                         </ul>
                     </div>
+                    
                     <div class="single-sidebar-widget">
-                        <h4 class="title">Categories</h4>
-                        <ul class="course-categoris">
-                            <li><a href="#">Political Science<span>10</span></a></li>
-                            <li><a href="#">Micro Biology<span>15</span></a></li>
-                            <li><a href="#">Computer Science<span>05</span></a></li>
-                            <li><a href="#">Business Leaders Guide<span>19</span></a></li>
-                            <li><a href="#">Become a Product Manage<span>21</span></a></li>
-                            <li><a href="#">Business Economics<span>14</span></a></li>
-                            <li><a href="#">Language Education<span>13</span></a></li>
-                            <li><a href="#">Social Media Management<span>18</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="single-sidebar-widget">
-                        <h4 class="title">Recent Course</h4>
+                        <h4 class="title">Recent Videos</h4>
                         <div class="recent-content">
                             <div class="recent-content-item">
                                 <a href="#"><img src="img/event/7.jpg" alt=""></a>
@@ -137,17 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="single-sidebar-widget">
-                        <h4 class="title">Search by Tags</h4>
-                        <ul class="tags">
-                            <li><a href="#">Photoshop</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Tutorial</a></li>
-                            <li><a href="#">Courses</a></li>
-                            <li><a href="#">Premium</a></li>
-                            <li><a href="#">Designtuto</a></li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
         </div>

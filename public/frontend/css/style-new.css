@@ -1534,7 +1534,8 @@ mark {
 	margin-bottom: 20px;
 }
 .single-item-image a {
-	display: block;
+    display: block;
+    min-height: 250px;
 }
 .single-item-image {
 	overflow: hidden;
@@ -3185,6 +3186,10 @@ mark {
 	font-size: 18px;
 	background: #2A306C;
 }
+.course-duration iframe{
+	width: 100%;
+	height: 420px;
+}
 .course-duration .text {
 	border-bottom: 1px solid #2A306C;
 	display: block;
@@ -3815,7 +3820,7 @@ h4.small-title {
 }
 .comment-box .single-input {
 	position: relative;
-	margin-top: 50px;
+	margin-top: 20px;
 }
 .sent-btn {
 	display: inline-block;
@@ -3838,13 +3843,13 @@ h4.small-title {
 	background: #fff;
 	color: #303030;
 }
-.single-input > input,
+/* .single-input > input,
 .single-input > textarea {
 	font-size: 14px;
 	color: #636363;
 	line-height: 46px;
 	border-bottom: 1px solid #efefef;
-}
+} */
 .single-input > input:focus,
 .single-input > textarea:focus {
 	border-color: #2A306C;
@@ -4667,14 +4672,15 @@ thead {
 	color: #2A306C;
 	outline: medium none;
 }
-.single-gallery-img a {
+.single-gallery-img > a,
+.single-gallery-img {
 	position: relative;
 	display: block;
 }
 .single-gallery-img img{
     width: 100%;
 }
-.single-gallery-img a::before{
+.single-gallery-img > a::before{
     content: "";
     position: absolute;
     top: 0;
@@ -4686,21 +4692,39 @@ thead {
     visibility: hidden;
     transition: all 0.3s ease-in-out;
 }
-.single-gallery-img:hover a::before{
+.single-gallery-img:hover > a::before{
     opacity: 1;
     visibility: visible;
 }
-.single-gallery-img a .video-overlay{
+.single-gallery-img .gallery-overlay{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 100%;
 	opacity: 0;
-	transition: all 0.3s ease-in-out;
+	background-color: rgba(42, 48, 108,.7);
+    transition: all 0.3s ease-in-out;
 }
-.single-gallery-img a:hover .video-overlay{
+.single-gallery-img:hover .gallery-overlay{
 	opacity: 1;
+}
+.gallery-overlay a {
+    display: block;
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 0 10px;
+    border-radius: 5px;
+    line-height: 40px;
+}
+.gallery-overlay a.view-only{
+	width: 40px;
+	text-align: center;
+	height: 40px;
 }
 /*----------------------------------------*/
 /*  26. Login Register Page CSS

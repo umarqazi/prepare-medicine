@@ -111,8 +111,8 @@
     }
     .search-box {
         background: #ffffff;
-        width: 25px;
-        height: 25px;
+        width: 28px;
+        height: 28px;
         padding: 0px;
         border-radius: 100%;
         text-align: center;
@@ -246,32 +246,32 @@
 
     /*Customize by 'Developer Rijan'*/
     .answerColor1{
-        /*background: #dddfdf;*/
+        background: #f5f4f4;
         padding: 2px 15px 10px 15px !important;
         border-radius: 5px;
     }
     .answerColor2{
-        /*background: #dddccc;*/
+        background: #f5f4f4;
         padding: 2px 15px 10px 15px !important;
         border-radius: 5px;
     }
     .answerColor3{
-        /*background: #dddddd;*/
+        background: #f5f4f4;
         padding: 2px 15px 10px 15px !important;
         border-radius: 5px;
     }
     .answerColor4{
-        /*background: #dddaaa;*/
+        background: #f5f4f4;
         padding: 2px 15px 10px 15px !important;
         border-radius: 5px;
     }
     .answerColor5{
-        /*background: #ddd999 !important;*/
+        background: #f5f4f4 !important;
         border-radius: 5px !important;
         padding: 2px 15px 10px 15px !important;
     }
     .pagination_list{
-        height: 200px;
+        height: auto;
         overflow-y: auto;
     }
     .pagination_list .block_{
@@ -894,7 +894,7 @@
                                     @foreach ($item->mocques_ans as $key=>$value)
                                         @if ($key == '0')
                                             @if ($key == $item->ans)
-                                                <div class="success mb-2 answerColor1 pb-2 radius">
+                                                <div class="success mb-2 pb-2 radius answerColor1">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio a">
                                                     <p class="inline">{{ $value->ans }}</p>
 
@@ -986,7 +986,7 @@
                                                 @if (empty($item->user_ans))
                                                     @continue
                                                 @endif
-                                                <div class="wrong mb-2 answerColor1 pb-2 radius">
+                                                <div class="wrong mb-2 pb-2 radius answerColor1">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio b">
                                                     <p class="inline">{{ $value->ans }}</p>
 
