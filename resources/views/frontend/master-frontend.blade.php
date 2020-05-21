@@ -30,6 +30,8 @@
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{ url('frontend/css/plugins.css') }}">
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/subscription-design.css') }}">
+
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ url('frontend/css/style.css') }}">
 
@@ -91,9 +93,9 @@
         }
     </style>
 
-    @if(Request::is('/'))
-    <link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/subscription-design.css') }}">
-    @endif
+
+    
+
 
     {{-- Custom Js && Css --}}
     @yield('js-css')
@@ -194,7 +196,7 @@
             <div class="container">
                 <div class="row align-items-center" style="position:relative">
 
-                    <div class="col-lg-3 col-md-5 col-6">
+                    <div class="col-lg-2 col-md-5 col-6">
 
                         <!-- logo-area -->
                         <div class="logo-area">
@@ -203,7 +205,7 @@
 
                     </div>
 
-                    <div class="col-lg-9 col-md-7 col-6">
+                    <div class="col-lg-10 col-md-7 col-6">
 
                         <div class="header-bottom-right">
                             <!-- main-menu -->
@@ -272,18 +274,13 @@
                                             </ul>
                                         </li>
 
-                                        <li><a href="{{ url('course') }}"><i class="zmdi zmdi-graduation-cap"></i> Course</a>
+                                        <li><a href="#"><i class="zmdi zmdi-graduation-cap"></i> K-Bank</a>
                                             <ul class="sub-menu">
+                                                <li><a href="{{ url('course') }}">Courses</a></li>
                                                 <li><a href="{{ url('course/plab-1') }}">PLAB 1</a></li>
                                                 <li><a href="{{ url('course/plab-2') }}">PLAB 2</a></li>
                                                 <li><a href="{{ url('course-material/webinars') }}">Webinars</a></li>
                                                 
-                                                @if (Auth::check())
-                                                    @if (Auth::user()->role >= '2' && Auth::user()->expeir_date >= date('Y-m-d'))
-                                                        <li><a href="{{ url('course-material/videos-lectures') }}">Videos Lectures</a></li>
-                                                        <li><a href="{{ url('blog/all') }}">Revision Notes</a></li>
-                                                    @endif
-                                                @endif
                                             </ul>
                                         </li>
                                         <li><a href="{{ url('community') }}"><i class="zmdi zmdi-male-female"></i> Plab Community</a>
@@ -319,7 +316,10 @@
                             </div><!--// main-menu -->
                         </div>
                     </div>
-                    <div class="mobile-menu d-block d-lg-none"></div>
+                    <div class="col">
+                        <div class="mobile-menu d-block d-lg-none"></div>
+                    </div>
+                    
 
                 </div>
             </div>
@@ -436,11 +436,11 @@
                         </div>
                         <h5>Follow Us</h5>
                         <ul class="footer-social-link">
-                            <li><a href="https://www.facebook.com/PrepareMedicine"><i class="zmdi zmdi-facebook"></i></a></li>
-                            <li><a href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
-                            <li><a href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
-                            <li><a href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
-                            <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
+                            <li><a target="_blank" href="https://www.facebook.com/PrepareMedicine"><i class="zmdi zmdi-facebook"></i></a></li>
+                            <li><a target="_blank" href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
+                            <li><a target="_blank" href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
+                            <li><a target="_blank" href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
+                            <li><a target="_blank" href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
                             <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
                         </ul>
                     </div>

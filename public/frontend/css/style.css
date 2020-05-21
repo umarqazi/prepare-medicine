@@ -1863,16 +1863,22 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 /*--
     03. Mobile Menu Css
 -------------------------*/
-
 .mobile-menu {
-    position: absolute;
-    right: 35px;
-    top: 8px;
+    float: left;
+    width: 100% !important;
+    position: relative !important;
 }
+
 .mobile-menu .mean-bar {
     position: relative;
 }
 
+.mobile-menu .mean-bar .meanmenu-reveal {
+    position: absolute;
+    top: -28px;
+    color: #000;
+    left: 0;
+}
 
 @media only screen and (max-width: 767px) {
     .mobile-menu .mean-bar .meanmenu-reveal {
@@ -1897,7 +1903,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     width: 26px;
     background-color: #63BA52;
     display: block;
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
 .mobile-menu .mean-bar .meanmenu-reveal span.menu-bar::before,
@@ -1948,6 +1954,8 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .mobile-menu .mean-bar .mean-nav {
     background-color: #63BA52;
+    position: relative;
+    top: 20px;
 }
 
 .mobile-menu .mean-bar .mean-nav>ul {
@@ -6148,7 +6156,10 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 }
 /*slider responsive*/
 @media only screen and (max-width: 991px) {
-  .hero-slider #carouselExampleFade .carousel-caption{
+  body{
+      padding-top: 120px;
+  }
+    .hero-slider #carouselExampleFade .carousel-caption{
         bottom: 35px;
     }
   .hero-slider #carouselExampleFade .carousel-caption h1{
@@ -6162,6 +6173,14 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     }
     .logo-area{
         max-width: 200px;
+    }
+    .scroll .header-area,
+    .header-area {
+        box-shadow: 0 0px 10px 2px rgba(0,0,0,.5);
+    }
+    .scroll .logo-area a img,
+    .logo-area a img {
+        max-width: 70%;
     }
 }
 @media only screen and (max-width: 767px) {
