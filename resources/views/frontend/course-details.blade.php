@@ -10,8 +10,9 @@
                 <p>Subscriptions</p>
             </div>
         </div>
-        
-        <h4 class="page-heading"><b>Course: </b>{{  $pageTitle }}</h4>
+        <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 36px;">
+			<strong>Course: </strong>{{  $pageTitle }}
+		</h2>
         
         <div class="row">
         	<div class="col-md-3"></div>
@@ -20,10 +21,97 @@
         	</div>
         	<div class="col-md-3"></div>
         </div>
-        @if(Auth::check() && Auth::user()->role == 4)
-        <h4 class='text-center'>You Are Admin</h4>
+		@if(Auth::check() && Auth::user()->role == 4)
+		<h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 36px;">
+			You Are Admin
+		</h2>
         @else
         <div class="container plans_area">
+			
+			<div class="row" >
+
+				<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
+					<div class="card">
+						<div class="price-header">
+							<h3>Free Trial</h3>
+						</div>
+						<div class="price-content">
+							<ul>
+								<li>24-Hour Access
+								<li>20 Q-Bank</li>
+								<li>30 Different Specialties</li>
+								<li>Mock Exam</li>
+								<li>Progress Review</li>
+								<li>Option to upgrade</li>
+							</ul>
+							<div class="price-value">
+								<strong><sup>£</sup>00.00</strong>
+							</div>
+							<form action="{{ route('subscription_non_payalble') }}" method="POST">
+					    		@csrf
+					    		<input type="hidden" name="plan" value="trail">
+					    		<button onclick="return confirm('Are you sure?')" type="submit" class="botton-border">BUY NOW</button>
+					    	</form>
+							<!-- <div class="price-value">
+								<strong><sup>£</sup>00.00</strong>
+							</div>
+							<a href="{{ route('checkOutForm.stripe', ['Plab One', '6']) }}" class="botton-border">BUY NOW</a> -->
+						</div>
+					</div>
+				</div> <!-- .single_plan end here -->
+
+				<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
+					<div class="card">
+						<div class="price-header">
+							<h3>Refugee Doctors Free</h3>
+						</div>
+						<div class="price-content">
+							<ul>
+								<li>3 Months Access
+								<li>2000 Q-Bank</li>
+								<li>30 Different Specialties</li>
+								<li>Unlimited Random Mocks</li>
+								<li>Unlimited Manual Mocks</li>
+								<li>Progress Review</li>
+							</ul>
+							<div class="price-value">
+								<strong><sup>£</sup>00.00</strong>
+							</div>
+							<form action="{{ route('subscription_non_payalble') }}" method="POST">
+								@csrf
+								<input type="hidden" name="plan" value="refugees_doctors">
+								<button onclick="return confirm('Are you sure?')" type="submit" class="botton-border">BUY NOW</button>
+							</form>
+							<!-- <div class="price-value">
+								<strong><sup>£</sup>00.00</strong>
+							</div>
+							<a href="{{ route('checkOutForm.stripe', ['Plab One', '7']) }}" class="botton-border">BUY NOW</a> -->
+						</div>
+					</div>
+				</div> <!-- .single_plan end here -->
+
+				<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
+					<div class="card">
+						<div class="price-header">
+							<h3>Basic</h3>
+						</div>
+						<div class="price-content">
+							<ul>
+								<li>1 Months Access
+								<li>2000 Q-Bank</li>
+								<li>30 Different Specialties</li>
+								<li>Unlimited Random Mocks</li>
+								<li>Unlimited Manual Mocks</li>
+								<li>Progress Review</li>
+							</ul>
+							<div class="price-value">
+								<strong><sup>£</sup>9.99</strong>
+							</div>
+							<a href="{{ route('checkOutForm.stripe', ['Plab One', '5']) }}" class="botton-border">BUY NOW</a>
+						</div>
+					</div>
+				</div> <!-- .single_plan end here -->
+			</div>
 			<div class="row" >
 
 				<div class="col-lg-4 col-md-6 col-sm-12 single_plan">

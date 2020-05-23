@@ -3137,17 +3137,20 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 }
 
 .popular-courses-contnet .button-block .botton-border,
-.single_plan .card a {
+.single_plan .card a,
+button.botton-border {
     padding: 3px 25px;
     border: 2px solid #63BA52;
     color: #63BA52;
     border-radius: 5px;
     font-size: 13px;
     text-transform: uppercase;
+    background-color: #fff;
 }
 
 .popular-courses-contnet .button-block .botton-border:hover,
-.single_plan .card a:hover {
+.single_plan .card a:hover,
+button.botton-border:hover {
     background: #63BA52;
     color: #ffffff;
 }
