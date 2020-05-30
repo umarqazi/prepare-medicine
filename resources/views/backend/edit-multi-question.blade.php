@@ -20,7 +20,7 @@
             </div>
         @endif
         <div class="panel-heading clearfix">
-            <form action="{{ url('admin/question/edit/multi') }}" enctype="multipart/form-data" method="POST">
+            <form class="custom_form" action="{{ url('admin/question/edit/multi') }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 <input type="hidden" name="id" value="{{ $item->id }}">
                 <div class="form-group">

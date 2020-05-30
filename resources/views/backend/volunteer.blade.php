@@ -3,12 +3,7 @@
 @section('js-css')
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-    <style type="text/css">
-        .btn_custom_style{
-            background-color: #ddd;
-            color: #000
-        }
-    </style>
+
 @endsection
 
 @section('content')
@@ -30,7 +25,7 @@
         <input type="hidden" value="{{ $data->id }}" name="id">
         <textarea name="content" class="form-control my-editor">{!! $data->content !!}</textarea>
         <br>
-        <input type="submit" class="btn btn_custom_style" value="Update Content" style="float:right">
+        <input type="submit" class="btn btn_custom_style btn-primary" value="Update Content" style="float:right">
     </form>
 
 @endsection

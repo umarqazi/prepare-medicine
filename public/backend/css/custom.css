@@ -1,3 +1,9 @@
+.custom_form{
+    margin-bottom: 60px;
+}
+.select2-container {
+    display: inline;
+}
 .form-group.has-error {
     color: red;
 }
@@ -14,3 +20,16 @@
     display: inline-block;
     margin-left: 5px;
 }
+.course_curriculum {
+    line-height: 42px;
+}
+.course_curriculum h3 {
+    display: inline-block;
+}
+.course_curriculum span{
+    display: inline-block;
+    float: right;
+    line-height: 42px;
+    cursor: pointer;
+}
+

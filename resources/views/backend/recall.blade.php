@@ -47,7 +47,7 @@
 
     @if(auth()->user()->can('Create Recall Exam'))
         <div class="panel-heading clearfix btn-left">
-            <button class="btn btn_custom_style" data-toggle="modal" data-target="#AddExam">Add Category</button>
+            <button class="btn btn_custom_style btn-primary" data-toggle="modal" data-target="#AddExam">Add Category</button>
         </div>
     @endif
 

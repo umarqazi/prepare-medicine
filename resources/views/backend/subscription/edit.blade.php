@@ -3,18 +3,13 @@
 @section('js-css')
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-    <style type="text/css">
-        .btn_custom_style{
-            background-color: #ddd;
-            color: #000
-        }
-    </style>
+
 @endsection
 
 @section('content')
     @include('msg.msg')
 
-    <form action="{{ route('subscriptions.update', $plan->id) }}" method="POST">
+    <form class="custom_form" action="{{ route('subscriptions.update', $plan->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -42,7 +37,7 @@
         </div>
 
         <br>
-        <input type="submit" class="btn btn_custom_style" value="UPDATE" style="float:right">
+        <input type="submit" class="btn btn_custom_style btn-primary" value="UPDATE SUBSCRIPTION" style="float:right">
     </form>
 
 @endsection

@@ -19,7 +19,7 @@
     <div class="alert alert-info" role="alert">Edit Role</div>
     @include('msg.msg')
 
-    <form action="{{ route('role.update', $role->id) }}" method="post">
+    <form class="custom_form" action="{{ route('role.update', $role->id) }}" method="post">
         @method('PUT')
         @csrf
         <label><b>Role Name</b></label>
@@ -45,6 +45,6 @@
             </div>
         </div>
         <br>
-        <input type="submit" class="btn btn_custom_style" value="UPDATE" style="float:right">
+        <input type="submit" class="btn btn_custom_style btn-primary" value="UPDATE ROLE" style="float:right">
     </form>
 @endsection

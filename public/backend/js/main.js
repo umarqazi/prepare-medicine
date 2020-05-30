@@ -32,7 +32,10 @@
 $(document).ready(function(){
 
     $('.data_table').DataTable({
-        "paging": false
+        "paging": false,
+        language: {
+            searchPlaceholder: "Search Here..."
+        }
     });
 
     $(".select-all").bind("click", function(){

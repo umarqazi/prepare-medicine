@@ -31,7 +31,7 @@
                         <input type="text" name="email" placeholder="Enter Your Preferred Email (if any)..." class="form-control" value="{{old('email')}}">
                     </div>
                     <br>
-                    <input type="submit" class="btn btn_custom_style" value="CONTACT US" style="float:right">
+                    <input type="submit" class="btn btn_custom_style btn-primary" value="CONTACT US" style="float:right">
                 </form>
             </div>
         </div>

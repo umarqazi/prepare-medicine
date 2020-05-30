@@ -38,7 +38,7 @@
 
     @if(auth()->user()->can('Create Community Whatsapp'))
         <div class="panel-heading clearfix btn-left">
-            <button class="btn btn_custom_style" data-toggle="modal" data-target="#AddCat">Add Whatsapp Group</button>
+            <button class="btn btn_custom_style btn-primary" data-toggle="modal" data-target="#AddCat">Add Whatsapp Group</button>
         </div>
     @endif
 

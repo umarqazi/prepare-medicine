@@ -26,7 +26,7 @@
                         <textarea name="description" class="form-control my-editor" rows="5" placeholder="Please Explain your Request...">{{old('description')}}</textarea>
                     </div>
                     <br>
-                    <input type="submit" class="btn btn_custom_style" value="CREATE TICKET" style="float:right">
+                    <input type="submit" class="btn btn_custom_style btn-primary" value="CREATE TICKET" style="float:right">
                 </form>
             </div>
         </div>

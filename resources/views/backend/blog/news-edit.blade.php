@@ -20,7 +20,7 @@
     <div class="alert alert-info" role="alert">Edit News Post</div>
     @include('msg.msg')
 
-    <form action="{{ route('news.update', $data->id) }}" method="post" enctype="multipart/form-data">
+    <form class="custom_form" action="{{ route('news.update', $data->id) }}" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
         <label><b>News Title</b></label>
@@ -37,7 +37,7 @@
             <label><b>Add Files</b></label>
             <input type="file" name="reference_files[]" multiple>
         </div>
-        <input type="submit" class="btn btn_custom_style" value="UPDATE" style="float:right">
+        <input type="submit" class="btn btn_custom_style btn-primary" value="UPDATE NEWS POST" style="float:right">
     </form>
 
     <div class="row">

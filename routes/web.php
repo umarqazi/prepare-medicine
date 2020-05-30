@@ -349,6 +349,9 @@ Route::group(['middleware' => ['auth','role','verified'] ], function () {
     Route::resource('admin/ui/contact', 'ContactController');
     Route::get('admin/ui/contact-status/{id}', 'ContactController@updateStatus')->name('contact-status');
     Route::resource('admin/ui/course-list', 'CourseController');
+    Route::resource('admin/ui/events', 'EventController');
+    Route::resource('admin/ui/plab-courses', 'PlabCourseController');
+    Route::resource('admin/ui/webinars', 'WebinarController');
 
     //blog news
     Route::resource('admin/ui/news', 'NewsController');

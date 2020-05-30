@@ -19,7 +19,7 @@
     <div class="alert alert-info" role="alert">Edit User</div>
     @include('msg.msg')
 
-    <form action="{{ route('team-members.update', $team_member->id) }}" method="post" enctype="multipart/form-data">
+    <form class="custom_form" action="{{ route('team-members.update', $team_member->id) }}" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
 
@@ -44,7 +44,7 @@
         </div>
 
         <br>
-        <input type="submit" class="btn btn_custom_style" value="UPDATE" style="float:right">
+        <input type="submit" class="btn btn_custom_style btn-primary" value="UPDATE TEAM MEMBER" style="float:right">
     </form>
 @endsection
 

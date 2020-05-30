@@ -57,11 +57,16 @@
                             <td >{{ $ticket->status ? 'Resolved' : 'Pending' }}</td>
                             <td >{{ date('Y-m-d', strtotime($ticket->created_at)) }}</td>
                             <td>
-                                <a href="{{ route('view-ticket', $ticket->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-eye edit"></i></a>
-                                @if($ticket->status)
-                                    <a href="{{ route('ticket-status', $ticket->id) }}" style="background-color: red; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-remove edit"></i></a>
-                                @else
-                                    <a href="{{ route('ticket-status', $ticket->id) }}" style="background-color: #1c7430; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-check edit"></i></a>
+                                @if(auth()->user()->can('View Ticket'))
+                                    <a href="{{ route('view-ticket', $ticket->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-eye edit"></i></a>
+                                @endif
+
+                                @if(auth()->user()->can('Edit Ticket'))
+                                    @if($ticket->status)
+                                        <a href="{{ route('ticket-status', $ticket->id) }}" style="background-color: red; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-remove edit"></i></a>
+                                    @else
+                                        <a href="{{ route('ticket-status', $ticket->id) }}" style="background-color: #1c7430; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-check edit"></i></a>
+                                    @endif
                                 @endif
 
                                 {{--@if(auth()->user()->can('Delete Ticket'))

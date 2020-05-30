@@ -48,7 +48,6 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
         $validate = Validator::make($request->all(),[
             'title'=>'required',
             'description'=>'required',

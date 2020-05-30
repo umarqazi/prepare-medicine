@@ -24,6 +24,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/all.min.css') }}">
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{ url('frontend/css/plugins.css') }}">
+    <link rel="stylesheet" href="{{ url('frontend/css/select2.min.css') }}">
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ url('frontend/css/style.css') }}">
@@ -31,6 +32,9 @@
     <!-- Modernizer JS -->
     <script src="{{ url('frontend/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <style>
+        .select2-container {
+            display: inline;
+        }
         .dropdown-submenu {
             position: relative;
         }
@@ -289,7 +293,7 @@
                             <label for="country" class="text-md-right">{{ __('Country') }}</label>
 
 
-                                <select id="country" class="form-control @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country">
+                                <select id="country" class="form-control select2-dropdown @error('country') is-invalid @enderror" name="country" value="{{ old('country') }}" required autocomplete="country">
                                     @foreach (App\country::all() as $item)
                                         <option value="{{ $item->id }}">{{ $item->country_name }}</option>
                                     @endforeach
@@ -413,6 +417,9 @@
 <!-- Ajax Mail -->
 <script src="{{ url('frontend/js/ajax-mail.js') }}"></script>
 <!-- Main JS -->
+
+<script src="{{ url('frontend/js/select2.min.js') }}"></script>
+
 <script src="{{ url('frontend/js/main.js') }}"></script>
 {{-- Custom Js --}}
 @yield('js')
@@ -423,6 +430,8 @@
 {{-- Copy Protector --}}
 <script tyle='text/javascript'>
     $(document).ready(function(){
+
+        $('.select2-dropdown').select2();
         function disableselect(e) {
             return false;
         }

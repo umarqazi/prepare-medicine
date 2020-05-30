@@ -665,7 +665,7 @@ class QuestionController extends Controller
                                 'hint' => $value[4],
                                 'search_id' => $value[5] ? $value[5] : substr(categoty::findOrFail($value[1])->name,0,3).(time()*rand(1,999)),
                             ]);
-                            for($i=5,$y=0;$i<=9;$i++,$y++){
+                            for($i=6,$y=0;$i<=10;$i++,$y++){
                                 answer::insert([
                                     'ans' => $value[$i],
                                     'answer' => $y,

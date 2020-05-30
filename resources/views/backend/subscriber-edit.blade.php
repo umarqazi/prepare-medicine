@@ -48,10 +48,10 @@
 
         <div class="form-group">
             <label><b>License Extension</b></label>
-            <input type="text" name="extension" placeholder="" class="form-control datepicker-here" data-language="en" data-position="top left" value="{{date('m/d/Y', strtotime($subscriber->expeir_date))}}">
+            <input type="text" name="extension" placeholder="" class="form-control datetime-picker" value="{{date('m/d/Y', strtotime($subscriber->expeir_date))}}">
         </div>
 
         <br>
-        <input type="submit" class="btn btn_custom_style" value="UPDATE" style="float:right">
+        <input type="submit" class="btn btn_custom_style btn-primary" value="UPDATE" style="float:right">
     </form>
 @endsection

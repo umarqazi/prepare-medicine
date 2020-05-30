@@ -24,14 +24,18 @@ class FrontendAccountController extends Controller
 
     function Progress(){
 
-        $random = mockinformation::select()->where('user_id',Auth::user()->id)->where('type',1)->get();
+        $user_id = Auth::user()->id;
+        $random = mockinformation::select()->where('user_id',$user_id)->where('type',1)->orderBy('position', 'ASC')->get();
         $random_all = mockinformation::select()->where('type',1)->get();
+        $random_others = mockinformation::selectRaw('AVG(right_ans) as \'right\', AVG(wrong_ans) as \'wrong\', position')->where('user_id','!=',$user_id)->where('type',1)->groupBy('position')->get()->toArray();
 
-        $manual = mockinformation::select()->where('user_id',Auth::user()->id)->where('type',2)->get();
+        $manual = mockinformation::select()->where('user_id',Auth::user()->id)->where('type',2)->orderBy('position', 'ASC')->get();
         $manual_all = mockinformation::select()->where('type',2)->get();
+        $manual_others = mockinformation::selectRaw('AVG(right_ans) as \'right\', AVG(wrong_ans) as \'wrong\', position')->where('user_id','!=',$user_id)->where('type',2)->groupBy('position')->get()->toArray();
 
         $recall = revision::select()->where('user_id',Auth::user()->id)->where('type','1')->get();
         $recall_all = revision::select()->where('type','1')->get();
+        $recall_others = mockinformation::selectRaw('AVG(right_ans) as \'right\', AVG(wrong_ans) as \'wrong\', position')->where('user_id','!=',$user_id)->where('type',2)->groupBy('position')->get()->toArray();
 
         //Random Exam Chart
             //user
@@ -156,8 +160,6 @@ class FrontendAccountController extends Controller
                 $other_perform = round(($total_others * 100) / $total);
             }
 
-
-
             $arr = [$cat->name, $my_perform, $other_perform, $total_wrong, $total_correct, $total_];
             $categories_perfonamce[] = $arr;
 
@@ -178,7 +180,8 @@ class FrontendAccountController extends Controller
 
         //return $overall_progress_result;
         return view('frontend.progress',[
-                                            'random'=>$random,'manual'=>$manual,
+                                            'random'=>$random, 'random_others' => $random_others,
+                                            'manual'=>$manual, 'manual_others' => $manual_others,
                                             'recall'=>$recall,'chart_data'=>$chart_data,
                                             'categories_perfonamce'=>$categories_perfonamce,
                                             'over__all'=>$overall_progress_result

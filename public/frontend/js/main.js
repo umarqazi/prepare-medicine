@@ -320,4 +320,9 @@ $(document).ready(function(){
             }
         })
     });
+
+    $('.question_no').bind('click', function (e) {
+        var id = $(this).children('span').attr('id');
+        localStorage.setItem('scrollTo', id);
+    });
 });

@@ -40,7 +40,7 @@
 
     @if(auth()->user()->can('Create Community Facebook'))
         <div class="panel-heading clearfix btn-left">
-            <button class="btn btn_custom_style" data-toggle="modal" data-target="#AddCat">Add Facebook Group</button>
+            <button class="btn btn_custom_style btn-primary" data-toggle="modal" data-target="#AddCat">Add Facebook Group</button>
         </div>
     @endif
 
@@ -86,7 +86,7 @@
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ url('admin/Community/facebook/edit/'.$item->id) }}" method="post" enctype='multipart/form-data'>
+                                    <form class="custom_form"action="{{ url('admin/Community/facebook/edit/'.$item->id) }}" method="post" enctype='multipart/form-data'>
                                         @csrf
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Group Name</label>
@@ -126,7 +126,7 @@
               </button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('admin/Community/facebook/add') }}" method="post" enctype='multipart/form-data'>
+                <form class="custom_form"action="{{ url('admin/Community/facebook/add') }}" method="post" enctype='multipart/form-data'>
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Group Name</label>

@@ -379,29 +379,29 @@
                                         @if (isset($_GET['page']))
                                             @if ($i == $_GET['page'])
                                                 @if (!empty($mark[$i-1]->status))
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 @if (!empty($mark[$i-1]->status))
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @endif
                                         @else
                                             @if ($i == '1')
                                                 @if (!empty($mark[$i-1]->status))
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 @if (!empty($mark[$i-1]->status))
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box ml-1 mb-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box ml-1 mb-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @endif
                                         @endif
@@ -802,15 +802,15 @@
                                         @for ($i = 1; $i <= $total_question; $i++)
                                             @if (isset($_GET['page']))
                                                 @if ($i == $_GET['page'])
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 @if ($i == '1')
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @endif
                                         @endfor
@@ -832,6 +832,16 @@
 @endsection
 @section('js')
     <script>
+        $(document).ready(function(){
+            var value = localStorage.getItem('scrollTo');
+            if (value) {
+                var offset = $('.pagination_list').offset();
+                $('.pagination_list', document.body).animate({
+                    scrollTop: $("#"+value).offset().top - offset.top - 30
+                }, 1000);
+            }
+        });
+
         function startTimer(duration, display) {
             var timer = duration, minutes, seconds;
             var Interval = setInterval(function () {

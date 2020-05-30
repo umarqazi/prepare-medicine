@@ -19,7 +19,7 @@
     <div class="alert alert-info" role="alert">Edit User</div>
     @include('msg.msg')
 
-    <form action="{{ route('user.update', $user->id) }}" method="post">
+    <form class="custom_form" action="{{ route('user.update', $user->id) }}" method="post">
         @method('PUT')
         @csrf
 
@@ -69,7 +69,7 @@
                 <select class="form-control" name="role">
                     <option>Select A Role</option>
                     @foreach($roles as $role)
-                        <option value="{{$role->id}}" {{$user->roles->pluck('id')[0] && $user->roles->pluck('id')[0] === $role->id ? 'selected' : ''}}>{{$role->name}}</option>
+                        <option value="{{$role->id}}" {{!empty($user->roles->pluck('id')[0]) && $user->roles->pluck('id')[0] === $role->id ? 'selected' : ''}}>{{$role->name}}</option>
                     @endforeach
                 </select>
             </div>
@@ -86,6 +86,6 @@
         </div>
 
         <br>
-        <input type="submit" class="btn btn_custom_style" value="UPDATE" style="float:right">
+        <input type="submit" class="btn btn_custom_style btn-primary" value="UPDATE USER" style="float:right">
     </form>
 @endsection

@@ -217,10 +217,14 @@ class MockController extends Controller
 
     function FinishExam($user_id,$mock_id){
 
+        $mock = mockinformation::find($mock_id);
+
         if(Auth::user()->id == $user_id){
+            $count = mockinformation::where('user_id', $user_id)->where('type', $mock->type)->count();
             mockinformation::findOrFail($mock_id)->update([
                 'time' => '0',
                 'status' => "2",
+                'position' => $count,
             ]);
 
             return back();

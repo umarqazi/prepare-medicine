@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/all.min.css') }}">
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{ url('frontend/css/plugins.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('frontend/css/select2.min.css') }}">
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ url('frontend/css/style.css') }}">
@@ -28,6 +29,9 @@
     <!-- Modernizer JS -->
     <script src="{{ url('frontend/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <style>
+        .select2-container {
+            display: inline;
+        }
         .dropdown-submenu {
         position: relative;
         }
@@ -131,7 +135,7 @@
                         <div class="top-contact-info">
                             <ul>
                                 <!-- <li><a href="#"><i class="zmdi zmdi-phone"></i> +98 558 547 589</a></li> -->
-                                <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
+{{--                                <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>--}}
                             </ul>
                         </div><!--// top-contact-info -->
 
@@ -493,6 +497,8 @@
     <script src="{{ url('frontend/js/plugins.js') }}"></script>
     <!-- Ajax Mail -->
     <script src="{{ url('frontend/js/ajax-mail.js') }}"></script>
+
+    <script src="{{ url('frontend/js/select2.min.js') }}"></script>
     <!-- Main JS -->
     <script src="{{ url('frontend/js/main.js') }}"></script>
 
@@ -508,6 +514,9 @@
         {{-- Copy Protector --}}
         <script tyle='text/javascript'>
             $(document).ready(function(){
+
+                $('.select2-dropdown').select2();
+
                 function disableselect(e) {
                     return false;
                 }

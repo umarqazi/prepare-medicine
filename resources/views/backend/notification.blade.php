@@ -36,7 +36,7 @@
         <h4 class="panel-title">Notification</h4>
     </div>
     <div class="panel-heading clearfix btn-left">
-        <button class="btn btn_custom_style" data-toggle="modal" data-target="#AddCat">Send Notification</button>
+        <button class="btn btn_custom_style btn-primary" data-toggle="modal" data-target="#AddCat">Send Notification</button>
     </div>
     <br><br>
     <div class="panel-body">

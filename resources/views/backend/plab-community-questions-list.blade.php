@@ -85,7 +85,7 @@
     <div class="panel-body">
         <div class="table-responsive">
 
-            <form action="{{ url('admin/question/select') }}" method="post">
+            <form class="custom_form"action="{{ url('admin/question/select') }}" method="post">
                 <table class="table table-bordered data_table">
                     <thead>
                         <tr>
@@ -164,7 +164,7 @@
             <div class="modal-body">
 
 
-                    <form action="{{ url('admin/question/edit/single') }}" method="POST">
+                    <form class="custom_form"action="{{ url('admin/question/edit/single') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id" value="{{ $item->id }}">
                         <div class="form-group">

@@ -9,6 +9,7 @@
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{ url('backend/css/datatables.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('backend/css/datepicker.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('backend/css/select2.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('backend/css/main.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url('backend/css/custom.css') }}">
     <!-- Font-icon css-->
@@ -109,7 +110,9 @@
                   <li><a class="app-menu__item " href="{{ url('admin/notification') }}"><i class="app-menu__icon fa fa-bell"></i><span class="app-menu__label">Notification</span></a></li>
               @endif
 
-              <li><a class="app-menu__item " href="{{ route('subscriptions.index')}}"><i class="app-menu__icon fa fa-money"></i><span class="app-menu__label">Subscription Plans</span></a></li>
+              @if(auth()->user()->can('View Subscription Plan'))
+                  <li><a class="app-menu__item " href="{{ route('subscriptions.index')}}"><i class="app-menu__icon fa fa-money"></i><span class="app-menu__label">Subscription Plans</span></a></li>
+              @endif
 
               @if(auth()->user()->can('View Team'))
                   <li><a class="app-menu__item " href="{{route('team-members.index')}}"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Team Members</span></a></li>
@@ -139,11 +142,17 @@
                   <li><a class="app-menu__item " href="{{ route('course-list.index') }}"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Courses</span></a></li>
               @endif
 
-                  <li><a class="app-menu__item " href="#"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Plab One Events</span></a></li>
+              @if(auth()->user()->can('View Event'))
+                  <li><a class="app-menu__item " href="{{route('events.index')}}"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Plab One Events</span></a></li>
+              @endif
 
-                  <li><a class="app-menu__item " href="#"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Plan Two Courses</span></a></li>
+              @if(auth()->user()->can('View Plab Course'))
+                  <li><a class="app-menu__item " href="{{route('plab-courses.index')}}"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Plan Two Courses</span></a></li>
+              @endif
 
-                  <li><a class="app-menu__item " href="#"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Webinars</span></a></li>
+              @if(auth()->user()->can('View Webinar'))
+                  <li><a class="app-menu__item " href="{{route('webinars.index')}}"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Webinars</span></a></li>
+              @endif
 
               @if(auth()->user()->can('View Blog'))
                   <li><a class="app-menu__item " href="{{ route('blog.index') }}"><i class="app-menu__icon fa fa-pencil"></i><span class="app-menu__label">Blog</span></a></li>
@@ -157,7 +166,9 @@
                   <li><a class="app-menu__item " href="{{ route('contact.index') }}"><i class="app-menu__icon fa fa-pencil"></i><span class="app-menu__label">Contacts</span></a></li>
               @endif
 
-              <li><a class="app-menu__item " href="{{ route('admin-tickets') }}"><i class="app-menu__icon fa fa-pencil"></i><span class="app-menu__label">Tickets</span></a></li>
+              @if(auth()->user()->can('View Ticket'))
+                  <li><a class="app-menu__item " href="{{ route('admin-tickets') }}"><i class="app-menu__icon fa fa-pencil"></i><span class="app-menu__label">Tickets</span></a></li>
+              @endif
       </ul>
     </aside>
     <main class="app-content">
@@ -175,6 +186,7 @@
     <script src="{{ url('backend/js/bootstrap.min.js') }}"></script>
     <script src="{{ url('backend/js/datatables.min.js') }}"></script>
     <script src="{{ url('backend/js/datepicker.min.js') }}"></script>
+    <script src="{{ url('backend/js/select2.min.js') }}"></script>
 
     <!-- Include English language -->
     <script src="{{ url('backend/js/datepicker.en.js') }}"></script>
@@ -189,10 +201,19 @@
 
         <script>
             $(document).ready(function(){
+
+                $('.select2-dropdown').select2();
+
                 $(".showModal_changeEmail").on('click', function(e){
                     e.preventDefault()
                     $("#changeEmail__modal").modal('show')
                 })
+
+                $('.datetime-picker').datepicker({
+                    language: 'en',
+                    position: 'top left',
+                    timepicker: true,
+                });
             })
         </script>
         <!-- Modal -->

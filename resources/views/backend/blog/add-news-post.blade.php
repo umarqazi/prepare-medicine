@@ -3,12 +3,7 @@
 @section('js-css')
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-    <style type="text/css">
-        .btn_custom_style{
-            background-color: #ddd;
-            color: #000
-        }
-    </style>
+
 @endsection
 
 @section('content')
@@ -17,7 +12,7 @@
     <div class="alert alert-info" role="alert">Create News Post</div>
     @include('msg.msg')
 
-    <form action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="custom_form" action="{{ route('news.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label><b>News Title</b></label>
         <input id="title" type="text" name="title" placeholder="Enter post title..." class="form-control">
@@ -33,7 +28,7 @@
             <label><b>Add Files</b></label>
             <input type="file" name="reference_files[]" multiple>
         </div>
-        <input type="submit" class="btn btn_custom_style" value="POST" style="float:right">
+        <input type="submit" class="btn btn_custom_style btn-primary" value="ADD NEWS POST" style="float:right">
     </form>
 
 @endsection

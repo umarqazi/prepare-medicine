@@ -55,7 +55,7 @@
                             <td ><?php echo str_limit($contact->description, 50); ?></td>
                             <td >{{ date('Y-m-d', strtotime($contact->created_at)) }}</td>
                             <td>
-                                @if(auth()->user()->can('View Contact') && !$contact->status)
+                                @if(auth()->user()->can('Edit Contact') && !$contact->status)
                                     <a href="{{ route('contact-status', $contact->id) }}" style="background-color: #1c7430; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-check edit"></i></a>
                                 @endif
 

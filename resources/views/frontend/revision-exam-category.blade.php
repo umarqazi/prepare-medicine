@@ -291,6 +291,9 @@
             background: #ddd;
             padding: 10px 3px;
         }
+        .hide_question_status_board{
+            display: none;
+        }
 
         .questions_status_board .heading,
         .heading__n{
@@ -361,29 +364,29 @@
 
                                                     @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                         @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no" style="background:#81DB97"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @else
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no" style="background:#fb5252; color:#fff"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @endif
                                                     @else
-                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                     @endif
                                                 @else
-                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 @if (!empty($mark[$i-1]->question_revision))
                                                     @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                         @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no" style="background:#81DB97"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @else
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no" style="background:#fb5252; color:#fff"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @endif
                                                     @else
-                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                     @endif
                                                 @else
-                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @endif
                                         @else
@@ -391,29 +394,29 @@
                                                 @if (!empty($mark[$i-1]->question_revision))
                                                     @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                         @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no" style="background:#81DB97"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @else
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no" style="background:#fb5252; color:#fff"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @endif
                                                     @else
-                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                     @endif
                                                 @else
-                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 @if (!empty($mark[$i-1]->question_revision))
                                                     @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                         @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no" style="background:#81DB97"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @else
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no" style="background:#fb5252; color:#fff"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @endif
                                                     @else
-                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                     @endif
                                                 @else
-                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @endif
                                         @endif
@@ -1786,31 +1789,31 @@
 
                                                     @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                         @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no" style="background:#81DB97"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @else
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no" style="background:#fb5252; color:#fff"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @endif
                                                     @else
-                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                     @endif
 
 
                                                 @else
-                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 @if (!empty($mark[$i-1]->question_revision))
                                                     @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                         @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no" style="background:#81DB97"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @else
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no" style="background:#fb5252; color:#fff"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @endif
                                                     @else
-                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                     @endif
                                                 @else
-                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @endif
                                         @else
@@ -1818,29 +1821,29 @@
                                                 @if (!empty($mark[$i-1]->question_revision))
                                                     @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                         @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no" style="background:#81DB97"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @else
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no" style="background:#fb5252; color:#fff"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @endif
                                                     @else
-                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                     @endif
                                                 @else
-                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @else
                                                 @if (!empty($mark[$i-1]->question_revision))
                                                     @if ( !empty($mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()) )
                                                         @if ( array_values(array_filter( $mark[$i-1]->question_revisions->where('user_id',Auth::user()->id)->toArray()))[0]['status'] == "1")
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#81DB97"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no" style="background:#81DB97"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @else
-                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1" style="background:#fb5252; color:#fff"><span>{{ $i }}</span></a>
+                                                            <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no" style="background:#fb5252; color:#fff"><span id="{{$i}}">{{ $i }}</span></a>
                                                         @endif
                                                     @else
-                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                        <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                     @endif
                                                 @else
-                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1"><span>{{ $i }}</span></a>
+                                                    <a href="{{ url($path.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
                                                 @endif
                                             @endif
                                         @endif
@@ -2128,6 +2131,17 @@
 
 @section('js')
     <script>
+
+        $(document).ready(function(){
+            var value = localStorage.getItem('scrollTo');
+            if (value) {
+                var offset = $('.pagination_list').offset();
+                $('.pagination_list', document.body).animate({
+                    scrollTop: $("#"+value).offset().top - offset.top - 30
+                }, 1000);
+            }
+        });
+
         // chart js
         $('.horizontal .progress-fill span').each(function(){
             var percent = $(this).html();
