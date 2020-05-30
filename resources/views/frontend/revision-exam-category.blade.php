@@ -35,8 +35,8 @@
             background-color: #fff;
             color: #666;
             top: 10px;
-            height: 30px;
-            width: 30px;
+            height: 32px;
+            width: 32px;
             border: 0;
             border-radius: 0;
             cursor: pointer;
@@ -69,14 +69,21 @@
     .e::before{
         content: 'E';
     }
-
-    .form-radio:hover,
-    .form-radio:checked {
-        background-color: #63BA52;
-        color: #fff;
+    .success .form-radio:checked,
+    .success .form-radio{
+        background-color:#63BA52;
+        color:#fff;
+        border-color:transparent;
     }
-        label
-        {
+    .form-radio{
+        border:1px solid #2A306C;
+    }
+    .form-radio:hover, .form-radio:checked {
+        background-color: #2A306C;
+        color: #fff;
+        border-color: #2A306C;
+    }
+        label{
             font: 15px/1.7 'Open Sans', sans-serif;
             color: #333;
             -webkit-font-smoothing: antialiased;
@@ -84,7 +91,8 @@
             cursor: pointer;
         }
         .form-radio:hover + label,
-        .form-radio:checked +label{
+        .form-radio:checked +label,
+        .success .form-radio + label{
             font-weight:bold;
             color:#2A306C;
         }
@@ -102,15 +110,17 @@
         /* change */
         .search-box {
             background: #ffffff;
-            width: 35px;
-            height: 35px;
+            width: 28px;
+            height: 28px;
             padding: 0px;
-            border-radius: 50%;
+            border-radius: 100%;
             text-align: center;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 5px 2px !important;
         }
+
         .comment-wrap{
             width: 100%;
             height: 220px;
@@ -120,7 +130,7 @@
             background: #F4F1EC;
         }
         .success{
-            background: #C2F7CF;
+            background: #d4edda;
         }
         .wrong{
             background: #F9C1C6;
@@ -151,6 +161,7 @@
             padding-bottom: 0px;
             margin-bottom: 10px;
             font-weight:600;
+            font-size:16px;
         }
         .btn_info{
             margin: 0px 10px;
@@ -241,27 +252,27 @@
         }
 
         .answerColor1{
-            /*background: #dddfdf;*/
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor2{
-            /*background: #dddccc;*/
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor3{
-            /*background: #dddddd;*/
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor4{
-            /*background: #dddaaa;*/
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor5{
-            /*background: #ddd999 !important;*/
+            background: #f5f4f4 !important;
             border-radius: 5px !important;
             padding: 2px 15px 10px 15px !important;
         }
@@ -273,7 +284,7 @@
 
         /*Customize by 'Developer Rijan'*/
         .pagination_list{
-            height: 200px;
+            height: auto;
             overflow-y: auto;
         }
         .pagination_list .block_{
@@ -344,6 +355,7 @@
     @include('msg.msg')
 
     @foreach ($data as $item)
+    <div class="questions-wrapper">
         <div class="row">
 
                 {{-- Left part of the exam --}}
@@ -352,7 +364,7 @@
                         <div class='area_first__'>
                             <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
                             <div class="center col-12 pagination_list">
-                                <div class="row block_ justify-content-between">
+                                <div class="row block_ justify-content-center">
                                     @for ($i = 1; $i <= $total_question; $i++)
 
                                         @if (isset($_GET['page']))
@@ -715,10 +727,8 @@
 
                 {{-- Right part of the exam --}}
                 <div class="col-lg-9 col-md-8 col-sm-12">
-                    <div class="col-12">
-
-                            <div>
-
+                    
+<div class="card">
                                 <div class="top_action d-flex justify-content-start">
                                     @isset($_GET['page'])
                                         <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }} </p>
@@ -818,7 +828,7 @@
                                         @endif
                                     @endif
                                 @endif
-                            </div>
+                            
                             <br>
                             <!-- qustion answering slot 1 -->
                             <div>
@@ -1268,7 +1278,7 @@
                                                     <input type="hidden" name="question_id" value="{{ $item->id }}">
                                                     @foreach ($item->question_ans as $key=>$value)
                                                         @if ($key == '0')
-                                                            <div class="mb-2 answerColor1 pb-2 radius">
+                                                            <div class="mb-2 pb-2 radius answerColor1">
                                                                 <input type="radio" name="answer" value="{{ $key }}" id="radio-21" class="form-radio a"><label for="radio-21" class="inline">
                                                                     <p class="inline">{{ $value->ans }}11</p></label>
                                                             </div>
@@ -1373,7 +1383,7 @@
                                                     <input type="hidden" name="question_id" value="{{ $item->id }}">
                                                     @foreach ($item->question_ans as $key=>$value)
                                                         @if ($key == '0')
-                                                            <div class="mb-2 answerColor1 pb-2 radius">
+                                                            <div class="mb-2 pb-2 radius answerColor1">
                                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-26" class="form-radio a"><label for="radio-26" class="inline">
                                                                     <p class="inline">{{ $value->ans }}</p></label>
                                                             </div>
@@ -1475,7 +1485,7 @@
                                                 <input type="hidden" name="question_id" value="{{ $item->id }}">
                                                 @foreach ($item->question_ans as $key=>$value)
                                                     @if ($key == '0')
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
+                                                        <div class="mb-2 pb-2 radius answerColor1">
                                                             <input type="radio" name="answer" value="{{ $key }}" id="radio-31" class="form-radio a"><label for="radio-31" class="inline">
                                                                 <p class="inline">{{ $value->ans }}</p></label>
                                                         </div>
@@ -1571,7 +1581,7 @@
                                                 <input type="hidden" name="question_id" value="{{ $item->id }}">
                                                 @foreach ($item->question_ans as $key=>$value)
                                                     @if ($key == '0')
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
+                                                        <div class="mb-2 pb-2 radius answerColor1">
                                                             <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-36" class="form-radio a"><label for="radio-36" class="inline">
                                                                 <p class="inline">{{ $value->ans }}</p></label>
                                                         </div>
@@ -1645,7 +1655,8 @@
                                         {{-- end --}}
                                     @endif
                             </div>
-                        </div>
+                                                    </div>
+                        
 
                         {{-- show Hitns --}}
                         <div class="collapse col-12" id="collapseExample">
@@ -1687,6 +1698,7 @@
 
 
                         {{-- EXPLANATION AND FEEDBACK SECTION START--}}
+                        <div class="row mt-4">
                         <div class='col-12 mb-4'>
                             @if (!empty($item->question_revision))
                                 @if ( $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->count() == "1" )
@@ -1701,7 +1713,7 @@
                             @endif
                        </div>
 
-                        <div class='col-12'>
+                        <div class='col-12 mb-4'>
                             @if (!empty($item->question_revision) && !empty($files))
                                 @if ( $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->count() == "1" )
                                     <div class="card" style="background-color: #F4F1EC !important; border:none">
@@ -1725,7 +1737,7 @@
                             @endif
                         </div>
 
-                       <div class='col-12'>
+                       <div class='col-12 mb-4'>
                            {{-- @if ($value->comment) --}}
                             @if (!empty($item->question_revision))
                                 @if ( $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->count() == "1" )
@@ -1768,8 +1780,12 @@
                                 @endif
                             @endif
                        </div>  {{-- EXPLANATION AND FEEDBACK SECTION END--}}
+                        </div>
+                        
 
-                </div>{{-- Right part end here --}}
+                
+
+
 
 
                 {{-- Left part of the exam --}}
@@ -2120,7 +2136,8 @@
         </div> <!-- .row end here -->
 
 
-    @endforeach
+        @endforeach
+    </div>
     </div>
 
 <br>

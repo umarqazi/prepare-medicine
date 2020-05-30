@@ -67,12 +67,13 @@
                     <p>FAQ</p>
                 </div>
             </div>
-        
-                <div class="row">
-                    <div class="col-10 mx-auto">
-                    <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 36px">Frequently Asked Questions</h2>
-                    </div>
-                    <div class="col-10 mx-auto">
+            
+            
+                <div class="row mb-5">
+                    <div class="container">
+                    
+                        <h2 class="text-center mt-4 mb-sm-5 mb-4" style="font-size: 36px">Frequently Asked Questions</h2>
+
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-header" id="headingOne">
@@ -123,13 +124,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>	
-                </div>
-                <div class="row">
-                    <!--<div class="col-10 mx-auto">-->
-                    <!--    <h3 class="text-green mb-4 ">Frequently Asked Questions</h3>-->
-                    <!--</div>-->
-                    <div class="col-10 mx-auto">
+                    
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-header" id="headingOne">
@@ -150,14 +145,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>	
-                </div>
-                
-                <div class="row">
-                    <!--<div class="col-10 mx-auto">-->
-                    <!--    <h3 class="text-green mb-4 ">Frequently Asked Questions</h3>-->
-                    <!--</div>-->
-                    <div class="col-10 mx-auto">
+                    
                         <div class="accordion" id="accordionExample">
                             <div class="card">
                                 <div class="card-header" id="headingOne">
@@ -317,9 +305,10 @@
                             </div>
 
                         </div>
-                    </div>	
-                </div>
+                    
+                    </div>
 
+                </div>
         </div>
     
 @endsection

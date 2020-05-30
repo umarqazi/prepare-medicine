@@ -126,7 +126,7 @@
         @if(Auth::user()->role >= 2)
         <div class="row my-4 my-md-5 justify-content-center">
             
-        	<div class="col-lg-8 col-md-6 col-sm-12">
+        	<div class="col-lg-7 col-md-6 col-sm-12">
         		<div class="plna_status">
                 	<h6 class="text-center mb-4"><b>PLAN STATUS</b></h6>
                     <table class="table">
@@ -180,7 +180,7 @@
 
         	</div>
         	@if(Auth::user()->role == 2)
-        	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
+        	<div class="col-lg-5 col-md-6 col-sm-12 single_plan">
         		<div class="card bg_color">
 					  <div class="icon">
 					  	<img src="{{ asset('frontend/images/plans/1.png') }}" alt="">
@@ -190,7 +190,7 @@
         	</div> <!-- .single_plan end here -->
 
         	@elseif(Auth::user()->role == 3)
-        	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
+        	<div class="col-lg-5 col-md-6 col-sm-12 single_plan">
 			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/2.png') }}" alt="">
@@ -201,7 +201,7 @@
 
         	@elseif(Auth::user()->role == 5)
         	
-        	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
+        	<div class="col-lg-5 col-md-6 col-sm-12 single_plan">
 			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/3.png') }}" alt="">
@@ -211,7 +211,7 @@
         	</div>
 
         	@elseif(Auth::user()->role == 6)
-        	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
+        	<div class="col-lg-5 col-md-6 col-sm-12 single_plan">
 			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/4.png') }}" alt="">
@@ -221,7 +221,7 @@
     		</div> <!-- .single_plan end here -->
 
         	@elseif(Auth::user()->role == 7)
-        	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
+        	<div class="col-lg-5 col-md-6 col-sm-12 single_plan">
 			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/5.png') }}" alt="">
@@ -230,7 +230,7 @@
 				</div>
     		</div> <!-- .single_plan end here -->
         	@elseif(Auth::user()->role == 8)
-        	<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
+        	<div class="col-lg-5 col-md-6 col-sm-12 single_plan">
 			<div class="card bg_color">
 				  <div class="icon">
 				  	<img src="{{ url('frontend/images/plans/6.png') }}" alt="">

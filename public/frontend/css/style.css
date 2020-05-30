@@ -452,7 +452,7 @@ label{
     font-weight: bold;
 }
 .form-control{
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .form-control:focus{
     box-shadow: none;
@@ -478,7 +478,7 @@ label{
     color: #fff;
 }
 .form-wrapper button[type="submit"],
-.subscribe-form button[type="submit"]{
+.subscribe_form button[type="submit"]{
     display: block;
     width: 100%;
     border-radius: 20px;
@@ -1296,6 +1296,7 @@ label{
     background: #63BA52;
     color: #ffffff;
     border-radius: 0;
+    border-color: transparent;
     font-weight: 600;
     font-size: 14px;
     -webkit-transition: 0.3s;
@@ -1340,6 +1341,7 @@ label{
 .btn:active {
     background: #000000;
     color: #ffffff;
+    border-color: transparent;
 }
 
 
@@ -1861,16 +1863,22 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 /*--
     03. Mobile Menu Css
 -------------------------*/
-
 .mobile-menu {
-    position: absolute;
-    right: 35px;
-    top: 8px;
+    float: left;
+    width: 100% !important;
+    position: relative !important;
 }
+
 .mobile-menu .mean-bar {
     position: relative;
 }
 
+.mobile-menu .mean-bar .meanmenu-reveal {
+    position: absolute;
+    top: -28px;
+    color: #000;
+    left: 0;
+}
 
 @media only screen and (max-width: 767px) {
     .mobile-menu .mean-bar .meanmenu-reveal {
@@ -1895,7 +1903,7 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     width: 26px;
     background-color: #63BA52;
     display: block;
-    margin: 8px 0;
+    margin: 10px 0;
 }
 
 .mobile-menu .mean-bar .meanmenu-reveal span.menu-bar::before,
@@ -1946,6 +1954,8 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .mobile-menu .mean-bar .mean-nav {
     background-color: #63BA52;
+    position: relative;
+    top: 20px;
 }
 
 .mobile-menu .mean-bar .mean-nav>ul {
@@ -3127,17 +3137,20 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 }
 
 .popular-courses-contnet .button-block .botton-border,
-.single_plan .card a {
+.single_plan .card a,
+button.botton-border {
     padding: 3px 25px;
     border: 2px solid #63BA52;
     color: #63BA52;
     border-radius: 5px;
     font-size: 13px;
     text-transform: uppercase;
+    background-color: #fff;
 }
 
 .popular-courses-contnet .button-block .botton-border:hover,
-.single_plan .card a:hover {
+.single_plan .card a:hover,
+button.botton-border:hover {
     background: #63BA52;
     color: #ffffff;
 }
@@ -4312,12 +4325,12 @@ only screen and (max-width: 767px) {
     position: absolute;
 }
 
-.subscribe-form {
+.subscribe_form {
     max-width: 350px;
     margin: 0 auto;
 }
 
-.subscribe-form button{
+.subscribe_form button{
     display: block;
     width: 100%;
 }
@@ -6077,7 +6090,17 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     font-weight: bold;
 }
 
-
+.questions-wrapper {
+    max-width: 1470px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+.questions-wrapper .card{
+    padding: 20px;
+}
+.questions-wrapper .card .success{
+    pointer-events: none;
+}
 
 /*Custom Slider CSS*/
 
@@ -6136,7 +6159,10 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 }
 /*slider responsive*/
 @media only screen and (max-width: 991px) {
-  .hero-slider #carouselExampleFade .carousel-caption{
+  body{
+      padding-top: 120px;
+  }
+    .hero-slider #carouselExampleFade .carousel-caption{
         bottom: 35px;
     }
   .hero-slider #carouselExampleFade .carousel-caption h1{
@@ -6150,6 +6176,14 @@ only screen and (min-width: 768px) and (max-width: 991px) {
     }
     .logo-area{
         max-width: 200px;
+    }
+    .scroll .header-area,
+    .header-area {
+        box-shadow: 0 0px 10px 2px rgba(0,0,0,.5);
+    }
+    .scroll .logo-area a img,
+    .logo-area a img {
+        max-width: 70%;
     }
 }
 @media only screen and (max-width: 767px) {
@@ -6215,4 +6249,5 @@ only screen and (min-width: 768px) and (max-width: 991px) {
 
 .asked-question{
     font-weight: 600;
+    font-size: 16px;
 }

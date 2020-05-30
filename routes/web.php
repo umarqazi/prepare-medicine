@@ -360,3 +360,23 @@ Route::get('question/view/{id}', "QuestionController@viewFile")->name('view_file
 // end backend or admin pannel path
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('i-bank/image-bank', function (){
+    return view('frontend/i-bank/image-bank/image-bank');
+});
+Route::get('i-bank/image-bank-gallery', function (){
+    return view('frontend/i-bank/image-bank/image-bank-gallery');
+});
+Route::get('i-bank/image-bank-gallery-detail', function (){
+    return view('frontend/i-bank/image-bank/image-bank-gallery-detail');
+});
+
+Route::get('i-bank/video-bank', function (){
+    return view('frontend/i-bank/video-bank/video-bank');
+});
+Route::get('i-bank/video-bank-gallery', function (){
+    return view('frontend/i-bank/video-bank/video-bank-gallery');
+});
+Route::get('i-bank/video-bank-gallery-detail', function (){
+    return view('frontend/i-bank/video-bank/video-bank-gallery-detail');
+});
