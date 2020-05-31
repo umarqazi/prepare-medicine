@@ -117,7 +117,7 @@
     ---------------------------*/
     var testimonialActive = $('.testimonial-active');
     testimonialActive.owlCarousel({
-        items: 1,
+        items: 3,
         loop: true,
         nav: false,
         dots:true,

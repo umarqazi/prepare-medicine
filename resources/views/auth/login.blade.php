@@ -224,7 +224,7 @@
                         <div class="top-contact-info">
                             <ul>
                                 <!-- <li><a href="#"><i class="zmdi zmdi-phone"></i> +98 558 547 589</a></li> -->
-                                <li><a href="#"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>
+{{--                                <li><a href="#"><i class="zmdi zmdi-email"></i>info@preparemedicine.com</a></li>--}}
                             </ul>
                         </div><!--// top-contact-info -->
 

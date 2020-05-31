@@ -35,8 +35,8 @@
         background-color: #fff;
         color: #666;
         top: 10px;
-        height: 30px;
-        width: 30px;
+        height: 32px;
+        width: 32px;
         border: 0;
         border-radius: 0;
         cursor: pointer;
@@ -70,24 +70,33 @@
         content: 'E';
     }
 
-    .form-radio:hover,
-    .form-radio:checked {
-        background-color: #63BA52;
+    .success .form-radio:checked,
+    .success .form-radio{
+        background-color:#63BA52;
+        color:#fff;
+        border-color:transparent;
+    }
+    .form-radio{
+        border:1px solid #2A306C;
+    }
+    .form-radio:hover, .form-radio:checked {
+        background-color: #2A306C;
         color: #fff;
+        border-color: #2A306C;
     }
-    label
-    {
-        font: 15px/1.7 'Open Sans', sans-serif;
-        color: #333;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        cursor: pointer;
-    }
-    .form-radio:hover + label,
-    .form-radio:checked +label{
-        font-weight:bold;
-        color:#2A306C;
-    }
+        label{
+            font: 15px/1.7 'Open Sans', sans-serif;
+            color: #333;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            cursor: pointer;
+        }
+        .form-radio:hover + label,
+        .form-radio:checked +label,
+        .success .form-radio + label{
+            font-weight:bold;
+            color:#2A306C;
+        }
 </style>
 <style>
     body{
@@ -101,15 +110,17 @@
     }
     .search-box {
         background: #ffffff;
-        width: 35px;
-        height: 35px;
+        width: 28px;
+        height: 28px;
         padding: 0px;
-        border-radius: 50%;
+        border-radius: 100%;
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 5px 2px !important;
     }
+
     .comment-wrap{
         width: 100%;
         height: 220px;
@@ -119,7 +130,7 @@
         background: #F4F1EC;
     }
     .success{
-        background: #C2F7CF;
+        background: #d4edda;
     }
     .wrong{
         background: #F9C1C6;
@@ -151,6 +162,7 @@
             padding-bottom: 0px;
             margin-bottom: 10px;
             font-weight:600;
+            font-size:16px;
     }
    .btn_info{
             margin: 0px 10px;
@@ -237,33 +249,33 @@
 
 
     /*Customize by 'Developer Rijan'*/
-    .answerColor1{
-            background: #dddfdf;
+        .answerColor1{
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor2{
-            background: #dddccc;
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor3{
-            background: #dddddd;
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor4{
-            background: #dddaaa;
+            background: #f5f4f4;
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor5{
-            background: #ddd999 !important;
+            background: #f5f4f4 !important;
             border-radius: 5px !important;
             padding: 2px 15px 10px 15px !important;
         }
         .pagination_list{
-            height: 200px;
+            height: auto;
             overflow-y: auto;
         }
         .pagination_list .block_{
@@ -311,7 +323,7 @@
         /*elasped time*/
         .time_for_destop,
         .time_for_mobile{
-            background: darkblue;
+            background: #2A306C;
             border: 1px solid #fff;
             padding: 10px;
             margin-bottom: 5px;
@@ -351,466 +363,58 @@
                 <p>Mock Exam</p>
             </div>
         </div>
+        <div class="questions-wrapper">
+            <div class="row">
 
-        <div class="row">
-
-            @foreach ($data as $item)
-                {{-- Left part of the exam --}}
-                <div class="col-lg-3 col-md-4 col-sm-12" id="pc">
-                    <div class="question-bank sticky-top">
-                                <div class="col-md-12 time_for_destop">
-                                    <div class="text-center" id="time"></div>
-                                </div>
-
-                                {{--
-                                <div>
-                                    <!--total questions & left questions-->
-                                    <p>Total Questions: {{ $total_question }}</p>
-                                    <p>You have attend: {{ $total_question }}</p>
-
-                                </div>
-                                --}}
-
-                        <div class="area_first__">
-                            <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
-                            <div class="center col-12 pagination_list">
-                                <div class="row block_ justify-content-between">
-                                    @for ($i = 1; $i <= $total_question; $i++)
-                                        @if (isset($_GET['page']))
-                                            @if ($i == $_GET['page'])
-                                                @if (!empty($mark[$i-1]->status))
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
-                                                @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no question_no"><span id="{{$i}}">{{ $i }}</span></a>
-                                                @endif
-                                            @else
-                                                @if (!empty($mark[$i-1]->status))
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
-                                                @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
-                                                @endif
-                                            @endif
-                                        @else
-                                            @if ($i == '1')
-                                                @if (!empty($mark[$i-1]->status))
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
-                                                @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
-                                                @endif
-                                            @else
-                                                @if (!empty($mark[$i-1]->status))
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box ml-1 mb-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
-                                                @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
-                                                @endif
-                                            @endif
-                                        @endif
-                                    @endfor
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Right part of the exam --}}
-                <div class="col-lg-9 col-md-8 col-sm-12">
-                    <div class="col-12">
-
-                            <div class="top_action d-flex justify-content-start">
-                                @isset($_GET['page'])
-                                    <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }}</p>
-                                @endisset
-                                @if (!empty($item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]) )
-                                    <a title="Remove from Flag" class="dropFlag" href="{{ url('q-bank/drop/flag/'.$item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]->id) }}" style="color:#63BA52;font-size: 18px;"><i class="fas fa-star"></i></a>
-                                @else
-                                    <a title="Flag Now" class="addFlag" href="{{ url('q-bank/add/flag/'.$item->mocques_ques->id) }}" style="font-size: 18px;"><i class="fas fa-star"></i></a>
-                                @endif
-                                <p class="action_1" style="margin-left: 5px">QID: {{ $item->search_id }}</p>
-                            </div>
-                            <p class="asked-question"> {!! $item->question !!}</p>
-                            <br>
-                            <div>
-                                @if ( empty($item->status) )
-                                    {{-- Single Choice question --}}
-                                        @if ($item->type == '0')
-                                            <form action="{{ url('mock/compare/single') }}" method="post">
-                                                @if ( $data->hasMorePages() )
-                                                    <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
-                                                @else
-                                                    <input type="hidden" name="page" value="0">
-                                                @endif
-                                                @csrf
-                                                <input type="hidden" name="exam_id" value="{{ $item->exam_id }}">
-                                                <input type="hidden" name="question_id" value="{{ $item->id }}">
-                                                <input type="hidden" name="input_time" id="input_time" >
-                                                @foreach ($item->mocques_ans as $key=>$value)
-                                                    @if ($key == '0')
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
-                                                            <input type="radio" name="answer" value="{{ $key }}" class="form-radio a" id="radio-10"><label for="radio-10" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @elseif($key == '1')
-                                                        <div class="mb-2 answerColor2 pb-2 radius">
-                                                            <input type="radio" name="answer" value="{{ $key }}" class="form-radio b" id="radio-11"><label for="radio-11" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @elseif($key == '2')
-                                                        <div class="mb-2 answerColor3 pb-2 radius">
-                                                            <input type="radio" name="answer" value="{{ $key }}" class="form-radio c" id="radio-12"><label for="radio-12" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @elseif($key == '3')
-                                                        <div class="mb-2 answerColor4 pb-2 radius">
-                                                            <input type="radio" name="answer" value="{{ $key }}" class="form-radio d" id="radio-13"><label for="radio-13" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @elseif($key == '4')
-                                                        <div class="mb-2 answerColor5 pb-2 radius">
-                                                            <input type="radio" name="answer" value="{{ $key }}" class="form-radio e" id="radio-14"><label for="radio-14" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-
-                                                <table class='d-flex justify-content-around my-4'>
-                                                    <tr>
-                                                        <td>
-                                                            <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                                                <img src="{{ asset('frontend/images/info.png') }}">
-                                                            </button>
-                                                        </td>
-                                                @if ($data->hasPages())
-
-                                                            {{-- Previous Page Link --}}
-                                                            @if ($data->onFirstPage())
-                                                                <td> <i class="fa fa-chevron-left disabled" style="font-size:40px"></i> </td>
-                                                            @else
-                                                                    <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:40px;color:#63BA52"></i></a> </td>
-                                                            @endif
-                                                            {{-- Submit button --}}
-                                                            <td> <input type="submit" value="SUBMIT" class="btn btn-primary ml-4 mr-4" style="background: #0161C3;border-radius:3px"> </td>
-                                                            {{-- Next Page Link --}}
-                                                            @if ($data->hasMorePages())
-                                                                    <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:40px;color:#63BA52"></i></a> </td>
-                                                            @else
-                                                                    <td> <i class="fa fa-chevron-left disabled" style="font-size:40px"></i> </td>
-                                                            @endif
-
-                                                @endif
-                                                    <td>
-                                                        <button title="Get Lab Value" type="button" class="btn btn_info" data-toggle="modal" data-target="#exampleModal">
-                                                            <img src="{{ asset('frontend/images/lab.png') }}">
-                                                        </button>
-                                                    </td>
-                                                  </tr>
-                                                </table>
-                                            </form>
-                                        @endif
-
-                                        {{-- Multiple choice question --}}
-                                        @if ($item->type == '1')
-                                            <form action="{{ url('mock/compare/multi') }}" method="post">
-                                                @if ( $data->hasMorePages() )
-                                                    <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
-                                                @else
-                                                    <input type="hidden" name="page" value="0">
-                                                @endif
-                                                @csrf
-                                                <input type="hidden" name="exam_id" value="{{ $item->exam_id }}">
-                                                <input type="hidden" name="question_id" value="{{ $item->id }}">
-                                                <input type="hidden" name="input_time" id="input_time">
-                                                @foreach ($item->mocques_ans as $key=>$value)
-                                                    @if ($key == '0')
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
-                                                            <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio a" id="radio-15"><label for="radio-15" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @elseif($key == '1')
-                                                        <div class="mb-2 answerColor2 pb-2 radius">
-                                                            <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio b" id="radio-16"><label for="radio-16" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @elseif($key == '2')
-                                                        <div class="mb-2 answerColor3 pb-2 radius">
-                                                            <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio c" id="radio-17"><label for="radio-17" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @elseif($key == '3')
-                                                        <div class="mb-2 answerColor4 pb-2 radius">
-                                                            <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio d" id="radio-18"><label for="radio-18" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @elseif($key == '4')
-                                                        <div class="mb-2 answerColor5 pb-2 radius">
-                                                            <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio e" id="radio-19"><label for="radio-19" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-
-                                                <table class='d-flex justify-content-around my-4'>
-                                                    <tr>
-                                                        <td>
-                                                            <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                                                <img src="{{ asset('frontend/images/info.png') }}">
-                                                            </button>
-                                                        </td>
-                                                @if ($data->hasPages())
-
-                                                            {{-- Previous Page Link --}}
-                                                            @if ($data->onFirstPage())
-                                                                <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
-                                                            @else
-                                                                    <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:36px;color:#63BA52"></i></a> </td>
-                                                            @endif
-                                                            {{-- Submit button --}}
-                                                            <td> <input type="submit" value="SUBMIT" class="btn btn-primary ml-4 mr-4" style="background: #0161C3;border-radius:3px"> </td>
-                                                            {{-- Next Page Link --}}
-                                                            @if ($data->hasMorePages())
-                                                                    <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:36px;color:#63BA52"></i></a> </td>
-                                                            @else
-                                                                    <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
-                                                            @endif
-
-                                                @endif
-                                                <td>
-                                                        <button title="Get Lab Value" type="button" class="btn btn_info" data-toggle="modal" data-target="#exampleModal">
-                                                            <img src="{{ asset('frontend/images/lab.png') }}">
-                                                        </button>
-                                                    </td>
-                                                  </tr>
-                                                </table>
-                                            </form>
-                                        @endif
-                                    {{-- end --}}
-                                    @else
-                                    {{-- Single Choice question --}}
-                                        <input type="hidden" id="input_time">
-                                        @if ($item->type == '0')
-                                            @foreach ($item->mocques_ans as $key=>$value)
-                                                @if ($key == '0')
-                                                    @if ($key == $item->user_ans)
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
-                                                            <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio a" id="radio-1"><label for="radio-1" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @else
-                                                        <div class="mb-2 answerColor2 pb-2 radius">
-                                                            <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio a" id="radio-11"><label for="radio-11" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @endif
-                                                @elseif($key == '1')
-                                                    @if ($key == $item->user_ans)
-                                                        <div class="mb-2 answerColor3 pb-2 radius">
-                                                            <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio b" id="radio-12"><label for="radio-12" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @else
-                                                        <div class="mb-2 answerColor4 pb-2 radius">
-                                                            <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio b" id="radio-13"><label for="radio-13" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @endif
-                                                @elseif($key == '2')
-                                                    @if ($key == $item->user_ans)
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
-                                                            <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio c" id="radio-14"><label for="radio-14" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @else
-                                                        <div class="mb-2 pb-2 answerColor2 radius">
-                                                            <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio c" id="radio-15"><label for="radio-15" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @endif
-                                                @elseif($key == '3')
-                                                    @if ($key == $item->user_ans)
-                                                        <div class="mb-2 answerColor3 pb-2 radius">
-                                                            <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio d" id="radio-16"><label for="radio-16" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @else
-                                                        <div class="mb-2 answerColor4 pb-2 radius">
-                                                            <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio d" id="radio-17"><label for="radio-17" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @endif
-                                                @elseif($key == '4')
-                                                    @if ($key == $item->user_ans)
-                                                        <div class="mb-2 answerColor5 pb-2 radius">
-                                                            <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio e" id="radio-18"><label for="radio-18" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @else
-                                                        <div class="mb-2 answerColor1 pb-2 radius">
-                                                            <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio e" id="radio-19"><label for="radio-19" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p>
-                                                        </div>
-                                                    @endif
-                                                @endif
-                                            @endforeach
-                                            @if ($data->hasPages())
-                                                <table class='d-flex justify-content-around my-4'>
-                                                    <tr>
-                                                        {{-- Previous Page Link --}}
-                                                        @if ($data->onFirstPage())
-                                                            <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
-                                                        @else
-                                                                <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:36px;color:#63BA52"></i></a> </td>
-                                                        @endif
-                                                        {{-- Next Page Link --}}
-                                                        @if ($data->hasMorePages())
-                                                                <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:36px;color:#63BA52"></i></a> </td>
-                                                        @else
-                                                                <td> <i class="fa fa-chevron-left disabled ml-5" style="font-size:36px"></i> </td>
-                                                        @endif
-                                                    </tr>
-                                                </table>
-                                            @endif
-                                        @endif
-
-                                        {{-- Multiple choice question --}}
-                                        @if ($item->type == '1')
-                                            @foreach ($item->mocques_ans as $key=>$value)
-                                                @if ($key == '0')
-                                                    <div class="mb-2 answerColor1 pb-2 radius">
-                                                        <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio a"><label for="muli-ans{{ $key }}" class="inline">
-                                                        <p class="inline">{{ $value->ans }}</p>
-                                                    </div>
-                                                @elseif($key == '1')
-                                                    <div class="mb-2 answerColor2 pb-2 radius">
-                                                        <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio b"><label for="muli-ans{{ $key }}" class="inline">
-                                                        <p class="inline">{{ $value->ans }}</p>
-                                                    </div>
-                                                @elseif($key == '2')
-                                                    <div class="mb-2 answerColor3 pb-2 radius">
-                                                        <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio c"><label for="muli-ans{{ $key }}" class="inline">
-                                                        <p class="inline">{{ $value->ans }}</p>
-                                                    </div>
-                                                @elseif($key == '3')
-                                                    <div class="mb-2 answerColor4 pb-2 radius">
-                                                        <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio d"><label for="muli-ans{{ $key }}" class="inline">
-                                                        <p class="inline">{{ $value->ans }}</p>
-                                                    </div>
-                                                @elseif($key == '4')
-                                                    <div class="mb-2 answerColor5 pb-2 radius">
-                                                        <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio e"><label for="muli-ans{{ $key }}" class="inline">
-                                                        <p class="inline">{{ $value->ans }}</p>
-                                                    </div>
-                                                @endif
-                                            @endforeach
-                                            @php
-                                                $answers = explode('-',$item->user_ans);
-                                            @endphp
-                                            @foreach ($answers as $key => $answer)
-                                                <script>
-                                                    document.querySelector('#muli-ans{{ $answer }}').checked = true;
-                                                </script>
-                                            @endforeach
-                                            @if ($data->hasPages())
-                                                <table class='d-flex justify-content-around my-4'>
-                                                    <tr>
-                                                        {{-- Previous Page Link --}}
-                                                        @if ($data->onFirstPage())
-                                                            <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
-                                                        @else
-                                                                <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:36px;color:#63BA52"></i></a> </td>
-                                                        @endif
-                                                        {{-- Next Page Link --}}
-                                                        @if ($data->hasMorePages())
-                                                                <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:36px;color:#63BA52"></i></a> </td>
-                                                        @else
-                                                                <td> <i class="fa fa-chevron-left disabled ml-5" style="font-size:36px"></i> </td>
-                                                        @endif
-                                                    </tr>
-                                                </table>
-                                            @endif
-                                        @endif
-                                        {{-- end --}}
-                                    @endif
-
-                            </div>
-                            <table class='d-flex justify-content-around my-4'>
-                                <tr>
-                                    <td>
-                                        <a class="btn btn-info mr-5 bg-danger finish-exam" href="{{ url('q-bank/mock/time/finish/'.Auth::user()->id.'/'.$id) }}" style="border-radius: 3px;border: none;padding: 10px 25px">FINISH</a>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-success bg-success save-and-exit-exam" href="{{ url('/') }}" style="border-radius: 3px;border: none;padding: 10px 25px">SAVE & EXIT</a>
-                                    </td>
-                                </tr>
-                            </table>
-                    </div>
-
-                    {{-- Hints & Lab Value --}}
-                    <div class="collapse col-12" id="collapseExample">
-                        @if (!empty($item->hint) && $item->hint != null)
-                            {!! $item->hint !!}
-                        @else
-                            No hint defined !!
-                        @endif
-                    </div>
-
-
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Lab Values</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="findInput" placeholder="find your information...">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-info col-12" onclick="FindNext ();">Search</button>
+                @foreach ($data as $item)
+                    {{-- Left part of the exam --}}
+                    <div class="col-lg-3 col-md-4 col-sm-12" id="pc">
+                        <div class="question-bank sticky-top">
+                                    <div class="col-md-12 time_for_destop">
+                                        <div class="text-center" id="time"></div>
                                     </div>
 
-                                    <div id="hint">
-                                        {!! $lab !!}
+                                    {{--
+                                    <div>
+                                        <!--total questions & left questions-->
+                                        <p>Total Questions: {{ $total_question }}</p>
+                                        <p>You have attend: {{ $total_question }}</p>
+
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> {{-- Hints & Lab Value end here --}}
+                                    --}}
 
-                </div> {{-- Right part end here --}}
-
-
-
-                {{-- Left part of the exam for mobile--}}
-                <div class="col-md-3" id="mobile">
-                    <div class="center col-12">
-                        <div class="row">
-                            <div class="col-12 time_for_mobile">
-                                <div class="text-center" id="time_m"></div>
-                            </div>
-                        </div>
-
-                        <div class="row">
                             <div class="area_first__">
                                 <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
-                                <div class=" pagination_list">
-                                    <div class="col-md-12 block_">
+                                <div class="center col-12 pagination_list">
+                                    <div class="row block_ justify-content-center">
                                         @for ($i = 1; $i <= $total_question; $i++)
                                             @if (isset($_GET['page']))
                                                 @if ($i == $_GET['page'])
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @if (!empty($mark[$i-1]->status))
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @endif
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @if (!empty($mark[$i-1]->status))
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @endif
                                                 @endif
                                             @else
                                                 @if ($i == '1')
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @if (!empty($mark[$i-1]->status))
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @endif
                                                 @else
-                                                    <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @if (!empty($mark[$i-1]->status))
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="submited search-box ml-1 mb-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @endif
                                                 @endif
                                             @endif
                                         @endfor
@@ -818,17 +422,420 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
-                </div>
-            @endforeach
-        </div>
+                    {{-- Right part of the exam --}}
+                    <div class="col-lg-9 col-md-8 col-sm-12">
+
+                        <div class="card">
+                                <div class="top_action d-flex justify-content-start">
+                                    @isset($_GET['page'])
+                                        <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }}</p>
+                                    @endisset
+                                    @if (!empty($item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]) )
+                                        <a title="Remove from Flag" class="dropFlag" href="{{ url('q-bank/drop/flag/'.$item->mocques_ques->question_flag->where('user_id',Auth::user()->id)[0]->id) }}" style="color:#63BA52;font-size: 18px;"><i class="fas fa-star"></i></a>
+                                    @else
+                                        <a title="Flag Now" class="addFlag" href="{{ url('q-bank/add/flag/'.$item->mocques_ques->id) }}" style="font-size: 18px;"><i class="fas fa-star"></i></a>
+                                    @endif
+                                    <p class="action_1" style="margin-left: 5px">QID: {{ $item->search_id }}</p>
+                                </div>
+                                <p class="asked-question"> {!! $item->question !!}</p>
+                                <br>
+                                <div>
+                                    @if ( empty($item->status) )
+                                        {{-- Single Choice question --}}
+                                            @if ($item->type == '0')
+                                                <form action="{{ url('mock/compare/single') }}" method="post">
+                                                    @if ( $data->hasMorePages() )
+                                                        <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
+                                                    @else
+                                                        <input type="hidden" name="page" value="0">
+                                                    @endif
+                                                    @csrf
+                                                    <input type="hidden" name="exam_id" value="{{ $item->exam_id }}">
+                                                    <input type="hidden" name="question_id" value="{{ $item->id }}">
+                                                    <input type="hidden" name="input_time" id="input_time" >
+                                                    @foreach ($item->mocques_ans as $key=>$value)
+                                                        @if ($key == '0')
+                                                            <div class="mb-2 pb-2 radius answerColor1">
+                                                                <input type="radio" name="answer" value="{{ $key }}" class="form-radio a" id="radio-10"><label for="radio-10" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @elseif($key == '1')
+                                                            <div class="mb-2 answerColor2 pb-2 radius">
+                                                                <input type="radio" name="answer" value="{{ $key }}" class="form-radio b" id="radio-11"><label for="radio-11" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @elseif($key == '2')
+                                                            <div class="mb-2 answerColor3 pb-2 radius">
+                                                                <input type="radio" name="answer" value="{{ $key }}" class="form-radio c" id="radio-12"><label for="radio-12" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @elseif($key == '3')
+                                                            <div class="mb-2 answerColor4 pb-2 radius">
+                                                                <input type="radio" name="answer" value="{{ $key }}" class="form-radio d" id="radio-13"><label for="radio-13" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @elseif($key == '4')
+                                                            <div class="mb-2 answerColor5 pb-2 radius">
+                                                                <input type="radio" name="answer" value="{{ $key }}" class="form-radio e" id="radio-14"><label for="radio-14" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+
+                                                    <table class='d-flex justify-content-around my-4'>
+                                                        <tr>
+                                                            <td>
+                                                                <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                                    <img src="{{ asset('frontend/images/info.png') }}">
+                                                                </button>
+                                                            </td>
+                                                    @if ($data->hasPages())
+
+                                                                {{-- Previous Page Link --}}
+                                                                @if ($data->onFirstPage())
+                                                                    <td> <i class="fa fa-chevron-left disabled" style="font-size:40px"></i> </td>
+                                                                @else
+                                                                        <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:40px;color:#63BA52"></i></a> </td>
+                                                                @endif
+                                                                {{-- Submit button --}}
+                                                                <td> <input type="submit" value="SUBMIT" class="btn btn-primary ml-4 mr-4" style="background: #0161C3;border-radius:3px"> </td>
+                                                                {{-- Next Page Link --}}
+                                                                @if ($data->hasMorePages())
+                                                                        <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:40px;color:#63BA52"></i></a> </td>
+                                                                @else
+                                                                        <td> <i class="fa fa-chevron-left disabled" style="font-size:40px"></i> </td>
+                                                                @endif
+
+                                                    @endif
+                                                        <td>
+                                                            <button title="Get Lab Value" type="button" class="btn btn_info" data-toggle="modal" data-target="#exampleModal">
+                                                                <img src="{{ asset('frontend/images/lab.png') }}">
+                                                            </button>
+                                                        </td>
+                                                      </tr>
+                                                    </table>
+                                                </form>
+                                            @endif
+
+                                            {{-- Multiple choice question --}}
+                                            @if ($item->type == '1')
+                                                <form action="{{ url('mock/compare/multi') }}" method="post">
+                                                    @if ( $data->hasMorePages() )
+                                                        <input type="hidden" name="page" value="{{ $data->nextPageUrl() }}">
+                                                    @else
+                                                        <input type="hidden" name="page" value="0">
+                                                    @endif
+                                                    @csrf
+                                                    <input type="hidden" name="exam_id" value="{{ $item->exam_id }}">
+                                                    <input type="hidden" name="question_id" value="{{ $item->id }}">
+                                                    <input type="hidden" name="input_time" id="input_time">
+                                                    @foreach ($item->mocques_ans as $key=>$value)
+                                                        @if ($key == '0')
+                                                            <div class="mb-2 pb-2 radius answerColor1">
+                                                                <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio a" id="radio-15"><label for="radio-15" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @elseif($key == '1')
+                                                            <div class="mb-2 answerColor2 pb-2 radius">
+                                                                <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio b" id="radio-16"><label for="radio-16" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @elseif($key == '2')
+                                                            <div class="mb-2 answerColor3 pb-2 radius">
+                                                                <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio c" id="radio-17"><label for="radio-17" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @elseif($key == '3')
+                                                            <div class="mb-2 answerColor4 pb-2 radius">
+                                                                <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio d" id="radio-18"><label for="radio-18" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @elseif($key == '4')
+                                                            <div class="mb-2 answerColor5 pb-2 radius">
+                                                                <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio e" id="radio-19"><label for="radio-19" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+
+                                                    <table class='d-flex justify-content-around my-4'>
+                                                        <tr>
+                                                            <td>
+                                                                <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                                                    <img src="{{ asset('frontend/images/info.png') }}">
+                                                                </button>
+                                                            </td>
+                                                    @if ($data->hasPages())
+
+                                                                {{-- Previous Page Link --}}
+                                                                @if ($data->onFirstPage())
+                                                                    <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
+                                                                @else
+                                                                        <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                                @endif
+                                                                {{-- Submit button --}}
+                                                                <td> <input type="submit" value="SUBMIT" class="btn btn-primary ml-4 mr-4" style="background: #0161C3;border-radius:3px"> </td>
+                                                                {{-- Next Page Link --}}
+                                                                @if ($data->hasMorePages())
+                                                                        <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                                @else
+                                                                        <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
+                                                                @endif
+
+                                                    @endif
+                                                    <td>
+                                                            <button title="Get Lab Value" type="button" class="btn btn_info" data-toggle="modal" data-target="#exampleModal">
+                                                                <img src="{{ asset('frontend/images/lab.png') }}">
+                                                            </button>
+                                                        </td>
+                                                      </tr>
+                                                    </table>
+                                                </form>
+                                            @endif
+                                        {{-- end --}}
+                                        @else
+                                        {{-- Single Choice question --}}
+                                            <input type="hidden" id="input_time">
+                                            @if ($item->type == '0')
+                                                @foreach ($item->mocques_ans as $key=>$value)
+                                                    @if ($key == '0')
+                                                        @if ($key == $item->user_ans)
+                                                            <div class="mb-2 pb-2 radius answerColor1">
+                                                                <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio a" id="radio-1"><label for="radio-1" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @else
+                                                            <div class="mb-2 answerColor2 pb-2 radius">
+                                                                <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio a" id="radio-11"><label for="radio-11" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @endif
+                                                    @elseif($key == '1')
+                                                        @if ($key == $item->user_ans)
+                                                            <div class="mb-2 answerColor3 pb-2 radius">
+                                                                <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio b" id="radio-12"><label for="radio-12" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @else
+                                                            <div class="mb-2 answerColor4 pb-2 radius">
+                                                                <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio b" id="radio-13"><label for="radio-13" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @endif
+                                                    @elseif($key == '2')
+                                                        @if ($key == $item->user_ans)
+                                                            <div class="mb-2 pb-2 radius answerColor1">
+                                                                <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio c" id="radio-14"><label for="radio-14" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @else
+                                                            <div class="mb-2 pb-2 answerColor2 radius">
+                                                                <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio c" id="radio-15"><label for="radio-15" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @endif
+                                                    @elseif($key == '3')
+                                                        @if ($key == $item->user_ans)
+                                                            <div class="mb-2 answerColor3 pb-2 radius">
+                                                                <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio d" id="radio-16"><label for="radio-16" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @else
+                                                            <div class="mb-2 answerColor4 pb-2 radius">
+                                                                <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio d" id="radio-17"><label for="radio-17" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @endif
+                                                    @elseif($key == '4')
+                                                        @if ($key == $item->user_ans)
+                                                            <div class="mb-2 answerColor5 pb-2 radius">
+                                                                <input checked disabled type="radio" name="answer" value="{{ $key }}" class="form-radio e" id="radio-18"><label for="radio-18" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @else
+                                                            <div class="mb-2 pb-2 radius answerColor1">
+                                                                <input disabled type="radio" name="answer" value="{{ $key }}" class="form-radio e" id="radio-19"><label for="radio-19" class="inline">
+                                                                <p class="inline">{{ $value->ans }}</p>
+                                                            </div>
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                                @if ($data->hasPages())
+                                                    <table class='d-flex justify-content-around my-4'>
+                                                        <tr>
+                                                            {{-- Previous Page Link --}}
+                                                            @if ($data->onFirstPage())
+                                                                <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
+                                                            @else
+                                                                    <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                            @endif
+                                                            {{-- Next Page Link --}}
+                                                            @if ($data->hasMorePages())
+                                                                    <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                            @else
+                                                                    <td> <i class="fa fa-chevron-left disabled ml-5" style="font-size:36px"></i> </td>
+                                                            @endif
+                                                        </tr>
+                                                    </table>
+                                                @endif
+                                            @endif
+
+                                            {{-- Multiple choice question --}}
+                                            @if ($item->type == '1')
+                                                @foreach ($item->mocques_ans as $key=>$value)
+                                                    @if ($key == '0')
+                                                        <div class="mb-2 pb-2 radius answerColor1">
+                                                            <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio a"><label for="muli-ans{{ $key }}" class="inline">
+                                                            <p class="inline">{{ $value->ans }}</p>
+                                                        </div>
+                                                    @elseif($key == '1')
+                                                        <div class="mb-2 answerColor2 pb-2 radius">
+                                                            <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio b"><label for="muli-ans{{ $key }}" class="inline">
+                                                            <p class="inline">{{ $value->ans }}</p>
+                                                        </div>
+                                                    @elseif($key == '2')
+                                                        <div class="mb-2 answerColor3 pb-2 radius">
+                                                            <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio c"><label for="muli-ans{{ $key }}" class="inline">
+                                                            <p class="inline">{{ $value->ans }}</p>
+                                                        </div>
+                                                    @elseif($key == '3')
+                                                        <div class="mb-2 answerColor4 pb-2 radius">
+                                                            <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio d"><label for="muli-ans{{ $key }}" class="inline">
+                                                            <p class="inline">{{ $value->ans }}</p>
+                                                        </div>
+                                                    @elseif($key == '4')
+                                                        <div class="mb-2 answerColor5 pb-2 radius">
+                                                            <input disabled id="muli-ans{{ $key }}" type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio e"><label for="muli-ans{{ $key }}" class="inline">
+                                                            <p class="inline">{{ $value->ans }}</p>
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+                                                @php
+                                                    $answers = explode('-',$item->user_ans);
+                                                @endphp
+                                                @foreach ($answers as $key => $answer)
+                                                    <script>
+                                                        document.querySelector('#muli-ans{{ $answer }}').checked = true;
+                                                    </script>
+                                                @endforeach
+                                                @if ($data->hasPages())
+                                                    <table class='d-flex justify-content-around my-4'>
+                                                        <tr>
+                                                            {{-- Previous Page Link --}}
+                                                            @if ($data->onFirstPage())
+                                                                <td> <i class="fa fa-chevron-left disabled" style="font-size:36px"></i> </td>
+                                                            @else
+                                                                    <td> <a href="{{ $data->previousPageUrl() }}"><i class="fa fa-chevron-left" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                            @endif
+                                                            {{-- Next Page Link --}}
+                                                            @if ($data->hasMorePages())
+                                                                    <td> <a href="{{ $data->nextPageUrl() }}" ><i class="fa fa-chevron-right" style="font-size:36px;color:#63BA52"></i></a> </td>
+                                                            @else
+                                                                    <td> <i class="fa fa-chevron-left disabled ml-5" style="font-size:36px"></i> </td>
+                                                            @endif
+                                                        </tr>
+                                                    </table>
+                                                @endif
+                                            @endif
+                                            {{-- end --}}
+                                        @endif
+
+                                </div>
     </div>
 
+                        <table class='d-flex justify-content-around my-4'>
+                                    <tr>
+                                        <td>
+                                            <a class="btn btn-info mr-5 bg-danger finish-exam" href="{{ url('q-bank/mock/time/finish/'.Auth::user()->id.'/'.$id) }}" style="border-radius: 3px;border: none;padding: 10px 25px">FINISH</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-success" href="{{ url('/') }}" style="border-radius: 3px;border: none;padding: 10px 25px">SAVE & EXIT</a>
+                                        </td>
+                                    </tr>
+                                </table>
 
+                        {{-- Hints & Lab Value --}}
+                        <div class="collapse col-12" id="collapseExample">
+                            @if (!empty($item->hint) && $item->hint != null)
+                                {!! $item->hint !!}
+                            @else
+                                No hint defined !!
+                            @endif
+                        </div>
 
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Lab Values</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="findInput" placeholder="find your information...">
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-info col-12" onclick="FindNext ();">Search</button>
+                                        </div>
 
+                                        <div id="hint">
+                                            {!! $lab !!}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {{-- Hints & Lab Value end here --}}
+
+                    </div> {{-- Right part end here --}}
+
+                    {{-- Left part of the exam for mobile--}}
+                    <div class="col-md-3" id="mobile">
+                        <div class="center col-12">
+                            <div class="row">
+                                <div class="col-12 time_for_mobile">
+                                    <div class="text-center" id="time_m"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="area_first__">
+                                    <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
+                                    <div class=" pagination_list">
+                                        <div class="col-md-12 block_">
+                                            @for ($i = 1; $i <= $total_question; $i++)
+                                                @if (isset($_GET['page']))
+                                                    @if ($i == $_GET['page'])
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @endif
+                                                @else
+                                                    @if ($i == '1')
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box active-search-box m-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @else
+                                                        <a href="{{ url('q-bank/random/exam/'.$id.'?page='.$i) }}" class="search-box ml-1 mb-1 col-x-1 question_no"><span id="{{$i}}">{{ $i }}</span></a>
+                                                    @endif
+                                                @endif
+                                            @endfor
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 @endsection
 @section('js')
     <script>
