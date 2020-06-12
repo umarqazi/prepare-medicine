@@ -383,3 +383,24 @@ Route::get('i-bank/video-bank-gallery', function (){
 Route::get('i-bank/video-bank-gallery-detail', function (){
     return view('frontend/i-bank/video-bank/video-bank-gallery-detail');
 });
+
+Route::get('k-bank/courses', function (){
+    return view('frontend/k-bank/courses/courses');
+});
+Route::get('k-bank/courses-details', function (){
+    return view('frontend/k-bank/courses/courses-details');
+});
+
+Route::get('k-bank/events', function (){
+    return view('frontend/k-bank/events/events');
+});
+Route::get('k-bank/events-details', function (){
+    return view('frontend/k-bank/events/events-details');
+});
+
+Route::get('k-bank/webinars', function (){
+    return view('frontend/k-bank/webinars/webinars');
+});
+Route::get('k-bank/webinars-details', function (){
+    return view('frontend/k-bank/webinars/webinars-details');
+});

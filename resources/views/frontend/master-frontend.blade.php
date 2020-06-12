@@ -266,8 +266,8 @@
                                             <ul class="sub-menu">
                                                 <li><a href="{{ url('course') }}">Courses</a></li>
                                                 <li><a href="{{ url('course/plab-1') }}">PLAB 1</a></li>
-                                                <li><a href="{{ url('course/plab-2') }}">PLAB 2</a></li>
-                                                <li><a href="{{ url('course-material/webinars') }}">Webinars</a></li>
+                                                <li><a href="{{ url('k-bank/events') }}">Events</a></li>
+                                                <li><a href="{{ url('k-bank/webinars') }}">Webinars</a></li>
 
                                             </ul>
                                         </li>
