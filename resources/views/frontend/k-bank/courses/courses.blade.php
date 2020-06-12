@@ -6,7 +6,7 @@
     <div class='page_banner_img_common'>
         <img src='/frontend/images/pages-banner.png' class='img-fluid'>
         <div class='overlay__'>
-            <p>Course</p>
+            <p>Courses111</p>
         </div>
     </div>
 
