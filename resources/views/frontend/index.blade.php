@@ -61,6 +61,14 @@
                                 cannot be done, it was done. You have faced obstacles, but we will help you to make it happen. </p>
                         </div><!--// section-title -->
                     </div>
+
+                    <div class="col-lg-4">
+                        <!--About Image Area Start-->
+                        <div class="about-image-area img-full">
+                            <img src="{{url('frontend/images/about/about1.jpg')}}" alt="">
+                        </div>
+                        <!--About Image Area End-->
+                    </div>
                 </div>
 
 
@@ -393,6 +401,130 @@
     </div>
     <!--// Most Popular Courses Area -->
 
+    <!--Course Area Start-->
+    <div class="course-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wrapper">
+                        <div class="section-title">
+                            <h3>POPULAR COURSES</h3>
+                            <p>There are many variations of passages of Lorem Ipsum</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-item">
+                        <div class="single-item-image overlay-effect">
+                            <a href="courses-details.html"><img src="img/course/1.jpg" alt=""></a>
+                            <div class="courses-hover-info">
+                                <div class="courses-hover-action">
+                                    <div class="courses-hover-thumb">
+                                        <img src="img/teacher/1.png" alt="small images">
+                                    </div>
+                                    <h4><a href="#">Derek Spafford</a></h4>
+                                    <span class="crs-separator">/</span>
+                                    <p>Professor</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-item-text">
+                            <h4><a href="courses-details.html">Photoshop CC 2017</a></h4>
+                            <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm.</p>
+                            <div class="single-item-content">
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-accounts"></i>59</span>
+                                    <span><i class="zmdi zmdi-favorite"></i>19</span>
+                                </div>
+                                <div class="single-item-rating">
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star-half"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-item">
+                        <div class="single-item-image overlay-effect">
+                            <a href="courses-details.html"><img src="img/course/2.jpg" alt=""></a>
+                            <div class="courses-hover-info">
+                                <div class="courses-hover-action">
+                                    <div class="courses-hover-thumb">
+                                        <img src="img/teacher/1.png" alt="small images">
+                                    </div>
+                                    <h4><a href="#">Derek Spafford</a></h4>
+                                    <span class="crs-separator">/</span>
+                                    <p>Professor</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-item-text">
+                            <h4><a href="courses-details.html">Illustrator CC 2017</a></h4>
+                            <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm.</p>
+                            <div class="single-item-content">
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-accounts"></i>59</span>
+                                    <span><i class="zmdi zmdi-favorite"></i>19</span>
+                                </div>
+                                <div class="single-item-rating">
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star-half"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="single-item">
+                        <div class="single-item-image overlay-effect">
+                            <a href="courses-details.html"><img src="img/course/3.jpg" alt=""></a>
+                            <div class="courses-hover-info">
+                                <div class="courses-hover-action">
+                                    <div class="courses-hover-thumb">
+                                        <img src="img/teacher/1.png" alt="small images">
+                                    </div>
+                                    <h4><a href="#">Derek Spafford</a></h4>
+                                    <span class="crs-separator">/</span>
+                                    <p>Professor</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-item-text">
+                            <h4><a href="courses-details.html">Indesign CC 2017</a></h4>
+                            <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm.</p>
+                            <div class="single-item-content">
+                                <div class="single-item-comment-view">
+                                    <span><i class="zmdi zmdi-accounts"></i>59</span>
+                                    <span><i class="zmdi zmdi-favorite"></i>19</span>
+                                </div>
+                                <div class="single-item-rating">
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star"></i>
+                                    <i class="zmdi zmdi-star-half"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 text-center">
+                    <a href="course.html" class="button-default button-large">Browse All Courses <i class="zmdi zmdi-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Course Area-->
+
     <!-- Free Introductory Seminar -->
     @if(!Auth::id())
         <div class="free-introductory-area section-ptb-160 free-introductory-bg" data-black-overlay="6">
@@ -631,5 +763,165 @@
         </div>
     </div>
     <!--// Testimonials Area -->
+
+    <!--Event Area Start-->
+    <div class="event-area section-padding bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wrapper">
+                        <div class="section-title">
+                            <h3>OUR EVENTS</h3>
+                            <p>There are many variations of passages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-event-item event-style-2">
+                        <div class="single-event-image">
+                            <a href="event-details.html">
+                                <img src="img/event/1.jpg" alt="">
+                                <span>15 Jun</span>
+                            </a>
+                        </div>
+                        <div class="single-event-text">
+                            <h3><a href="event-details.html">Learn English in ease</a></h3>
+                            <div class="single-item-comment-view">
+                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
+                                <span><i class="zmdi zmdi-pin"></i>Dhaka Bangladesh</span>
+                            </div>
+                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
+                            <a class="button-default" href="event-details.html">LEARN Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-event-item event-style-2">
+                        <div class="single-event-image">
+                            <a href="event-details.html">
+                                <img src="img/event/2.jpg" alt="">
+                                <span>20 Apr</span>
+                            </a>
+                        </div>
+                        <div class="single-event-text">
+                            <h3><a href="event-details.html">Learn English in ease</a></h3>
+                            <div class="single-item-comment-view">
+                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
+                                <span><i class="zmdi zmdi-pin"></i>Jessore Bangladesh</span>
+                            </div>
+                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
+                            <a class="button-default" href="event-details.html">LEARN Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-event-item event-style-2">
+                        <div class="single-event-image">
+                            <a href="event-details.html">
+                                <img src="img/event/3.jpg" alt="">
+                                <span>06 Dec</span>
+                            </a>
+                        </div>
+                        <div class="single-event-text">
+                            <h3><a href="event-details.html">Learn English in ease</a></h3>
+                            <div class="single-item-comment-view">
+                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
+                                <span><i class="zmdi zmdi-pin"></i>Dhaka. Bangladesh</span>
+                            </div>
+                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
+                            <a class="button-default" href="event-details.html">LEARN Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 text-center">
+                    <a href="course.html" class="button-default button-large">Browse All Events <i class="zmdi zmdi-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Event Area-->
+
+    <!--Webinar Area Start-->
+    <div class="event-area section-padding bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-title-wrapper">
+                        <div class="section-title">
+                            <h3>OUR Webinars</h3>
+                            <p>There are many variations of passages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-event-item event-style-2">
+                        <div class="single-event-image">
+                            <a href="event-details.html">
+                                <img src="img/event/1.jpg" alt="">
+                                <span>15 Jun</span>
+                            </a>
+                        </div>
+                        <div class="single-event-text">
+                            <h3><a href="event-details.html">Learn English in ease</a></h3>
+                            <div class="single-item-comment-view">
+                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
+                                <span><i class="zmdi zmdi-pin"></i>Dhaka Bangladesh</span>
+                            </div>
+                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
+                            <a class="button-default" href="event-details.html">LEARN Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-event-item event-style-2">
+                        <div class="single-event-image">
+                            <a href="event-details.html">
+                                <img src="img/event/2.jpg" alt="">
+                                <span>20 Apr</span>
+                            </a>
+                        </div>
+                        <div class="single-event-text">
+                            <h3><a href="event-details.html">Learn English in ease</a></h3>
+                            <div class="single-item-comment-view">
+                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
+                                <span><i class="zmdi zmdi-pin"></i>Jessore Bangladesh</span>
+                            </div>
+                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
+                            <a class="button-default" href="event-details.html">LEARN Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-event-item event-style-2">
+                        <div class="single-event-image">
+                            <a href="event-details.html">
+                                <img src="img/event/3.jpg" alt="">
+                                <span>06 Dec</span>
+                            </a>
+                        </div>
+                        <div class="single-event-text">
+                            <h3><a href="event-details.html">Learn English in ease</a></h3>
+                            <div class="single-item-comment-view">
+                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
+                                <span><i class="zmdi zmdi-pin"></i>Dhaka. Bangladesh</span>
+                            </div>
+                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
+                            <a class="button-default" href="event-details.html">LEARN Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 text-center">
+                    <a href="course.html" class="button-default button-large">Browse All Webinars <i class="zmdi zmdi-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Webinar Area-->
+
+
 @endsection
 
