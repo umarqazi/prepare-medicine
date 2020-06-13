@@ -3,40 +3,30 @@
 @section('js-css')
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-    <style type="text/css">
-        .btn_custom_style{
-            background-color: #ddd;
-            color: #000
-        }
-        .current img{
-            width: 200px
-        }
-    </style>
+
 @endsection
 
 @section('content')
     <br>
 
-    <div class="alert alert-info" role="alert">Edit Webinar</div>
+    <div class="alert alert-info" role="alert">Webinar Detail</div>
     @include('msg.msg')
 
-    <form class="custom_form" action="{{ route('webinars.update', $webinar->id) }}" method="post" enctype="multipart/form-data">
-        @method('PUT')
+    <form>
         @csrf
         <div class="form-group">
             <label><b>Title</b></label>
-            <input id="title" type="text" name="title" value="{{ $webinar->title }}" class="form-control">
-            <br>
-        </div>
-        <div class="form-group">
-            <label><b>Description</b></label>
-            <textarea id="description" name="description" class="form-control my-editor">{!! $webinar->description !!}</textarea>
-            <br>
+            <input id="title" type="text" name="title" placeholder="Enter title..." class="form-control" value="{{$webinar->title}}">
         </div>
 
         <div class="form-group">
-            <label><b>Content</b></label>
-            <textarea id="description" name="content" class="form-control my-editor">{!! $webinar->content !!}</textarea>
+            <label><b>Course Description</b></label>
+            <textarea id="description" name="description" class="form-control my-editor">{{$webinar->description}}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label><b>Course Content</b></label>
+            <textarea id="description" name="content" class="form-control my-editor">{{$webinar->content}}</textarea>
         </div>
 
         <div class="form-group">
@@ -67,19 +57,12 @@
             <input id="title" type="text" name="end" class="form-control datetime-picker" value="{{date('m/d/Y h:i:s', strtotime($webinar->end))}}">
         </div>
 
-        <div class="form-group">
-            <label><b>Video Link</b></label>
-            <input id="title" type="text" name="video_link" class="form-control" placeholder="Add the Video link" value="{{$webinar->video_link}}">
-        </div>
-
-        <label><b>Video</b></label>
-        <input id="video" type="file" name="video">
-        <br>
-
-        <label><b>Featured Image</b></label>
-        <input id="featured_img" type="file" name="featured_img" accept="image/*">
-        <br>
-        <input type="submit" class="btn btn_custom_style btn-primary" value="UPDATE WEBINAR" style="float:right">
+        @if(!empty($webinar->video_link))
+            <div class="form-group">
+                <label><b>Video Link</b></label>
+                <input id="title" type="text" name="video_link" class="form-control" value="{{$webinar->video_link}}">
+            </div>
+        @endif
     </form>
 
     <div class="row">
@@ -87,7 +70,7 @@
             <label><b>Current Featured Image</b></label>
             <div>
                 <img src="{{ url('storage/webinar/'.$webinar->image) }}" width="200px">
-            </div><br>
+            </div>
         </div>
 
         @if(!empty($webinar->video))
@@ -98,7 +81,7 @@
                         <source src="{{url('storage/webinar/'.$webinar->video)}}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                </div><br>
+                </div>
             </div>
         @endif
 
@@ -159,6 +142,4 @@
 
         tinymce.init(editor_config);
     </script>
-
-
 @endsection

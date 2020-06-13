@@ -156,11 +156,11 @@
                             <!-- top-social -->
                             <div class="top-social">
                                 <ul>
-                                    <li><a href="https://www.facebook.com/PrepareMedicine"><i class="zmdi zmdi-facebook"></i></a></li>
-                                    <li><a href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
-                                    <li><a href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
-                                    <li><a href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
-                                    <li><a href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
+                                    <li><a target="_blank" href="https://www.facebook.com/PrepareMedicine" ><i class="zmdi zmdi-facebook"></i></a></li>
+                                    <li><a target="_blank" href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
+                                    <li><a target="_blank" href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
+                                    <li><a target="_blank" href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
+                                    <li><a target="_blank" href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
                                     <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
                                 </ul>
                             </div><!--// top-social -->
@@ -209,10 +209,7 @@
                                                 <li><a href="{{ url('our-team/plab-news') }}">NEWS & Updates</a></li>
                                                 <li><a href="{{ url('our-team/useful-links-plab-1') }}">Useful Links</a></li>
                                                 <li><a href="{{ url('our-team/disclaimer') }}">Disclaimer</a></li>
-                                                <li><a href="{{ url('our-team/terms-conditions') }}">Terms Conditions</a></li>
                                                 <li><a href="{{ url('our-team/faq') }}">FAQ</a></li>
-                                                {{-- <li><a href="{{ url('our-team/work-us') }}">Work for Us</a></li> --}}
-                                                {{-- <li><a href="{{ url('our-team/feedback') }}">Feedback</a></li> --}}
                                             </ul>
                                         </li>
                                         <li><a><i class="zmdi zmdi-storage"></i> Q-BANK</a>
@@ -236,10 +233,10 @@
                                                 @endguest
                                                 @if (Auth::check())
                                                 @if (Auth::user()->role >= '2' && Auth::user()->expeir_date >= date('Y-m-d'))
-                                                    <li><a href="{{ url('q-bank/revision-category') }}">Prepare By Speciality</a></li>
-                                                    <li><a href="{{ url('q-bank/recall-exam') }}">Recall Exam</a></li>
+                                                    <li><a href="{{ url('q-bank/revision-category') }}">Revision</a></li>
                                                     <li><a href="{{ url('q-bank/mock-exam/random-mock') }}">Random Mock</a></li>
                                                     <li><a href="{{ url('q-bank/mock-exam/manual-mock') }}">Manual Mock</a></li>
+                                                    <li><a href="{{ url('q-bank/recall-exam') }}">Recall Exam</a></li>
                                                     <li><a href="{{ url('q-bank/flagged-questions') }}">Flagged Questions</a></li>
                                                 @endif
                                                 @endif
@@ -254,8 +251,8 @@
                                                 @if (Auth::check())
                                                     @if (Auth::user()->role >= '2' && Auth::user()->expeir_date >= date('Y-m-d'))
                                                         <li><a href="{{ url('i-bank/notes-bank') }}">Notes Bank</a></li>
-                                                        <li><a href="{{ url('i-bank/image-bank') }}">Image Bank</a></li>
-                                                        <li><a href="{{ url('i-bank/video-bank') }}">Video Bank</a></li>
+                                                        <li><a href="{{ route('image-bank') }}">Image Bank</a></li>
+                                                        <li><a href="{{ route('video-bank') }}">Video Bank</a></li>
                                                         <li><a href="{{ url('i-bank/smart-mock') }}">Smart Mock</a></li>
                                                     @endif
                                                 @endif
@@ -265,13 +262,13 @@
                                         <li><a href="#"><i class="zmdi zmdi-storage"></i> K-BANK</a>
                                             <ul class="sub-menu">
                                                 <li><a href="{{ url('course') }}">Courses</a></li>
-                                                <li><a href="{{ url('course/plab-1') }}">PLAB 1</a></li>
+                                                <li><a href="{{ url('k-bank/courses') }}">PLAB 1</a></li>
                                                 <li><a href="{{ url('k-bank/events') }}">Events</a></li>
                                                 <li><a href="{{ url('k-bank/webinars') }}">Webinars</a></li>
 
                                             </ul>
                                         </li>
-                                        <li><a href="{{ url('community') }}"><i class="zmdi zmdi-male-female"></i> PLABERS</a>
+                                        <li><a href="#"><i class="zmdi zmdi-male-female"></i> PLABERS</a>
                                             <ul class="sub-menu">
                                                 @if (Auth::check())
                                                     @if (Auth::user()->role >= '2' && Auth::user()->expeir_date >= date('Y-m-d'))

@@ -48,17 +48,26 @@ class PlabCourseController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
+
         $validate = Validator::make($request->all(), [
             'title'=>'required',
             'description'=>'required',
-            'content'=>'required',
+            'content'=>'nullable',
             'category'=>'required',
+            'presenter'=>'required',
             'start'=>'required',
+            'end'=>'required',
+            'time'=>'required',
+            'duration'=>'required',
+            'lectures'=>'required',
+            'course_type'=>'required',
+            'payment_option'=>'required',
+            'price'=>'nullable',
             'address'=>'required',
             'city'=>'required',
             'state'=>'required',
             'country'=>'required',
-            'presenter'=>'required',
             'featured_img'=>'required',
         ]);
 
@@ -77,9 +86,9 @@ class PlabCourseController extends Controller
 
             //now check directory
             if (env('APP_ENV') == 'local') {
-                $course_path = storage_path('app/public/events');
+                $course_path = storage_path('app/public/plab-courses');
             } else {
-                $course_path = '/home/kohin837/public_html/preparemedicine.com/storage/events';
+                $course_path = '/home/kohin837/public_html/preparemedicine.com/storage/plab-courses';
             }
 
             //now check directory
@@ -100,22 +109,29 @@ class PlabCourseController extends Controller
             }
         }
 
-        /* Create Event */
-        $event = new Event();
-        $event->title = $request->title;
-        $event->description = $request->description;
-        $event->content = $request->content;
-        $event->category_id = $request->category;
-        $event->start = date('Y-m-d H:i:s', strtotime($request->start));
-        $event->address = $request->address;
-        $event->city = $request->city;
-        $event->state = $request->state;
-        $event->country = $request->country;
-        $event->presenter = $request->presenter;
-        $event->image = $imgName;
-        $event->save();
+        /* Create Plab Course */
+        $course = new PlabCourse();
+        $course->title = $request->title;
+        $course->description = $request->description;
+        $course->content = $request->content;
+        $course->category_id = $request->category;
+        $course->user_id = $request->presenter;
+        $course->start = date('Y-m-d H:i:s', strtotime($request->start));
+        $course->end = date('Y-m-d H:i:s', strtotime($request->end));
+        $course->time = $request->time;
+        $course->duration = $request->duration;
+        $course->lectures = $request->lectures;
+        $course->is_online = $request->course_type;
+        $course->is_paid = $request->payment_option;
+        $course->price = $request->price;
+        $course->address = $request->address;
+        $course->city = $request->city;
+        $course->state = $request->state;
+        $course->country = $request->country;
+        $course->image = $imgName;
+        $course->save();
 
-        return redirect()->route('events.index')->with('success', 'Event has been Created Successfully!');
+        return redirect()->route('plab-courses.index')->with('success', 'Plab Course has been Created Successfully!');
     }
 
     /**
@@ -126,11 +142,14 @@ class PlabCourseController extends Controller
      */
     public function show($id)
     {
-        $event = Event::find($id);
+        $course = PlabCourse::find($id);
         $countries = country::all();
         $categories = categoty::all();
+        $users = User::where([
+            ['role', '!=', '4'],
+            ['role', '>=', '2']])->get();
 
-        return view('backend.plab2-courses.show', compact('event', 'countries', 'categories'));
+        return view('backend.plab2-courses.show', compact('course', 'countries', 'categories', 'users'));
     }
 
     /**
@@ -141,11 +160,14 @@ class PlabCourseController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::find($id);
+        $course = PlabCourse::find($id);
         $countries = country::all();
         $categories = categoty::all();
+        $users = User::where([
+            ['role', '!=', '4'],
+            ['role', '>=', '2']])->get();
 
-        return view('backend.plab1-events.edit', compact('event', 'countries', 'categories'));
+        return view('backend.plab2-courses.edit', compact('course', 'countries', 'categories', 'users'));
     }
 
     /**
@@ -157,16 +179,27 @@ class PlabCourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+//        dd($request->all());
+
         $validate = Validator::make($request->all(), [
             'title'=>'required',
             'description'=>'required',
-            'content'=>'required',
+            'content'=>'nullable',
             'category'=>'required',
+            'presenter'=>'required',
             'start'=>'required',
+            'end'=>'required',
+            'time'=>'required',
+            'duration'=>'required',
+            'lectures'=>'required',
+            'course_type'=>'required',
+            'payment_option'=>'required',
+            'price'=>'nullable',
             'address'=>'required',
             'city'=>'required',
             'state'=>'required',
             'country'=>'required',
+            'featured_img'=>'nullable',
         ]);
 
         if ($validate->fails()) {
@@ -175,7 +208,7 @@ class PlabCourseController extends Controller
                 ->with('error', 'SORRY - Please fill out all fields');
         }
 
-        $event = Event::find($id);
+        $course = PlabCourse::find($id);
 
         //make image
         $submitted_image = $request->file('featured_img');
@@ -186,9 +219,9 @@ class PlabCourseController extends Controller
 
             //now check directory
             if (env('APP_ENV') == 'local') {
-                $course_path = storage_path('app/public/events');
+                $course_path = storage_path('app/public/plab-courses');
             } else {
-                $course_path = '/home/kohin837/public_html/preparemedicine.com/storage/events';
+                $course_path = '/home/kohin837/public_html/preparemedicine.com/storage/plab-courses';
             }
 
             //now check directory
@@ -209,26 +242,34 @@ class PlabCourseController extends Controller
             }
 
             //first delete img
-            $img = url('storage/events/').$event->image;
+            $img = url('storage/plab-courses/').$course->image;
             if (file_exists($img)) {
-                unlink('storage/events/'.$event->image);
+                unlink('storage/plab-courses/'.$course->image);
             }
         }
 
-        /* Create Event */
-        $event->title = $request->title;
-        $event->description = $request->description;
-        $event->content = $request->content;
-        $event->category_id = $request->category;
-        $event->start = date('Y-m-d H:i:s', strtotime($request->start));
-        $event->address = $request->address;
-        $event->city = $request->city;
-        $event->state = $request->state;
-        $event->country = $request->country;
-        $event->image = $imgName;
-        $event->save();
+        /* Create Plab Course */
+        $course->title = $request->title;
+        $course->description = $request->description;
+        $course->content = $request->content;
+        $course->category_id = $request->category;
+        $course->user_id = $request->presenter;
+        $course->start = date('Y-m-d H:i:s', strtotime($request->start));
+        $course->end = date('Y-m-d H:i:s', strtotime($request->end));
+        $course->time = $request->time;
+        $course->duration = $request->duration;
+        $course->lectures = $request->lectures;
+        $course->is_online = $request->course_type;
+        $course->is_paid = $request->payment_option;
+        $course->price = $request->price;
+        $course->address = $request->address;
+        $course->city = $request->city;
+        $course->state = $request->state;
+        $course->country = $request->country;
+        $course->image = $imgName ? $imgName : $course->image;
+        $course->save();
 
-        return redirect()->route('events.index')->with('success', 'Event has been Updated Successfully!');
+        return redirect()->route('plab-courses.index')->with('success', 'Plab Course has been Updated Successfully!');
     }
 
     /**
@@ -239,9 +280,9 @@ class PlabCourseController extends Controller
      */
     public function destroy($id)
     {
-        $event = Event::find($id);
-        $event->delete();
+        $course = PlabCourse::find($id);
+        $course->delete();
 
-        return redirect()->route('events.index')->with('success', 'Event has been Deleted Successfully!');
+        return redirect()->route('plab-courses.index')->with('success', 'Event has been Deleted Successfully!');
     }
 }

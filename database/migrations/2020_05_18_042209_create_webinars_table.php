@@ -19,10 +19,17 @@ class CreateWebinarsTable extends Migration
             $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
             $table->string('image')->nullable();
+            $table->string('video')->nullable();
+            $table->string('video_link')->nullable();
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->foreign('category_id')->references('id')->on('categoties')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

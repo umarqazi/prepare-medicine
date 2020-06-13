@@ -66,7 +66,6 @@
             <br>
         </div>
 
-
         <label><b>Featured Image</b></label>
         <input id="featured_img" type="file" name="featured_img" accept="image/*">
         <br>

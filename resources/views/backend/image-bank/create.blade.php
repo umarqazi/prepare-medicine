@@ -7,24 +7,16 @@
 @endsection
 
 @section('content')
-    <br>
 
-    <div class="alert alert-info" role="alert">Create Webinar</div>
+    <div class="alert alert-info" role="alert">Create New Image</div>
     @include('msg.msg')
 
-    <form class="custom_form" action="{{ route('webinars.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="custom_form" action="{{ route('image-bank.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <label><b>Title</b></label>
-        <input id="title" type="text" name="title" placeholder="Enter title..." class="form-control">
-        <br>
-
-        <label><b>Description</b></label>
-        <textarea id="description" name="description" class="form-control my-editor"></textarea>
-        <br>
-
-        <label><b>Event Content</b></label>
-        <textarea id="description" name="content" class="form-control my-editor"></textarea>
-        <br>
+        <div class="form-group">
+            <label><b>Title</b></label>
+            <input id="title" type="text" name="title" placeholder="Enter Title..." class="form-control">
+        </div>
 
         <div class="form-group">
             <label><b>Category</b></label>
@@ -33,38 +25,20 @@
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
             </select>
-            <br>
         </div>
 
         <div class="form-group">
-            <label><b>Presenter</b></label>
-            <select id="presenter" class="form-control select2-dropdown" name="presenter" required autocomplete="presenter">
-                @foreach ($users as $item)
-                    <option value="{{ $item->id }}">{{ $item->f_name.' '.$item->s_name }}</option>
-                @endforeach
-            </select>
+            <label><b>Description</b></label>
+            <textarea name="description" class="form-control my-editor"></textarea>
         </div>
 
-        <label><b>Start Date and Time</b></label>
-        <input id="title" type="text" name="start" class="form-control datetime-picker" placeholder="Course Start Date and Time">
-        <br>
+        <div class="form-group">
+            <label><b>Image</b></label>
+            <input id="title" type="file" name="image" class="form-control">
+        </div>
 
-        <label><b>End Date and Time</b></label>
-        <input id="title" type="text" name="end" class="form-control datetime-picker" placeholder="Course End Date and Time">
         <br>
-
-        <label><b>Video Link</b></label>
-        <input id="title" type="text" name="video_link" class="form-control" placeholder="Type the Video URL here...">
-        <br>
-
-        <label><b>Video</b></label>
-        <input id="video" type="file" name="video">
-        <br>
-
-        <label><b>Featured Image</b></label>
-        <input id="featured_img" type="file" name="featured_img" accept="image/*">
-        <br>
-        <input type="submit" class="btn btn_custom_style btn-primary" value="SAVE WEBINAR" style="float:right">
+        <input type="submit" class="btn btn_custom_style btn-primary" value="CREATE NEW IMAGE" style="float:right">
     </form>
 
 @endsection
@@ -114,6 +88,5 @@
 
         tinymce.init(editor_config);
     </script>
-
-
 @endsection
+

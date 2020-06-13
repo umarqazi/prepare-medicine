@@ -154,6 +154,14 @@
                   <li><a class="app-menu__item " href="{{route('webinars.index')}}"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Webinars</span></a></li>
               @endif
 
+              @if(auth()->user()->can('View Image Bank'))
+                  <li><a class="app-menu__item " href="{{route('image-bank.index')}}"><i class="app-menu__icon fa fa-image"></i><span class="app-menu__label">Image Bank</span></a></li>
+              @endif
+
+              @if(auth()->user()->can('View Video Bank'))
+                  <li><a class="app-menu__item " href="{{route('video-bank.index')}}"><i class="app-menu__icon fa fa-video-camera"></i><span class="app-menu__label">Video Bank</span></a></li>
+              @endif
+
               @if(auth()->user()->can('View Blog'))
                   <li><a class="app-menu__item " href="{{ route('blog.index') }}"><i class="app-menu__icon fa fa-pencil"></i><span class="app-menu__label">Blog</span></a></li>
               @endif

@@ -252,27 +252,27 @@
         }
 
         .answerColor1{
-            background: #f5f4f4;
+            /*background: #f5f4f4;*/
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor2{
-            background: #f5f4f4;
+            /*background: #f5f4f4;*/
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor3{
-            background: #f5f4f4;
+            /*background: #f5f4f4;*/
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor4{
-            background: #f5f4f4;
+            /*background: #f5f4f4;*/
             padding: 2px 15px 10px 15px !important;
             border-radius: 5px;
         }
         .answerColor5{
-            background: #f5f4f4 !important;
+            /*background: #f5f4f4 !important;*/
             border-radius: 5px !important;
             padding: 2px 15px 10px 15px !important;
         }
