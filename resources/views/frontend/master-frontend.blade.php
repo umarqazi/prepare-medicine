@@ -36,6 +36,9 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ url('frontend/css/style.css') }}">
 
+    {{-- Custom Styles --}}
+    <link rel="stylesheet" href="{{ url('frontend/css/custom-styles.css') }}">
+
     <!-- Modernizer JS -->
     <script src="{{ url('frontend/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <style>

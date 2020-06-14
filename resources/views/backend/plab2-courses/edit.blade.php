@@ -73,7 +73,7 @@
 
         <div class="form-group">
             <label><b>Time Duration</b></label>
-            <input id="title" type="text" name="time" class="form-control datetime-picker" value="{{date('m/d/Y h:i:s', strtotime($course->time))}}">
+            <input id="title" type="text" name="time" class="form-control" placeholder="For Example 07am - 12pm" value="{{date('m/d/Y h:i:s', strtotime($course->time))}}">
 
         </div>
 

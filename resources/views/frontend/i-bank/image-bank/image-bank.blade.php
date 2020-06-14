@@ -27,7 +27,7 @@
             @foreach ($data as $item)
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-2">
                     <a href="{{ url('i-bank/image-bank-gallery/'.$item->id) }}" class="btn btn-spinner col-12 p-0" style="background:{{ $item->cat_color }};padding:0;border-radius:10px;overflow:hidden">
-                        <img src="{{ URL::asset('specialities/'.$item->cat_img) }}" alt="" style="max-width:65px;float:left;height:55px;">
+                        <img src="{{url('storage/photos/'.$item->cat_img)}}" alt="" style="max-width:65px;float:left;height:55px;">
                         <span style="margin-top:17px">{{ $item->name }}</span>
                     </a>
                 </div>

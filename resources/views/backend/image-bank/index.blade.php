@@ -48,7 +48,7 @@
                     <tr>
                         <th>Title</th>
                         <th>Description</th>
-                        <th>Category</th>
+                        <th>Speciality</th>
                         <th>Image</th>
                         <th>Action</th>
                     </tr>
@@ -58,7 +58,7 @@
                         <tr>
                             <td>{{$image->title}}</td>
                             <td>@php echo str_limit($image->description,30)@endphp</td>
-                            <td>{{$image->category_id}}</td>
+                            <td>{{$image->category->name}}</td>
                             <td><img src="{{url('storage/image-bank/'.$image->image)}}" width="100px" height="100px"></td>
                             <td>
                                 @if(auth()->user()->can('Edit Image Bank'))

@@ -244,11 +244,14 @@ class EventController extends Controller
 
     public function getEvents()
     {
-        return view('frontend/k-bank/events/events');
+        $events = Event::where('end', '>=', date('Y-m-d H:i:s'))->get();
+        return view('frontend/k-bank/events/events', compact('events'));
     }
 
-    public function getEventDetail()
+    public function getEventDetail($id)
     {
-        return view('frontend/k-bank/events/events-details');
+        $event = Event::find($id);
+        $recentEvents = Event::where('id','!=',$id)->where('end', '>=', date('Y-m-d H:i:s'))->orderBy('start', 'asc')->take(4)->get();
+        return view('frontend/k-bank/events/events-details', compact('event', 'recentEvents'));
     }
 }

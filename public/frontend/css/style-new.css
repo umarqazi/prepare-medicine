@@ -6,10 +6,10 @@
     Version: 1.0
 
 -----------------------------------------------------------------------------------
-    
+
     CSS INDEX
     ===================
-	
+
     1. Theme Default CSS (body, link color, section etc)
     2. Header CSS
         2.1 Header Top
@@ -44,7 +44,7 @@
     23. About Page
     24. Team Details Page
     25. Login Register Page CSS
-    26. 404 Page CSS 
+    26. 404 Page CSS
     27. Scrollup
 
 -----------------------------------------------------------------------------------*/
@@ -3225,7 +3225,7 @@ mark {
     bottom: 1px;
 }
 .single-sidebar-widget {
-    margin-bottom: 62px;
+    margin-bottom: 15px;
     overflow: hidden;
 }
 .single-sidebar-widget:last-child {
@@ -3870,7 +3870,7 @@ h4.small-title {
     margin: 0 auto;
 }
 /*-------------------------
-     15. Wishlist Page CSS 
+     15. Wishlist Page CSS
 ---------------------------*/
 
 .table-content table {
@@ -3939,7 +3939,7 @@ h4.small-title {
     color: #fff;
 }
 /*-------------------------
-     16. Cart Page CSS 
+     16. Cart Page CSS
 ---------------------------*/
 
 .edubuzz-product-quantity input {
@@ -4043,7 +4043,7 @@ h4.small-title {
     border-color: #2a306c;
 }
 /*-------------------------
-     17. Checkout Page CSS 
+     17. Checkout Page CSS
 ---------------------------*/
 
 .coupon-accordion h3 {
@@ -4794,7 +4794,7 @@ input.checkbox {
     color: #fff;
 }
 /*-------------------------
-     26. 404 Page CSS 
+     26. 404 Page CSS
 ---------------------------*/
 .error-text > h1 {
     font-size: 200px;

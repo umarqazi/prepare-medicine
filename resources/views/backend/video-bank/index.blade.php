@@ -48,7 +48,7 @@
                     <tr>
                         <th>Title</th>
                         <th>Description</th>
-                        <th>Category</th>
+                        <th>Speciality</th>
                         <th>Video</th>
                         <th>Action</th>
                     </tr>
@@ -58,7 +58,7 @@
                         <tr>
                             <td>{{$video->title}}</td>
                             <td>@php echo str_limit($video->description,30)@endphp</td>
-                            <td>{{$video->category_id}}</td>
+                            <td>{{ $video->category->name}}</td>
                             <td>
                                 <video width="100" height="100" controls>
                                     <source src="{{url('storage/video-bank/'.$video->image)}}" type="video/mp4">

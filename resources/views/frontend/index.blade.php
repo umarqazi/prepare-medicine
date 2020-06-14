@@ -409,118 +409,52 @@
                     <div class="section-title-wrapper">
                         <div class="section-title">
                             <h3>POPULAR COURSES</h3>
-                            <p>There are many variations of passages of Lorem Ipsum</p>
+                            <p>Some of our popular courses are given below.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="single-item">
-                        <div class="single-item-image overlay-effect">
-                            <a href="courses-details.html"><img src="img/course/1.jpg" alt=""></a>
-                            <div class="courses-hover-info">
-                                <div class="courses-hover-action">
-                                    <div class="courses-hover-thumb">
-                                        <img src="img/teacher/1.png" alt="small images">
+
+            @if(!$courses->isEmpty())
+                <div class="row">
+                    @foreach($courses as $course)
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="single-item">
+                                <div class="single-item-image overlay-effect">
+                                    <a href="{{route('getCourseDetail', $course->id)}}"><img src="{{url('storage/plab-courses/'.$course->image)}}" alt=""></a>
+                                    <div class="courses-hover-info">
+                                        <div class="courses-hover-action">
+                                            <p>{{$course->user->f_name.' '.$course->user->s_name}}</p>
+                                            <span class="crs-separator">/</span>
+                                            <p>Professor</p>
+                                        </div>
                                     </div>
-                                    <h4><a href="#">Derek Spafford</a></h4>
-                                    <span class="crs-separator">/</span>
-                                    <p>Professor</p>
+                                </div>
+                                <div class="single-item-text">
+                                    <h4><a href="{{route('getCourseDetail', $course->id)}}">{{$course->title}}</a></h4>
+                                    <p>{!! str_limit($course->description, 80) !!}</p>
+                                    <div class="single-item-content">
+                                        <div class="single-item-comment-view">
+                                            <span><i class="zmdi zmdi-accounts"></i>59</span>
+                                            <span><i class="zmdi zmdi-favorite"></i>19</span>
+                                        </div>
+                                        <div class="single-item-rating">
+                                            <i class="zmdi zmdi-star"></i>
+                                            <i class="zmdi zmdi-star"></i>
+                                            <i class="zmdi zmdi-star"></i>
+                                            <i class="zmdi zmdi-star"></i>
+                                            <i class="zmdi zmdi-star-half"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="single-item-text">
-                            <h4><a href="courses-details.html">Photoshop CC 2017</a></h4>
-                            <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm.</p>
-                            <div class="single-item-content">
-                                <div class="single-item-comment-view">
-                                    <span><i class="zmdi zmdi-accounts"></i>59</span>
-                                    <span><i class="zmdi zmdi-favorite"></i>19</span>
-                                </div>
-                                <div class="single-item-rating">
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star-half"></i>
-                                </div>
-                            </div>
-                        </div>
+                    @endforeach
+                    <div class="col-md-12 col-sm-12 text-center">
+                        <a href="{{route('getCourses')}}" class="button-default button-large">Browse All Courses <i class="zmdi zmdi-chevron-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="single-item">
-                        <div class="single-item-image overlay-effect">
-                            <a href="courses-details.html"><img src="img/course/2.jpg" alt=""></a>
-                            <div class="courses-hover-info">
-                                <div class="courses-hover-action">
-                                    <div class="courses-hover-thumb">
-                                        <img src="img/teacher/1.png" alt="small images">
-                                    </div>
-                                    <h4><a href="#">Derek Spafford</a></h4>
-                                    <span class="crs-separator">/</span>
-                                    <p>Professor</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-item-text">
-                            <h4><a href="courses-details.html">Illustrator CC 2017</a></h4>
-                            <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm.</p>
-                            <div class="single-item-content">
-                                <div class="single-item-comment-view">
-                                    <span><i class="zmdi zmdi-accounts"></i>59</span>
-                                    <span><i class="zmdi zmdi-favorite"></i>19</span>
-                                </div>
-                                <div class="single-item-rating">
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star-half"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="single-item">
-                        <div class="single-item-image overlay-effect">
-                            <a href="courses-details.html"><img src="img/course/3.jpg" alt=""></a>
-                            <div class="courses-hover-info">
-                                <div class="courses-hover-action">
-                                    <div class="courses-hover-thumb">
-                                        <img src="img/teacher/1.png" alt="small images">
-                                    </div>
-                                    <h4><a href="#">Derek Spafford</a></h4>
-                                    <span class="crs-separator">/</span>
-                                    <p>Professor</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-item-text">
-                            <h4><a href="courses-details.html">Indesign CC 2017</a></h4>
-                            <p>There are many variations of sages of Lorem Ipsum available, but the mrity have suffered alteration in some orm.</p>
-                            <div class="single-item-content">
-                                <div class="single-item-comment-view">
-                                    <span><i class="zmdi zmdi-accounts"></i>59</span>
-                                    <span><i class="zmdi zmdi-favorite"></i>19</span>
-                                </div>
-                                <div class="single-item-rating">
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star"></i>
-                                    <i class="zmdi zmdi-star-half"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12 text-center">
-                    <a href="course.html" class="button-default button-large">Browse All Courses <i class="zmdi zmdi-chevron-right"></i></a>
-                </div>
-            </div>
+            @endif
         </div>
     </div>
     <!--End of Course Area-->
@@ -665,261 +599,97 @@
     </div>
     <!-- Project Count Area End -->
 
-    <!-- Testimonials Area -->
-    <div class="testimonials-area grey-bg-image section-ptb">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-8  ml-auto mr-auto">
-                    <!-- section-title -->
-                    <div class="section-title-two">
-                        <h4>WORKING TOGETHER</h4>
-                        <h3>OUR TEAM</h3>
-                    </div><!--// section-title -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="testimonial-active owl-carousel">
-                    <!-- testimonial-wrap -->
-                    <div class="testimonial-wrap text-center">
-                        <div class="testimonial-image">
-                            <img src="{{ url('frontend/images/testimonial/testimonial-author-1.png') }}" alt="">
-                        </div>
-                        <div class="testimonial-info">
-                            <div class="autor-info">
-                                <h4>Dr Aziz Khan </h4>
-                                <h6>Organisational Genius</h6>
-                            </div>
-                            <p> PrepareMedicine.com at a time when we were furstrated with other services not quite meeting
-                                our expectations in some way. From diverse backgrounds, we found we had several things in common,
-                                and our unique skills have somehow coalesced into an entity that 'works' in no perticular order, meet the team.</p>
-                        </div>
-                    </div><!--// testimonial-wrap -->
-                    <!-- testimonial-wrap -->
-                    <div class="testimonial-wrap text-center">
-                        <div class="testimonial-image">
-                            <img src="{{ url('frontend/images/testimonial/testimonial-author-2.png') }}" alt="">
-                        </div>
-                        <div class="testimonial-info">
-                            <div class="autor-info">
-                                <h4>Mrs Jeanette Mccellan </h4>
-                                <h6>Q-Bank Writing Queen</h6>
-                            </div>
-                            <p> PrepareMedicine.com at a time when we were furstrated with other services not quite meeting
-                                our expectations in some way. From diverse backgrounds, we found we had several things in common,
-                                and our unique skills have somehow coalesced into an entity that 'works' in no perticular order, meet the team.</p>
-                        </div>
-                    </div><!--// testimonial-wrap -->
-
-                    <!-- testimonial-wrap -->
-                    <div class="testimonial-wrap text-center">
-                        <div class="testimonial-image">
-                            <img src="{{ url('frontend/images/testimonial/testimonial-author-3.png') }}" alt="">
-                        </div>
-                        <div class="testimonial-info">
-                            <div class="autor-info">
-                                <h4>Dr Salik kakar </h4>
-                                <h6>Revision Material Guru</h6>
-                            </div>
-                            <p> PrepareMedicine.com at a time when we were furstrated with other services not quite meeting
-                                our expectations in some way. From diverse backgrounds, we found we had several things in common,
-                                and our unique skills have somehow coalesced into an entity that 'works' in no perticular order, meet the team.</p>
-                        </div>
-                    </div><!--// testimonial-wrap -->
-
-                    <!-- testimonial-wrap -->
-                    <div class="testimonial-wrap text-center">
-                        <div class="testimonial-image">
-                            <img src="{{ url('frontend/images/testimonial/testimonial-author-4.png') }}" alt="">
-                        </div>
-                        <div class="testimonial-info">
-                            <div class="autor-info">
-                                <h4>Dr Tahir Zeb </h4>
-                                <h6>Clinical Expert</h6>
-                            </div>
-                            <p> PrepareMedicine.com at a time when we were furstrated with other services not quite meeting
-                                our expectations in some way. From diverse backgrounds, we found we had several things in common,
-                                and our unique skills have somehow coalesced into an entity that 'works' in no perticular order, meet the team.</p>
-                        </div>
-                    </div><!--// testimonial-wrap -->
-
-                    <!-- testimonial-wrap -->
-                    <div class="testimonial-wrap text-center">
-                        <div class="testimonial-image">
-                            <img src="{{ url('frontend/images/testimonial/testimonial-author-5.png') }}" alt="">
-                        </div>
-                        <div class="testimonial-info">
-                            <div class="autor-info">
-                                <h4>Dr Jalil Khan </h4>
-                                <h6>General Practice Specialist</h6>
-                            </div>
-                            <p> PrepareMedicine.com at a time when we were furstrated with other services not quite meeting
-                                our expectations in some way. From diverse backgrounds, we found we had several things in common,
-                                and our unique skills have somehow coalesced into an entity that 'works' in no perticular order, meet the team.</p>
-                        </div>
-                    </div><!--// testimonial-wrap -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--// Testimonials Area -->
-
     <!--Event Area Start-->
-    <div class="event-area section-padding bg-white py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-title-wrapper">
-                        <div class="section-title">
-                            <h3>OUR EVENTS</h3>
-                            <p>There are many variations of passages</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-event-item event-style-2">
-                        <div class="single-event-image">
-                            <a href="event-details.html">
-                                <img src="img/event/1.jpg" alt="">
-                                <span>15 Jun</span>
-                            </a>
-                        </div>
-                        <div class="single-event-text">
-                            <h3><a href="event-details.html">Learn English in ease</a></h3>
-                            <div class="single-item-comment-view">
-                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                                <span><i class="zmdi zmdi-pin"></i>Dhaka Bangladesh</span>
+    @if(!$events->isEmpty())
+        <div class="event-area section-padding bg-white py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-wrapper">
+                            <div class="section-title">
+                                <h3>OUR EVENTS</h3>
+                                <p>These are some of our Upcoming events.</p>
                             </div>
-                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                            <a class="button-default" href="event-details.html">LEARN Now</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-event-item event-style-2">
-                        <div class="single-event-image">
-                            <a href="event-details.html">
-                                <img src="img/event/2.jpg" alt="">
-                                <span>20 Apr</span>
-                            </a>
-                        </div>
-                        <div class="single-event-text">
-                            <h3><a href="event-details.html">Learn English in ease</a></h3>
-                            <div class="single-item-comment-view">
-                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                                <span><i class="zmdi zmdi-pin"></i>Jessore Bangladesh</span>
+
+                <div class="row">
+                    @foreach($events as $event)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-event-item event-style-2">
+                                <div class="single-event-image">
+                                    <a href="{{route('getEventDetail', $event->id)}}">
+                                        <img src="{{url('storage/events/'.$event->image)}}" alt="">
+                                        <span>{{date('d M', strtotime($event->start))}}</span>
+                                    </a>
+                                </div>
+                                <div class="single-event-text">
+                                    <h3><a href="{{route('getEventDetail', $event->id)}}">{{$event->title}}</a></h3>
+                                    <div class="single-item-comment-view">
+                                        <span><i class="zmdi zmdi-calendar"></i>{{date('D, M d, Y', strtotime($event->start))}}</span>
+                                        <span><i class="zmdi zmdi-time"></i>{{date('h:i a', strtotime($event->start))}}</span>
+                                        <span><i class="zmdi zmdi-pin"></i>{{$event->address.', '.$event->city.', '.$event->state}}</span>
+                                    </div>
+                                    <p>{!! str_limit($event->description, 80) !!}</p>
+                                    <a class="button-default" href="{{route('getEventDetail', $event->id)}}">LEARN Now</a>
+                                </div>
                             </div>
-                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                            <a class="button-default" href="event-details.html">LEARN Now</a>
                         </div>
+                    @endforeach
+                    <div class="col-md-12 col-sm-12 text-center">
+                        <a href="{{route('getEvents')}}" class="button-default button-large">Browse All Events <i class="zmdi zmdi-chevron-right"></i></a>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-event-item event-style-2">
-                        <div class="single-event-image">
-                            <a href="event-details.html">
-                                <img src="img/event/3.jpg" alt="">
-                                <span>06 Dec</span>
-                            </a>
-                        </div>
-                        <div class="single-event-text">
-                            <h3><a href="event-details.html">Learn English in ease</a></h3>
-                            <div class="single-item-comment-view">
-                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                                <span><i class="zmdi zmdi-pin"></i>Dhaka. Bangladesh</span>
-                            </div>
-                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                            <a class="button-default" href="event-details.html">LEARN Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12 text-center">
-                    <a href="course.html" class="button-default button-large">Browse All Events <i class="zmdi zmdi-chevron-right"></i></a>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
     <!--End of Event Area-->
 
     <!--Webinar Area Start-->
-    <div class="event-area section-padding bg-white py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-title-wrapper">
-                        <div class="section-title">
-                            <h3>OUR Webinars</h3>
-                            <p>There are many variations of passages</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-event-item event-style-2">
-                        <div class="single-event-image">
-                            <a href="event-details.html">
-                                <img src="img/event/1.jpg" alt="">
-                                <span>15 Jun</span>
-                            </a>
-                        </div>
-                        <div class="single-event-text">
-                            <h3><a href="event-details.html">Learn English in ease</a></h3>
-                            <div class="single-item-comment-view">
-                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                                <span><i class="zmdi zmdi-pin"></i>Dhaka Bangladesh</span>
+    @if(!$webinars->isEmpty())
+        <div class="event-area section-padding bg-white py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="section-title-wrapper">
+                            <div class="section-title">
+                                <h3>OUR Webinars</h3>
+                                <p>These are some of our Upcoming webinars.</p>
                             </div>
-                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                            <a class="button-default" href="event-details.html">LEARN Now</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-event-item event-style-2">
-                        <div class="single-event-image">
-                            <a href="event-details.html">
-                                <img src="img/event/2.jpg" alt="">
-                                <span>20 Apr</span>
-                            </a>
-                        </div>
-                        <div class="single-event-text">
-                            <h3><a href="event-details.html">Learn English in ease</a></h3>
-                            <div class="single-item-comment-view">
-                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                                <span><i class="zmdi zmdi-pin"></i>Jessore Bangladesh</span>
+
+                <div class="row">
+                    @foreach($webinars as $webinar)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-event-item event-style-2">
+                                <div class="single-event-image">
+                                    <a href="{{route('getWebinarDetail', $webinar->id)}}">
+                                        <img src="{{url('storage/webinar/'.$webinar->image)}}" alt="">
+                                        <span>{{date('d M', strtotime($webinar->start))}}</span>
+                                    </a>
+                                </div>
+                                <div class="single-event-text">
+                                    <h3><a href="{{route('getWebinarDetail', $webinar->id)}}">{{$webinar->title}}</a></h3>
+                                    <div class="single-item-comment-view">
+                                        <span><i class="zmdi zmdi-calendar"></i>{{date('D, M d, Y', strtotime($webinar->start))}}</span>
+                                        <span><i class="zmdi zmdi-time"></i>{{date('h:i a', strtotime($webinar->start))}}</span>
+                                    </div>
+                                    <p>{!! str_limit($webinar->description, 80) !!}</p>
+                                    <a class="button-default" href="{{route('getWebinarDetail', $webinar->id)}}">LEARN Now</a>
+                                </div>
                             </div>
-                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                            <a class="button-default" href="event-details.html">LEARN Now</a>
                         </div>
+                    @endforeach
+                    <div class="col-md-12 col-sm-12 text-center">
+                        <a href="{{route('getWebinar')}}" class="button-default button-large">Browse All Webinars <i class="zmdi zmdi-chevron-right"></i></a>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-event-item event-style-2">
-                        <div class="single-event-image">
-                            <a href="event-details.html">
-                                <img src="img/event/3.jpg" alt="">
-                                <span>06 Dec</span>
-                            </a>
-                        </div>
-                        <div class="single-event-text">
-                            <h3><a href="event-details.html">Learn English in ease</a></h3>
-                            <div class="single-item-comment-view">
-                                <span><i class="zmdi zmdi-time"></i>4.00 pm - 8.00 pm</span>
-                                <span><i class="zmdi zmdi-pin"></i>Dhaka. Bangladesh</span>
-                            </div>
-                            <p>There are many variaons of passa of Lorem Ipsuable, amrn in sofby injected humour, amr sarata din megla....</p>
-                            <a class="button-default" href="event-details.html">LEARN Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12 text-center">
-                    <a href="course.html" class="button-default button-large">Browse All Webinars <i class="zmdi zmdi-chevron-right"></i></a>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
     <!--End of Webinar Area-->
 
 

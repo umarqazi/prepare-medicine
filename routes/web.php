@@ -379,10 +379,10 @@ Route::get('question/view/{id}', "QuestionController@viewFile")->name('view_file
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('events', 'EventController@getEvents')->name('getEvents');
-Route::get('event-detail', 'EventController@getEventDetail')->name('getEventDetail');
+Route::get('event-detail/{id}', 'EventController@getEventDetail')->name('getEventDetail');
 
 Route::get('plab-courses', 'PlabCourseController@getPlabCourses')->name('getCourses');
-Route::get('plab-course-details', 'PlabCourseController@getCourseDetail')->name('getCourseDetail');
+Route::get('plab-course-details/{id}', 'PlabCourseController@getCourseDetail')->name('getCourseDetail');
 
 Route::get('webinars', 'WebinarController@getWebinars')->name('getWebinar');
-Route::get('webinar-details', 'WebinarController@getWebinarDetail')->name('getWebinarDetail');
+Route::get('webinar-details/{id}', 'WebinarController@getWebinarDetail')->name('getWebinarDetail');

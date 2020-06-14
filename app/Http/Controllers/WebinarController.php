@@ -318,11 +318,14 @@ class WebinarController extends Controller
 
     public function getWebinars()
     {
-        return view('frontend/k-bank/webinars/webinars');
+        $webinars = Webinar::where('end', '>=', date('Y-m-d H:i:s'))->get();
+        return view('frontend/k-bank/webinars/webinars', compact('webinars'));
     }
 
-    public function getWebinarDetails()
+    public function getWebinarDetail($id)
     {
-        return view('frontend/k-bank/webinars/webinars-details');
+        $webinar = Webinar::find($id);
+        $recentWebinars = Webinar::where('id','!=',$id)->where('end', '>=', date('Y-m-d H:i:s'))->orderBy('start', 'asc')->take(4)->get();
+        return view('frontend/k-bank/webinars/webinars-details', compact('webinar', 'recentWebinars'));
     }
 }
