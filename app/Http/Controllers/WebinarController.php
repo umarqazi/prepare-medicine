@@ -315,4 +315,14 @@ class WebinarController extends Controller
 
         return redirect()->route('webinars.index')->with('success', 'Webinar has been Deleted Successfully!');
     }
+
+    public function getWebinars()
+    {
+        return view('frontend/k-bank/webinars/webinars');
+    }
+
+    public function getWebinarDetails()
+    {
+        return view('frontend/k-bank/webinars/webinars-details');
+    }
 }

@@ -241,4 +241,14 @@ class EventController extends Controller
 
         return redirect()->route('events.index')->with('success', 'Event has been Deleted Successfully!');
     }
+
+    public function getEvents()
+    {
+        return view('frontend/k-bank/events/events');
+    }
+
+    public function getEventDetail()
+    {
+        return view('frontend/k-bank/events/events-details');
+    }
 }

@@ -285,4 +285,14 @@ class PlabCourseController extends Controller
 
         return redirect()->route('plab-courses.index')->with('success', 'Event has been Deleted Successfully!');
     }
+
+    public function getPlabCourses()
+    {
+        return view('frontend/k-bank/courses/courses');
+    }
+
+    public function getCourseDetail()
+    {
+        return view('frontend/k-bank/courses/courses-details');
+    }
 }

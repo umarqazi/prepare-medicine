@@ -377,3 +377,12 @@ Route::get('question/view/{id}', "QuestionController@viewFile")->name('view_file
 // end backend or admin pannel path
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('events', 'EventController@getEvents')->name('getEvents');
+Route::get('event-detail', 'EventController@getEventDetail')->name('getEventDetail');
+
+Route::get('plab-courses', 'PlabCourseController@getPlabCourses')->name('getCourses');
+Route::get('plab-course-details', 'PlabCourseController@getCourseDetail')->name('getCourseDetail');
+
+Route::get('webinars', 'WebinarController@getWebinars')->name('getWebinar');
+Route::get('webinar-details', 'WebinarController@getWebinarDetail')->name('getWebinarDetail');
