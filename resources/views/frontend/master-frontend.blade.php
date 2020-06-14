@@ -266,7 +266,6 @@
                                                 <li><a href="{{ route('getCourses') }}">Plab Courses</a></li>
                                                 <li><a href="{{ route('getEvents') }}">Events</a></li>
                                                 <li><a href="{{ route('getWebinar') }}">Webinars</a></li>
-
                                             </ul>
                                         </li>
                                         <li><a href="#"><i class="zmdi zmdi-male-female"></i> PLABERS</a>

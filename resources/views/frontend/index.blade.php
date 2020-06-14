@@ -765,7 +765,7 @@
     <!--// Testimonials Area -->
 
     <!--Event Area Start-->
-    <div class="event-area section-padding bg-white">
+    <div class="event-area section-padding bg-white py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -844,7 +844,7 @@
     <!--End of Event Area-->
 
     <!--Webinar Area Start-->
-    <div class="event-area section-padding bg-white">
+    <div class="event-area section-padding bg-white py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
