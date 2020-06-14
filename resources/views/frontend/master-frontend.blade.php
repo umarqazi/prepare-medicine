@@ -159,11 +159,13 @@
                             <!-- top-social -->
                             <div class="top-social">
                                 <ul>
+                                    
                                     <li><a target="_blank" href="https://www.facebook.com/PrepareMedicine" ><i class="zmdi zmdi-facebook"></i></a></li>
                                     <li><a target="_blank" href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
                                     <li><a target="_blank" href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
                                     <li><a target="_blank" href="https://www.youtube.com/channel/UC-aACIkZHxVgtKs_edU96Xw"><i class="zmdi zmdi-youtube"></i></a></li>
                                     <li><a target="_blank" href="{{route('contact-us')}}"><i class="zmdi zmdi-email"></i></a></li>
+                                    <li><a target="_blank" href="#" ><i class="zmdi zmdi-notifications"></i></a></li>
                                     <!-- <li><a href="#"><i class="zmdi zmdi-rss"></i></a></li> -->
                                 </ul>
                             </div><!--// top-social -->

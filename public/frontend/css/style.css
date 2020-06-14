@@ -1845,21 +1845,9 @@ label {
 
 .mobile-menu .mean-bar .meanmenu-reveal {
     position: absolute;
-    top: -28px;
+    top: -30px;
     color: #000;
     left: 0;
-}
-
-@media only screen and (max-width: 767px) {
-    .mobile-menu .mean-bar .meanmenu-reveal {
-        top: -54px;
-    }
-}
-
-@media only screen and (max-width: 479px) {
-    .mobile-menu .mean-bar .meanmenu-reveal {
-        top: -50px;
-    }
 }
 
 .mobile-menu .mean-bar .meanmenu-reveal span {
@@ -6110,9 +6098,9 @@ button.botton-border:hover {
 }
 .status_wrapper {
     display: inline-block;
-    float: right;
-    line-height: 51px;
+    line-height: normal;
     font-weight: bold;
+    text-align: center;
 }
 
 .questions-wrapper {
@@ -6229,6 +6217,12 @@ button.botton-border:hover {
     }
 }
 @media only screen and (max-width: 767px) {
+    .questions-wrapper {
+        padding: 0;
+    }
+    body p {
+        font-size: 14px !important;
+    }
     .footer-logo {
         max-width: 200px;
     }
@@ -6236,9 +6230,6 @@ button.botton-border:hover {
     .logo-area a img {
         max-width: 70%;
         min-width: 140px;
-    }
-    .mobile-menu {
-        right: 15px;
     }
     .hero-slider #carouselExampleFade .carousel-caption {
         display: block !important;

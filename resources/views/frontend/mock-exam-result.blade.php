@@ -33,7 +33,6 @@
             position: relative;
             background-color: #fff;
             color: #666;
-            top: 10px;
             height: 30px;
             width: 30px;
             border: 0;
@@ -78,6 +77,7 @@
         }
         .form-radio{
             border:1px solid #2A306C;
+            min-width:30px;
         }
         .form-radio:hover, .form-radio:checked {
             background-color: #2A306C;
@@ -189,7 +189,16 @@
         }
 
         .question_section{
-            padding: 10px;
+            padding: 20px;
+        }
+        .question_section div p,
+        .question_section ~ .card .card-body{
+            font-size:16px;
+            line-height:normal;
+            
+        }
+        .question_section div p{
+            padding:0 5px;
         }
 
         .hide_question_status_board{
@@ -232,7 +241,9 @@
         }
 
         @media screen and (max-width: 483px){
-
+            .btn_info{
+                margin:0;
+            }
             .top_action{
                 display: block !important;
             }
@@ -253,30 +264,16 @@
 
 
         /*Customize by 'Developer Rijan'*/
-        .answerColor1{
-            /*background: #f5f4f4;*/
-            padding: 2px 15px 10px 15px !important;
-            border-radius: 5px;
-        }
-        .answerColor2{
-            /*background: #f5f4f4;*/
-            padding: 2px 15px 10px 15px !important;
-            border-radius: 5px;
-        }
-        .answerColor3{
-            /*background: #f5f4f4;*/
-            padding: 2px 15px 10px 15px !important;
-            border-radius: 5px;
-        }
-        .answerColor4{
-            /*background: #f5f4f4;*/
-            padding: 2px 15px 10px 15px !important;
-            border-radius: 5px;
-        }
+        .answerColor1,
+        .answerColor2,
+        .answerColor3,
+        .answerColor4,
         .answerColor5{
-            /*background: #f5f4f4 !important;*/
-            border-radius: 5px !important;
-            padding: 2px 15px 10px 15px !important;
+            /*background: #f5f4f4;*/
+            padding: 10px 15px !important;
+            border-radius: 5px;
+            display:flex;
+            align-items:center;
         }
         .pagination_list{
             height: auto;
@@ -900,297 +897,297 @@
                                     @foreach ($item->mocques_ans as $key=>$value)
                                         @if ($key == '0')
                                             @if ($key == $item->ans)
-                                                <div class="success mb-2 answerColor1 pb-2 radius">
+                                                <div class="success mb-2 answerColor1 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio a">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalA * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
                                                 </span>
                                                 </div>
                                             @elseif ($key == $item->user_ans)
                                                 @if ('0' ==  $item->user_ans)
-                                                    <div class="wrong mb-2 answerColor2 pb-2 radius">
+                                                    <div class="wrong mb-2 answerColor2 pb-2 radius d-flex align-items-center">
                                                         <input type="radio" name="answer" value="{{ $key }}" class="form-radio a">
-                                                        <p class="inline">{{ $value->ans }}</p>
+                                                        <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                         {{--Answer Status Update--}}
-                                                        <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                        <span class="status_wrapper al-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalA * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
                                                 </span>
                                                     </div>
                                                 @else
-                                                    <div class="mb-2 pb-2 answerColor3 radius">
+                                                    <div class="mb-2 pb-2 answerColor3 radius d-flex align-items-center">
                                                         <input type="radio" name="answer" value="{{ $key }}" class="form-radio a">
-                                                        <p class="inline">{{ $value->ans }}</p>
+                                                        <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                         {{--Answer Status Update--}}
-                                                        <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                        <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalA * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
                                                 </span>
                                                     </div>
                                                 @endif
                                             @else
-                                                <div class="mb-2 pb-2 answerColor4 radius">
+                                                <div class="mb-2 pb-2 answerColor4 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio a">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalA * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_1*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalA.")" }}</p>
                                                 </span>
                                                 </div>
                                             @endif
                                         @elseif($key == '1')
                                             @if ($key == $item->ans)
-                                                <div class="success mb-2 answerColor5 pb-2 radius">
+                                                <div class="success mb-2 answerColor5 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio b">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalB * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_2*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
                                                 </span>
                                                 </div>
                                             @elseif ($key == $item->user_ans)
                                                 @if (empty($item->user_ans))
                                                     @continue
                                                 @endif
-                                                <div class="wrong mb-2 answerColor1 pb-2 radius">
+                                                <div class="wrong mb-2 answerColor1 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio b">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalB * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_2*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
                                                 </span>
                                                 </div>
                                             @else
-                                                <div class="mb-2 pb-2 answerColor2 radius">
+                                                <div class="mb-2 pb-2 answerColor2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio b">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalB * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_2*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalB.")" }}</p>
                                                 </span>
                                                 </div>
                                             @endif
                                         @elseif($key == '2')
                                             @if ($key == $item->ans)
-                                                <div class="success answerColor3 mb-2 pb-2 radius">
+                                                <div class="success answerColor3 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio c">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalC * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_3*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
                                                 </span>
                                                 </div>
                                             @elseif ($key == $item->user_ans)
                                                 @if (empty($item->user_ans))
                                                     @continue
                                                 @endif
-                                                <div class="wrong answerColor4 mb-2 pb-2 radius">
+                                                <div class="wrong answerColor4 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio c">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalC * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_3*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
                                                 </span>
                                                 </div>
                                             @else
-                                                <div class="mb-2 answerColor5 pb-2 radius">
+                                                <div class="mb-2 answerColor5 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio c">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalC * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_3*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalC.")" }}</p>
                                                 </span>
                                                 </div>
                                             @endif
                                         @elseif($key == '3')
                                             @if ($key == $item->ans)
-                                                <div class="success answerColor1 mb-2 pb-2 radius">
+                                                <div class="success answerColor1 mb-2 pb-2 radius  d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio d">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalD * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_4*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
                                                 </span>
                                                 </div>
                                             @elseif ($key == $item->user_ans)
                                                 @if (empty($item->user_ans))
                                                     @continue
                                                 @endif
-                                                <div class="wrong answerColor2 mb-2 pb-2 radius">
+                                                <div class="success answerColor2 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio d">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalD * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_4*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
                                                 </span>
                                                 </div>
                                             @else
-                                                <div class="mb-2 answerColor3 pb-2 radius">
+                                                <div class="success answerColor3 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio d">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalD * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_4*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalD.")" }}</p>
                                                 </span>
                                                 </div>
                                             @endif
                                         @elseif($key == '4')
                                             @if ($key == $item->ans)
-                                                <div class="success answerColor1 mb-2 pb-2 radius">
+                                                <div class="success answerColor1 mb-2 pb-2 radius  d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio e">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalE * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_5*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
                                                 </span>
                                                 </div>
                                             @elseif ($key == $item->user_ans)
                                                 @if (empty($item->user_ans))
                                                     @continue
                                                 @endif
-                                                <div class="wrong answerColor2 mb-2 pb-2 radius">
+                                                <div class="success answerColor2 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio e">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalE * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_5*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
                                                 </span>
                                                 </div>
                                             @else
-                                                <div class="mb-2 answerColor3 pb-2 radius">
+                                                <div class="success answerColor3 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio e">
-                                                    <p class="inline">{{ $value->ans }}</p>
+                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                     {{--Answer Status Update--}}
-                                                    <span class="status_wrapper">
-                                                    <p class="inline" style="margin: 0px 2px">
+                                                    <span class="status_wrapper ml-auto">
+                                                    <p class="inline mb-0" style="margin: 0px 2px">
                                                     @if ($item->type == '0')
                                                             {{ round(($totalE * 100)/ $totalAns_ ) }}%
                                                         @else
                                                             {{ (round(($static_data_5*100)/$totalAns_multi)) }}%
                                                         @endif
                                                     </p>
-                                                    <p class="inline" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
+                                                    <p class="inline mb-0" title="Total answers of this option">{{ "(".$totalE.")" }}</p>
                                                 </span>
                                                 </div>
                                             @endif
@@ -1204,27 +1201,27 @@
                                         @if ($key == '0')
                                             <div id="muli-ans{{ $key }}" class="answerColor1 mb-2 pb-2 radius">
                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio a">
-                                                <p class="inline">{{ $value->ans }}</p>
+                                                <p class="inline mb-0">{{ $value->ans }}</p>
                                             </div>
                                         @elseif($key == '1')
                                             <div id="muli-ans{{ $key }}" class="answerColor2 mb-2 pb-2 radius">
                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio b">
-                                                <p class="inline">{{ $value->ans }}</p>
+                                                <p class="inline mb-0">{{ $value->ans }}</p>
                                             </div>
                                         @elseif($key == '2')
                                             <div id="muli-ans{{ $key }}" class="answerColor3 mb-2 pb-2 radius">
                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio c">
-                                                <p class="inline">{{ $value->ans }}</p>
+                                                <p class="inline mb-0">{{ $value->ans }}</p>
                                             </div>
                                         @elseif($key == '3')
                                             <div id="muli-ans{{ $key }}" class="answerColor4 mb-2 pb-2 radius">
                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio d">
-                                                <p class="inline">{{ $value->ans }}</p>
+                                                <p class="inline mb-0">{{ $value->ans }}</p>
                                             </div>
                                         @elseif($key == '4')
                                             <div id="muli-ans{{ $key }}" class="answerColor5 mb-2 pb-2 radius">
                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" class="form-radio e">
-                                                <p class="inline">{{ $value->ans }}</p>
+                                                <p class="inline mb-0">{{ $value->ans }}</p>
                                             </div>
                                         @endif
                                     @endforeach
@@ -1240,7 +1237,7 @@
                                 {{-- end --}}
 
                             </div>
-                            <table style="margin:0 auto">
+                            <table class="d-flex justify-content-center">
                                 <tr>
                                     <td>
                                         <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -1381,8 +1378,8 @@
 
                             <div class='area_first__'>
                                 <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
-                                <div class="center row pagination_list">
-                                    <div class="col-md-12 block_">
+                                <div class="center col-12 pagination_list">
+                                    <div class="row block_ justify-content-center">
 
                                         @for ($i = 1; $i <= $total_question; $i++)
 
