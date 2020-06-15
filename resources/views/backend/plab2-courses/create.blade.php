@@ -34,12 +34,6 @@
         </div>
 
         <div class="form-group">
-            <label><b>Course Curriculum</b></label>
-            <textarea id="curriculum" name="curriculum" class="form-control my-editor"></textarea>
-
-        </div>
-
-        <div class="form-group">
             <label><b>Category</b></label>
             <select id="category" class="form-control select2-dropdown" name="category" required autocomplete="category">
                 @foreach ($categories as $item)
@@ -56,55 +50,53 @@
                     <option value="{{ $item->id }}">{{ $item->f_name.' '.$item->s_name }}</option>
                 @endforeach
             </select>
-
         </div>
 
         <div class="form-group">
-            <label><b>Start On</b></label>
-            <input id="title" type="text" name="start" class="form-control datetime-picker">
+            <label><b>Start On (Date & Time)</b></label>
+            <input id="title" type="text" name="start" class="form-control datetime-picker" placeholder="Course Start Date and Time">
+        </div>
 
+        <div class="form-group">
+            <label><b>Ends On (Date & Time)</b></label>
+            <input id="title" type="text" name="end" class="form-control datetime-picker" placeholder="Course End Date and Time">
         </div>
 
         <div class="form-group">
             <label><b>Time Duration</b></label>
-            <input id="title" type="text" name="time"class="form-control datetime-picker">
-
+            <input id="title" type="text" name="time"class="form-control" placeholder="For Example 07am - 12pm">
         </div>
 
         <div class="form-group">
             <label><b>Duration</b></label>
             <input id="title" type="text" name="duration" placeholder="Enter duration..." class="form-control">
-
         </div>
 
         <div class="form-group">
             <label><b>No. of Lectures</b></label>
             <input id="title" type="number" name="lectures" placeholder="Enter no of lectures..." class="form-control">
-
         </div>
 
         <div class="form-group">
             <label><b>Course Type</b></label>
-            <select id="type" class="form-control" name="type" required autocomplete="type">
+            <select id="course_type" class="form-control" name="course_type" required autocomplete="course_type">
                 <option value="">Select Course Type</option>
                 <option value="1">Online</option>
                 <option value="0">Face to Face</option>
             </select>
-
         </div>
 
         <div class="form-group">
             <label><b>Payment Option</b></label>
-            <select id="is_paid" class="form-control" name="is_paid" required autocomplete="is_paid">
+            <select id="payment_option" class="form-control" name="payment_option" required autocomplete="payment_option">
                 <option value="">Select Payment Option</option>
                 <option value="1">Paid</option>
                 <option value="0">Free</option>
             </select>
-
         </div>
 
 
-        <div class="form-group" id="price_field" style="display: none">
+        <div class="form-group" id="price_field">
             <label><b>Price</b></label>
             <input id="title" type="text" name="price" placeholder="Enter price..." class="form-control">
 
@@ -112,19 +104,19 @@
 
         <div class="form-group">
             <label><b>Address</b></label>
-            <input id="title" type="text" name="address" placeholder="Enter title..." class="form-control">
+            <input id="title" type="text" name="address" placeholder="Enter Address..." class="form-control">
 
         </div>
 
         <div class="form-group">
             <label><b>City</b></label>
-            <input id="title" type="text" name="city" placeholder="Enter title..." class="form-control">
+            <input id="title" type="text" name="city" placeholder="Enter City..." class="form-control">
 
         </div>
 
         <div class="form-group">
             <label><b>State</b></label>
-            <input id="title" type="text" name="state" placeholder="Enter title..." class="form-control">
+            <input id="title" type="text" name="state" placeholder="Enter State..." class="form-control">
 
         </div>
 
@@ -135,36 +127,6 @@
                     <option value="{{ $item->country_name }}">{{ $item->country_name }}</option>
                 @endforeach
             </select>
-        </div>
-
-        <div class="course_curriculum">
-            <h3>Course Curriculum</h3>
-{{--            <span class="right"><i class="fa fa-3x fa-plus-circle"></i></span>--}}
-
-{{--            < type="button" data-toggle="modal" data-target="#exampleModal">--}}
-                <span class="right" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-3x fa-plus-circle"></i></span>
-{{--            </>--}}
-        </div>
-
-        <div class="table-responsive">
-            <table class="table table-bordered table-light">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Duration</th>
-                    <th>Visible</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
         </div>
 
         <div class="form-group">

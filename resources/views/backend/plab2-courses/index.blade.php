@@ -48,9 +48,10 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
+                        <th>Course Title</th>
                         <th>Starting From</th>
-                        <th>Level</th>
+                        <th>Ending At</th>
+                        <th>Course Type</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
@@ -61,19 +62,20 @@
                             <td scope="row">{{ $key+1 }}</td>
                             <td >{{ $item->title }}</td>
                             <td> {{ date('m-d-Y', strtotime($item->start))}}</td>
-                            <td >{{ $item->level }}</td>
-                            <td >{{ $item->price }}</td>
+                            <td> {{ date('m-d-Y', strtotime($item->end))}}</td>
+                            <td >{{ $item->is_online ? 'Online' : 'Face to Face' }}</td>
+                            <td >{{ '$'.$item->price }}</td>
                             <td>
                                 @if(auth()->user()->can('View Plab Course'))
-                                    <a href="{{ route('events.show', $item->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-eye edit"></i></a>
+                                    <a href="{{ route('plab-courses.show', $item->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-eye edit"></i></a>
                                 @endif
 
                                 @if(auth()->user()->can('Edit Plab Course'))
-                                    <a href="{{ route('events.edit', $item->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-edit edit"></i></a>
+                                    <a href="{{ route('plab-courses.edit', $item->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-edit edit"></i></a>
                                 @endif
 
                                 @if(auth()->user()->can('Delete Plab Course'))
-                                    <form method="post" class="delete-form" action="{{ route('events.destroy', $item->id) }}">
+                                    <form method="post" class="delete-form" action="{{ route('plab-courses.destroy', $item->id) }}">
                                         @csrf
                                         @method('DELETE')
 

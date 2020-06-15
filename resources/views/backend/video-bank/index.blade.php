@@ -27,16 +27,15 @@
     </style>
 @endsection
 @section('content')
-    <br>
 
     <div class="panel panel-white">
         <div class="panel-heading clearfix">
-            <h4 class="panel-title">Webinars</h4>
+            <h4 class="panel-title">Video Bank</h4>
         </div>
 
-        @if(auth()->user()->can('Create Webinar'))
+        @if(auth()->user()->can('Create Video Bank'))
             <div class="panel-heading clearfix btn-left">
-                <a href="{{ route('webinars.create') }}" class="btn btn-sencodary">Add Webinar</a>
+                <a href="{{ route('video-bank.create') }}" class="btn btn-sencodary">Add Video</a>
             </div>
         @endif
 
@@ -47,31 +46,33 @@
                 <table class="table table-bordered data_table">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Webinar Title</th>
-                        <th>Starting From</th>
-                        <th>Ending At</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Speciality</th>
+                        <th>Video</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($webinars as $key=>$item)
+                    @foreach($videos as $video)
                         <tr>
-                            <td scope="row">{{ $key+1 }}</td>
-                            <td >{{ $item->title }}</td>
-                            <td> {{ date('m-d-Y', strtotime($item->start))}}</td>
-                            <td> {{ date('m-d-Y', strtotime($item->end))}}</td>
+                            <td>{{$video->title}}</td>
+                            <td>@php echo str_limit($video->description,30)@endphp</td>
+                            <td>{{ $video->category->name}}</td>
                             <td>
-                                @if(auth()->user()->can('View Webinar'))
-                                    <a href="{{ route('webinars.show', $item->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-eye edit"></i></a>
+                                <video width="100" height="100" controls>
+                                    <source src="{{url('storage/video-bank/'.$video->image)}}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </td>
+
+                            <td>
+                                @if(auth()->user()->can('Edit Video Bank'))
+                                    <a href="{{ route('video-bank.edit', $video->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-edit edit"></i></a>
                                 @endif
 
-                                @if(auth()->user()->can('Edit Webinar'))
-                                    <a href="{{ route('webinars.edit', $item->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-edit edit"></i></a>
-                                @endif
-
-                                @if(auth()->user()->can('Delete Webinar'))
-                                    <form method="post" class="delete-form" action="{{ route('webinars.destroy', $item->id) }}">
+                                @if(auth()->user()->can('Delete Video Bank'))
+                                    <form method="post" class="delete-form" action="{{ route('video-bank.destroy', $video->id) }}">
                                         @csrf
                                         @method('DELETE')
 
@@ -83,8 +84,9 @@
                     @endforeach
                     </tbody>
                 </table>
+
+                <span style="float:right"> {{ $videos->links() }}</span>
             </div>
-            <span>{{ $webinars->render() }}</span>
         </div>
     </div>
 

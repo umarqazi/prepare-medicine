@@ -659,7 +659,7 @@ class QuestionController extends Controller
                             //there have to write my code for single choice question !!
                             $que_id = question::insertGetId([
                                 'question' => $value[0],
-                                'cat_id' => $value[1],
+                                'cat_id' => is_int($value[1]) ? $value[1] : categoty::where('name', strtoupper($value[1]))->first()->id,
                                 'ans' => $main_ans,
                                 'explanation' => $value[3],
                                 'hint' => $value[4],
@@ -676,7 +676,7 @@ class QuestionController extends Controller
                             //there have to write my code multi choice question !!
                             $que_id = question::insertGetId([
                                 'question' => $value[0],
-                                'cat_id' => $value[1],
+                                'cat_id' => is_int($value[1]) ? $value[1] : categoty::where('name', strtoupper($value[1]))->first()->id,
                                 'ans' => $main_ans,
                                 'explanation' => $value[3],
                                 'hint' => $value[4],

@@ -27,16 +27,15 @@
     </style>
 @endsection
 @section('content')
-    <br>
 
     <div class="panel panel-white">
         <div class="panel-heading clearfix">
-            <h4 class="panel-title">Webinars</h4>
+            <h4 class="panel-title">Image Bank</h4>
         </div>
 
-        @if(auth()->user()->can('Create Webinar'))
+        @if(auth()->user()->can('Create Image Bank'))
             <div class="panel-heading clearfix btn-left">
-                <a href="{{ route('webinars.create') }}" class="btn btn-sencodary">Add Webinar</a>
+                <a href="{{ route('image-bank.create') }}" class="btn btn-sencodary">Add Image</a>
             </div>
         @endif
 
@@ -47,31 +46,27 @@
                 <table class="table table-bordered data_table">
                     <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Webinar Title</th>
-                        <th>Starting From</th>
-                        <th>Ending At</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Speciality</th>
+                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($webinars as $key=>$item)
+                    @foreach($images as $image)
                         <tr>
-                            <td scope="row">{{ $key+1 }}</td>
-                            <td >{{ $item->title }}</td>
-                            <td> {{ date('m-d-Y', strtotime($item->start))}}</td>
-                            <td> {{ date('m-d-Y', strtotime($item->end))}}</td>
+                            <td>{{$image->title}}</td>
+                            <td>@php echo str_limit($image->description,30)@endphp</td>
+                            <td>{{$image->category->name}}</td>
+                            <td><img src="{{url('storage/image-bank/'.$image->image)}}" width="100px" height="100px"></td>
                             <td>
-                                @if(auth()->user()->can('View Webinar'))
-                                    <a href="{{ route('webinars.show', $item->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-eye edit"></i></a>
+                                @if(auth()->user()->can('Edit Image Bank'))
+                                    <a href="{{ route('image-bank.edit', $image->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-edit edit"></i></a>
                                 @endif
 
-                                @if(auth()->user()->can('Edit Webinar'))
-                                    <a href="{{ route('webinars.edit', $item->id) }}" style="background-color: #0A68D4; color: #fff; border: none;" class="btn btn-sm"><i class="fa fa-edit edit"></i></a>
-                                @endif
-
-                                @if(auth()->user()->can('Delete Webinar'))
-                                    <form method="post" class="delete-form" action="{{ route('webinars.destroy', $item->id) }}">
+                                @if(auth()->user()->can('Delete Image Bank'))
+                                    <form method="post" class="delete-form" action="{{ route('image-bank.destroy', $image->id) }}">
                                         @csrf
                                         @method('DELETE')
 
@@ -83,8 +78,9 @@
                     @endforeach
                     </tbody>
                 </table>
+
+                <span style="float:right"> {{ $images->links() }}</span>
             </div>
-            <span>{{ $webinars->render() }}</span>
         </div>
     </div>
 

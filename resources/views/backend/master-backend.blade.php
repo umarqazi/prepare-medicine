@@ -62,9 +62,9 @@
           @endif
 
           @if(auth()->user()->can('View Category'))
-            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Categories</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Specialities</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a class="treeview-item" href="{{ url('admin/category') }}"><i class="icon fa fa-circle-o"></i> Categories</a></li>
+                    <li><a class="treeview-item" href="{{ url('admin/category') }}"><i class="icon fa fa-circle-o"></i> Specialities</a></li>
                 </ul>
             </li>
           @endif
@@ -152,6 +152,14 @@
 
               @if(auth()->user()->can('View Webinar'))
                   <li><a class="app-menu__item " href="{{route('webinars.index')}}"><i class="app-menu__icon fa fa-book"></i><span class="app-menu__label">Webinars</span></a></li>
+              @endif
+
+              @if(auth()->user()->can('View Image Bank'))
+                  <li><a class="app-menu__item " href="{{route('image-bank.index')}}"><i class="app-menu__icon fa fa-image"></i><span class="app-menu__label">Image Bank</span></a></li>
+              @endif
+
+              @if(auth()->user()->can('View Video Bank'))
+                  <li><a class="app-menu__item " href="{{route('video-bank.index')}}"><i class="app-menu__icon fa fa-video-camera"></i><span class="app-menu__label">Video Bank</span></a></li>
               @endif
 
               @if(auth()->user()->can('View Blog'))

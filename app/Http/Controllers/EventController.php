@@ -241,4 +241,17 @@ class EventController extends Controller
 
         return redirect()->route('events.index')->with('success', 'Event has been Deleted Successfully!');
     }
+
+    public function getEvents()
+    {
+        $events = Event::where('end', '>=', date('Y-m-d H:i:s'))->get();
+        return view('frontend/k-bank/events/events', compact('events'));
+    }
+
+    public function getEventDetail($id)
+    {
+        $event = Event::find($id);
+        $recentEvents = Event::where('id','!=',$id)->where('end', '>=', date('Y-m-d H:i:s'))->orderBy('start', 'asc')->take(4)->get();
+        return view('frontend/k-bank/events/events-details', compact('event', 'recentEvents'));
+    }
 }

@@ -17,72 +17,141 @@
 @section('content')
 <br>
 
-    <div class="alert alert-info" role="alert">Edit Event</div>
+    <div class="alert alert-info" role="alert">Edit Plab Course</div>
     @include('msg.msg')
 
-    <form class="custom_form" action="{{ route('events.update', $event->id) }}" method="post" enctype="multipart/form-data">
+    <form class="custom_form" action="{{ route('plab-courses.update', $course->id) }}" method="post" enctype="multipart/form-data">
         @method('PUT')
         @csrf
-        <label><b>Title</b></label>
-        <input id="title" type="text" name="title" placeholder="Enter title..." class="form-control" value="{{$event->title}}">
-        <br>
 
-        <label><b>Description</b></label>
-        <textarea id="description" name="description" class="form-control my-editor">@php echo $event->description @endphp</textarea>
-        <br>
+        <div class="form-group">
+            <label><b>Title</b></label>
+            <input id="title" type="text" name="title" placeholder="Enter title..." class="form-control" value="{{$course->title}}">
 
-        <label><b>Event Content</b></label>
-        <textarea id="description" name="content" class="form-control my-editor">@php echo $event->content @endphp</textarea>
-        <br>
+        </div>
+
+        <div class="form-group">
+            <label><b>Course Description</b></label>
+            <textarea id="description" name="description" class="form-control my-editor">{{$course->description}}</textarea>
+
+        </div>
+
+        <div class="form-group">
+            <label><b>Course Content</b></label>
+            <textarea id="description" name="content" class="form-control my-editor">{{$course->content}}</textarea>
+
+        </div>
 
         <div class="form-group">
             <label><b>Category</b></label>
             <select id="category" class="form-control select2-dropdown" name="category" required autocomplete="category">
                 @foreach ($categories as $item)
-                    <option value="{{ $item->id }}" {{$item->id === $event->category_id ? 'selected' : ''}}>{{ $item->name }}</option>
+                    <option value="{{ $item->id }}" {{$item->id === $course->category_id ? 'selected' : ''}}>{{ $item->name }}</option>
                 @endforeach
             </select>
-            <br>
+
         </div>
 
-        <label><b>Start Time</b></label>
-        <input id="title" type="text" name="start" class="form-control datetime-picker"  value="{{ date('m-d-Y h:i:s a', strtotime($event->start))}}">
-        <br>
+        <div class="form-group">
+            <label><b>Presenter</b></label>
+            <select id="presenter" class="form-control select2-dropdown" name="presenter" required autocomplete="presenter">
+                @foreach ($users as $item)
+                    <option value="{{ $item->id }}" {{$item->id === $course->user_id ? 'selected' : ''}}>{{ $item->f_name.' '.$item->s_name }}</option>
+                @endforeach
+            </select>
+        </div>
 
-        <label><b>Address</b></label>
-        <input id="title" type="text" name="address" placeholder="Enter title..." class="form-control"  value="{{$event->address}}">
-        <br>
+        <div class="form-group">
+            <label><b>Start On</b></label>
+            <input id="title" type="text" name="start" class="form-control datetime-picker" value="{{date('m/d/Y h:i:s', strtotime($course->start))}}">
+        </div>
 
-        <label><b>City</b></label>
-        <input id="title" type="text" name="city" placeholder="Enter title..." class="form-control"  value="{{$event->city}}">
-        <br>
+        <div class="form-group">
+            <label><b>Ends On</b></label>
+            <input id="title" type="text" name="end" class="form-control datetime-picker" value="{{date('m/d/Y h:i:s', strtotime($course->end))}}">
+        </div>
 
-        <label><b>State</b></label>
-        <input id="title" type="text" name="state" placeholder="Enter title..." class="form-control"  value="{{$event->state}}">
-        <br>
+        <div class="form-group">
+            <label><b>Time Duration</b></label>
+            <input id="title" type="text" name="time" class="form-control" placeholder="For Example 07am - 12pm" value="{{date('m/d/Y h:i:s', strtotime($course->time))}}">
+
+        </div>
+
+        <div class="form-group">
+            <label><b>Duration</b></label>
+            <input id="title" type="text" name="duration" placeholder="Enter duration..." class="form-control" value="{{$course->duration}}">
+
+        </div>
+
+        <div class="form-group">
+            <label><b>No. of Lectures</b></label>
+            <input id="title" type="number" name="lectures" placeholder="Enter no of lectures..." class="form-control" value="{{$course->lectures}}">
+
+        </div>
+
+        <div class="form-group">
+            <label><b>Course Type</b></label>
+            <select id="course_type" class="form-control" name="course_type" required autocomplete="course_type">
+                <option value="">Select Course Type</option>
+                <option value="1" {{$course->is_online ? 'selected' : ''}}>Online</option>
+                <option value="0" {{!$course->is_online ? 'selected' : ''}}>Face to Face</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label><b>Payment Option</b></label>
+            <select id="payment_option" class="form-control" name="payment_option" required autocomplete="payment_option">
+                <option value="">Select Payment Option</option>
+                <option value="1" {{$course->is_paid ? 'selected' : ''}}>Paid</option>
+                <option value="0" {{!$course->is_paid ? 'selected' : ''}}>Free</option>
+            </select>
+        </div>
+
+
+        <div class="form-group" id="price_field">
+            <label><b>Price</b></label>
+            <input id="title" type="text" name="price" placeholder="Enter price..." class="form-control" value="{{$course->price}}">
+
+        </div>
+
+        <div class="form-group">
+            <label><b>Address</b></label>
+            <input id="title" type="text" name="address" placeholder="Enter title..." class="form-control" value="{{$course->address}}">
+
+        </div>
+
+        <div class="form-group">
+            <label><b>City</b></label>
+            <input id="title" type="text" name="city" placeholder="Enter title..." class="form-control" value="{{$course->city}}">
+
+        </div>
+
+        <div class="form-group">
+            <label><b>State</b></label>
+            <input id="title" type="text" name="state" placeholder="Enter title..." class="form-control" value="{{$course->state}}">
+
+        </div>
 
         <div class="form-group">
             <label><b>Country</b></label>
             <select id="country" class="form-control select2-dropdown" name="country" required autocomplete="country">
                 @foreach ($countries as $item)
-                    <option value="{{ $item->country_name }}" {{$item->country_name == $event->country ? 'selected' : ''}}>{{ $item->country_name }}</option>
+                    <option value="{{ $item->country_name }}" {{$item->country_name === $course->country ? 'selected' : ''}}>{{ $item->country_name }}</option>
                 @endforeach
             </select>
-            <br>
         </div>
-
 
         <label><b>Featured Image</b></label>
         <input id="featured_img" type="file" name="featured_img" accept="image/*">
         <br>
-        <input type="submit" class="btn btn_custom_style btn-primary" value="UPDATE PLAB COURSE" style="float:right">
+        <input type="submit" class="btn btn-success btn_custom_style" value="UPDATE PLAB COURSE" style="float:right">
     </form>
 
     <div class="row">
         <div class="col-md-12 current">
         <label><b>Current Featured Image</b></label>
             <div>
-                <img src="{{ url('storage/events/'.$event->image) }}">
+                <img src="{{ url('storage/plab-courses/'.$course->image) }}">
             </div>
         </div>
     </div>

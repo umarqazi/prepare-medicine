@@ -34,7 +34,6 @@
             position: relative;
             background-color: #fff;
             color: #666;
-            top: 10px;
             height: 32px;
             width: 32px;
             border: 0;
@@ -77,6 +76,7 @@
     }
     .form-radio{
         border:1px solid #2A306C;
+        min-width:30px;
     }
     .form-radio:hover, .form-radio:checked {
         background-color: #2A306C;
@@ -89,13 +89,34 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             cursor: pointer;
+            margin-bottom:0;
         }
-        .form-radio:hover + label,
+        .form-radio + label.inline{
+            width:100%;
+            display:flex;
+        }
+        .form-radio + label.inline p{
+            font-size:16px;
+            padding:0 5px;
+        }
+        .question_section{
+            padding: 20px;
+        }
+        .question_section div p,
+        .question_section ~ .card .card-body{
+            font-size:16px;
+            line-height:normal;
+            
+        }
+        .question_section div p{
+            padding:0 5px;
+        }
+        /* .form-radio:hover + label,
         .form-radio:checked +label,
         .success .form-radio + label{
             font-weight:bold;
             color:#2A306C;
-        }
+        } */
     </style>
     <style>
         body{
@@ -191,7 +212,9 @@
         }
 
         @media screen and (max-width: 483px){
-
+            .btn_info{
+                margin:0;
+            }
             .top_action{
                 display: block !important;
             }
@@ -251,35 +274,16 @@
             color: white !important;
         }
 
-        .answerColor1{
-            background: #f5f4f4;
-            padding: 2px 15px 10px 15px !important;
-            border-radius: 5px;
-        }
-        .answerColor2{
-            background: #f5f4f4;
-            padding: 2px 15px 10px 15px !important;
-            border-radius: 5px;
-        }
-        .answerColor3{
-            background: #f5f4f4;
-            padding: 2px 15px 10px 15px !important;
-            border-radius: 5px;
-        }
-        .answerColor4{
-            background: #f5f4f4;
-            padding: 2px 15px 10px 15px !important;
-            border-radius: 5px;
-        }
+        .answerColor1,
+        .answerColor2,
+        .answerColor3,
+        .answerColor4,
         .answerColor5{
-            background: #f5f4f4 !important;
-            border-radius: 5px !important;
-            padding: 2px 15px 10px 15px !important;
-        }
-        .status_wrapper {
-            display: inline-block;
-            float: right;
-            line-height: 50px;
+            /*background: #f5f4f4;*/
+            padding: 10px 15px !important;
+            border-radius: 5px;
+            display:flex;
+            align-items:center;
         }
 
         /*Customize by 'Developer Rijan'*/
@@ -727,7 +731,7 @@
                 {{-- Right part of the exam --}}
                 <div class="col-lg-9 col-md-8 col-sm-12">
 
-<div class="card">
+                        <div class="card question_section">
                                 <div class="top_action d-flex justify-content-start">
                                     @isset($_GET['page'])
                                         <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }} </p>
@@ -838,13 +842,13 @@
                                                 @foreach ($item->question_ans as $key=>$value)
                                                     @if ($key == '0')
                                                         @if ($key == $item->ans)
-                                                            <div class="success answerColor1 pl-2 mb-2 pb-2 radius">
+                                                            <div class="success answerColor1 pl-2 mb-2 pb-2 radius d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-2021" class="form-radio a">
                                                                 <label for="radio-2021" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                                     {{--Answer Status Update--}}
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                             {{ round(($totalA * 100)/ $totalAns_ ) }}%
@@ -857,13 +861,13 @@
                                                                 </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
-                                                            <div class="wrong mb-2 answerColor2 pl-2 pb-2 radius">
+                                                            <div class="wrong mb-2 answerColor2 pl-2 pb-2 radius d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-19" class="form-radio a">
                                                                 <label for="radio-19" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                                     {{--Answer Status Update--}}
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                                 {{ round(($totalA * 100)/ $totalAns_ ) }}%
@@ -876,13 +880,13 @@
                                                                 </label>
                                                             </div>
                                                         @else
-                                                            <div class="mb-2 pb-2 answerColor3 radius pl-2">
+                                                            <div class="mb-2 pb-2 answerColor3 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-18" class="form-radio a">
                                                                 <label for="radio-18" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                                     {{--Answer Status Update--}}
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                             @if ($item->type == '0')
                                                                                 {{ round(($totalA * 100)/ $totalAns_ ) }}%
@@ -897,13 +901,13 @@
                                                         @endif
                                                     @elseif($key == '1')
                                                         @if ($key == $item->ans)
-                                                            <div class="success mb-2 answerColor1 pb-2 pl-2 radius">
+                                                            <div class="success mb-2 answerColor1 pb-2 pl-2 radius d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-17" class="form-radio b">
                                                                 <label for="radio-17" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                                     {{--Answer Status Update--}}
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                             {{ round(($totalB * 100)/ $totalAns_ ) }}%
@@ -916,13 +920,13 @@
                                                                 </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
-                                                            <div class="wrong mb-2 answerColor2 pb-2 pl-2 radius">
+                                                            <div class="wrong mb-2 answerColor2 pb-2 pl-2 radius d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-16" class="form-radio b">
                                                                 <label for="radio-16" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                                     {{--Answer Status Update--}}
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                                 {{ round(($totalB * 100)/ $totalAns_ ) }}%
@@ -935,13 +939,13 @@
                                                                 </label>
                                                             </div>
                                                         @else
-                                                            <div class="mb-2 pb-2 answerColor3 radius pl-2">
+                                                            <div class="mb-2 pb-2 answerColor3 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-15" class="form-radio b">
                                                                 <label for="radio-15" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
                                                                     {{--Answer Status Update--}}
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                                 {{ round(($totalB * 100)/ $totalAns_ ) }}%
@@ -956,12 +960,12 @@
                                                         @endif
                                                     @elseif($key == '2')
                                                         @if ($key == $item->ans)
-                                                            <div class="success answerColor1 mb-2 pb-2 radius pl-2">
+                                                            <div class="success answerColor1 mb-2 pb-2 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-14" class="form-radio c">
                                                                 <label for="radio-14" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                     <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                             {{ round(($totalC * 100)/ $totalAns_ ) }}%
@@ -974,12 +978,12 @@
                                                                 </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
-                                                            <div class="wrong answerColor2 mb-2 pb-2 radius pl-2">
+                                                            <div class="wrong answerColor2 mb-2 pb-2 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-13" class="form-radio c">
                                                                 <label for="radio-13" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                             @if ($item->type == '0')
                                                                                 {{ round(($totalC * 100)/ $totalAns_ ) }}%
@@ -992,12 +996,12 @@
                                                                 </label>
                                                             </div>
                                                         @else
-                                                            <div class="mb-2 answerColor3 pb-2 radius pl-2">
+                                                            <div class="mb-2 answerColor3 pb-2 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-12" class="form-radio c">
                                                                 <label for="radio-12" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                             @if ($item->type == '0')
                                                                                 {{ round(($totalC * 100)/ $totalAns_ ) }}%
@@ -1012,12 +1016,12 @@
                                                         @endif
                                                     @elseif($key == '3')
                                                         @if ($key == $item->ans)
-                                                            <div class="success answerColor1 mb-2 pb-2 radius pl-2">
+                                                            <div class="success answerColor1 mb-2 pb-2 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-11" class="form-radio d">
                                                                 <label for="radio-11" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                             @if ($item->type == '0')
                                                                                 {{ round(($totalD * 100)/ $totalAns_ ) }}%
@@ -1030,12 +1034,12 @@
                                                                 </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
-                                                            <div class="wrong answerColor2 mb-2 pb-2 radius pl-2">
+                                                            <div class="wrong answerColor2 mb-2 pb-2 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-10" class="form-radio d">
                                                                 <label for="radio-10" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                             @if ($item->type == '0')
                                                                                 {{ round(($totalD * 100)/ $totalAns_ ) }}%
@@ -1048,12 +1052,12 @@
                                                                 </label>
                                                             </div>
                                                         @else
-                                                            <div class="mb-2 answerColor3 pb-2 radius pl-2">
+                                                            <div class="mb-2 answerColor3 pb-2 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-9" class="form-radio d">
                                                                 <label for="radio-9" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                             @if ($item->type == '0')
                                                                                 {{ round(($totalD * 100)/ $totalAns_ ) }}%
@@ -1068,11 +1072,11 @@
                                                         @endif
                                                     @elseif($key == '4')
                                                         @if ($key == $item->ans)
-                                                            <div class="success answerColor1 mb-2 pb-2 radius pl-2">
+                                                            <div class="success answerColor1 mb-2 pb-2 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-8" class="form-radio e">
                                                                 <label for="radio-8" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
-                                                                    <span class="status_wrapper">
+                                                                <p class="inline mb-0">{{ $value->ans }}</p>
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                             @if ($item->type == '0')
                                                                                 {{ round(($totalE * 100)/ $totalAns_ ) }}%
@@ -1085,12 +1089,12 @@
                                                                 </label>
                                                             </div>
                                                         @elseif ($key == $item->question_revision->where('user_id',Auth::user()->id)->where('ques_id',$item->id)->get()[0]['ans'])
-                                                            <div class="wrong mb-2 answerColor2 pb-2 radius pl-2">
+                                                            <div class="wrong mb-2 answerColor2 pb-2 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-7" class="form-radio e">
                                                                 <label for="radio-7" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                             @if ($item->type == '0')
                                                                                 {{ round(($totalE * 100)/ $totalAns_ ) }}%
@@ -1103,12 +1107,12 @@
                                                                 </label>
                                                             </div>
                                                         @else
-                                                            <div class="mb-2 pb-2 answerColor3 radius pl-2">
+                                                            <div class="mb-2 pb-2 answerColor3 radius pl-2 d-flex align-items-center">
                                                                 <input type="radio" name="answer" id="radio-6" class="form-radio e">
                                                                 <label for="radio-6" value="{{ $key }}" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                    <span class="status_wrapper">
+                                                                    <span class="status_wrapper ml-auto">
                                                                         <p class="inline" style="margin: 0px 2px">
                                                                             @if ($item->type == '0')
                                                                                 {{ round(($totalE * 100)/ $totalAns_ ) }}%
@@ -1129,11 +1133,11 @@
                                             @if ($item->type == '1')
                                                 @foreach ($item->question_ans as $key=>$value)
                                                     @if ($key == '0')
-                                                        <div class="mb-2 pb-2 answerColor1 radius pl-2"  id="muli-ans{{ $key }}">
+                                                        <div class="mb-2 pb-2 answerColor1 radius pl-2 d-flex align-items-center"  id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-5" class="form-radio a"><label for="radio-5" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                <span class="status_wrapper">
+                                                                <span class="status_wrapper ml-auto">
                                                                     <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                             {{ round(($totalA * 100)/ $totalAns_ ) }}%
@@ -1146,11 +1150,11 @@
                                                             </label>
                                                         </div>
                                                     @elseif($key == '1')
-                                                        <div class="mb-2 pb-2 answerColor2 radius pl-2" id="muli-ans{{ $key }}">
+                                                        <div class="mb-2 pb-2 answerColor2 radius pl-2 d-flex align-items-center" id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-4" class="form-radio b"><label for="radio-4" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                <span class="status_wrapper">
+                                                                <span class="status_wrapper ml-auto">
                                                                     <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                             {{ round(($totalB * 100)/ $totalAns_ ) }}%
@@ -1163,11 +1167,11 @@
                                                             </label>
                                                         </div>
                                                     @elseif($key == '2')
-                                                        <div class="mb-2 pb-2 answerColor3 radius pl-2" id="muli-ans{{ $key }}">
+                                                        <div class="mb-2 pb-2 answerColor3 radius pl-2 d-flex align-items-center" id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-3" class="form-radio c"><label for="radio-3" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                <span class="status_wrapper">
+                                                                <span class="status_wrapper ml-auto">
                                                                     <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                             {{ round(($totalC * 100)/ $totalAns_ ) }}%
@@ -1180,11 +1184,11 @@
                                                             </label>
                                                         </div>
                                                     @elseif($key == '3')
-                                                        <div class="mb-2 pb-2 answerColor4 radius pl-2" id="muli-ans{{ $key }}">
+                                                        <div class="mb-2 pb-2 answerColor4 radius pl-2 d-flex align-items-center" id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-2" class="form-radio d"><label for="radio-2" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                <span class="status_wrapper">
+                                                                <span class="status_wrapper ml-auto">
                                                                     <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                             {{ round(($totalD * 100)/ $totalAns_ ) }}%
@@ -1197,11 +1201,11 @@
                                                             </label>
                                                         </div>
                                                     @elseif($key == '4')
-                                                        <div class="mb-2 pb-2 answerColor5 radius pl-2" id="muli-ans{{ $key }}">
+                                                        <div class="mb-2 pb-2 answerColor5 radius pl-2 d-flex align-items-center" id="muli-ans{{ $key }}">
                                                             <input type="checkbox" name="answer[]" id="radio-1" class="form-radio e"><label for="radio-1" value="{{ $key }}" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p>
 
-                                                                <span class="status_wrapper">
+                                                                <span class="status_wrapper ml-auto">
                                                                     <p class="inline" style="margin: 0px 2px">
                                                                         @if ($item->type == '0')
                                                                             {{ round(($totalE * 100)/ $totalAns_ ) }}%
@@ -1226,7 +1230,7 @@
                                             @endif
 
                                             @if ($data->hasPages())
-                                                <table class='d-flex justify-content-around my-4'>
+                                                <table class="d-flex justify-content-center">
                                                     <tr>
                                                         {{-- Previous Page Link --}}
                                                         @if ($data->onFirstPage())
@@ -1279,32 +1283,32 @@
                                                         @if ($key == '0')
                                                             <div class="mb-2 pb-2 radius answerColor1">
                                                                 <input type="radio" name="answer" value="{{ $key }}" id="radio-21" class="form-radio a"><label for="radio-21" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}11</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}11</p></label>
                                                             </div>
                                                         @elseif($key == '1')
                                                             <div class="mb-2 pb-2 answerColor2 radius">
                                                                 <input type="radio" name="answer" value="{{ $key }}" id="radio-22" class="form-radio b"><label for="radio-22" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                             </div>
                                                         @elseif($key == '2')
                                                             <div class="mb-2 pb-2 answerColor3 radius">
                                                                 <input type="radio" name="answer" value="{{ $key }}" id="radio-23" class="form-radio c"><label for="radio-23" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                             </div>
                                                         @elseif($key == '3')
                                                             <div class="mb-2 pb-2 answerColor4 radius">
                                                                 <input type="radio" name="answer" value="{{ $key }}" id="radio-24" class="form-radio d"><label for="radio-24" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                             </div>
                                                         @elseif($key == '4')
                                                             <div class="mb-2 pb-2 answerColor5 radius">
                                                                 <input type="radio" name="answer" value="{{ $key }}" id="radio-2526" class="form-radio e"><label for="radio-2526" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                             </div>
                                                         @endif
                                                     @endforeach
 
-                                                    <table class='d-flex justify-content-around my-4'>
+                                                    <table class="d-flex justify-content-center">
                                                         <tr>
                                                             <td>
                                                                 <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -1384,32 +1388,32 @@
                                                         @if ($key == '0')
                                                             <div class="mb-2 pb-2 radius answerColor1">
                                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-26" class="form-radio a"><label for="radio-26" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                             </div>
                                                         @elseif($key == '1')
                                                             <div class="mb-2 answerColor2 pb-2 radius">
                                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-27" class="form-radio b"><label for="radio-27" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                             </div>
                                                         @elseif($key == '2')
                                                             <div class="mb-2 answerColor3 pb-2 radius">
                                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-28" class="form-radio c"><label for="radio-28" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                             </div>
                                                         @elseif($key == '3')
                                                             <div class="mb-2 answerColor4 pb-2 radius">
                                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-29" class="form-radio d"><label for="radio-29" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                             </div>
                                                         @elseif($key == '4')
                                                             <div class="mb-2 answerColor5 pb-2 radius">
                                                                 <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-30" class="form-radio e"><label for="radio-30" class="inline">
-                                                                    <p class="inline">{{ $value->ans }}</p></label>
+                                                                    <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                             </div>
                                                         @endif
                                                     @endforeach
 
-                                                    <table class='d-flex justify-content-around my-4'>
+                                                    <table class="d-flex justify-content-center">
                                                         <tr>
                                                             <td>
                                                                 <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -1485,33 +1489,33 @@
                                                 @foreach ($item->question_ans as $key=>$value)
                                                     @if ($key == '0')
                                                         <div class="mb-2 pb-2 radius answerColor1">
-                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-31" class="form-radio a"><label for="radio-31" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p></label>
+                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-31" class="form-radio a"><label for="radio-31" class="inline mb-0">
+                                                                <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @elseif($key == '1')
                                                         <div class="mb-2 answerColor2 pb-2 radius">
-                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-32" class="form-radio b"><label for="radio-32" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p></label>
+                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-32" class="form-radio b"><label for="radio-32" class="inline mb-0">
+                                                                <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @elseif($key == '2')
                                                         <div class="mb-2 answerColor3 pb-2 radius">
-                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-33" class="form-radio c"><label for="radio-33" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p></label>
+                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-33" class="form-radio c"><label for="radio-33" class="inline mb-0">
+                                                                <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @elseif($key == '3')
                                                         <div class="mb-2 answerColor4 pb-2 radius">
-                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-34" class="form-radio d"><label for="radio-34" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p></label>
+                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-34" class="form-radio d"><label for="radio-34" class="inline mb-0">
+                                                                <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @elseif($key == '4')
                                                         <div class="mb-2 answerColor5 pb-2 radius">
-                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-35" class="form-radio e"><label for="radio-35" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p></label>
+                                                            <input type="radio" name="answer" value="{{ $key }}" id="radio-35" class="form-radio e"><label for="radio-35" class="inline mb-0">
+                                                                <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @endif
                                                 @endforeach
 
-                                                <table class='d-flex justify-content-around my-4'>
+                                                <table class="d-flex justify-content-center">
                                                     <tr>
                                                         <td>
                                                             <button title="Get Hints" type="button" class="btn btn_info" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -1582,32 +1586,32 @@
                                                     @if ($key == '0')
                                                         <div class="mb-2 pb-2 radius answerColor1">
                                                             <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-36" class="form-radio a"><label for="radio-36" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p></label>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @elseif($key == '1')
                                                         <div class="mb-2 answerColor2 pb-2 radius">
                                                             <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-37" class="form-radio b"><label for="radio-37" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p></label>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @elseif($key == '2')
                                                         <div class="mb-2 answerColor3 pb-2 radius">
                                                             <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-38" class="form-radio c"><label for="radio-38" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p></label>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @elseif($key == '3')
                                                         <div class="mb-2 answerColor4 pb-2 radius">
                                                             <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-39" class="form-radio d"><label for="radio-39" class="inline">
-                                                                <p class="inline">{{ $value->ans }}</p></label>
+                                                                <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @elseif($key == '4')
                                                         <div class="mb-2 answerColor5 pb-2 radius">
                                                             <input type="checkbox" name="answer[]" value="{{ $key }}" id="radio-40" class="form-radio e"><label for="radio-40" class="inline">
-                                                            <p class="inline">{{ $value->ans }}</p></label>
+                                                            <p class="inline mb-0">{{ $value->ans }}</p></label>
                                                         </div>
                                                     @endif
                                                 @endforeach
                                                 @if ($data->hasPages())
-                                                    <table class='d-flex justify-content-around my-4'>
+                                                    <table class="d-flex justify-content-center">
                                                         <tr>
                                                             {{-- Previous Page Link --}}
                                                             @if ($data->onFirstPage())
@@ -1791,8 +1795,8 @@
                 <div class="col-md-3" id="mobile">
                     <div class="area_first__">
                         <p class="text-center text-uppercase heading__n">QUESTION BANK</p>
-                        <div class="center row pagination_list">
-                            <div class="col-md-12 block_">
+                        <div class="center col-12 pagination_list">
+                                    <div class="row block_ justify-content-center">
                                     @for ($i = 1; $i <= $total_question; $i++)
 
                                         @if (isset($_GET['page']))
