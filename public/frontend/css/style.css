@@ -6102,14 +6102,13 @@ button.botton-border:hover {
     font-weight: bold;
     text-align: center;
 }
-
+.status_wrapper p {
+    padding: 0 !important;
+}
 .questions-wrapper {
     max-width: 1470px;
     margin: 0 auto;
     padding: 0 15px;
-}
-.questions-wrapper .card {
-    padding: 20px;
 }
 .questions-wrapper .card .success {
     pointer-events: none;
