@@ -195,7 +195,7 @@
         .question_section ~ .card .card-body{
             font-size:16px;
             line-height:normal;
-            
+
         }
         .question_section div p{
             padding:0 5px;
@@ -1101,7 +1101,7 @@
                                                 @if (empty($item->user_ans))
                                                     @continue
                                                 @endif
-                                                <div class="success answerColor2 mb-2 pb-2 radius d-flex align-items-center">
+                                                <div class="wrong answerColor2 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio d">
                                                     <p class="inline mb-0">{{ $value->ans }}</p>
 
@@ -1118,7 +1118,7 @@
                                                 </span>
                                                 </div>
                                             @else
-                                                <div class="success answerColor3 mb-2 pb-2 radius d-flex align-items-center">
+                                                <div class="answerColor3 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio d">
                                                     <p class="inline mb-0">{{ $value->ans }}</p>
 
@@ -1157,7 +1157,7 @@
                                                 @if (empty($item->user_ans))
                                                     @continue
                                                 @endif
-                                                <div class="success answerColor2 mb-2 pb-2 radius d-flex align-items-center">
+                                                <div class="wrong answerColor2 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio e">
                                                     <p class="inline mb-0">{{ $value->ans }}</p>
 
@@ -1174,7 +1174,7 @@
                                                 </span>
                                                 </div>
                                             @else
-                                                <div class="success answerColor3 mb-2 pb-2 radius d-flex align-items-center">
+                                                <div class="answerColor3 mb-2 pb-2 radius d-flex align-items-center">
                                                     <input type="radio" name="answer" value="{{ $key }}" class="form-radio e">
                                                     <p class="inline mb-0">{{ $value->ans }}</p>
 
