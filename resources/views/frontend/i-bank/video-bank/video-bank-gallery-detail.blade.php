@@ -16,8 +16,6 @@
                     <div class="col-lg-9 blog-post-item ml-auto mr-auto">
                         <div class="blog-wrapper blog-details">
                             <div class="blog-img img-full">
-{{--                                <img src="{{url('storage/image-bank/'.$image->image)}}" alt="">--}}
-
                                 <video width="870" height="480" controls>
                                     <source src="{{url('storage/video-bank/'.$video->image)}}" type="video/mp4">
                                     Your browser does not support the video tag.
@@ -25,7 +23,7 @@
                             </div>
                             <div class="blog-content">
                                 <div class="single-item-comment-view">
-                                    <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
+                                    <span><i class="zmdi zmdi-calendar-check"></i>Created At: {{date('d M Y', strtotime($video->created_at))}}</span>
                                 </div>
                                 <h3>{{$video->title}}</h3>
                                 <p>@php echo $video->description @endphp</p>

@@ -89,7 +89,8 @@ class VideoBankController extends Controller
             'type'=>'video',
             'description'=>$request->description,
             'category_id'=>$request->category,
-            'image'=>$imgName
+            'image'=>$imgName,
+            'created_at' => Carbon::now(),
         ]);
 
         if ($image_id) {

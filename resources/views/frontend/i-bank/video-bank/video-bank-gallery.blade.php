@@ -36,26 +36,12 @@
                                 </a>
                             </div>
                             <div class="single-item-text">
-                                <h4><a href="courses-details.html">{{$video->title}}</a></h4>
+                                <h4><a href="{{ url('i-bank/video-bank-gallery-detail/'.$video->id) }}">{{$video->title}}</a></h4>
                                 <p>@php echo str_limit($video->description, 50) @endphp</p>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="pagination-content number">
-                            <ul class="pagination">
-                                <li><a href="#"><i class="zmdi zmdi-chevron-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li class="current"><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

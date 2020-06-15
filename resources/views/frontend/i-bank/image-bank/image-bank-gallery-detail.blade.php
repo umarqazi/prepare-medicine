@@ -20,7 +20,7 @@
                             </div>
                             <div class="blog-content">
                                 <div class="single-item-comment-view">
-                                    <span><i class="zmdi zmdi-calendar-check"></i>25 jun 2050</span>
+                                    <span><i class="zmdi zmdi-calendar-check"></i>Created At: {{date('d M Y', strtotime($image->created_at))}}</span>
                                 </div>
                                 <h3>{{$image->title}}</h3>
                                 <p>@php echo $image->description @endphp</p>

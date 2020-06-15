@@ -159,7 +159,7 @@
                             <!-- top-social -->
                             <div class="top-social">
                                 <ul>
-                                    
+
                                     <li><a target="_blank" href="https://www.facebook.com/PrepareMedicine" ><i class="zmdi zmdi-facebook"></i></a></li>
                                     <li><a target="_blank" href="https://twitter.com/PrepareMedicine"><i class="zmdi zmdi-twitter"></i></a></li>
                                     <li><a target="_blank" href="https://www.instagram.com/prepare.medicine"><i class="zmdi zmdi-instagram"></i></a></li>
@@ -267,7 +267,6 @@
                                         <li><a href="#"><i class="zmdi zmdi-storage"></i> K-BANK</a>
                                             <ul class="sub-menu">
                                                 <li><a href="{{ url('course') }}">Courses</a></li>
-                                                <li><a href="{{ url('course/plab-1') }}">PLAB 1</a></li>
                                                 <li><a href="{{ route('getCourses') }}">Plab Courses</a></li>
                                                 <li><a href="{{ route('getEvents') }}">Events</a></li>
                                                 <li><a href="{{ route('getWebinar') }}">Webinars</a></li>
@@ -289,7 +288,7 @@
                                             </ul>
                                         </li>
                                         @if (Auth::check())
-                                            <li><a href="{{ url('account') }}"><i class="zmdi zmdi-accounts"></i> ACCOUNT</a>
+                                            <li><a href="#"><i class="zmdi zmdi-accounts"></i> ACCOUNT</a>
                                                 <ul class="sub-menu">
                                                     <li><a href="{{ url('account/subscription') }}">Subscription</a></li>
                                                     @if (Auth::check())
