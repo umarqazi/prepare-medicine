@@ -1327,7 +1327,7 @@
                             <div class="card-body">
                                 {{-- <h3>EXPLANATION</h3> --}}
                                 <h3 class="text-uppercase">EXPLANATION</h3>
-                                {!! $item->explanation !!}
+                                <p class="general-text">{!! $item->explanation !!}</p>
                             </div>
                         </div>
 

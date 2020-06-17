@@ -3017,7 +3017,7 @@ mark {
     color: #555454;
     font-size: 12px;
     overflow: hidden;
-    padding: 38px 160px;
+    padding: 40px 80px;
     position: relative;
     z-index: 3;
     background-color: #2a306c;
@@ -3027,9 +3027,10 @@ mark {
     position: relative;
 }
 .select {
-    display: inline-block;
     width: 33%;
     position: relative;
+    float: left;
+    padding: 0 5px;
 }
 /* .select.large {
     width: 226px;
@@ -4892,4 +4893,39 @@ input.checkbox {
 }
 #scrollUp:hover {
     background-color: #f4a012;
+}
+
+@media all and (max-width: 991px) {
+    .form-container {
+        padding: 30px;
+    }
+}
+
+@media all and (max-width: 767px) {
+    .form-container {
+        display: block !important;
+        text-align: center;
+    }
+    .form-container > button {
+        float: none;
+        clear: both;
+        margin-top: 10px;
+    }
+    .section-padding {
+        padding: 50px 0;
+    }
+}
+@media all and (max-width: 575px) {
+    .form-container .box-select {
+        flex: none;
+        display: block;
+        padding: 0;
+    }
+    .form-container .box-select .select {
+        width: 100%;
+        padding: 5px 0;
+    }
+    .form-container > button {
+        width: 100%;
+    }
 }
