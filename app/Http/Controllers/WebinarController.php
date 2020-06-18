@@ -47,8 +47,6 @@ class WebinarController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
-
         $validate = Validator::make($request->all(), [
             'title'=>'required',
             'description'=>'required',
@@ -82,12 +80,12 @@ class WebinarController extends Controller
             if (env('APP_ENV') == 'local') {
                 $course_path = storage_path('app/public/webinar');
             } else {
-                $course_path = '/home/kohin837/public_html/preparemedicine.com/storage/webinar';
+                $course_path = env('STORAGE_PATH').'/webinar';
             }
 
             //now check directory
             if (!file_exists($course_path)) {
-                if (!mkdir($course_path, 0777, true) && !is_dir($course_path)) {
+                if (!mkdir($course_path, 0775, true) && !is_dir($course_path)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $course_path));
                 }
             }
@@ -111,12 +109,12 @@ class WebinarController extends Controller
             if (env('APP_ENV') == 'local') {
                 $webinar_path = storage_path('app/public/webinar');
             } else {
-                $webinar_path = '/home/kohin837/public_html/preparemedicine.com/storage/webinar';
+                $webinar_path = env('STORAGE_PATH').'/webinar';
             }
 
             //now check directory
             if (!file_exists($webinar_path)) {
-                if (!mkdir($webinar_path, 0777, true) && !is_dir($webinar_path)) {
+                if (!mkdir($webinar_path, 0775, true) && !is_dir($webinar_path)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $webinar_path));
                 }
             }
@@ -225,12 +223,12 @@ class WebinarController extends Controller
             if (env('APP_ENV') == 'local') {
                 $webinar_path = storage_path('app/public/webinar');
             } else {
-                $webinar_path = '/home/kohin837/public_html/preparemedicine.com/storage/webinar';
+                $webinar_path = env('STORAGE_PATH').'/webinar';
             }
 
             //now check directory
             if (!file_exists($webinar_path)) {
-                if (!mkdir($webinar_path, 0777, true) && !is_dir($webinar_path)) {
+                if (!mkdir($webinar_path, 0775, true) && !is_dir($webinar_path)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $webinar_path));
                 }
             }
@@ -246,9 +244,9 @@ class WebinarController extends Controller
             }
 
             //first delete img
-            $img = url('storage/webinar/').$webinar->image;
+            $img = public_path('storage/webinar/'.$webinar->image);
             if (file_exists($img)) {
-                unlink('storage/webinar/'.$webinar->image);
+                unlink(public_path('storage/webinar/'.$webinar->image));
             }
         }
 
@@ -260,12 +258,12 @@ class WebinarController extends Controller
             if (env('APP_ENV') == 'local') {
                 $webinar_path = storage_path('app/public/webinar');
             } else {
-                $webinar_path = '/home/kohin837/public_html/preparemedicine.com/storage/webinar';
+                $webinar_path = env('STORAGE_PATH').'/webinar';
             }
 
             //now check directory
             if (!file_exists($webinar_path)) {
-                if (!mkdir($webinar_path, 0777, true) && !is_dir($webinar_path)) {
+                if (!mkdir($webinar_path, 0775, true) && !is_dir($webinar_path)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $webinar_path));
                 }
             }
@@ -281,9 +279,9 @@ class WebinarController extends Controller
             }
 
             //first delete Video
-            $img = url('storage/webinar/').$webinar->video;
+            $img = public_path('storage/webinar/'.$webinar->video);
             if (file_exists($img)) {
-                unlink('storage/webinar/'.$webinar->video);
+                unlink(public_path('storage/webinar/'.$webinar->video));
             }
         }
 

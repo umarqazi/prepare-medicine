@@ -386,3 +386,31 @@ Route::get('plab-course-details/{id}', 'PlabCourseController@getCourseDetail')->
 
 Route::get('webinars', 'WebinarController@getWebinars')->name('getWebinar');
 Route::get('webinar-details/{id}', 'WebinarController@getWebinarDetail')->name('getWebinarDetail');
+
+/*==================================================*/
+/* CLEAR CACHE COMMANDS */
+
+Route::get('/route-cache', function() {
+    $exitCode = Artisan::call('route:cache');
+    return 'Routes cache cleared';
+});
+
+Route::get('/config-clear', function() {
+    $exitCode = Artisan::call('config:clear');
+    return 'Config cache cleared';
+});
+
+Route::get('/config-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return 'Config cache cleared';
+});
+
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('cache:clear');
+    return 'Application cache cleared';
+});
+
+Route::get('/view-clear', function() {
+    $exitCode = Artisan::call('view:clear');
+    return 'View cache cleared';
+});

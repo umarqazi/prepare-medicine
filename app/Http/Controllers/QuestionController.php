@@ -116,11 +116,11 @@ class QuestionController extends Controller
                     if (env('APP_ENV') == 'local') {
                         $path = storage_path('app/public/questions/' . $que_id);
                     } else {
-                        $path = '/home/kohin837/public_html/preparemedicine.com/storage/questions/' . $que_id;
+                        $path = env('STORAGE_PATH').'/questions/' . $que_id;
                     }
 
                     if (!file_exists($path)) {
-                        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                        if (!mkdir($path, 0775, true) && !is_dir($path)) {
                             throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
                         }
                     }
@@ -268,9 +268,10 @@ class QuestionController extends Controller
 
             /* Delete files from Directory */
             $files = $question->assets()->pluck('path')->toArray();
-//            dd($files);
             foreach ($files as $file) {
-                unlink($file);
+                if (file_exists($file)) {
+                    unlink($file);
+                }
             }
 
             /* Delete Asset Files */
@@ -287,11 +288,11 @@ class QuestionController extends Controller
                     if (env('APP_ENV') == 'local') {
                         $path = storage_path('app/public/questions/' . $request->id);
                     } else {
-                        $path = '/home/kohin837/public_html/preparemedicine.com/storage/questions/' . $request->id;
+                        $path = env('STORAGE_PATH').'/questions/' . $request->id;
                     }
 
                     if (!file_exists($path)) {
-                        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                        if (!mkdir($path, 0775, true) && !is_dir($path)) {
                             throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
                         }
                     }
@@ -413,11 +414,11 @@ class QuestionController extends Controller
                     if (env('APP_ENV') == 'local') {
                         $path = storage_path('app/public/questions/' . $que_id);
                     } else {
-                        $path = '/home/kohin837/public_html/preparemedicine.com/storage/questions/' . $que_id;
+                        $path = env('STORAGE_PATH').'/questions/' . $que_id;
                     }
 
                     if (!file_exists($path)) {
-                        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                        if (!mkdir($path, 0775, true) && !is_dir($path)) {
                             throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
                         }
                     }
@@ -572,7 +573,9 @@ class QuestionController extends Controller
             /* Delete files from Directory */
             $files = $question->assets()->pluck('path')->toArray();
             foreach ($files as $file) {
-                unlink($file);
+                if (file_exists($file)) {
+                    unlink($file);
+                }
             }
 
             /* Delete Asset Files */
@@ -589,11 +592,11 @@ class QuestionController extends Controller
                     if (env('APP_ENV') == 'local') {
                         $path = storage_path('app/public/questions/' . $request->id);
                     } else {
-                        $path = '/home/kohin837/public_html/preparemedicine.com/storage/questions/' . $request->id;
+                        $path = env('STORAGE_PATH').'/questions/' . $request->id;
                     }
 
                     if (!file_exists($path)) {
-                        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                        if (!mkdir($path, 0775, true) && !is_dir($path)) {
                             throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
                         }
                     }
@@ -697,7 +700,7 @@ class QuestionController extends Controller
                     }
                 }
             }
-            return back();
+            return redirect()->back()->with('success', 'Questions have been Imported Successfully!');
         }
 
     }
@@ -754,11 +757,11 @@ class QuestionController extends Controller
             }
 
             if (empty($request->category)) {
-            $cat_id[] = null;
-            foreach (categoty::select()->where('name', 'LIKE', "%{$request->sear_key}%")->get() as $key => $value) {
-                $cat_id[$key] = $value->id;
-            }
-            $data = question::select()->whereIn('cat_id',$cat_id)->where('type','1')->where('status','0')->paginate(30);
+                $cat_id[] = null;
+                foreach (categoty::select()->where('name', 'LIKE', "%{$request->sear_key}%")->get() as $key => $value) {
+                    $cat_id[$key] = $value->id;
+                }
+                $data = question::select()->whereIn('cat_id',$cat_id)->where('type','1')->where('status','0')->paginate(30);
             } else {
                 $data = question::select()->where('cat_id', $request->category)->where('type', '1')->where('status', '0')->paginate(30);
             }

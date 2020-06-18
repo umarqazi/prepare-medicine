@@ -65,12 +65,12 @@ class VideoBankController extends Controller
             if (env('APP_ENV') == 'local') {
                 $path = public_path('storage/video-bank');
             } else {
-                $path = '/home/kohin837/public_html/preparemedicine.com/storage/video-bank';
+                $path = env('STORAGE_PATH').'/video-bank';
             }
 
             //now check directory
             if (!file_exists($path)) {
-                mkdir($path, 0777, true);
+                mkdir($path, 0775, true);
             }
 
             //now move upload image ok
@@ -161,16 +161,18 @@ class VideoBankController extends Controller
             if (env('APP_ENV') == 'local') {
                 $path = public_path('storage/video-bank');
             } else {
-                $path = '/home/kohin837/public_html/preparemedicine.com/storage/video-bank';
+                $path = env('STORAGE_PATH').'/video-bank';
             }
 
             //now check directory
             if (!file_exists($path)) {
-                mkdir($path, 0777, true);
+                mkdir($path, 0775, true);
             }
 
             /* Delete File before Uploading New */
-            unlink($path.'/'.$image->image);
+            if (file_exists($path . '/' . $image->image)) {
+                unlink($path . '/' . $image->image);
+            }
 
             //now move upload image ok
             $moved = $submitted_image->move($path, $img_uniqueName);
@@ -203,6 +205,9 @@ class VideoBankController extends Controller
     public function destroy($id)
     {
         $image = Ibank::find($id);
+        if (file_exists(public_path('storage/video-bank/'.$image->image))) {
+            unlink(public_path('storage/video-bank/'.$image->image));
+        }
         $image->delete();
 
         return redirect()->route('video-bank.index')

@@ -73,12 +73,12 @@ class EventController extends Controller
             if (env('APP_ENV') == 'local') {
                 $course_path = storage_path('app/public/events');
             } else {
-                $course_path = '/home/kohin837/public_html/preparemedicine.com/storage/events';
+                $course_path = env('STORAGE_PATH').'/events';
             }
 
             //now check directory
             if (!file_exists($course_path)) {
-                if (!mkdir($course_path, 0777, true) && !is_dir($course_path)) {
+                if (!mkdir($course_path, 0775, true) && !is_dir($course_path)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $course_path));
                 }
             }
@@ -151,7 +151,6 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request->all());
         $validate = Validator::make($request->all(), [
             'title'=>'required',
             'description'=>'required',
@@ -184,12 +183,12 @@ class EventController extends Controller
             if (env('APP_ENV') == 'local') {
                 $course_path = storage_path('app/public/events');
             } else {
-                $course_path = '/home/kohin837/public_html/preparemedicine.com/storage/events';
+                $course_path = env('STORAGE_PATH').'/events';
             }
 
             //now check directory
             if (!file_exists($course_path)) {
-                if (!mkdir($course_path, 0777, true) && !is_dir($course_path)) {
+                if (!mkdir($course_path, 0775, true) && !is_dir($course_path)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $course_path));
                 }
             }
@@ -205,7 +204,8 @@ class EventController extends Controller
             }
 
             //first delete img
-            $img = url('storage/events/').$event->image;
+            $img = public_path('storage/events/'.$event->image);
+
             if (file_exists($img)) {
                 unlink('storage/events/'.$event->image);
             }
@@ -237,6 +237,13 @@ class EventController extends Controller
     public function destroy($id)
     {
         $event = Event::find($id);
+
+        $img = public_path('storage/events/'.$event->image);
+
+        if (file_exists($img)) {
+            unlink(public_path('storage/events/'.$event->image));
+        }
+
         $event->delete();
 
         return redirect()->route('events.index')->with('success', 'Event has been Deleted Successfully!');

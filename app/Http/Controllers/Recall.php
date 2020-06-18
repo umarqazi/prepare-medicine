@@ -27,7 +27,7 @@ class Recall extends Controller
         if ($request->hasFile('cat_img')) {
             $image = $request->file('cat_img');
             $name = uniqid().'.'.$image->getClientOriginalExtension();
-            $image->move('/home/kohin837/public_html/preparemedicine.com/storage/photos/', $name);
+            $image->move(env('STORAGE_PATH').'/photos/', $name);
         }else{
             return back()->with('error', 'SORRY - Category Image Required.');
         }
@@ -62,7 +62,7 @@ class Recall extends Controller
             if ($request->hasFile('cat_img')) {
                 $image = $request->file('cat_img');
                 $name = uniqid().'.'.$image->getClientOriginalExtension();
-                $image->move('/home/kohin837/public_html/preparemedicine.com/storage/photos/', $name);
+                $image->move(env('STORAGE_PATH').'/photos/', $name);
             }else{
                 return back()->with('error', 'SORRY - Category Image Required.');
             }
@@ -74,7 +74,7 @@ class Recall extends Controller
                 'cat_color' => $request->cat_color,
             ]);
             if ($old_img) {
-                unlink('storage/photos/'.$old_img);
+                unlink(public_path('storage/photos/'.$old_img));
             }
 
         }
@@ -84,8 +84,8 @@ class Recall extends Controller
 
     function Drop($id){
         $old_img = recallmodel::findOrFail($id)->cat_img;
-        if (file_exists('storage/photos/'.$old_img)) {
-            unlink('storage/photos/'.$old_img);
+        if (file_exists(public_path('storage/photos/'.$old_img))) {
+            unlink(public_path('storage/photos/'.$old_img));
         }
 
         question::where('status',$id)->delete();

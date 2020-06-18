@@ -63,12 +63,12 @@ class TeamController extends Controller
             if (env('APP_ENV') == 'local') {
                 $team_path = public_path('storage/team');
             } else {
-                $team_path = '/home/kohin837/public_html/preparemedicine.com/storage/team';
+                $team_path = env('STORAGE_PATH').'/team';
             }
 
             //now check directory
             if (!file_exists($team_path)) {
-                mkdir($team_path, 0777, true);
+                mkdir($team_path, 0775, true);
             }
 
             //now move upload image ok
@@ -127,8 +127,6 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request->all());
-
         $validate = Validator::make($request->all(),[
             'name'=>'required',
             'email'=>'required|email',
@@ -157,16 +155,18 @@ class TeamController extends Controller
             if (env('APP_ENV') == 'local') {
                 $team_path = public_path('storage/team');
             } else {
-                $team_path = '/home/kohin837/public_html/preparemedicine.com/storage/team';
+                $team_path = env('STORAGE_PATH').'/team';
             }
 
             //now check directory
             if (!file_exists($team_path)) {
-                mkdir($team_path, 0777, true);
+                mkdir($team_path, 0775, true);
             }
 
             /* Delete File before Uploading New */
-            unlink($team_path.'/'.$team->profile);
+            if (file_exists($team_path.'/'.$team->profile)) {
+                unlink($team_path.'/'.$team->profile);
+            }
 
             //now move upload image ok
             $moved = $submitted_image->move($team_path, $img_uniqueName);
@@ -186,7 +186,7 @@ class TeamController extends Controller
         $team->save();
 
         return redirect()->route('team-members.index')
-                ->with('success', 'SUCCESS - Team Member Has Been Updated Successfully!');
+            ->with('success', 'SUCCESS - Team Member Has Been Updated Successfully!');
     }
 
     /**
@@ -199,7 +199,7 @@ class TeamController extends Controller
     {
         $team = Team::find($id);
 
-        if (file_exists('storage/team/'.$team->profile)) {
+        if (file_exists(public_path('storage/team/'.$team->profile))) {
             unlink(public_path('storage/team/'.$team->profile));
         }
         $team->delete();

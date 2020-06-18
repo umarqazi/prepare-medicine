@@ -71,12 +71,12 @@ class BlogController extends Controller
             if (env('APP_ENV') == 'local') {
                 $blog_path = storage_path('app/public/blog');
             } else {
-                $blog_path = '/home/kohin837/public_html/preparemedicine.com/storage/blog';
+                $blog_path = env('STORAGE_PATH').'/blog';
             }
 
             //now check directory
             if (!file_exists($blog_path)) {
-                mkdir($blog_path, 0777, true);
+                mkdir($blog_path, 0775, true);
             }
 
             //now move upload image ok
@@ -91,11 +91,11 @@ class BlogController extends Controller
         }
 
         $blog_id = Blog::insertGetId([
-                    'title'=>$request->title,
-                    'description'=>$request->description,
-                    'featured_img'=>$imgName,
-                    'created_at'=>Carbon::now(),
-                ]);
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'featured_img'=>$imgName,
+            'created_at'=>Carbon::now(),
+        ]);
 
         /* IF Blog Saved Successfully then Add Reference Files */
         if (!empty($blog_id) && $request->hasFile('reference_files')) {
@@ -111,11 +111,11 @@ class BlogController extends Controller
                     if (env('APP_ENV') == 'local') {
                         $path = storage_path('app/public/blog/' . $blog_id);
                     } else {
-                        $path = '/home/kohin837/public_html/preparemedicine.com/storage/blog/' . $blog_id;
+                        $path = env('STORAGE_PATH').'/blog/' . $blog_id;
                     }
 
                     if (!file_exists($path)) {
-                        if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                        if (!mkdir($path, 0775, true) && !is_dir($path)) {
                             throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
                         }
                     }
@@ -145,10 +145,8 @@ class BlogController extends Controller
             }
         }
 
-        if ($inserted == true) {
-            return redirect()->back()
-                    ->with('success', 'SUCCESS - Post Saved');
-        }
+        return redirect()->back()
+            ->with('success', 'SUCCESS - Post Saved');
     }
 
     /**
@@ -189,21 +187,21 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $data = Blog::where('id', $id)->first();
+        $data = Blog::where('id', $id)->first();
 
         if ($data) {
-           $validate = Validator::make($request->all(),[
+            $validate = Validator::make($request->all(),[
                 'title'=>'required',
                 'description'=>'required',
             ]);
 
-           if ($validate->fails()) {
+            if ($validate->fails()) {
                 return redirect()->back()
                     ->withInput()
                     ->with('error', 'SORRY - Title & Description fields required');
-           }
+            }
 
-           if ($request->hasFile('featured_img')) {
+            if ($request->hasFile('featured_img')) {
 
                 //make image
                 $submitted_image = $request->file('featured_img');
@@ -212,12 +210,12 @@ class BlogController extends Controller
                 $currentTimeDate = Carbon::now()->toDateString();
                 $img_uniqueName = $currentTimeDate.'-'.uniqid().'.'.$submitted_image->getClientOriginalExtension();
 
-               //now check directory
-               if (env('APP_ENV') == 'local') {
-                   $blog_path = storage_path('app/public/blog');
-               } else {
-                   $blog_path = '/home/kohin837/public_html/preparemedicine.com/storage/blog';
-               }
+                //now check directory
+                if (env('APP_ENV') == 'local') {
+                    $blog_path = storage_path('app/public/blog');
+                } else {
+                    $blog_path = env('STORAGE_PATH').'/blog';
+                }
 
                 //now move upload image ok
                 $moved = $submitted_image->move($blog_path, $img_uniqueName);
@@ -229,25 +227,25 @@ class BlogController extends Controller
                         ->with('error', "Featured Image Uploading Problem");
                 }
 
-               //first delete img
-               $img = url('storage/blog/').$data->featured_img;
-               if ($img) {
-                   unlink('storage/blog/'.$data->featured_img);
-               }
+                //first delete img
+                $img = public_path('storage/blog/'.$data->featured_img);
+                if (file_exists($img)) {
+                    unlink(public_path('storage/blog/'.$data->featured_img));
+                }
 
-               $updated = Blog::where('id', $id)->update([
-                        'title'=>$request->title,
-                        'description'=>$request->description,
-                        'featured_img'=>$imgName,
-                        'updated_at'=>Carbon::now(),
-               ]);
-           } else{
                 $updated = Blog::where('id', $id)->update([
-                            'title'=>$request->title,
-                            'description'=>$request->description,
-                            'updated_at'=>Carbon::now(),
+                    'title'=>$request->title,
+                    'description'=>$request->description,
+                    'featured_img'=>$imgName,
+                    'updated_at'=>Carbon::now(),
                 ]);
-           }
+            } else{
+                $updated = Blog::where('id', $id)->update([
+                    'title'=>$request->title,
+                    'description'=>$request->description,
+                    'updated_at'=>Carbon::now(),
+                ]);
+            }
 
             /* IF Blog Saved Successfully then Add Reference Files */
             if (!empty($updated) && $request->hasFile('reference_files')) {
@@ -258,7 +256,9 @@ class BlogController extends Controller
                 $files = $blog->assets()->pluck('path')->toArray();
 
                 foreach ($files as $file) {
-                    unlink($file);
+                    if (file_exists($file)) {
+                        unlink($file);
+                    }
                 }
 
                 /* Delete Asset Files */
@@ -276,11 +276,11 @@ class BlogController extends Controller
                         if (env('APP_ENV') == 'local') {
                             $path = storage_path('app/public/blog/' . $id);
                         } else {
-                            $path = '/home/kohin837/public_html/preparemedicine.com/storage/blog/' . $id;
+                            $path = env('STORAGE_PATH').'/blog/' . $id;
                         }
 
                         if (!file_exists($path)) {
-                            if (!mkdir($path, 0777, true) && !is_dir($path)) {
+                            if (!mkdir($path, 0775, true) && !is_dir($path)) {
                                 throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
                             }
                         }
@@ -308,10 +308,8 @@ class BlogController extends Controller
                 }
             }
 
-            if ($inserted == true) {
-                return redirect()->back()
-                    ->with('success', 'SUCCESS - Post Saved');
-            }
+            return redirect()->back()
+                ->with('success', 'SUCCESS - Post Updated!');
         }
     }
 
@@ -323,24 +321,26 @@ class BlogController extends Controller
      */
     public function destroy($id)
     {
-       $data = Blog::where('id', $id)->first();
+        $data = Blog::where('id', $id)->first();
 
-       if ($data) {
-           $img = url('storage/blog/').$data->featured_img;
-           if ($img) {
-               unlink('storage/blog/'.$data->featured_img);
-           }
-           $deleted = $data->delete();
-           if ($deleted == true) {
-               return redirect()->back()
+        if ($data) {
+            $img = public_path('storage/blog/'.$data->featured_img);
+
+            if (file_exists($img)) {
+                unlink(public_path('storage/blog/'.$data->featured_img));
+            }
+
+            $deleted = $data->delete();
+            if ($deleted == true) {
+                return redirect()->back()
                     ->with('success', 'SUCCESS - Post Deleted');
-           }else{
+            }else{
                 return redirect()->back()
                     ->with('error', 'SORRY - Something Wrong');
-           }
-       }else{
-        return abort(404);
-       }
+            }
+        }else{
+            return abort(404);
+        }
 
     }
 
@@ -368,7 +368,7 @@ class BlogController extends Controller
         }else{
             //
             return redirect()->back()
-                    ->with('no_access_permission__', 'You can not access, please upgrade your plan');
+                ->with('no_access_permission__', 'You can not access, please upgrade your plan');
         }
 
     }
@@ -389,7 +389,7 @@ class BlogController extends Controller
         }else{
             //
             return redirect()->back()
-                    ->with('no_access_permission__', 'You can not access, please upgrade your plan');
+                ->with('no_access_permission__', 'You can not access, please upgrade your plan');
         }
 
     }

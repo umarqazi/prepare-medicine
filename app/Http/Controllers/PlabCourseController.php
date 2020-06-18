@@ -48,8 +48,6 @@ class PlabCourseController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
-
         $validate = Validator::make($request->all(), [
             'title'=>'required',
             'description'=>'required',
@@ -88,12 +86,12 @@ class PlabCourseController extends Controller
             if (env('APP_ENV') == 'local') {
                 $course_path = storage_path('app/public/plab-courses');
             } else {
-                $course_path = '/home/kohin837/public_html/preparemedicine.com/storage/plab-courses';
+                $course_path = env('STORAGE_PATH').'/plab-courses';
             }
 
             //now check directory
             if (!file_exists($course_path)) {
-                if (!mkdir($course_path, 0777, true) && !is_dir($course_path)) {
+                if (!mkdir($course_path, 0775, true) && !is_dir($course_path)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $course_path));
                 }
             }
@@ -179,8 +177,6 @@ class PlabCourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request->all());
-
         $validate = Validator::make($request->all(), [
             'title'=>'required',
             'description'=>'required',
@@ -221,12 +217,12 @@ class PlabCourseController extends Controller
             if (env('APP_ENV') == 'local') {
                 $course_path = storage_path('app/public/plab-courses');
             } else {
-                $course_path = '/home/kohin837/public_html/preparemedicine.com/storage/plab-courses';
+                $course_path = env('STORAGE_PATH').'/plab-courses';
             }
 
             //now check directory
             if (!file_exists($course_path)) {
-                if (!mkdir($course_path, 0777, true) && !is_dir($course_path)) {
+                if (!mkdir($course_path, 0775, true) && !is_dir($course_path)) {
                     throw new \RuntimeException(sprintf('Directory "%s" was not created', $course_path));
                 }
             }
@@ -242,9 +238,9 @@ class PlabCourseController extends Controller
             }
 
             //first delete img
-            $img = url('storage/plab-courses/').$course->image;
+            $img = public_path('storage/plab-courses/'.$course->image);
             if (file_exists($img)) {
-                unlink('storage/plab-courses/'.$course->image);
+                unlink(public_path('storage/plab-courses/'.$course->image));
             }
         }
 
@@ -281,9 +277,13 @@ class PlabCourseController extends Controller
     public function destroy($id)
     {
         $course = PlabCourse::find($id);
+
+        if (file_exists(public_path('storage/plab-courses/'.$course->image))) {
+            unlink(public_path('storage/plab-courses/'.$course->image));
+        }
         $course->delete();
 
-        return redirect()->route('plab-courses.index')->with('success', 'Event has been Deleted Successfully!');
+        return redirect()->route('plab-courses.index')->with('success', 'Plab Course has been Deleted Successfully!');
     }
 
     public function getPlabCourses()
