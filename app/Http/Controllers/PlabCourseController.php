@@ -289,7 +289,8 @@ class PlabCourseController extends Controller
     public function getPlabCourses()
     {
         $courses = PlabCourse::where('end', '>=', date('Y-m-d H:i:s'))->with('user')->get();
-        return view('frontend/k-bank/courses/courses', compact('courses'));
+        $specialities = categoty::all();
+        return view('frontend/k-bank/courses/courses', compact('courses', 'specialities'));
     }
 
     public function getCourseDetail($id)

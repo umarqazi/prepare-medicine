@@ -1759,6 +1759,7 @@
                 title: 'Exam Summary Graph',
                 colors: ['#63BA52', '#E8372E'],
                 legend: { position: 'bottom' },
+                backgroundColor: '#ddd',
                 is3D: true,
             };
 

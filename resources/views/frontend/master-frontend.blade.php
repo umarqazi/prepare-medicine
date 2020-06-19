@@ -178,6 +178,16 @@
                                         <li><a href="{{ url('login') }}">Login</a></li>
                                         <li><a href="{{ url('register') }}">Register</a></li>
                                     </ul>
+                                @else
+                                    {{--<button class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-sign-out-alt" aria-hidden="true"></i>{{ __('Logout') }}
+                                    </button>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>--}}
                                 @endguest
                             </div><!--// login-and-register -->
                         </div>

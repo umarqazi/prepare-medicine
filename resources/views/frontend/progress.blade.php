@@ -478,8 +478,8 @@
 
                                 <td>
                                     <div style="width:100%">
-                                        <div style="width:20%;display:inline-block;"><small>{{ number_format( ($item->right_ans/($item->right_ans+$item->wrong_ans))*100, 2)}}%</small></div>
-                                        <div style="width:70%;display:inline-block"><div class="progress_bar_"><span class="fill_progress__me" style='width:{{ number_format( ($item->right_ans/($item->right_ans+$item->wrong_ans))*100, 2)}}%'></span></div></div>
+                                        <div style="width:20%;display:inline-block;"><small>{{ $item->right_ans ? number_format( ($item->right_ans/($item->right_ans+$item->wrong_ans))*100, 2) : 0 }}%</small></div>
+                                        <div style="width:70%;display:inline-block"><div class="progress_bar_"><span class="fill_progress__me" style='width:{{ $item->right_ans ? number_format( ($item->right_ans/($item->right_ans+$item->wrong_ans))*100, 2) : 0}}%'></span></div></div>
                                     </div>
                                     <div style="width:100%">
                                         <div style="width:20%;display:inline-block;"><small>{{ !empty($random_others[$key]) ? number_format( ($random_others[$key]['right']/($random_others[$key]['right']+$random_others[$key]['wrong']))*100, 2) : '0'}}%</small></div>
@@ -551,8 +551,8 @@
 
                                 <td>
                                     <div style="width:100%">
-                                        <div style="width:20%;display:inline-block;"><small>{{ number_format( ($item->right_ans/($item->right_ans+$item->wrong_ans))*100, 2)}}%</small></div>
-                                        <div style="width:70%;display:inline-block"><div class="progress_bar_"><span class="fill_progress__me" style='width:{{ number_format( ($item->right_ans/($item->right_ans+$item->wrong_ans))*100, 2)}}%'></span></div></div>
+                                        <div style="width:20%;display:inline-block;"><small>{{ $item->right_ans ? number_format( ($item->right_ans/($item->right_ans+$item->wrong_ans))*100, 2) : 0}}%</small></div>
+                                        <div style="width:70%;display:inline-block"><div class="progress_bar_"><span class="fill_progress__me" style='width:{{ $item->right_ans ? number_format( ($item->right_ans/($item->right_ans+$item->wrong_ans))*100, 2) : 0}}%'></span></div></div>
                                     </div>
                                     <div style="width:100%">
                                         <div style="width:20%;display:inline-block;"><small>{{ !empty($manual_others[$key]) ? number_format( ($manual_others[$key]['right']/($manual_others[$key]['right']+$manual_others[$key]['wrong']))*100, 2) : '0'}}%</small></div>

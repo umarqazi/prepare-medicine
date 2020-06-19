@@ -1,6 +1,6 @@
 @extends('frontend.master-frontend')
 @section('content')
-<br>
+    <br>
     <div class="container-fluid">
         <div class='page_banner_img_common'>
             <div class='overlay__'>
@@ -8,9 +8,9 @@
             </div>
         </div>
         <div class="container">
-        {{--  data fetch from Database !!  --}}
-        {!! $data !!}
-</div>
+            {{--  data fetch from Database !!  --}}
+            {!! $data !!}
+        </div>
 
     </div>
     <br>

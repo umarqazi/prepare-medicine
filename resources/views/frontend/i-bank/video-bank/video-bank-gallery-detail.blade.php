@@ -26,7 +26,7 @@
                                     <span><i class="zmdi zmdi-calendar-check"></i>Created At: {{date('d M Y', strtotime($video->created_at))}}</span>
                                 </div>
                                 <h3>{{$video->title}}</h3>
-                                <p>@php echo $video->description @endphp</p>
+                                <p>{!! $video->description !!}</p>
                             </div>
                         </div>
                     </div>
