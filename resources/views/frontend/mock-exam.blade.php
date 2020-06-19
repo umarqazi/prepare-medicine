@@ -91,12 +91,7 @@
             -moz-osx-font-smoothing: grayscale;
             cursor: pointer;
         }
-        .form-radio:hover + label,
-        .form-radio:checked +label,
-        .success .form-radio + label{
-            font-weight:bold;
-            color:#2A306C;
-        }
+
 </style>
 <style>
     body{
@@ -339,6 +334,9 @@
             background: #2A306C;
             color: #fff;
         }
+        .question_section {
+            padding: 20px;
+        }
 </style>
 @endsection
 @section('content')
@@ -415,7 +413,7 @@
                     {{-- Right part of the exam --}}
                     <div class="col-lg-9 col-md-8 col-sm-12">
 
-                        <div class="card">
+                        <div class="card question_section">
                                 <div class="top_action d-flex justify-content-start">
                                     @isset($_GET['page'])
                                         <p class="action_1">Question {{ $_GET['page'] }} of {{ $total_question }}</p>
@@ -733,7 +731,7 @@
                                 </div>
     </div>
 
-                        <table class="d-flex justify-content-center">
+                        <table class="d-flex justify-content-center mt-4">
                                     <tr>
                                         <td>
                                             <a class="btn btn-info mr-5 bg-danger finish-exam" href="{{ url('q-bank/mock/time/finish/'.Auth::user()->id.'/'.$id) }}" style="border-radius: 3px;border: none;padding: 10px 25px">FINISH</a>

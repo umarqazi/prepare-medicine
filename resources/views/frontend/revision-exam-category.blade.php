@@ -74,6 +74,12 @@
         color:#fff;
         border-color:transparent;
     }
+    .wrong .form-radio:checked,
+    .wrong .form-radio{
+        background-color:#dc3545;
+        color:#fff;
+        border-color:transparent;
+    }
     .form-radio{
         border:1px solid #2A306C;
         min-width:30px;
@@ -1709,7 +1715,7 @@
                                         <div class="card-body">
                                             <h3 class="text-uppercase">EXPLANATION</h3>
                                             {{-- <h3>EXPLANATION</h3> --}}
-                                             {!! $item->explanation !!}
+                                             <p class="general-text">{!! $item->explanation !!}</p>
                                         </div>
                                     </div>
                                 @endif

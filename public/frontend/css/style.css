@@ -4445,9 +4445,9 @@ button.botton-border:hover {
 
 .footer-social-link li a {
     border: 2px solid #63ba52;
-    height: 35px;
-    width: 35px;
-    line-height: 30px;
+    height: 30px;
+    width: 30px;
+    line-height: 25px;
     font-size: 14px;
     text-align: center;
     display: block;
@@ -6110,7 +6110,8 @@ button.botton-border:hover {
     margin: 0 auto;
     padding: 0 15px;
 }
-.questions-wrapper .card .success {
+.questions-wrapper .card .success,
+.questions-wrapper .card .wrong {
     pointer-events: none;
 }
 
@@ -6279,6 +6280,21 @@ button.botton-border:hover {
 /* modified CSS */
 
 .asked-question {
-    font-weight: 600;
     font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+}
+.question_section {
+    font-family: "Open Sans", sans-serif;
+}
+.general-text {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+}
+.exam-summary-graph div {
+    width: 100%;
+}
+@media all and (max-width: 767px) {
+    .general-text {
+        font-size: 14px;
+    }
 }

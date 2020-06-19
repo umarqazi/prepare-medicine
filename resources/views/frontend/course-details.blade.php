@@ -111,8 +111,7 @@
 						</div>
 					</div>
 				</div> <!-- .single_plan end here -->
-			</div>
-			<div class="row" >
+			
 
 				<div class="col-lg-4 col-md-6 col-sm-12 single_plan">
 					<div class="card">
