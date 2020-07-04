@@ -273,7 +273,7 @@ ul {
 }
 #hint #ValuesWrapper h3,
 .card h3 {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: bold;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1600px) {
@@ -1991,9 +1991,12 @@ label {
     display: none;
 }
 
-.mobile-menu .mean-bar .mean-nav > ul li a:hover {
-    color: #ccc;
+.mobile-menu .mean-bar .mean-nav > ul li a:hover,
+.mobile-menu .mean-bar .mean-nav > ul li a:focus,
+.mobile-menu .mean-bar .mean-nav > ul li a:active {
+    color: #fff;
     padding-left: 25px;
+    background-color: #2a306c;
 }
 
 .mobile-menu .mean-bar .mean-nav > ul li a.mean-expand {
@@ -4419,7 +4422,7 @@ button.botton-border:hover {
 }
 
 .footer-logo {
-    max-width: 300px;
+    max-width: 200px;
     margin: 0 auto;
 }
 
@@ -6226,6 +6229,9 @@ button.botton-border:hover {
     body {
         padding-top: 120px;
     }
+    .footer-logo a img {
+        max-width: 70%;
+    }
     .hero-slider #carouselExampleFade .carousel-caption {
         bottom: 35px;
     }
@@ -6256,9 +6262,6 @@ button.botton-border:hover {
     }
     body p {
         font-size: 14px !important;
-    }
-    .footer-logo {
-        max-width: 200px;
     }
     .scroll .logo-area a img,
     .logo-area a img {
@@ -6312,6 +6315,14 @@ button.botton-border:hover {
 /*# sourceMappingURL=style.css.map */
 
 /* modified CSS */
+@media all and (max-width: 991px) {
+    .pt-100 {
+        padding-top: 50px;
+    }
+    .pb-100 {
+        padding-bottom: 50px;
+    }
+}
 
 .asked-question {
     font-size: 16px;
@@ -6329,4 +6340,10 @@ button.botton-border:hover {
     .general-text {
         font-size: 14px;
     }
+}
+
+.select2-container--default
+    .select2-selection--single
+    .select2-selection__arrow {
+    display: none;
 }
